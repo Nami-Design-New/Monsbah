@@ -1,1 +1,23 @@
 @import "./config";
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  direction: rtl;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
+
+  @import "./header";
+  @import "./footer";
+  @import "./auth_section";
+
+  main {
+    min-height: calc(100vh - 100px);
+  }
+
+  &.en {
+    direction: ltr;
+    header .mainLinks .moreActions .dropdown .dropdown-menu.show {
+      inset: 26px auto auto -26px !important;
+    }
+  }
+}
