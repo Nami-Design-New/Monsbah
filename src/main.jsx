@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -16,11 +17,13 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <Provider store={store}>
-      <ToastContainer />
-      <App />
-    </Provider>
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <ToastContainer />
+        <App />
+      </Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  </BrowserRouter>
 );
