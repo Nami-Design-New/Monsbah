@@ -1,6 +1,4 @@
-import App from "./App";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
@@ -11,18 +9,17 @@ const queryClient = new QueryClient();
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/react-toastify/dist/ReactToastify.css";
-
 import "./assets/styles/all.min.css";
 import "./assets/styles/main.css";
+
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <BrowserRouter>
-        <ToastContainer />
-        <App />
-      </BrowserRouter>
+      <ToastContainer />
+      <App />
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
