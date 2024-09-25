@@ -1,5 +1,4 @@
 import Home from "./routes/Home";
-import Login from "./routes/Login";
 
 const routerConfig = [
   {
@@ -9,10 +8,6 @@ const routerConfig = [
   {
     path: "*",
     element: <Home />
-  },
-  {
-    path: "/login",
-    element: <Login />
   }
 ];
 
