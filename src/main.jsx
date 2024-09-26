@@ -20,7 +20,7 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <ToastContainer />
+        <ToastContainer autoClose={1500} />
         <App />
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />

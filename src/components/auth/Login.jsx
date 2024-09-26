@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
+import { toast } from "react-toastify";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
+import axiosInstance from "../../utils/axiosInstance";
 
 function Login({ setFormType }) {
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     phone: "",
     password: "",
@@ -15,8 +18,24 @@ function Login({ setFormType }) {
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi"
   });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/auth/login", formData);
+      if (res.status === 200) {
+        console.log(res.data);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
         <h2 className="head">
           {t("auth.loginTitle")}{" "}
@@ -53,7 +72,7 @@ function Login({ setFormType }) {
 
       <span className="forgetpass">{t("auth.forgetPassword")}</span>
 
-      <SubmitButton name={t("auth.login")} />
+      <SubmitButton name={t("auth.login")} loading={loading} />
 
       <span className="noAccount">
         {t("auth.noAccount")}{" "}

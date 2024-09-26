@@ -63,6 +63,22 @@ input[type=number]::-webkit-inner-spin-button {
   margin-bottom: 0;
 }
 
+.Toastify__toast-body {
+  direction: ltr !important;
+}
+
+.Toastify__toast-body > div:last-child {
+  line-height: 24px;
+  flex: unset;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    right: 0;
+    left: initial;
+  }
+}
 :root {
   --bs-border-radius-lg: 24px;
 }
