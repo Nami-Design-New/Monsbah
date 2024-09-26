@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "./../../utils/axiosInstance";
 
-function useGetCategories() {
+function useGetCountries() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["countries"],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get("/client/categories");
+        const res = await axiosInstance.get("/client/countries");
         if (res.status === 200) {
-          return res.data?.data?.data;
+          return res.data?.data;
         }
       } catch (error) {
         throw new Error(error);
@@ -23,4 +23,4 @@ function useGetCategories() {
   return { isLoading, data, error };
 }
 
-export default useGetCategories;
+export default useGetCountries;

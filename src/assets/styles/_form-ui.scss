@@ -1,0 +1,537 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .resend-code {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 0;
+    justify-content: space-between;
+    .resend_link {
+      color: $main;
+      cursor: pointer;
+      &.disabled {
+        pointer-events: none;
+      }
+    }
+    .timer span {
+      color: $text;
+    }
+  }
+
+  .back_btn {
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid $dark;
+    width: 120px;
+    color: $dark;
+    cursor: pointer;
+    background: none;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background: $main;
+      color: #fff;
+      border: 1px solid $main;
+    }
+  }
+
+  .input-field {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+    label {
+      color: $dark;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      svg,
+      i {
+        stroke: $dark;
+        width: 16px;
+        height: 16px;
+      }
+      img {
+        height: 24px;
+      }
+      span {
+        font-size: 12px;
+        color: $inputHint;
+      }
+    }
+    input,
+    textarea,
+    select {
+      color: $dark;
+      direction: rtl;
+      height: 56px;
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: $inputBg;
+      border: 1px solid $inputStroke;
+      font-size: 14px;
+      box-shadow: none !important;
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+    textarea {
+      height: 140px;
+      padding: 16px 12px;
+    }
+    .input-span {
+      position: absolute;
+      color: $main;
+      left: 12px;
+      top: 46px;
+    }
+  }
+
+  .forgetpass {
+    align-self: flex-end;
+    color: $main;
+  }
+
+  .noAccount {
+    color: $text;
+    span,
+    a {
+      color: $main;
+      cursor: pointer;
+    }
+  }
+
+  p {
+    color: $text;
+    a {
+      color: $main;
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    width: 100%;
+    height: 56px;
+    gap: 6px;
+    border-radius: 12px;
+    @include centerFlex();
+    @include clearInput();
+    color: #fff;
+    background: $main;
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  .question {
+    padding: 0 0 30px;
+    width: 100%;
+    @include space-between();
+    .quest {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $dark;
+    }
+    .vendorInput {
+      appearance: none;
+      position: relative;
+      cursor: pointer;
+      &::after {
+        display: block;
+        width: 48px;
+        height: 24px;
+        border-radius: 16px;
+        content: "";
+        background-color: $text;
+        transition: $transition;
+      }
+      &::before {
+        transition: $transition;
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        content: "";
+        background-color: $white;
+      }
+      &:checked {
+        &::after {
+          background-color: $main;
+        }
+        &::before {
+          right: initial;
+          left: 4px;
+        }
+      }
+    }
+  }
+
+  .image-change-wrapper {
+    border-radius: 16px;
+    border: 1px solid $gray;
+    @include centerFlex();
+    flex-direction: column;
+    padding: 16px;
+    .img-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid $inputHint;
+      overflow: hidden;
+      @include centerFlex();
+      img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .upload {
+      input {
+        display: none;
+      }
+      .plus {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: $main;
+        @include centerFlex();
+        cursor: pointer;
+        i {
+          font-size: 14px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .auth_social_btn {
+    @include clearInput();
+    @include centerFlex();
+    cursor: pointer;
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid $inputHint;
+    color: $dark;
+    gap: 16px;
+    img {
+      height: 28px;
+    }
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background: $gray;
+    position: relative;
+    margin-top: 24px;
+    span {
+      @include centerAbsolute();
+      background: $white;
+      padding: 0 16px;
+      color: $dark;
+      white-space: nowrap;
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .pass-group {
+    display: flex;
+    .show-pass {
+      @include centerFlex();
+      width: 60px;
+      height: 56px;
+      border: 1px solid $inputStroke;
+      background: $inputBg;
+      border-right: 0;
+      border-radius: 12px 0 0 12px !important;
+      color: $text;
+      cursor: pointer;
+    }
+    input {
+      border-left: 0 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+  }
+
+  .phone-group {
+    .PhoneInput {
+      display: flex;
+      gap: 12px;
+      flex-direction: row-reverse;
+      .PhoneInputCountryIcon {
+        position: relative;
+      }
+      .PhoneInputCountryIconImg {
+        width: 20px;
+        position: absolute;
+        top: -33px;
+        left: 10px;
+      }
+      select {
+        padding: 12px 6px 12px 30px;
+        direction: ltr !important;
+      }
+    }
+    .phone-code {
+      height: 54px;
+      border-radius: 4px;
+    }
+  }
+
+  .form_group {
+    display: flex;
+    gap: 16px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .image_field {
+    width: 100%;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    label {
+      color: $dark;
+      i {
+        color: $main;
+      }
+    }
+    .imagewrap {
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid $gray;
+      height: 160px;
+      @include centerFlex();
+      input {
+        display: none;
+      }
+      .img {
+        width: 100%;
+        height: 100%;
+        @include centerFlex();
+        img {
+          height: 100%;
+          object-fit: scale-down;
+        }
+      }
+    }
+  }
+
+  .advice {
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 4px;
+    background-color: $main10;
+    position: relative;
+    padding-top: 22px;
+    padding-bottom: 32px;
+    h6 {
+      text-align: center;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      font-size: 16px;
+      color: $dark;
+    }
+    .icon {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: $main10;
+      border: 2px solid $white;
+      @include centerFlex();
+      img {
+        max-height: 40px;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      width: fit-content;
+      li {
+        color: $dark;
+        gap: 6px;
+        display: flex;
+        align-items: center;
+        i {
+          width: 40px;
+          color: #7dc0f7;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .verify_image_field {
+    padding: 22px;
+    width: 100%;
+    height: 230px;
+    border: 1px solid $gray;
+    @include centerFlex();
+    border-radius: 16px;
+    cursor: pointer;
+    input {
+      display: none;
+    }
+  }
+
+  .phone_field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    align-items: end;
+    gap: 8px;
+    position: relative;
+    img {
+      height: 18px;
+      aspect-ratio: 3 / 2;
+      border-radius: 4px;
+    }
+    button {
+      background: $inputBg;
+      padding: 0 12px;
+      color: $dark;
+      min-width: 94px;
+      border: 1px solid $inputStroke;
+      span {
+        direction: ltr;
+        line-height: 1;
+      }
+    }
+    .countriesMenu {
+      display: none;
+      opacity: 0;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $white;
+      z-index: 9;
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: $shadow;
+      gap: 4px;
+      transition-property: opacity, display;
+      transition-duration: 0.3s;
+      transition-behavior: allow-discrete;
+      .country {
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 62px;
+        border-radius: 12px;
+        cursor: pointer;
+        p {
+          margin: 0;
+          direction: ltr;
+          color: $dark;
+        }
+        .text {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          h6 {
+            text-wrap: nowrap;
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+        &:hover {
+          background: $inputBg;
+        }
+      }
+      &.active {
+        display: flex;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.wizard_tabs {
+  @include space-between();
+  position: relative;
+  padding: 16px 24px;
+  background: $inputBg;
+  border: 1px solid $gray;
+  border-radius: 24px;
+  scrollbar-width: none;
+  @media screen and (max-width: 576px) {
+    padding: 16px 8px;
+  }
+  &::after {
+    content: "";
+    width: calc(100% - 48px);
+    height: 1px;
+    background: $inputHint;
+    left: 24px;
+    position: absolute;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+  @media (max-width: 768px) {
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .wizard_tab {
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
+    align-items: center;
+    background: $inputBg;
+    z-index: 3;
+    padding: 8px;
+    .step_no {
+      transition: $transition;
+      font-weight: 500;
+      color: $dark;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      @include centerFlex();
+      border: 1px solid $dark;
+    }
+    h6 {
+      margin: 0;
+      font-weight: 500;
+      transition: $transition;
+    }
+    &.active {
+      .step_no {
+        border-color: $main;
+        background: $main;
+        color: $white;
+      }
+      h6 {
+        color: $main;
+      }
+    }
+  }
+}
