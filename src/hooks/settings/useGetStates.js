@@ -1,20 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 
-function useGetCategories() {
+function useGetStates(cityId, enabled) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["states", cityId],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get("/client/categories");
+        const res = await axiosInstance.get(`/client/states?city_id=${cityId}`);
         if (res.status === 200) {
-          return res.data?.data?.data;
+          return res.data?.data;
         }
       } catch (error) {
         throw new Error(error);
       }
     },
     retry: false,
+    enabled: enabled,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false
@@ -23,4 +24,4 @@ function useGetCategories() {
   return { isLoading, data, error };
 }
 
-export default useGetCategories;
+export default useGetStates;

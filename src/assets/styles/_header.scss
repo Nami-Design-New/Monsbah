@@ -307,7 +307,7 @@ header {
     display: flex;
     width: min(100% - 8px, 1440px);
     margin: 0 auto;
-    gap: 4px;
+    gap: 12px;
     .singleCategory {
       position: relative;
       .link {
@@ -316,7 +316,6 @@ header {
         align-items: center;
         gap: 4px;
         padding: 8px 12px;
-        padding-bottom: 16px;
         margin: 0 !important;
         white-space: nowrap;
         color: $dark;
