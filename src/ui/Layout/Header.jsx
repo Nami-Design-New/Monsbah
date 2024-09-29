@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
-import useGetCategories from "../../hooks/useGetCategories";
 import AuthModal from "../../components/auth/AuthModal";
 
 export default function Header() {
@@ -16,8 +15,6 @@ export default function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
-
-  const { data: categories } = useGetCategories();
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -133,45 +130,6 @@ export default function Header() {
           </Dropdown>
         </div>
       </div>
-
-      <section className="headerCategoriesWithSub">
-        <div className="singleCategory more">
-          <a href="#" className="link">
-            <img src="img/categories/more.svg" alt="" />
-            Categories
-          </a>
-          <div className="menu"></div>
-        </div>
-
-        {categories?.map((category) => (
-          <div className="singleCategory" key={category?.id}>
-            <Link to={`/ads?category=${category?.id}`} className="link">
-              <img src={category?.image} alt="" />
-              {category?.name}
-            </Link>
-            {/* <div className="menu">
-              <a href="listing.html" className="sub">
-                Mobile
-              </a>
-              <a href="listing.html" className="sub">
-                Tablets
-              </a>
-              <a href="listing.html" className="sub">
-                Laptops
-              </a>
-              <a href="listing.html" className="sub">
-                Cameras
-              </a>
-              <a href="listing.html" className="sub">
-                Speakers
-              </a>
-              <a href="listing.html" className="sub">
-                Others
-              </a>
-            </div> */}
-          </div>
-        ))}
-      </section>
       <GetApp show={showGetAppModal} setShow={setShowGetAppModal} />
       <AuthModal
         type={authType}

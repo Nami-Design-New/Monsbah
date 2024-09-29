@@ -147,6 +147,9 @@ $shadow: 0px 2px 8px #0000001a;
   border-radius: 50%;
   @include centerFlex();
   box-shadow: $shadow;
+  i {
+    color: $dark;
+  }
 }
 
 .customBtn {

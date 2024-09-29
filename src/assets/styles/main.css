@@ -104,6 +104,9 @@ input[type=number]::-webkit-inner-spin-button {
   justify-content: center;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
 }
+.closeModal i {
+  color: #0d0d0d;
+}
 
 .customBtn {
   border: none;
@@ -1069,8 +1072,7 @@ body .form .phone_field .countriesMenu {
   flex-direction: column;
   position: absolute;
   top: 64px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   background: #fff;
   z-index: 9;
   padding: 12px;
@@ -1185,6 +1187,11 @@ body .auth_section {
   display: flex;
   padding: 16px;
 }
+@media screen and (max-width: 768px) {
+  body .auth_section {
+    padding: 54px 16px 32px;
+  }
+}
 body .auth_section .form_wrapper {
   width: 50%;
   padding: 24px;
@@ -1236,11 +1243,45 @@ body main {
   min-height: calc(100vh - 100px);
 }
 body main .hero_section {
-  padding: 24px;
+  padding: 32px 0;
+}
+body main .hero_section .hero_swiper {
+  width: 100%;
+  height: 182px;
+}
+body main .hero_section .hero_swiper a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+body main .hero_section .hero_swiper a img {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .hero_section .hero_swiper .swiper-pagination-bullet {
+  width: 24px;
+  border-radius: 0;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s ease-in-out;
+}
+body main .hero_section .hero_swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 48px;
 }
 body.en {
   direction: ltr;
 }
 body.en header .mainLinks .moreActions .dropdown .dropdown-menu.show {
   inset: 26px auto auto -26px !important;
+}
+body.en .form .phone_field .countriesMenu {
+  right: 0;
+  left: unset;
+}
+body.en .closeModal {
+  right: 16px;
+  left: unset;
 }/*# sourceMappingURL=main.css.map */
