@@ -21,5 +21,13 @@ body {
     header .mainLinks .moreActions .dropdown .dropdown-menu.show {
       inset: 26px auto auto -26px !important;
     }
+    .form .phone_field .countriesMenu {
+      right: 0;
+      left: unset;
+    }
+    .closeModal {
+      right: 16px;
+      left: unset;
+    }
   }
 }
