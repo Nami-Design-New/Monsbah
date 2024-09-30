@@ -534,3 +534,65 @@
     }
   }
 }
+.radios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  .label-content {
+    height: unset !important;
+    padding: 8px 0 !important;
+    flex-direction: column !important;
+    gap: 8px;
+  }
+  label {
+    width: 100%;
+    span {
+      height: 56px;
+      width: 100%;
+      background: $white;
+      color: $dark;
+      font-size: 16px !important;
+      cursor: pointer;
+      border: 1px solid $lightGray;
+      @include centerFlex();
+      border-radius: 12px;
+    }
+    input {
+      display: none;
+      &:checked + span {
+        background: $main;
+        border-color: $main;
+        color: $white;
+      }
+    }
+  }
+}
+.image_upload {
+  border: 1px solid $lightGray;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  max-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  input {
+    display: none;
+  }
+  @include centerFlex();
+  img {
+    height: 60px;
+  }
+  button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+}

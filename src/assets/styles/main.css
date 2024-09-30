@@ -1182,6 +1182,72 @@ body .wizard_tabs .wizard_tab.active .step_no {
 body .wizard_tabs .wizard_tab.active h6 {
   color: #1abc9c;
 }
+body .radios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body .radios .label-content {
+  height: unset !important;
+  padding: 8px 0 !important;
+  flex-direction: column !important;
+  gap: 8px;
+}
+body .radios label {
+  width: 100%;
+}
+body .radios label span {
+  height: 56px;
+  width: 100%;
+  background: #fff;
+  color: #0d0d0d;
+  font-size: 16px !important;
+  cursor: pointer;
+  border: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+body .radios label input {
+  display: none;
+}
+body .radios label input:checked + span {
+  background: #1abc9c;
+  border-color: #1abc9c;
+  color: #fff;
+}
+body .image_upload {
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3/2;
+  max-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .image_upload input {
+  display: none;
+}
+body .image_upload img {
+  height: 60px;
+}
+body .image_upload button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
 body .auth_section {
   width: 100%;
   display: flex;
@@ -1238,6 +1304,15 @@ body .authModal .modal-body {
 }
 body .authModal .modal-body .modal-content {
   border-radius: 24px !important;
+}
+body .verification-page {
+  padding: 40px 0;
+}
+body .verification-page .field-header .title {
+  font-weight: 400;
+}
+body .verification-page .field-header .subTitle {
+  color: #777777;
 }
 body main {
   min-height: calc(100vh - 100px);

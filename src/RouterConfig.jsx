@@ -1,14 +1,19 @@
 import Home from "./routes/Home";
+import Verification from "./routes/Verification";
 
 const routerConfig = [
   {
     path: "/",
-    element: <Home />
+    element: <Home />,
+  },
+  {
+    path: "/verification",
+    element: <Verification />,
   },
   {
     path: "*",
-    element: <Home />
-  }
+    element: <Home />,
+  },
 ];
 
 export default routerConfig;
