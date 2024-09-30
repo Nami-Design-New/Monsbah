@@ -26,3 +26,84 @@
     }
   }
 }
+
+.explore_ads {
+  .categories_slider {
+    width: 100%;
+    .swiper-slide {
+      width: fit-content !important;
+      white-space: nowrap;
+      .category {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px 4px 4px 26px;
+        margin: 0 8px;
+        white-space: nowrap;
+        color: $dark;
+        border-radius: 200px;
+        background: $inputBg;
+        border: 1px solid $inputStroke;
+        .img {
+          border-radius: 50%;
+          background: $white;
+          width: 32px;
+          height: 32px;
+          @include centerFlex();
+          img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+          }
+        }
+        h6 {
+          margin: 0;
+        }
+        &.active {
+          background: $main;
+          h6 {
+            color: $white;
+          }
+        }
+        &.sub {
+          padding: 10px 16px;
+        }
+      }
+    }
+  }
+  .filter {
+    padding: 12px;
+    background: $inputBg;
+    border-radius: 8px;
+    @include space-between();
+    .selects {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .grid_view {
+      gap: 12px;
+      display: flex;
+      align-items: center;
+      .dropdown {
+        button {
+          background: $white;
+          border: 1px solid $lightGray;
+          color: $main;
+          padding: 8px 12px;
+          @include centerFlex();
+          &::after {
+            display: none;
+          }
+        }
+        .dropdown-item {
+          text-align: start !important;
+        }
+      }
+    }
+    .css-1hf1o2u-container {
+      min-width: 120px;
+    }
+  }
+}

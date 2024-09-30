@@ -27,109 +27,112 @@ export default function Header() {
 
   return (
     <header>
-      <div className="mainLinks">
-        <Link to="/" className="navbar-brand">
-          <img src="/images/branding/logo.svg" loading="lazy" alt="" />
-        </Link>
-
-        <nav className="navbar navbar-expand-lg">
-          <button className="navbar-toggler">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <ul className="navbar-nav">
-            <Link className="logo" to="/">
-              <img src="/images/branding/logo.svg" loading="lazy" alt="" />
-            </Link>
-
-            <NavLink className="navLink" to="/">
-              {t("header.home")}
-            </NavLink>
-            <NavLink className="navLink" to="/categories">
-              {t("header.categories")}
-            </NavLink>
-            <NavLink className="navLink" to="/listing">
-              {t("header.listing")}
-            </NavLink>
-            <NavLink className="navLink" to="/chats">
-              {t("header.chats")}
-            </NavLink>
-            <NavLink className="navLink" to="/contact">
-              {t("header.contact")}
-            </NavLink>
-          </ul>
-        </nav>
-
-        <div className="moreActions">
-          <button
-            className="customBtn"
-            onClick={() => setShowGetAppModal(true)}
-          >
-            {t("header.getApp")}
-          </button>
-
-          <Link to="/add-ad" className="link text">
-            <img src="images/icons/plus.svg" alt="" />
-            {t("header.addPost")}
+      <div className="container">
+        <div className="mainLinks">
+          <Link to="/" className="navbar-brand">
+            <img src="/images/branding/logo.svg" loading="lazy" alt="" />
           </Link>
 
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="link">
-              <img src="images/icons/bell.svg" alt="" />
-              <span className="count"> 10 </span>
-            </Dropdown.Toggle>
+          <nav className="navbar navbar-expand-lg">
+            <button className="navbar-toggler">
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-            <Dropdown.Menu></Dropdown.Menu>
-          </Dropdown>
+            <ul className="navbar-nav">
+              <Link className="logo" to="/">
+                <img src="/images/branding/logo.svg" loading="lazy" alt="" />
+              </Link>
 
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="link">
-              <img src="images/icons/lang.svg" alt="" />
-            </Dropdown.Toggle>
+              <NavLink className="navLink" to="/">
+                {t("header.home")}
+              </NavLink>
+              <NavLink className="navLink" to="/categories">
+                {t("header.categories")}
+              </NavLink>
+              <NavLink className="navLink" to="/listing">
+                {t("header.listing")}
+              </NavLink>
+              <NavLink className="navLink" to="/chats">
+                {t("header.chats")}
+              </NavLink>
+              <NavLink className="navLink" to="/contact">
+                {t("header.contact")}
+              </NavLink>
+            </ul>
+          </nav>
 
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() => handleLang("ar")}>
-                العربية
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleLang("en")}>
-                English
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <div className="moreActions">
+            <button
+              className="customBtn"
+              onClick={() => setShowGetAppModal(true)}
+            >
+              {t("header.getApp")}
+            </button>
 
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="link">
-              <img src="images/icons/user.svg" alt="" />
-            </Dropdown.Toggle>
+            <Link to="/add-ad" className="link text">
+              <img src="images/icons/plus.svg" alt="" />
+              {t("header.addPost")}
+            </Link>
 
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Link
-                  onClick={() => {
-                    setShowAuthModal(true);
-                    setAuthType("login");
-                  }}
-                >
-                  <i className="fa-light fa-arrow-right-to-bracket"></i>
-                  {t("header.login")}
-                </Link>
-              </Dropdown.Item>
+            <Dropdown>
+              <Dropdown.Toggle id="dropdown-basic" className="link">
+                <img src="images/icons/bell.svg" alt="" />
+                <span className="count"> 10 </span>
+              </Dropdown.Toggle>
 
-              <Dropdown.Item>
-                <Link
-                  onClick={() => {
-                    setShowAuthModal(true);
-                    setAuthType("register");
-                  }}
-                >
-                  <i className="fa-light fa-user-plus"></i>
-                  {t("header.register")}
-                </Link>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+              <Dropdown.Menu></Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown>
+              <Dropdown.Toggle id="dropdown-basic" className="link">
+                <img src="images/icons/lang.svg" alt="" />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => handleLang("ar")}>
+                  العربية
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleLang("en")}>
+                  English
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown>
+              <Dropdown.Toggle id="dropdown-basic" className="link">
+                <img src="images/icons/user.svg" alt="" />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <Link
+                    onClick={() => {
+                      setShowAuthModal(true);
+                      setAuthType("login");
+                    }}
+                  >
+                    <i className="fa-light fa-arrow-right-to-bracket"></i>
+                    {t("header.login")}
+                  </Link>
+                </Dropdown.Item>
+
+                <Dropdown.Item>
+                  <Link
+                    onClick={() => {
+                      setShowAuthModal(true);
+                      setAuthType("register");
+                    }}
+                  >
+                    <i className="fa-light fa-user-plus"></i>
+                    {t("header.register")}
+                  </Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </div>
       </div>
+
       <GetApp show={showGetAppModal} setShow={setShowGetAppModal} />
       <AuthModal
         type={authType}
