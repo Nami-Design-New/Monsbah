@@ -1334,7 +1334,7 @@ body .product_vertical .content .title {
 }
 body .product_vertical .content .title .favourite_btn {
   background: #fff;
-  width: 32px;
+  min-width: 32px;
   height: 32px;
   border-radius: 50%;
   display: flex;
@@ -1394,6 +1394,53 @@ body .product_vertical:hover .img img {
 }
 body .product_vertical:hover .img::after {
   animation: shine 1s;
+}
+body .product_vertical.skeleton {
+  height: 100%;
+}
+body .product_vertical.skeleton .skeleton-img {
+  width: 140px;
+  border-radius: 8px;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .product_vertical.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  width: calc(50% - 4px);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .product_vertical.skeleton .skeleton-text:first-child {
+  width: 100%;
+}
+body .product_vertical.skeleton .skeleton-title {
+  width: 60%;
+  height: 24px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .product_vertical.skeleton .skeleton-price {
+  width: 40%;
+  height: 20px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .product_vertical.skeleton .skeleton-btn {
+  min-width: 32px;
+  height: 32px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
 }
 @keyframes shine {
   100% {
@@ -1456,7 +1503,7 @@ body main .explore_ads .categories_slider .swiper-slide .category {
 body main .explore_ads .categories_slider .swiper-slide .category .img {
   border-radius: 50%;
   background: #fff;
-  width: 32px;
+  min-width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -1479,6 +1526,12 @@ body main .explore_ads .categories_slider .swiper-slide .category.active h6 {
 }
 body main .explore_ads .categories_slider .swiper-slide .category.sub {
   padding: 10px 16px;
+}
+body main .explore_ads .categories_slider .swiper-slide .category.skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .explore_ads .categories_slider .swiper-slide .category.skeleton h6 {
+  min-width: 32px;
 }
 body main .explore_ads .filter {
   padding: 12px;

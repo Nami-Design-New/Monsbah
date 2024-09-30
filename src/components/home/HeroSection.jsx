@@ -13,10 +13,14 @@ import useGetCities from "./../../hooks/settings/useGetCities";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import CategoryLoader from "../../ui/loaders/CategoryLoader";
 
 function HeroSection() {
   const { t } = useTranslation();
   const lang = useSelector((state) => state.language.lang);
+  const userCity = useSelector((state) => state.clientData.city);
+  const userCountry = useSelector((state) => state.clientData.country);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [country, setCountry] = useState(null);
@@ -26,7 +30,7 @@ function HeroSection() {
 
   const { data: countries, isLoading } = useGetCountries();
   const { data: cities } = useGetCities(country, country ? true : false);
-  const { data: categories } = useGetCategories();
+  const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: subCategories } = useGetSubCategories(
     selectedCategory,
     selectedCategory ? true : false
@@ -52,18 +56,30 @@ function HeroSection() {
     }
   }, [searchParams, t]);
 
+  useEffect(() => {
+    if (userCity) {
+      handleSetParams(userCity?.id, "city");
+    }
+    if (userCountry) {
+      handleSetParams(userCountry?.id, "country");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userCity, userCountry]);
+
   const handleSetParams = (value, type) => {
-    if (value === "") {
-      searchParams.delete(type);
+    if (value) {
+      if (value === "") {
+        searchParams.delete(type);
+        setSearchParams(searchParams);
+        return;
+      }
+      if (type === "country") {
+        searchParams.delete("city");
+        setSearchParams(searchParams);
+      }
+      searchParams.set(type, value);
       setSearchParams(searchParams);
-      return;
     }
-    if (type === "country") {
-      searchParams.delete("city");
-      setSearchParams(searchParams);
-    }
-    searchParams.set(type, value);
-    setSearchParams(searchParams);
   };
 
   return (
@@ -106,41 +122,57 @@ function HeroSection() {
         <div className="container d-flex flex-column gap-3">
           {/* categories slider */}
           <Swiper slidesPerView="auto" className="categories_slider">
-            <SwiperSlide>
-              <button
-                className={`category ${
-                  selectedCategory === null ? "active" : ""
-                }`}
-                onClick={() => {
-                  searchParams.delete("category");
-                  searchParams.delete("sub_category");
-                  setSearchParams(searchParams);
-                  setSelectedCategory(null);
-                  setSelectedSubCategory(null);
-                }}
-              >
-                <div className="img">
-                  <img src="/images/icons/all.svg" alt="" />
-                </div>
-                <h6>{t("all")}</h6>
-              </button>
-            </SwiperSlide>
+            {categoriesLoading ? (
+              <>
+                {Array(6)
+                  .fill(0)
+                  .map((_, index) => (
+                    <SwiperSlide key={index}>
+                      <CategoryLoader />
+                    </SwiperSlide>
+                  ))}
+              </>
+            ) : (
+              <>
+                <SwiperSlide>
+                  <button
+                    className={`category ${
+                      selectedCategory === null ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      searchParams.delete("category");
+                      searchParams.delete("sub_category");
+                      setSearchParams(searchParams);
+                      setSelectedCategory(null);
+                      setSelectedSubCategory(null);
+                    }}
+                  >
+                    <div className="img">
+                      <img src="/images/icons/all.svg" alt="" />
+                    </div>
+                    <h6>{t("all")}</h6>
+                  </button>
+                </SwiperSlide>
 
-            {categories?.map((category) => (
-              <SwiperSlide key={category.id}>
-                <buttton
-                  onClick={() => handleSetParams(category.id, "category")}
-                  className={`category ${
-                    category?.id === Number(selectedCategory) ? "active" : ""
-                  }`}
-                >
-                  <div className="img">
-                    <img src={category?.image} alt="" />
-                  </div>
-                  <h6>{category?.name}</h6>
-                </buttton>
-              </SwiperSlide>
-            ))}
+                {categories?.map((category) => (
+                  <SwiperSlide key={category.id}>
+                    <buttton
+                      onClick={() => handleSetParams(category.id, "category")}
+                      className={`category ${
+                        category?.id === Number(selectedCategory)
+                          ? "active"
+                          : ""
+                      }`}
+                    >
+                      <div className="img">
+                        <img src={category?.image} alt="" />
+                      </div>
+                      <h6>{category?.name}</h6>
+                    </buttton>
+                  </SwiperSlide>
+                ))}
+              </>
+            )}
           </Swiper>
 
           {/* sub categories */}
