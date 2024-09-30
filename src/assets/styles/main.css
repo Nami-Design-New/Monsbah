@@ -204,6 +204,26 @@ input[type=number]::-webkit-inner-spin-button {
   height: 42px;
 }
 
+.css-t3ipsp-control {
+  border-color: #eeeeee !important;
+  box-shadow: none !important;
+}
+.css-t3ipsp-control:hover {
+  background-color: #fff !important;
+}
+
+.css-13cymwt-control {
+  border-color: #eeeeee !important;
+}
+
+.select__indicator-separator {
+  display: none !important;
+}
+
+.modal-backdrop {
+  --bs-backdrop-opacity: 0.7;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -224,7 +244,6 @@ body header {
   border-bottom: 1px solid #dddddd;
 }
 body header .mainLinks {
-  width: min(100% - 8px, 1440px);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -1239,6 +1258,148 @@ body .authModal .modal-body {
 body .authModal .modal-body .modal-content {
   border-radius: 24px !important;
 }
+body .products_section {
+  padding: 16px 0;
+}
+body .product_vertical {
+  width: 100%;
+  background: #f8f8f8;
+  border-radius: 8px;
+  display: flex;
+}
+@media screen and (max-width: 576px) {
+  body .product_vertical {
+    padding: 12px;
+  }
+}
+body .product_vertical .img {
+  min-width: 140px;
+  max-width: 140px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+body .product_vertical .img .type {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #1abc9c;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 14px;
+}
+body .product_vertical .img img {
+  transition: 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 8px;
+}
+@media screen and (max-width: 576px) {
+  body .product_vertical .img {
+    min-width: 120px;
+    max-width: 120px;
+  }
+}
+body .product_vertical .img::after {
+  position: absolute;
+  top: 0;
+  left: -80%;
+  z-index: 2;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-25deg);
+  z-index: 1;
+}
+body .product_vertical .content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  padding: 16px;
+}
+body .product_vertical .content .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+body .product_vertical .content .title .favourite_btn {
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .product_vertical .content .title .favourite_btn.active i {
+  font-weight: 600;
+  color: red;
+}
+body .product_vertical .content .title h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: #0d0d0d;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+body .product_vertical .content .price {
+  font-size: 18px;
+  color: #1abc9c;
+}
+body .product_vertical .content .price span {
+  color: #1abc9c;
+  font-weight: bold;
+}
+body .product_vertical .content ul {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body .product_vertical .content ul li {
+  font-size: 14px;
+  color: #666b88;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+body .product_vertical .content ul li i {
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+body .product_vertical .content ul li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666b88;
+}
+body .product_vertical:hover .img img {
+  transform: scale(1.1);
+}
+body .product_vertical:hover .img::after {
+  animation: shine 1s;
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
 body main {
   min-height: calc(100vh - 100px);
 }
@@ -1271,11 +1432,101 @@ body main .hero_section .hero_swiper .swiper-pagination-bullet {
 body main .hero_section .hero_swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
   width: 48px;
 }
+body main .explore_ads .categories_slider {
+  width: 100%;
+}
+body main .explore_ads .categories_slider .swiper-slide {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  white-space: nowrap;
+}
+body main .explore_ads .categories_slider .swiper-slide .category {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 4px 4px 26px;
+  margin: 0 8px;
+  white-space: nowrap;
+  color: #0d0d0d;
+  border-radius: 200px;
+  background: #f8f8f8;
+  border: 1px solid #f2f2f2;
+}
+body main .explore_ads .categories_slider .swiper-slide .category .img {
+  border-radius: 50%;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .explore_ads .categories_slider .swiper-slide .category .img img {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main .explore_ads .categories_slider .swiper-slide .category h6 {
+  margin: 0;
+}
+body main .explore_ads .categories_slider .swiper-slide .category.active {
+  background: #1abc9c;
+}
+body main .explore_ads .categories_slider .swiper-slide .category.active h6 {
+  color: #fff;
+}
+body main .explore_ads .categories_slider .swiper-slide .category.sub {
+  padding: 10px 16px;
+}
+body main .explore_ads .filter {
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .explore_ads .filter .selects {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+body main .explore_ads .filter .grid_view {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+}
+body main .explore_ads .filter .grid_view .dropdown button {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  color: #1abc9c;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .explore_ads .filter .grid_view .dropdown button::after {
+  display: none;
+}
+body main .explore_ads .filter .grid_view .dropdown .dropdown-item {
+  text-align: start !important;
+}
+body main .explore_ads .filter .css-1hf1o2u-container {
+  min-width: 120px;
+}
 body.en {
   direction: ltr;
 }
 body.en header .mainLinks .moreActions .dropdown .dropdown-menu.show {
   inset: 26px auto auto -26px !important;
+}
+body.en main .explore_ads .categories_slider .swiper-slide .category {
+  padding: 4px 26px 4px 4px;
+}
+body.en main .explore_ads .categories_slider .swiper-slide .category.sub {
+  padding: 10px 16px;
 }
 body.en .form .phone_field .countriesMenu {
   right: 0;

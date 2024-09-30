@@ -243,3 +243,20 @@ $shadow: 0px 2px 8px #0000001a;
     }
   }
 }
+.css-t3ipsp-control {
+  border-color: $lightGray !important;
+  box-shadow: none !important;
+  &:hover {
+    background-color: $white !important;
+  }
+}
+.css-13cymwt-control {
+  border-color: $lightGray !important;
+}
+.select__indicator-separator {
+  display: none !important;
+}
+
+.modal-backdrop {
+  --bs-backdrop-opacity: 0.7;
+}

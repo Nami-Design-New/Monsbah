@@ -35,5 +35,14 @@
         "termsOfUse": "سياسة الإستخدام"
     },
     "appName": "مناسبة",
-    "select": "اختر"
+    "select": "اختر",
+    "all": "الكل",
+    "selectCountry": "اختر الدولة",
+    "productType": "نوع المنتج",
+    "rent": "ايجار",
+    "sale": "بيع",
+    "near": "الأقرب",
+    "low_price": "الأقل سعراً",
+    "high_price": "الأعلى سعراً",
+    "new": "جديد"
 }

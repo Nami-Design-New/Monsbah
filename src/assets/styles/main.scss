@@ -10,6 +10,7 @@ body {
   @import "./footer";
   @import "./form-ui";
   @import "./auth_section";
+  @import "./product";
 
   main {
     min-height: calc(100vh - 100px);
@@ -20,6 +21,12 @@ body {
     direction: ltr;
     header .mainLinks .moreActions .dropdown .dropdown-menu.show {
       inset: 26px auto auto -26px !important;
+    }
+    main .explore_ads .categories_slider .swiper-slide .category {
+      padding: 4px 26px 4px 4px;
+      &.sub {
+        padding: 10px 16px;
+      }
     }
     .form .phone_field .countriesMenu {
       right: 0;

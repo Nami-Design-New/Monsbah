@@ -8,8 +8,6 @@ export default function PhoneInput({ label, onSelect, countryCode, ...props }) {
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
   const { data: countries } = useGetCountries();
 
-  console.log(countryCode);
-
   useEffect(() => {
     setSlectedCountry(
       countries?.find((country) => country.country_code === countryCode)

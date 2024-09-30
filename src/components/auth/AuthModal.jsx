@@ -22,7 +22,7 @@ export default function AuthModal({ show, setShow, type }) {
       {/* <Modal.Header closeButton /> */}
       <Modal.Body>
         <button className="closeModal" onClick={() => setShow(false)}>
-        <i className="fa-regular fa-x"></i>
+          <i className="fa-regular fa-x"></i>
         </button>
         <section className="auth_section">
           <div className="img_wrapper">
@@ -34,8 +34,12 @@ export default function AuthModal({ show, setShow, type }) {
             />
           </div>
           <div className="form_wrapper">
-            {formType === "login" && <Login setFormType={setFormType} />}
-            {formType === "register" && <Register setFormType={setFormType} />}
+            {formType === "login" && (
+              <Login setFormType={setFormType} setShow={setShow} />
+            )}
+            {formType === "register" && (
+              <Register setFormType={setFormType} setShow={setShow} />
+            )}
           </div>
         </section>
       </Modal.Body>
