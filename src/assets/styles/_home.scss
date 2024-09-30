@@ -48,7 +48,7 @@
         .img {
           border-radius: 50%;
           background: $white;
-          width: 32px;
+          min-width: 32px;
           height: 32px;
           @include centerFlex();
           img {
@@ -68,6 +68,12 @@
         }
         &.sub {
           padding: 10px 16px;
+        }
+        &.skeleton {
+          animation: pulse 1.5s ease-in-out infinite;
+          h6 {
+            min-width: 32px;
+          }
         }
       }
     }

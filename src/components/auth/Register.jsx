@@ -143,25 +143,27 @@ function Register({ setFormType }) {
         }}
       />
 
-      <InputField
-        required
-        label={t("auth.email")}
-        placeholder={t("auth.email")}
-        id="email"
-        name="email"
-        value={formData.email}
-        onChange={(e) => handleChange(e, setFormData)}
-      />
+      <div className="form_group">
+        <InputField
+          required
+          label={t("auth.email")}
+          placeholder={t("auth.email")}
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={(e) => handleChange(e, setFormData)}
+        />
 
-      <PasswordField
-        label={t("auth.password")}
-        placeholder={t("auth.password")}
-        required
-        id="password"
-        name="password"
-        value={formData.password}
-        onChange={(e) => handleChange(e, setFormData)}
-      />
+        <PasswordField
+          label={t("auth.password")}
+          placeholder={t("auth.password")}
+          required
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={(e) => handleChange(e, setFormData)}
+        />
+      </div>
 
       <span className="noAccount mt-2">
         {t("auth.byContinueYouAccept")}{" "}
