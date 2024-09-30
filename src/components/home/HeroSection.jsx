@@ -58,6 +58,10 @@ function HeroSection() {
       setSearchParams(searchParams);
       return;
     }
+    if (type === "country") {
+      searchParams.delete("city");
+      setSearchParams(searchParams);
+    }
     searchParams.set(type, value);
     setSearchParams(searchParams);
   };
@@ -109,8 +113,10 @@ function HeroSection() {
                 }`}
                 onClick={() => {
                   searchParams.delete("category");
+                  searchParams.delete("sub_category");
                   setSearchParams(searchParams);
                   setSelectedCategory(null);
+                  setSelectedSubCategory(null);
                 }}
               >
                 <div className="img">
@@ -211,7 +217,7 @@ function HeroSection() {
                 />
               )}
             </div>
-            
+
             <div className="grid_view">
               <Dropdown>
                 <Dropdown.Toggle>

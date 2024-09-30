@@ -1,12 +1,88 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { jwtDecode } from "jwt-decode";
+import {
+  setCity,
+  setClientData,
+  setCountry,
+  setUserState
+} from "./redux/slices/clientData";
 import Footer from "./ui/Layout/Footer";
 import Header from "./ui/Layout/Header";
 import routerConfig from "./RouterConfig";
 import i18n from "./utils/i18n";
+import axiosInstance from "./utils/axiosInstance";
+import useGetAuthedUser from "./hooks/users/useGetAuthedUser";
 
 function App() {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [cookies, , removeCookie] = useCookies(["token", "id"]);
+  const token = cookies?.token;
+  const id = cookies?.id;
+  let decodedToken = null;
+  let isExpired = false;
+
+  if (token) {
+    try {
+      decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      isExpired = decodedToken.exp < currentTime;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+    }
+    axiosInstance.defaults.headers.common["Authorization"] = `bearer ${token}`;
+  }
+
+  const {
+    data: profile,
+
+    isFetched,
+    refetch
+  } = useGetAuthedUser(Boolean(token && id && !isExpired));
+
+  useEffect(() => {
+    if (isExpired) {
+      return;
+    }
+
+    if (Number(decodedToken?.sub) !== id || isExpired) {
+      dispatch(setCity({}));
+      dispatch(setCountry({}));
+      dispatch(setUserState({}));
+      dispatch(setClientData({}));
+      removeCookie("token");
+      removeCookie("id");
+      return;
+    }
+
+    if (isFetched) {
+      if (profile) {
+        dispatch(setCity(profile?.city));
+        dispatch(setCountry(profile?.country));
+        dispatch(setUserState(profile?.state));
+        dispatch(setClientData(profile?.client_data));
+        setLoading(false);
+      } else {
+        console.log("Profile data not available, refetching...");
+        refetch().then(() => setLoading(false));
+      }
+    } else {
+      refetch().then(() => setLoading(false));
+    }
+  }, [
+    decodedToken?.sub,
+    dispatch,
+    id,
+    isExpired,
+    isFetched,
+    profile,
+    refetch,
+    removeCookie
+  ]);
+
   const lang = useSelector((state) => state.language.lang);
 
   useEffect(() => {
@@ -16,7 +92,7 @@ function App() {
     i18n.changeLanguage(lang);
   }, [lang]);
 
-  return (
+  return loading ? null : (
     <>
       <Header />
       <main>
