@@ -15,7 +15,7 @@ function Login({ setFormType }) {
     phone: "",
     password: "",
     country_code: "965",
-    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi"
+    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
   const handleSubmit = async (e) => {

@@ -1239,6 +1239,123 @@ body .authModal .modal-body {
 body .authModal .modal-body .modal-content {
   border-radius: 24px !important;
 }
+body .section-head {
+  padding: 35px 5px;
+  background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
+}
+body .section-head .small_nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+body .section-head .Arrow_icon {
+  border: 2px solid #231f20;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+body .section-head .Arrow_icon i::before {
+  line-height: 0 !important;
+  color: #231f20;
+  text-align: center;
+  font-weight: 700;
+  line-height: 0 !important;
+  font-size: 19px;
+}
+body .section-head .text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body .section-head .text h1 {
+  color: #231f20;
+  font-size: 22px !important;
+  font-weight: 700;
+  margin: 0;
+}
+body .section-head .text .page_name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body .section-head .text .page_name Link {
+  color: #6e55ff !important;
+}
+body .section-head .text .page_name i {
+  color: #6e55ff;
+  font-size: 11px;
+}
+body .aboutus_section {
+  display: flex;
+  flex-direction: column;
+}
+body .aboutus_section .Head_image {
+  width: 100%;
+  height: 50vh;
+}
+body .aboutus_section .Head_image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .aboutus_section .Who_we_are {
+  background-color: #f4f2ff;
+  padding: 45px 10px;
+}
+body .aboutus_section .Who_we_are .we {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+}
+body .aboutus_section .Who_we_are .Logo img {
+  width: 80px;
+}
+body .aboutus_section .Who_we_are .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+body .aboutus_section .Who_we_are .content p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+}
+body .aboutus_section .Who_we_are .content .name {
+  font-weight: 700;
+  font-size: 16px;
+}
+body .aboutus_section .Who_we_are .content .Job_Title {
+  color: #666b88;
+}
+body .terms_section .Terms_content {
+  padding: 25px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body .terms_section .Terms_content h1 {
+  color: #231f20;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 20px;
+}
+body .terms_section .Terms_content p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #666b88;
+}
 body main {
   min-height: calc(100vh - 100px);
 }
