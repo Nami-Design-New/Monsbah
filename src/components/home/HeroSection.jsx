@@ -18,8 +18,8 @@ import CategoryLoader from "../../ui/loaders/CategoryLoader";
 function HeroSection() {
   const { t } = useTranslation();
   const lang = useSelector((state) => state.language.lang);
-  const userCity = useSelector((state) => state.clientData.city);
-  const userCountry = useSelector((state) => state.clientData.country);
+  const userCity = useSelector((state) => state.clientData.client.city);
+  const userCountry = useSelector((state) => state.clientData.client.country);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -157,7 +157,12 @@ function HeroSection() {
                 {categories?.map((category) => (
                   <SwiperSlide key={category.id}>
                     <buttton
-                      onClick={() => handleSetParams(category.id, "category")}
+                      onClick={() => {
+                        searchParams.delete("sub_category");
+                        setSearchParams(searchParams);
+                        setSelectedSubCategory(null);
+                        handleSetParams(category.id, "category");
+                      }}
                       className={`category ${
                         category?.id === Number(selectedCategory)
                           ? "active"

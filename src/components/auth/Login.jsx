@@ -4,12 +4,7 @@ import { handleChange } from "../../utils/helpers";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import {
-  setCity,
-  setClientData,
-  setCountry,
-  setUserState
-} from "../../redux/slices/clientData";
+import { setClientData } from "../../redux/slices/clientData";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
@@ -39,11 +34,7 @@ function Login({ setFormType, setShow }) {
         fcm_token: formData.fcm_token
       });
       if (res.status === 200) {
-        dispatch(setCity(res.data?.data.city));
-        dispatch(setCountry(res.data?.data.country));
-        dispatch(setUserState(res.data?.data.state));
         dispatch(setClientData(res.data?.data.client_data));
-
         setCookie("token", res.data?.data.token, {
           path: "/",
           secure: true,

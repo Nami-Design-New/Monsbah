@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
-import {
-  setCity,
-  setClientData,
-  setCountry,
-  setUserState
-} from "./redux/slices/clientData";
+import { setClientData } from "./redux/slices/clientData";
 import Footer from "./ui/Layout/Footer";
 import Header from "./ui/Layout/Header";
 import routerConfig from "./RouterConfig";
@@ -49,9 +44,6 @@ function App() {
     }
 
     if (Number(decodedToken?.sub) !== id || isExpired) {
-      dispatch(setCity({}));
-      dispatch(setCountry({}));
-      dispatch(setUserState({}));
       dispatch(setClientData({}));
       removeCookie("token");
       removeCookie("id");
@@ -60,10 +52,7 @@ function App() {
 
     if (isFetched) {
       if (profile) {
-        dispatch(setCity(profile?.city));
-        dispatch(setCountry(profile?.country));
-        dispatch(setUserState(profile?.state));
-        dispatch(setClientData(profile?.client_data));
+        dispatch(setClientData(profile));
         setLoading(false);
       } else {
         console.log("Profile data not available, refetching...");
