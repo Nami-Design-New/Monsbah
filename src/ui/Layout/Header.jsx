@@ -54,6 +54,7 @@ export default function Header() {
               <NavLink className="navLink" to="/chats">
                 {t("header.chats")}
               </NavLink>
+              
               <NavLink className="navLink" to="/contact">
                 {t("header.contact")}
               </NavLink>
