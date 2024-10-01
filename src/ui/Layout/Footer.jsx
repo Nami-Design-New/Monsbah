@@ -16,7 +16,7 @@ export default function Footer() {
                   <img
                     loading="lazy"
                     alt="logo"
-                    src="/public/images/branding/icon.svg"
+                    src="/images/branding/icon.svg"
                   />
                 </Link>
               </div>
