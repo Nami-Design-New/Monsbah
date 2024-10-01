@@ -291,6 +291,7 @@ header {
       padding: 8px 12px;
       padding-bottom: 16px;
       margin: 0 !important;
+      @include centerFlex();
       span {
         white-space: nowrap;
         display: block;

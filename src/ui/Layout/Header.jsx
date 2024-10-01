@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
@@ -11,6 +11,7 @@ import AuthModal from "../../components/auth/AuthModal";
 export default function Header() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.clientData.client);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
@@ -54,7 +55,7 @@ export default function Header() {
               <NavLink className="navLink" to="/chats">
                 {t("header.chats")}
               </NavLink>
-              
+
               <NavLink className="navLink" to="/contact">
                 {t("header.contact")}
               </NavLink>
@@ -70,13 +71,13 @@ export default function Header() {
             </button>
 
             <Link to="/add-ad" className="link text d-lg-flex d-none">
-              <img src="images/icons/plus.svg" alt="" />
+              <img src="/images/icons/plus.svg" alt="" />
               {t("header.addPost")}
             </Link>
 
             <Dropdown className="d-lg-block d-none">
               <Dropdown.Toggle id="dropdown-basic" className="link">
-                <img src="images/icons/bell.svg" alt="" />
+                <img src="/images/icons/bell.svg" alt="" />
                 <span className="count"> 10 </span>
               </Dropdown.Toggle>
 
@@ -85,7 +86,7 @@ export default function Header() {
 
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="link">
-                <img src="images/icons/lang.svg" alt="" />
+                <img src="/images/icons/lang.svg" alt="" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -98,15 +99,21 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <button
-              className="link d-lg-block d-none"
-              onClick={() => {
-                setShowAuthModal(true);
-                setAuthType("login");
-              }}
-            >
-              <img src="images/icons/user.svg" alt="" />
-            </button>
+            {user?.id ? (
+              <Link to="/profile" className="link d-lg-flex d-none">
+                <img src="/images/icons/user.svg" alt="user" />
+              </Link>
+            ) : (
+              <button
+                className="link d-lg-block d-none"
+                onClick={() => {
+                  setShowAuthModal(true);
+                  setAuthType("login");
+                }}
+              >
+                <img src="/images/icons/user.svg" alt="user" />
+              </button>
+            )}
           </div>
         </div>
       </div>

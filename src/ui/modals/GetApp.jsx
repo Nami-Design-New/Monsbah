@@ -16,13 +16,13 @@ export default function GetApp({ show, setShow }) {
           {t("getApp.title")} <span> {t("appName")} </span>
         </h4>
         <h6 className="subtitle"> {t("getApp.subtitle")} </h6>
-        <img className="qrcode" src="images/icons/qr.svg" alt="" />
+        <img className="qrcode" src="/images/icons/qr.svg" alt="" />
         <div className="btns">
           <Link to="" target="_blank">
-            <img src="images/icons/appStore.svg" alt="" />
+            <img src="/images/icons/appStore.svg" alt="" />
           </Link>
           <Link target="_blank">
-            <img src="images/icons/playStore.svg" alt="" />
+            <img src="/images/icons/playStore.svg" alt="" />
           </Link>
         </div>
       </Modal.Body>

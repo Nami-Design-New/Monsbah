@@ -37,6 +37,11 @@
         "byContinueYouAccept": "By continuing, you agree to",
         "termsOfUse": "Terms of Use"
     },
+    "error": {
+        "pageNotFound": "This link doesn't exist or might have been deleted. How did you get here?",
+        "noAccountWithThisId": "We don't have a user with this ID. How did you get here?",
+        "goHome": "Home"
+    },
     "select": "Select",
     "all": "All",
     "selectCountry": "Select Country",

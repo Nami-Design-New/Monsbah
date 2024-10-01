@@ -1,6 +1,6 @@
-export default function ImageLoad() {
+export default function ImageLoad({ isImageLoaded }) {
   return (
-    <div className="image_laoder">
+    <div className={`image_laoder ${isImageLoaded ? "laoding" : ""}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="50px"
