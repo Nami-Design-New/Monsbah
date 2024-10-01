@@ -2,13 +2,18 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
 import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { setClientData } from "../../redux/slices/clientData";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
 
-function Login({ setFormType }) {
+function Login({ setFormType, setShow }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const [, setCookie] = useCookies(["token", "id"]);
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,9 +27,27 @@ function Login({ setFormType }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/client/auth/login", formData);
+      const res = await axiosInstance.post("/client/auth/login", {
+        phone: formData.country_code + formData.phone,
+        password: formData.password,
+        country_code: formData.country_code,
+        fcm_token: formData.fcm_token
+      });
       if (res.status === 200) {
-        console.log(res.data);
+        dispatch(setClientData(res.data?.data.client_data));
+        setCookie("token", res.data?.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+        setCookie("id", res.data?.data.client_data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+
+        toast.success(res.data?.message);
+        setShow(false);
       }
     } catch (error) {
       toast.error(error.response.data.message);

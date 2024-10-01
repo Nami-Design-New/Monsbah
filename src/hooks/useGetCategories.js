@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../utils/axiosInstance";
 
 function useGetCategories() {
+  const lang = useSelector((state) => state.language.lang);
+
   const { isLoading, data, error } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get("/client/categories");

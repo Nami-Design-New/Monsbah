@@ -11,7 +11,6 @@ header {
   flex-direction: column;
   border-bottom: 1px solid $border;
   .mainLinks {
-    width: min(100% - 8px, 1440px);
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -31,7 +30,7 @@ header {
     .navbar-brand {
       padding: 4px;
       img {
-        height: 60px;
+        height: 52px;
         max-width: 250px;
         width: 100%;
         object-fit: contain;

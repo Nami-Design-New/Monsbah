@@ -1,26 +1,26 @@
-import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "./../../utils/axiosInstance";
+import { useSelector } from "react-redux";
+import axiosInstance from "../utils/axiosInstance";
 
-function useGetCities(countryId, enabled) {
+function useGetSubCategories(category, enabled) {
   const lang = useSelector((state) => state.language.lang);
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["cities", countryId, lang],
+    queryKey: ["sub-categories", category, lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(
-          `/client/cities?country_id=${countryId}`
+          `client/sub-categories?category_id=${category}`
         );
         if (res.status === 200) {
-          return res.data?.data;
+          return res.data?.data?.data;
         }
       } catch (error) {
         throw new Error(error);
       }
     },
-    retry: false,
     enabled: enabled,
+    retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false
@@ -29,4 +29,4 @@ function useGetCities(countryId, enabled) {
   return { isLoading, data, error };
 }
 
-export default useGetCities;
+export default useGetSubCategories;

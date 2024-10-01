@@ -1,12 +1,20 @@
 import axios from "axios";
 
-const lang = sessionStorage.getItem("lang") || "ar";
-
 axios.defaults.baseURL = "https://monsbah.com/api";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.headers.common["Accept"] = "application/json";
-axios.defaults.headers.common["lang"] = lang;
 
 const axiosInstance = axios.create();
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const lang = sessionStorage.getItem("lang") || "ar";
+    config.headers["lang"] = lang;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

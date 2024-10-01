@@ -1,0 +1,45 @@
+.Profile_section {
+  .Profile_Dashpoard {
+    padding: 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+//sideBar
+aside {
+  width: 250px;
+  height: 50dvh;
+  background-color: #fffdf1;
+  padding: 26px;
+  border-radius: 25px;
+  .side_list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+    .side_item {
+      .side_link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #231f20;
+        font-size: 17px;
+        font-weight: 400;
+        padding: 15px 12px;
+
+        i {
+          font-size: 17px;
+        }
+      }
+      .active {
+        background-color: #231f20;
+        color: #eee;
+      }
+    }
+  }
+}

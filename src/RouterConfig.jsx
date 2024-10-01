@@ -1,5 +1,6 @@
 import Aboutus from "./routes/Aboutus";
 import Home from "./routes/Home";
+import Profile from "./routes/Profile";
 import Terms from "./routes/Terms";
 
 const routerConfig = [
@@ -18,6 +19,10 @@ const routerConfig = [
   {
     path: "terms",
     element: <Terms />,
+  },
+  {
+    path: "Profile",
+    element: <Profile />,
   },
 ];
 

@@ -174,12 +174,12 @@
 
 //Terms
 .terms_section {
-  .Terms_content {
-    padding: 25px;
+  .terms_content {
+    padding: 25px !important;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     h1 {
       color: #231f20;
       font-weight: 700;
@@ -190,6 +190,7 @@
       font-size: 15px;
       font-weight: 400;
       color: #666b88;
+      line-height: 40px;
     }
   }
 }
