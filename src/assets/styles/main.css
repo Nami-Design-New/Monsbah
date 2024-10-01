@@ -238,7 +238,12 @@ input[type=number]::-webkit-inner-spin-button {
   top: 0;
   left: 0;
   z-index: 7;
+  opacity: 0;
   background: #e9e9e9;
+  transition: 0.3s ease-in-out;
+}
+.image_laoder.laoding {
+  opacity: 1;
 }
 
 body {
@@ -550,6 +555,9 @@ body header .headerCategories .link {
   padding: 8px 12px;
   padding-bottom: 16px;
   margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body header .headerCategories .link span {
   white-space: nowrap;
@@ -1789,6 +1797,161 @@ body main .explore_ads .filter .grid_view .dropdown .dropdown-item {
 }
 body main .explore_ads .filter .css-1hf1o2u-container {
   min-width: 120px;
+}
+body main .Profile_section .Profile_Dashpoard {
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+body main aside {
+  width: 250px;
+  height: 50dvh;
+  background-color: #fffdf1;
+  padding: 26px;
+  border-radius: 25px;
+}
+body main aside .side_list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+}
+body main aside .side_list .side_item .side_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #231f20;
+  font-size: 17px;
+  font-weight: 400;
+  padding: 15px 12px;
+}
+body main aside .side_list .side_item .side_link i {
+  font-size: 17px;
+}
+body main aside .side_list .side_item .active {
+  background-color: #231f20;
+  color: #eee;
+}
+body main .section-head {
+  padding: 35px 5px;
+  background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
+}
+body main .section-head .small_nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+body main .section-head .Arrow_icon {
+  border: 2px solid #231f20;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+body main .section-head .Arrow_icon i::before {
+  line-height: 0 !important;
+  color: #231f20;
+  text-align: center;
+  font-weight: 700;
+  line-height: 0 !important;
+  font-size: 19px;
+}
+body main .section-head .text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body main .section-head .text h1 {
+  color: #231f20;
+  font-size: 22px !important;
+  font-weight: 700;
+  margin: 0;
+}
+body main .section-head .text .page_name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body main .section-head .text .page_name Link {
+  color: #6e55ff !important;
+}
+body main .section-head .text .page_name i {
+  color: #6e55ff;
+  font-size: 11px;
+}
+body main .aboutus_section {
+  display: flex;
+  flex-direction: column;
+}
+body main .aboutus_section .Head_image {
+  width: 100%;
+  height: 50vh;
+}
+body main .aboutus_section .Head_image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .aboutus_section .Who_we_are {
+  background-color: #f4f2ff;
+  padding: 45px 10px;
+}
+body main .aboutus_section .Who_we_are .we {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+}
+body main .aboutus_section .Who_we_are .Logo img {
+  width: 80px;
+}
+body main .aboutus_section .Who_we_are .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .aboutus_section .Who_we_are .content p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+}
+body main .aboutus_section .Who_we_are .content .name {
+  font-weight: 700;
+  font-size: 16px;
+}
+body main .aboutus_section .Who_we_are .content .Job_Title {
+  color: #666b88;
+}
+body main .terms_section .terms_content {
+  padding: 25px !important;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body main .terms_section .terms_content h1 {
+  color: #231f20;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 20px;
+}
+body main .terms_section .terms_content p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #666b88;
+  line-height: 40px;
 }
 body.en {
   direction: ltr;

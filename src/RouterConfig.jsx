@@ -17,7 +17,7 @@ const routerConfig = [
     element: <Aboutus />,
   },
   {
-    path: "terms",
+    path: "terms-and-conditions",
     element: <Terms />,
   },
   {
