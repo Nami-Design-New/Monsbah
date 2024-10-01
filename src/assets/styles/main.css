@@ -224,6 +224,19 @@ input[type=number]::-webkit-inner-spin-button {
   --bs-backdrop-opacity: 0.7;
 }
 
+.image_laoder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  background: #e9e9e9;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -1267,15 +1280,10 @@ body .product_vertical {
   border-radius: 8px;
   display: flex;
 }
-@media screen and (max-width: 576px) {
-  body .product_vertical {
-    padding: 12px;
-  }
-}
 body .product_vertical .img {
   min-width: 140px;
   max-width: 140px;
-  aspect-ratio: 1/1;
+  aspect-ratio: 3/2;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -1555,7 +1563,7 @@ body main .explore_ads .filter .grid_view .dropdown button {
   background: #fff;
   border: 1px solid #eeeeee;
   color: #1abc9c;
-  padding: 8px 12px;
+  padding: 11px 14px;
   display: flex;
   align-items: center;
   justify-content: center;

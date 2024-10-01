@@ -5,14 +5,45 @@
         "listing": "Property Listings",
         "chats": "Chats",
         "contact": "Contact Us",
-        "getApp": "Download the App",
-        "addPost": "Add a Post",
+        "getApp": "Download App",
+        "addPost": "Add Post",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "logout": "Logout"
     },
     "getApp": {
         "title": "Get the App",
         "subtitle": "Scan the QR code to download the app now."
     },
-    "appName": "Monsbah"
+    "auth": {
+        "loginTitle": "Welcome Back!",
+        "loginSubtitle": "Log in to access your account and continue your journey with us.",
+        "phone": "Phone Number",
+        "password": "Password",
+        "forgetPassword": "Forgot Password?",
+        "login": "Login",
+        "noAccount": "Don't have an account?",
+        "register": "Register",
+        "userName": "Username",
+        "userNamePlaceHolder": "Enter username (English letters)",
+        "fullName": "Full Name",
+        "email": "Email",
+        "country": "Country",
+        "city": "City",
+        "area": "Area",
+        "haveAccount": "Already have an account?",
+        "byContinueYouAccept": "By continuing, you agree to",
+        "termsOfUse": "Terms of Use"
+    },
+    "appName": "Monsbah",
+    "select": "Select",
+    "all": "All",
+    "selectCountry": "Select Country",
+    "productType": "Product Type",
+    "rent": "Rent",
+    "sale": "Sale",
+    "near": "Nearest",
+    "low_price": "Lowest Price",
+    "high_price": "Highest Price",
+    "new": "New"
 }

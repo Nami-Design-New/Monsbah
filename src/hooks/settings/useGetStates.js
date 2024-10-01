@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
 function useGetStates(cityId, enabled) {
+  const lang = useSelector((state) => state.language.lang);
+
   const { isLoading, data, error } = useQuery({
-    queryKey: ["states", cityId],
+    queryKey: ["states", cityId, lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(`/client/states?city_id=${cityId}`);

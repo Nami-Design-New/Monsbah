@@ -19,7 +19,6 @@ export default function AuthModal({ show, setShow, type }) {
       size="xl"
       onHide={() => setShow(false)}
     >
-      {/* <Modal.Header closeButton /> */}
       <Modal.Body>
         <button className="closeModal" onClick={() => setShow(false)}>
           <i className="fa-regular fa-x"></i>

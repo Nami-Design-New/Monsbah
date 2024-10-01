@@ -2,26 +2,18 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
-import { useCookies } from "react-cookie";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
 import AuthModal from "../../components/auth/AuthModal";
-import axiosInstance from "../../utils/axiosInstance";
-import { setClientData } from "../../redux/slices/clientData";
-import { toast } from "react-toastify";
 
 export default function Header() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const [, , removeCookie] = useCookies(["token", "id"]);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
-
-  const user = useSelector((state) => state.clientData.client);
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -29,21 +21,6 @@ export default function Header() {
     const bodyElement = document.querySelector("body");
     if (bodyElement) {
       bodyElement.classList.toggle("en", newLang === "en");
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      const res = await axiosInstance.get("/client/auth/logout");
-      if (res.status === 200) {
-        removeCookie("token", { path: "/" });
-        removeCookie("id", { path: "/" });
-        dispatch(setClientData({}));
-        toast.success(res.data?.message);
-      }
-    } catch (error) {
-      console.error("Error logging out:", error.message);
-      toast.error(error.response.data.message);
     }
   };
 
@@ -120,49 +97,15 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" className="link">
-                <img src="images/icons/user.svg" alt="" />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {user?.id ? (
-                  <>
-                    <Dropdown.Item>
-                      <Link onClick={() => handleLogout()}>
-                        <i className="fa-light fa-arrow-right-to-bracket"></i>
-                        {t("header.logout")}
-                      </Link>
-                    </Dropdown.Item>
-                  </>
-                ) : (
-                  <>
-                    <Dropdown.Item>
-                      <Link
-                        onClick={() => {
-                          setShowAuthModal(true);
-                          setAuthType("login");
-                        }}
-                      >
-                        <i className="fa-light fa-arrow-right-to-bracket"></i>
-                        {t("header.login")}
-                      </Link>
-                    </Dropdown.Item>
-
-                    <Dropdown.Item>
-                      <Link
-                        onClick={() => {
-                          setShowAuthModal(true);
-                          setAuthType("register");
-                        }}
-                      >
-                        <i className="fa-light fa-user-plus"></i>
-                        {t("header.register")}
-                      </Link>
-                    </Dropdown.Item>
-                  </>
-                )}
-              </Dropdown.Menu>
-            </Dropdown>
+            <button
+              className="link"
+              onClick={() => {
+                setShowAuthModal(true);
+                setAuthType("login");
+              }}
+            >
+              <img src="images/icons/user.svg" alt="" />
+            </button>
           </div>
         </div>
       </div>
