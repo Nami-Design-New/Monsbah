@@ -29,7 +29,7 @@ export default function Header() {
       <div className="container">
         <div className="mainLinks">
           <Link to="/" className="navbar-brand">
-            <img src="/images/branding/logo.svg" loading="lazy" alt="" />
+            <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
 
           <nav className="navbar navbar-expand-lg">
