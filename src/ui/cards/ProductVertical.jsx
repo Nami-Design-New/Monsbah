@@ -21,7 +21,7 @@ function ProductVertical({ product }) {
       <div className="content">
         <Link to={`/product/${product.id}`} className="title">
           <h3>{product.name}</h3>
-          <button className="favourite_btn active">
+          <button className={`favourite_btn ${product.isFavourite ? "active" : ""}`}>
             <i className="fa-light fa-heart"></i>
           </button>
         </Link>

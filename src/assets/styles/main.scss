@@ -15,8 +15,60 @@ body {
   main {
     min-height: calc(100vh - 100px);
     @import "./home";
-    @import "./profile_section" ;
+    @import "./profile_section";
     @import "./articles_section";
+
+    .error-section {
+      padding: 60px 16px;
+      @include centerFlex();
+      gap: 16px;
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 300px;
+        margin-bottom: 24px;
+        @media screen and (max-width: 576px) {
+          height: 230px;
+        }
+      }
+      h2 {
+        margin: 0;
+        text-align: center;
+        font-size: 24px;
+        color: $dark;
+        line-height: 1.7;
+        max-width: 600px;
+        margin: 0 auto;
+        @media screen and (max-width: 576px) {
+          font-size: 20px;
+        }
+      }
+      a {
+        color: $main;
+        border: 1px solid $main;
+        position: relative;
+        transition: $transition;
+        @include centerFlex();
+        padding: 8px 24px;
+        transition: $transition;
+        border-radius: 12px;
+        gap: 8px;
+        background: none;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        position: relative;
+        transition: $transition;
+        i {
+          font-size: 16px;
+        }
+        &:hover {
+          color: $white;
+          border-color: $main;
+          background-color: $main;
+        }
+      }
+    }
   }
 
   &.en {
