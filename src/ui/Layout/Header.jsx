@@ -48,8 +48,8 @@ export default function Header() {
               <NavLink className="navLink" to="/categories">
                 {t("header.categories")}
               </NavLink>
-              <NavLink className="navLink" to="/listing">
-                {t("header.listing")}
+              <NavLink className="navLink" to="/about-us">
+                {t("aboutUs")}
               </NavLink>
               <NavLink className="navLink" to="/chats">
                 {t("header.chats")}

@@ -1,6 +1,6 @@
 {
     "aboutApp": "A women’s community where everything inside the home is recycled and sold, including clothes, dresses, fashion, watches, shoes, and accessories, both used and new, providing everything you need to prepare for any occasion.",
-    "appName": "Monsbah",
+    "appName": "Munasaba",
     "header": {
         "home": "Home",
         "categories": "Categories",
@@ -47,8 +47,18 @@
     "low_price": "Lowest Price",
     "high_price": "Highest Price",
     "new": "New",
-    "Copyright": "Copyright",
-    "allRights": "All Rights Reserved to",
+    "copyRights": "Copyright",
+    "allRights": "All rights reserved to",
+    "downloadApp": "Download App",
     "popularCategories": "Popular Categories",
-    "importantLinks": "Important Links"
+    "importantLinks": "Important Links",
+    "aboutUs": "About Us",
+    "faqs": "FAQs",
+    "contactUs": "Contact Us",
+    "tearmsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "home": "Home",
+    "myAccount": "My Account",
+    "notifications": "Notifications",
+    "chats": "Chats"
 }
