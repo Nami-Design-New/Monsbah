@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import Select from "react-select";
+import HeroSlider from "./HeroSlider";
 import useGetCategories from "./../../hooks/useGetCategories";
 import useGetSubCategories from "../../hooks/useGetSubCategories";
 import useGetCountries from "./../../hooks/settings/useGetCountries";
 import useGetCities from "./../../hooks/settings/useGetCities";
+import CategoryLoader from "../../ui/loaders/CategoryLoader";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import CategoryLoader from "../../ui/loaders/CategoryLoader";
 
 function HeroSection() {
   const { t } = useTranslation();
@@ -46,6 +46,9 @@ function HeroSection() {
     if (searchParams.get("country")) {
       setCountry(searchParams.get("country"));
     }
+    if (!searchParams.get("country")) {
+      handleSetParams(6, "country");
+    }
 
     if (searchParams.get("type") === "sale") {
       setProductType({ value: "sale", label: t("sale") });
@@ -54,7 +57,8 @@ function HeroSection() {
     } else {
       setProductType({ value: "", label: t("all") });
     }
-  }, [searchParams, t]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countries, searchParams, t]);
 
   useEffect(() => {
     if (userCity) {
@@ -84,38 +88,7 @@ function HeroSection() {
 
   return (
     <>
-      {/* hero slider */}
-      <section className="hero_section">
-        <div className="container">
-          <Swiper
-            effect="fade"
-            loop={true}
-            spaceBetween={30}
-            className="hero_swiper"
-            pagination={{
-              clickable: true
-            }}
-            modules={[Pagination, EffectFade, Autoplay]}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-          >
-            <SwiperSlide>
-              <Link>
-                <img src="/images/s1.webp" alt="" />
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link>
-                <img src="/images/s2.jpg" alt="" />
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link>
-                <img src="/images/s1.jpg" alt="" />
-              </Link>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* explore ads */}
       <section className="explore_ads">
@@ -142,9 +115,11 @@ function HeroSection() {
                     onClick={() => {
                       searchParams.delete("category");
                       searchParams.delete("sub_category");
+                      searchParams.delete("type");
                       setSearchParams(searchParams);
                       setSelectedCategory(null);
                       setSelectedSubCategory(null);
+                      setProductType(null);
                     }}
                   >
                     <div className="img">
@@ -159,8 +134,10 @@ function HeroSection() {
                     <buttton
                       onClick={() => {
                         searchParams.delete("sub_category");
+                        searchParams.delete("type");
                         setSearchParams(searchParams);
                         setSelectedSubCategory(null);
+                        setProductType(null);
                         handleSetParams(category.id, "category");
                       }}
                       className={`category ${

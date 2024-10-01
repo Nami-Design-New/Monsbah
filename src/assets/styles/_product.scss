@@ -7,13 +7,10 @@
   background: $inputBg;
   border-radius: 8px;
   display: flex;
-  @media screen and (max-width: 576px) {
-    padding: 12px;
-  }
   .img {
     min-width: 140px;
     max-width: 140px;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3 / 2;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -171,9 +168,7 @@
       animation: pulse 1.5s ease-in-out infinite;
     }
   }
-  
 }
-
 
 @keyframes pulse {
   0% {

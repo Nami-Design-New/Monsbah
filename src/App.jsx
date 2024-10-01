@@ -10,6 +10,7 @@ import routerConfig from "./RouterConfig";
 import i18n from "./utils/i18n";
 import axiosInstance from "./utils/axiosInstance";
 import useGetAuthedUser from "./hooks/users/useGetAuthedUser";
+import SmallMenu from "./ui/Layout/SmallMenu";
 
 function App() {
   const dispatch = useDispatch();
@@ -94,6 +95,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <SmallMenu />
     </>
   );
 }

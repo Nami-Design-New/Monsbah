@@ -1,12 +1,21 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import ImageLoad from "../loaders/ImageLoad";
 
 function ProductVertical({ product }) {
   const { t } = useTranslation();
+  const [isImageLoaded, setIsImageLoaded] = useState(true);
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(false);
+  };
+
   return (
     <div className="product_vertical">
       <Link to={`/product/${product.id}`} className="img">
-        <img src={product.image} alt="" />
+        <img src={product.image} onLoad={handleImageLoad} alt="" />
+        {isImageLoaded && <ImageLoad />}
         <span className="type">{t(`${product?.type}`)}</span>
       </Link>
       <div className="content">
