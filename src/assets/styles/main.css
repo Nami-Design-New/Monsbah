@@ -220,6 +220,10 @@ input[type=number]::-webkit-inner-spin-button {
   display: none !important;
 }
 
+.select__menu {
+  z-index: 999999 !important;
+}
+
 .modal-backdrop {
   --bs-backdrop-opacity: 0.7;
 }
@@ -652,6 +656,215 @@ body header .headerCategoriesWithSub .singleCategory:hover:not(.more) .menu {
 }
 body header.headerAnimate {
   box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.1019607843);
+}
+body footer {
+  border-top: 1px solid #f2f2f2;
+  padding: 40px 0 0;
+}
+body footer .about_company {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body footer .about_company .logo img {
+  height: 86px;
+}
+body footer .about_company .text p {
+  color: #666b88;
+  line-height: 26px;
+  padding-inline-end: 42px;
+}
+@media screen and (max-width: 576px) {
+  body footer .about_company .text p {
+    padding-inline-end: 0;
+  }
+}
+body footer .col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 30px;
+}
+@media screen and (max-width: 576px) {
+  body footer .col {
+    padding: 0;
+  }
+}
+body footer .col:last-child {
+  padding-left: 0;
+}
+body footer .col h3 {
+  color: #0d0d0d;
+  font-weight: 600;
+  margin: 0;
+  font-size: 18px !important;
+}
+body footer .col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body footer .col ul li a {
+  display: flex;
+  gap: 4px;
+  color: #666b88;
+  transition: 0.2s ease-in-out;
+}
+body footer .col ul li a:hover {
+  color: #1abc9c;
+}
+body footer .col ul li a:hover span {
+  width: 16px;
+}
+body footer .col ul li a span {
+  transition: 0.3s ease-in-out;
+  width: 0;
+  overflow: hidden;
+}
+body footer .copy_rights {
+  border-top: 1px solid #f2f2f2;
+  padding: 28px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 576px) {
+  body footer .copy_rights {
+    flex-direction: column-reverse;
+    gap: 12px;
+    padding-bottom: 100px;
+  }
+}
+body footer .copy_rights p a {
+  color: #1abc9c;
+}
+body footer .copy_rights p {
+  text-align: center;
+}
+@media screen and (max-width: 576px) {
+  body footer .copy_rights p {
+    font-size: 12px;
+  }
+}
+body footer .copy_rights .social_media ul {
+  display: flex;
+  gap: 8px;
+}
+body footer .copy_rights .social_media ul a {
+  border: 1px solid #f2f2f2;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  transition: 0.2s ease-in-out;
+  color: #aaaaaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body footer .copy_rights .social_media ul a i {
+  font-size: 14px;
+}
+body footer .copy_rights .social_media ul a:hover {
+  background: #1abc9c;
+  border-color: #1abc9c;
+  transform: translateY(-2px);
+}
+body footer .copy_rights .social_media ul a:hover i {
+  color: #fff;
+}
+body footer .copy_rights .social_media ul a:hover svg path {
+  fill: #fff;
+}
+body .download-app {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 576px) {
+  body .download-app {
+    flex-direction: row;
+  }
+}
+body .download-app li {
+  width: 150px;
+  background: #f8f8f8;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+body .download-app li:hover {
+  background: #1abc9c;
+}
+body .download-app li:hover a .icon i,
+body .download-app li:hover a p {
+  color: #fff;
+}
+body .download-app li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+}
+body .download-app li a .icon {
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .download-app li a .icon i {
+  font-size: 18px;
+  color: #0d0d0d;
+}
+body .download-app li a p {
+  font-size: 14px;
+  text-align: end;
+  color: #0d0d0d;
+  margin: 0;
+}
+body .small_menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  background: #fff;
+  align-items: center;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  body .small_menu {
+    display: flex;
+  }
+}
+body .small_menu .menu_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 12px;
+  gap: 8px;
+  color: #0d0d0d;
+  font-size: 14px;
+}
+body .small_menu .menu_item i {
+  font-size: 16px;
+  color: #1abc9c;
+}
+body .small_menu .menu_item .center {
+  width: 42px;
+  height: 42px;
+  background: #1abc9c;
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+body .small_menu .menu_item .center i {
+  color: #fff;
 }
 body .form {
   display: flex;

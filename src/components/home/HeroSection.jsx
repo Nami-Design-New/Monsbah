@@ -5,15 +5,15 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import Select from "react-select";
+import HeroSlider from "./HeroSlider";
 import useGetCategories from "./../../hooks/useGetCategories";
 import useGetSubCategories from "../../hooks/useGetSubCategories";
 import useGetCountries from "./../../hooks/settings/useGetCountries";
 import useGetCities from "./../../hooks/settings/useGetCities";
+import CategoryLoader from "../../ui/loaders/CategoryLoader";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import CategoryLoader from "../../ui/loaders/CategoryLoader";
-import HeroSlider from "./HeroSlider";
 
 function HeroSection() {
   const { t } = useTranslation();

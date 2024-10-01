@@ -68,12 +68,12 @@ export default function Header() {
               {t("header.getApp")}
             </button>
 
-            <Link to="/add-ad" className="link text">
+            <Link to="/add-ad" className="link text d-lg-block d-none">
               <img src="images/icons/plus.svg" alt="" />
               {t("header.addPost")}
             </Link>
 
-            <Dropdown>
+            <Dropdown className="d-lg-block d-none">
               <Dropdown.Toggle id="dropdown-basic" className="link">
                 <img src="images/icons/bell.svg" alt="" />
                 <span className="count"> 10 </span>
@@ -98,7 +98,7 @@ export default function Header() {
             </Dropdown>
 
             <button
-              className="link"
+              className="link d-lg-block d-none"
               onClick={() => {
                 setShowAuthModal(true);
                 setAuthType("login");

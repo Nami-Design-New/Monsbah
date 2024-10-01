@@ -256,6 +256,9 @@ $shadow: 0px 2px 8px #0000001a;
 .select__indicator-separator {
   display: none !important;
 }
+.select__menu {
+  z-index: 999999 !important;
+}
 
 .modal-backdrop {
   --bs-backdrop-opacity: 0.7;
