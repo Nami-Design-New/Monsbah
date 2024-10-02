@@ -1525,10 +1525,11 @@ body .product_vertical {
 body .product_vertical .img {
   min-width: 140px;
   max-width: 140px;
-  aspect-ratio: 3/2;
+  aspect-ratio: 2/3;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  max-height: 180px;
 }
 body .product_vertical .img .type {
   position: absolute;
@@ -1554,6 +1555,7 @@ body .product_vertical .img img {
   body .product_vertical .img {
     min-width: 120px;
     max-width: 120px;
+    min-height: 160px;
   }
 }
 body .product_vertical .img::after {
