@@ -1,7 +1,8 @@
 import React from "react";
 import SectionHeader from "../components/layout/SectionHeader";
 import Sidebar from "../components/profile/Sidebar";
-import { Outlet } from "react-router-dom";
+import Dashpoard from "../components/profile/Dashpoard";
+import { Routes, Route } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -13,7 +14,9 @@ const Profile = () => {
             <Sidebar />
           </div>
           <div className="content">
-            <Outlet />
+            <Routes>
+              <Route path="/Dashpoard" element={<Dashpoard />} />
+            </Routes>
           </div>
         </div>
       </div>

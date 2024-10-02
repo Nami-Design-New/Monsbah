@@ -1699,6 +1699,392 @@ body .product_vertical.skeleton .skeleton-btn {
     left: 125%;
   }
 }
+body .section-head {
+  padding: 35px 5px;
+  background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
+}
+body .section-head .small_nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+body .section-head .Arrow_icon {
+  border: 2px solid #231f20;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+body .section-head .Arrow_icon i::before {
+  line-height: 0 !important;
+  color: #231f20;
+  text-align: center;
+  font-weight: 700;
+  line-height: 0 !important;
+  font-size: 19px;
+}
+body .section-head .text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body .section-head .text h1 {
+  color: #231f20;
+  font-size: 22px !important;
+  font-weight: 700;
+  margin: 0;
+}
+body .section-head .text .page_name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body .section-head .text .page_name Link {
+  color: #6e55ff !important;
+}
+body .section-head .text .page_name i {
+  color: #6e55ff;
+  font-size: 11px;
+}
+body .aboutus_section {
+  display: flex;
+  flex-direction: column;
+}
+body .aboutus_section .Head_image {
+  width: 100%;
+  height: 50vh;
+}
+body .aboutus_section .Head_image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .aboutus_section .Who_we_are {
+  background-color: #f4f2ff;
+  padding: 45px 10px;
+}
+body .aboutus_section .Who_we_are .we {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+}
+body .aboutus_section .Who_we_are .Logo img {
+  width: 80px;
+}
+body .aboutus_section .Who_we_are .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+body .aboutus_section .Who_we_are .content p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+}
+body .aboutus_section .Who_we_are .content .name {
+  font-weight: 700;
+  font-size: 16px;
+}
+body .aboutus_section .Who_we_are .content .Job_Title {
+  color: #666b88;
+}
+body .terms_section .terms_content {
+  padding: 25px !important;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+body .terms_section .terms_content h1 {
+  color: #231f20;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 20px;
+}
+body .terms_section .terms_content p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #666b88;
+  line-height: 40px;
+  margin-bottom: 5px;
+}
+body .Profile_section .Profile_Dashpoard {
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+body aside {
+  width: 250px;
+  height: 50dvh;
+  background-color: #fffdf1;
+  padding: 26px;
+  border-radius: 25px;
+}
+body aside .side_list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+}
+body aside .side_list .side_item .side_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #231f20;
+  font-size: 17px;
+  font-weight: 400;
+  padding: 15px 12px;
+}
+body aside .side_list .side_item .side_link i {
+  font-size: 17px;
+}
+body aside .side_list .side_item .active {
+  background-color: #231f20;
+  color: #eee;
+}
+body .Dashpoard_section {
+  padding: 35px;
+}
+body .Dashpoard_section .Dashpoard_content {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_info .img img {
+  width: 100px;
+  border-radius: 50%;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_info .name h1 {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 24px;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_info .name p {
+  font-size: 14px;
+  color: rgba(35, 41, 31, 0.7333333333);
+  font-weight: 400;
+  line-height: 21px;
+  margin: 0;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_Rate {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
+  padding: 32px 24px;
+  flex: 1;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate p {
+  margin: 0;
+  color: #777777;
+  font-size: 16px;
+  font-weight: 400;
+}
+body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate h2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+}
+body .MyOrder {
+  padding: 25px;
+}
+body .MyOrder .Order_cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+body .MyOrder .Order_cards .card {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #f8f8f8;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  border-radius: 8px;
+}
+body .MyOrder .Order_cards .card .status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .MyOrder .Order_cards .card .status .pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .status .pending span {
+  width: 20px;
+  height: 20px;
+  background-color: #ffcf55;
+  border-radius: 25%;
+}
+body .MyOrder .Order_cards .card .status .pending p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .status .Accepting {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .status .Accepting span {
+  width: 20px;
+  height: 20px;
+  background-color: #47d33b;
+  border-radius: 25%;
+}
+body .MyOrder .Order_cards .card .status .Accepting p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .status .in_progress {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .status .in_progress span {
+  width: 20px;
+  height: 20px;
+  background-color: #46abf4;
+  border-radius: 25%;
+}
+body .MyOrder .Order_cards .card .status .in_progress p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .status .completed {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .status .completed span {
+  width: 20px;
+  height: 20px;
+  background-color: #6e55ff;
+  border-radius: 25%;
+}
+body .MyOrder .Order_cards .card .status .completed p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .status .rejected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .status .rejected span {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 25%;
+}
+body .MyOrder .Order_cards .card .status .rejected p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .status .Date {
+  font-size: 13px;
+  color: #666b88;
+  margin: 0;
+}
+body .MyOrder .Order_cards .card .transport {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body .MyOrder .Order_cards .card .transport p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+body .MyOrder .Order_cards .card .transport span {
+  background-color: #ffeef4;
+  padding: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .MyOrder .Order_cards .card .transport span i {
+  color: #ff5592;
+  font-size: 18px;
+}
+body .MyOrder .Order_cards .card .name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #231f20;
+}
+body .MyOrder .Order_cards .card .location {
+  display: flex;
+  gap: 5px;
+}
+body .MyOrder .Order_cards .card .address {
+  font-size: 15px;
+  color: #231f20;
+  font-weight: 400;
+  line-height: 21px;
+}
+body .MyOrder .Order_cards .card .price span {
+  color: #666b88;
+  font-size: 13px;
+  font-weight: 400;
+}
+body .MyOrder .Order_cards .card .price p {
+  color: #231f20;
+  font-size: 19px;
+  font-weight: 700;
+}
 body main {
   min-height: calc(100vh - 100px);
 }
@@ -1875,6 +2261,237 @@ body main aside .side_list .side_item .active {
   background-color: #231f20;
   color: #eee;
 }
+body main .Dashpoard_section {
+  padding: 35px;
+}
+body main .Dashpoard_section .Dashpoard_content {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_info .img img {
+  width: 100px;
+  border-radius: 50%;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_info .name h1 {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 24px;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_info .name p {
+  font-size: 14px;
+  color: rgba(35, 41, 31, 0.7333333333);
+  font-weight: 400;
+  line-height: 21px;
+  margin: 0;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_Rate {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
+  padding: 32px 24px;
+  flex: 1;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate p {
+  margin: 0;
+  color: #777777;
+  font-size: 16px;
+  font-weight: 400;
+}
+body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate h2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 60px;
+}
+body main .MyOrder {
+  padding: 25px;
+}
+body main .MyOrder .Order_cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+body main .MyOrder .Order_cards .card {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #f8f8f8;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  border-radius: 8px;
+}
+body main .MyOrder .Order_cards .card .status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .MyOrder .Order_cards .card .status .pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .status .pending span {
+  width: 20px;
+  height: 20px;
+  background-color: #ffcf55;
+  border-radius: 25%;
+}
+body main .MyOrder .Order_cards .card .status .pending p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .status .Accepting {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .status .Accepting span {
+  width: 20px;
+  height: 20px;
+  background-color: #47d33b;
+  border-radius: 25%;
+}
+body main .MyOrder .Order_cards .card .status .Accepting p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .status .in_progress {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .status .in_progress span {
+  width: 20px;
+  height: 20px;
+  background-color: #46abf4;
+  border-radius: 25%;
+}
+body main .MyOrder .Order_cards .card .status .in_progress p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .status .completed {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .status .completed span {
+  width: 20px;
+  height: 20px;
+  background-color: #6e55ff;
+  border-radius: 25%;
+}
+body main .MyOrder .Order_cards .card .status .completed p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .status .rejected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .status .rejected span {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 25%;
+}
+body main .MyOrder .Order_cards .card .status .rejected p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .status .Date {
+  font-size: 13px;
+  color: #666b88;
+  margin: 0;
+}
+body main .MyOrder .Order_cards .card .transport {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body main .MyOrder .Order_cards .card .transport p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+body main .MyOrder .Order_cards .card .transport span {
+  background-color: #ffeef4;
+  padding: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .MyOrder .Order_cards .card .transport span i {
+  color: #ff5592;
+  font-size: 18px;
+}
+body main .MyOrder .Order_cards .card .name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #231f20;
+}
+body main .MyOrder .Order_cards .card .location {
+  display: flex;
+  gap: 5px;
+}
+body main .MyOrder .Order_cards .card .address {
+  font-size: 15px;
+  color: #231f20;
+  font-weight: 400;
+  line-height: 21px;
+}
+body main .MyOrder .Order_cards .card .price span {
+  color: #666b88;
+  font-size: 13px;
+  font-weight: 400;
+}
+body main .MyOrder .Order_cards .card .price p {
+  color: #231f20;
+  font-size: 19px;
+  font-weight: 700;
+}
 body main .section-head {
   padding: 35px 5px;
   background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
@@ -1979,7 +2596,6 @@ body main .terms_section .terms_content {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 body main .terms_section .terms_content h1 {
   color: #231f20;
@@ -1992,6 +2608,7 @@ body main .terms_section .terms_content p {
   font-weight: 400;
   color: #666b88;
   line-height: 40px;
+  margin-bottom: 5px;
 }
 body main .product_details {
   padding: 32px 0;
@@ -2402,4 +3019,7 @@ body.en .form .phone_field .countriesMenu {
 body.en .closeModal {
   right: 16px;
   left: unset;
+}
+body.en .Arrow_icon {
+  transform: scale(-1);
 }/*# sourceMappingURL=main.css.map */

@@ -43,3 +43,263 @@ aside {
     }
   }
 }
+
+//Dashpoard Page
+.Dashpoard_section {
+  padding: 35px;
+  .Dashpoard_content {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    .Profile_info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      .img {
+        img {
+          width: 100px;
+          border-radius: 50%;
+        }
+      }
+      .name {
+        h1 {
+          color: #000000;
+          font-size: 17px;
+          font-weight: 600;
+          line-height: 24px;
+        }
+        p {
+          font-size: 14px;
+          color: #23291fbb;
+          font-weight: 400;
+          line-height: 21px;
+          margin: 0;
+        }
+      }
+    }
+
+    .Profile_Rate {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      .Box_rate {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 12px 0px #0000001a;
+        padding: 32px 24px;
+        flex: 1;
+
+        .icon_rate {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          p {
+            margin: 0;
+            color: #777777;
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+        h2 {
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 60px;
+        }
+      }
+    }
+    .profile_Tabel {
+    }
+  }
+}
+////////////////////////
+/// //////////////////
+//my order
+
+.MyOrder {
+  padding: 25px;
+  .Order_cards {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .card {
+      padding: 20px;
+      border: 1px solid #eee;
+      background-color: #f8f8f8;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+      border-radius: 8px;
+
+      .status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .pending {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            background-color: #ffcf55;
+            border-radius: 25%;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            margin: 0;
+            color: #231f20;
+          }
+        }
+
+        .Accepting {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            background-color: #47d33b;
+            border-radius: 25%;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            margin: 0;
+            color: #231f20;
+          }
+        }
+
+        .in_progress {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            background-color: #46abf4;
+            border-radius: 25%;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            margin: 0;
+            color: #231f20;
+          }
+        }
+        .completed {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            background-color: #6e55ff;
+            border-radius: 25%;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            margin: 0;
+            color: #231f20;
+          }
+        }
+        .rejected {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 25%;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            margin: 0;
+            color: #231f20;
+          }
+        }
+
+        .Date {
+          font-size: 13px;
+          color: #666b88;
+          margin: 0;
+        }
+      }
+      .transport {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        p {
+          margin: 0;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        span {
+          background-color: #ffeef4;
+          padding: 16px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          i {
+            color: #ff5592;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .name {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        color: #231f20;
+      }
+      .location {
+        display: flex;
+        gap: 5px;
+      }
+
+      .address {
+        font-size: 15px;
+        color: #231f20;
+        font-weight: 400;
+        line-height: 21px;
+      }
+      .price {
+        span {
+          color: #666b88;
+          font-size: 13px;
+          font-weight: 400;
+        }
+        p {
+          color: #231f20;
+          font-size: 19px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

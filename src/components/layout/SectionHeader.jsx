@@ -12,7 +12,7 @@ function SectionHeader({ title, backLinks }) {
       <div className="container">
         <div className="small_nav">
           <div className="Arrow_icon" onClick={() => navigate(-1)}>
-            <i className="fa-light fa-arrow-left"></i>
+            <i className="fa-light fa-arrow-right"></i>
           </div>
 
           <div className="text">
