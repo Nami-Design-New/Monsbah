@@ -33,11 +33,12 @@ function useGetProducts() {
       lang
     ],
 
-    queryFn: async () => {
+    queryFn: async ({ pageParam = 1 }) => {
       const res = await axiosInstance.get("/client/products", {
         params: {
           type: type,
           sort: sort,
+          page: pageParam,
           city_id: city_id,
           country_id: country_id,
           category_id: category_id,
