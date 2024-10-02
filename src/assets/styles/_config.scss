@@ -281,3 +281,17 @@ $shadow: 0px 2px 8px #0000001a;
     opacity: 1;
   }
 }
+
+.tableLoader {
+  min-height: 548px;
+  @include centerFlex();
+  flex-direction: column;
+  .loader--style8 {
+    width: 40px;
+    height: 40px;
+  }
+  svg path,
+  svg rect {
+    stroke: $main;
+  }
+}
