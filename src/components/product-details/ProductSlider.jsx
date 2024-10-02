@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay } from "swiper/modules";
+import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { isValidVideoExtension } from "../../utils/helpers";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -35,7 +35,7 @@ export default function ProductSlider({ product }) {
       pagination={{
         clickable: true
       }}
-      modules={[EffectFade, Autoplay]}
+      modules={[EffectFade, Autoplay, Pagination]}
       autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
       onSlideChange={(swiper) => {
         if (swiper.realIndex === 0 && videoRef.current) {

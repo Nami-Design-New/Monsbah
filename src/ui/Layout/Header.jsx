@@ -34,10 +34,6 @@ export default function Header() {
           </Link>
 
           <nav className="navbar navbar-expand-lg">
-            <button className="navbar-toggler">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
             <ul className="navbar-nav">
               <Link className="logo" to="/">
                 <img src="/images/branding/logo.svg" loading="lazy" alt="" />
@@ -99,13 +95,17 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
+            <Link to="/search" className="link">
+              <i className="fa-regular fa-magnifying-glass"></i>
+            </Link>
+
             {user?.id ? (
-              <Link to="/profile" className="link d-lg-flex d-none">
+              <Link to="/profile" className="link">
                 <img src="/images/icons/user.svg" alt="user" />
               </Link>
             ) : (
               <button
-                className="link d-lg-block d-none"
+                className="link"
                 onClick={() => {
                   setShowAuthModal(true);
                   setAuthType("login");

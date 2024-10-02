@@ -21,11 +21,10 @@ function ProductInfo({ product }) {
   return (
     <>
       <div className="priceInfo mt-3">
-        <div className="price">
-          <span>
-            {product?.price} {product?.currency?.name}
-          </span>
-        </div>
+        <h4 className="price">
+          <span>{product?.price}</span> {" "}
+          {product?.currency?.name}
+        </h4>
 
         <button className={`favorite ${product?.is_favorite ? "active" : ""}`}>
           <i className="fa-light fa-heart"></i>
