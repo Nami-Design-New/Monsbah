@@ -23,7 +23,7 @@ export default function PageLoader({ minHeight }) {
               calcMode="linear"
               values="0;256.58892822265625"
               keyTimes="0;1"
-              dur=".25"
+              dur=".5"
               begin="0s"
               repeatCount="indefinite"
             />
