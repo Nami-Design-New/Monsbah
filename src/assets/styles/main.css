@@ -1953,6 +1953,139 @@ body main .terms_section .terms_content p {
   color: #666b88;
   line-height: 40px;
 }
+body main .product_details {
+  padding: 32px 0;
+}
+body main .product_details .product_swiper {
+  aspect-ratio: 3/2;
+}
+body main .product_details .product_swiper img,
+body main .product_details .product_swiper video {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .product_details .advertiserDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+}
+body main .product_details .advertiserDetails .advertiser {
+  display: flex;
+  align-items: end;
+  position: relative;
+  gap: 24px;
+  padding: 8px;
+}
+body main .product_details .advertiserDetails .advertiser .image_wrapper {
+  position: relative;
+}
+body main .product_details .advertiserDetails .advertiser .image_wrapper img {
+  width: 90px;
+  height: 90px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100px;
+  transition: 0.3s ease-in-out;
+}
+body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  background: #4381f8;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+}
+body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn i {
+  font-size: 13px;
+}
+body main .product_details .advertiserDetails .advertiser .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+body main .product_details .advertiserDetails .advertiser .content ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .product_details .advertiserDetails .advertiser .content ul li {
+  flex: 1;
+}
+body main .product_details .advertiserDetails .advertiser .content ul li h6,
+body main .product_details .advertiserDetails .advertiser .content ul li span {
+  margin: 0;
+  color: #0d0d0d;
+  font-weight: 600;
+  font-size: 14px;
+}
+body main .product_details .advertiserDetails .advertiser .content h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  color: #0d0d0d;
+  text-align: start;
+  transition: 0.3s ease-in-out;
+  color: #1abc9c;
+  text-transform: capitalize;
+}
+body main .product_details .advertiserDetails .contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+body main .product_details .advertiserDetails .contact a,
+body main .product_details .advertiserDetails .contact button {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  gap: 8px;
+  border: 1px solid #eeeeee;
+  color: #0d0d0d;
+  text-transform: capitalize;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+body main .product_details .advertiserDetails .contact a img,
+body main .product_details .advertiserDetails .contact button img {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: brightness(0);
+}
+body main .product_details .advertiserDetails .contact a:hover,
+body main .product_details .advertiserDetails .contact button:hover {
+  color: #fff;
+  border-color: #1abc9c;
+  background: #1abc9c;
+}
+body main .product_details .advertiserDetails .contact a:hover img,
+body main .product_details .advertiserDetails .contact button:hover img {
+  filter: brightness(1);
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;
