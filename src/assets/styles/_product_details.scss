@@ -5,6 +5,9 @@
   }
   .product_swiper {
     aspect-ratio: 3 / 2;
+    a {
+      cursor: zoom-in;
+    }
     img,
     video {
       border-radius: 12px;
@@ -257,6 +260,7 @@
         img {
           width: 20px;
           height: 20px;
+          transition: $transition;
           object-fit: contain;
           filter: brightness(0);
         }

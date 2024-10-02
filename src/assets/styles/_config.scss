@@ -295,3 +295,8 @@ $shadow: 0px 2px 8px #0000001a;
     stroke: $main;
   }
 }
+
+a,
+button {
+  transition: $transition;
+}

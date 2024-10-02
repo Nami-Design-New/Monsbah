@@ -10,9 +10,9 @@ function SmallMenu() {
         <span>{t("home")}</span>
       </Link>
 
-      <Link to="/search" className="menu_item">
-        <i className="fa-solid fa-magnifying-glass"></i>
-        <span>{t("search")}</span>
+      <Link to="/categories" className="menu_item">
+        <i className="fa-solid fa-grid-2"></i>
+        <span>{t("header.categories")}</span>
       </Link>
 
       <div className="menu_item">
@@ -21,9 +21,9 @@ function SmallMenu() {
         </Link>
       </div>
 
-      <Link to="/notifications" className="menu_item">
-        <i className="fa-solid fa-bell"></i>
-        <span>{t("notifications")}</span>
+      <Link to="/search" className="menu_item">
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <span>{t("search")}</span>
       </Link>
 
       <Link to="/chats" className="menu_item">

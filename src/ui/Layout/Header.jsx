@@ -71,7 +71,7 @@ export default function Header() {
               {t("header.addPost")}
             </Link>
 
-            <Dropdown className="d-lg-block d-none">
+            <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="link">
                 <img src="/images/icons/bell.svg" alt="" />
                 <span className="count"> 10 </span>
@@ -95,7 +95,7 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="/search" className="link">
+            <Link to="/search" className="link d-lg-flex d-none">
               <i className="fa-regular fa-magnifying-glass"></i>
             </Link>
 
