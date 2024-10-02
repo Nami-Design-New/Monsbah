@@ -1698,6 +1698,15 @@ body main {
 body main .hero_section {
   padding: 32px 0;
 }
+@media screen and (max-width: 576px) {
+  body main .hero_section {
+    padding: 0;
+    padding-bottom: 24px;
+  }
+  body main .hero_section .container {
+    padding: 0;
+  }
+}
 body main .hero_section .hero_swiper {
   width: 100%;
   height: 182px;
@@ -1713,6 +1722,11 @@ body main .hero_section .hero_swiper a img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+@media screen and (max-width: 576px) {
+  body main .hero_section .hero_swiper a img {
+    border-radius: 0;
+  }
 }
 body main .hero_section .hero_swiper .swiper-pagination-bullet {
   width: 24px;
@@ -1744,6 +1758,9 @@ body main .explore_ads .categories_slider .swiper-slide .category {
   border-radius: 200px;
   background: #f8f8f8;
   border: 1px solid #f2f2f2;
+}
+body main .explore_ads .categories_slider .swiper-slide .category:nth-child(1) {
+  margin-inline-start: 0;
 }
 body main .explore_ads .categories_slider .swiper-slide .category .img {
   border-radius: 50%;
@@ -1972,6 +1989,11 @@ body main .terms_section .terms_content p {
 body main .product_details {
   padding: 32px 0;
 }
+@media screen {
+  body main .product_details {
+    padding: 16px 0;
+  }
+}
 body main .product_details .product_swiper {
   aspect-ratio: 3/2;
 }
@@ -1982,6 +2004,16 @@ body main .product_details .product_swiper video {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body main .product_details .product_swiper .swiper-pagination-bullet {
+  width: 24px;
+  border-radius: 0;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s ease-in-out;
+}
+body main .product_details .product_swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 48px;
 }
 body main .product_details .itemInfo {
   display: flex;
@@ -2039,7 +2071,7 @@ body main .product_details .priceInfo .price {
 }
 body main .product_details .priceInfo .price span {
   font-size: 32px;
-  font-family: "Poppins", sans-serif;
+  font-weight: bold;
 }
 body main .product_details .priceInfo .actions {
   display: flex;
@@ -2055,7 +2087,6 @@ body main .product_details .priceInfo .report {
   padding: 8px 12px;
   border-radius: 100px;
   height: 42px;
-  font-weight: bold;
   font-size: 14px;
   border: 1px solid #eeeeee;
   transition: 0.3s ease-in-out;
@@ -2183,7 +2214,6 @@ body main .product_details .advertiserDetails .advertiser .content ul li span {
   font-size: 14px;
 }
 body main .product_details .advertiserDetails .advertiser .content h3 {
-  font-family: "Poppins", sans-serif;
   font-size: 20px;
   color: #0d0d0d;
   text-align: start;

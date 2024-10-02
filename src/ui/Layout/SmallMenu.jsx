@@ -10,9 +10,9 @@ function SmallMenu() {
         <span>{t("home")}</span>
       </Link>
 
-      <Link to="/profile" className="menu_item">
-        <i className="fa-solid fa-user"></i>
-        <span>{t("myAccount")}</span>
+      <Link to="/search" className="menu_item">
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <span>{t("search")}</span>
       </Link>
 
       <div className="menu_item">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
 import { setClientData } from "./redux/slices/clientData";
@@ -14,6 +14,7 @@ import SmallMenu from "./ui/Layout/SmallMenu";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [cookies, , removeCookie] = useCookies(["token", "id"]);
   const token = cookies?.token;
@@ -34,7 +35,6 @@ function App() {
 
   const {
     data: profile,
-
     isFetched,
     refetch
   } = useGetAuthedUser(Boolean(token && id && !isExpired));
@@ -81,6 +81,10 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
     i18n.changeLanguage(lang);
   }, [lang]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return loading ? null : (
     <>
