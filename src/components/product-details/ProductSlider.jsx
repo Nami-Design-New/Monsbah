@@ -50,20 +50,22 @@ export default function ProductSlider({ product }) {
       {images?.map((image, index) => (
         <SwiperSlide key={index}>
           {isValidVideoExtension(image) ? (
-            <a data-fancybox="gallery" href={image}>
-              <video
-                src={image}
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            </a>
+            <video
+              className="blurde_bg"
+              src={image}
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
           ) : (
-            <a data-fancybox="gallery" href={image}>
-              <img src={image} alt={image} />
-            </a>
+            <img className="blurde_bg" src={image} alt="bluer_image" />
+          )}
+          {isValidVideoExtension(image) ? (
+            <video src={image} ref={videoRef} autoPlay loop muted playsInline />
+          ) : (
+            <img src={image} alt={image} />
           )}
         </SwiperSlide>
       ))}
