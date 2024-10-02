@@ -13,14 +13,14 @@ function ProductVertical({ product }) {
 
   return (
     <div className="product_vertical">
-      <Link to={`/${product.id}`} className="img">
+      <Link to={`/product/${product.id}`} className="img">
         <img src={product.image} onLoad={handleImageLoad} alt="" />
         <ImageLoad isImageLoaded={isImageLoaded} />
         <span className="type">{t(`${product?.type}`)}</span>
       </Link>
 
       <div className="content">
-        <Link to={`/${product.id}`} className="title">
+        <Link to={`product/${product.id}`} className="title">
           <h3>{product.name}</h3>
           <button
             className={`favourite_btn ${product.isFavourite ? "active" : ""}`}

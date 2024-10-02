@@ -11,14 +11,6 @@ const routerConfig = [
     element: <Home />
   },
   {
-    path: "/:id",
-    element: <ProductDetails />
-  },
-  {
-    path: "*",
-    element: <ErrorPage />
-  },
-  {
     path: "about-us",
     element: <Aboutus />
   },
@@ -29,6 +21,14 @@ const routerConfig = [
   {
     path: "Profile",
     element: <Profile />
+  },
+  {
+    path: "/product/:id",
+    element: <ProductDetails />
+  },
+  {
+    path: "*",
+    element: <ErrorPage />
   }
 ];
 
