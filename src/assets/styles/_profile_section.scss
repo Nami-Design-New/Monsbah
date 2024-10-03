@@ -1,44 +1,59 @@
 .Profile_section {
-  .Profile_Dashpoard {
-    padding: 35px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-}
-
-//sideBar
-aside {
-  width: 250px;
-  height: 50dvh;
-  background-color: #fffdf1;
-  padding: 26px;
-  border-radius: 25px;
-  .side_list {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2px;
-    .side_item {
-      .side_link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        color: #231f20;
-        font-size: 17px;
-        font-weight: 400;
-        padding: 15px 12px;
-
-        i {
-          font-size: 17px;
+  padding: 32px 0;
+  aside {
+    width: 100%;
+    background-color: #fffdf1;
+    padding: 24px;
+    border-radius: 16px;
+    .side_list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .side_item {
+        width: 100%;
+        .side_link {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #231f20;
+          font-size: 16px;
+          font-weight: 400;
+          padding: 12px 16px;
+          border-radius: 8px;
+          i {
+            font-size: 17px;
+          }
+        }
+        .active {
+          background-color: #f4f2ff;
+          color: #6e55ff;
         }
       }
-      .active {
-        background-color: #231f20;
-        color: #eee;
+    }
+  }
+  .content {
+    .Payments_content {
+      .Box {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding: 32px 12px;
+        border-radius: 12px;
+        background-color: #f4f2ff;
+        flex: 1;
+        p {
+          font-size: 15px;
+          font-weight: 400;
+          list-style: 21px;
+          color: #777777;
+        }
+        h2 {
+          color: #231f20;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 36px;
+        }
       }
     }
   }
@@ -47,73 +62,56 @@ aside {
 //Dashpoard Page
 .Dashpoard_section {
   padding: 35px;
-  .Dashpoard_content {
+  .Profile_info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .img {
+      img {
+        width: 100px;
+        border-radius: 50%;
+      }
+    }
+    .name {
+      h1 {
+        color: #000000;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 24px;
+      }
+      p {
+        font-size: 14px;
+        color: #23291fbb;
+        font-weight: 400;
+        line-height: 21px;
+        margin: 0;
+      }
+    }
+  }
+
+  .Box_rate {
     display: flex;
     flex-direction: column;
-    gap: 45px;
-    .Profile_info {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      .img {
-        img {
-          width: 100px;
-          border-radius: 50%;
-        }
-      }
-      .name {
-        h1 {
-          color: #000000;
-          font-size: 17px;
-          font-weight: 600;
-          line-height: 24px;
-        }
-        p {
-          font-size: 14px;
-          color: #23291fbb;
-          font-weight: 400;
-          line-height: 21px;
-          margin: 0;
-        }
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px 0px #0000001a;
+    padding: 18px;
+    border-radius: 12px;
+    flex: 1;
+    .icon_rate {
+      p {
+        margin: 0;
+        color: #777777;
+        font-size: 16px;
+        font-weight: 400;
       }
     }
-
-    .Profile_Rate {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-
-      .Box_rate {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        background-color: #ffffff;
-        box-shadow: 0px 4px 12px 0px #0000001a;
-        padding: 32px 24px;
-        flex: 1;
-
-        .icon_rate {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          p {
-            margin: 0;
-            color: #777777;
-            font-size: 16px;
-            font-weight: 400;
-          }
-        }
-        h2 {
-          font-size: 40px;
-          font-weight: 700;
-          line-height: 60px;
-        }
-      }
-    }
-    .profile_Tabel {
+    h2 {
+      color: #46abf4;
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 60px;
     }
   }
 }
@@ -122,184 +120,246 @@ aside {
 //my order
 
 .MyOrder {
-  padding: 25px;
-  .Order_cards {
+  padding: 32px 0;
+
+  .card {
+    padding: 20px;
+    border: 1px solid #f8f8f8;
+    background-color: #f8f8f8;
+    width: 100%;
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    border-radius: 8px;
 
-    .card {
-      padding: 20px;
-      border: 1px solid #eee;
-      background-color: #f8f8f8;
-      width: 100%;
+    .status {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
-      flex: 1;
-      border-radius: 8px;
-
-      .status {
+      align-items: center;
+      justify-content: space-between;
+      .pending {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        .pending {
-          display: flex;
-          align-items: center;
-          gap: 5px;
+        gap: 5px;
 
-          span {
-            width: 20px;
-            height: 20px;
-            background-color: #ffcf55;
-            border-radius: 25%;
-          }
-          p {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 18px;
-            margin: 0;
-            color: #231f20;
-          }
+        span {
+          width: 20px;
+          height: 20px;
+          background-color: #ffcf55;
+          border-radius: 25%;
         }
-
-        .Accepting {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          span {
-            width: 20px;
-            height: 20px;
-            background-color: #47d33b;
-            border-radius: 25%;
-          }
-          p {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 18px;
-            margin: 0;
-            color: #231f20;
-          }
-        }
-
-        .in_progress {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          span {
-            width: 20px;
-            height: 20px;
-            background-color: #46abf4;
-            border-radius: 25%;
-          }
-          p {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 18px;
-            margin: 0;
-            color: #231f20;
-          }
-        }
-        .completed {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          span {
-            width: 20px;
-            height: 20px;
-            background-color: #6e55ff;
-            border-radius: 25%;
-          }
-          p {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 18px;
-            margin: 0;
-            color: #231f20;
-          }
-        }
-        .rejected {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          span {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 25%;
-          }
-          p {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 18px;
-            margin: 0;
-            color: #231f20;
-          }
-        }
-
-        .Date {
-          font-size: 13px;
-          color: #666b88;
-          margin: 0;
-        }
-      }
-      .transport {
-        display: flex;
-        align-items: center;
-        gap: 10px;
         p {
-          margin: 0;
           font-size: 14px;
           font-weight: 600;
-        }
-        span {
-          background-color: #ffeef4;
-          padding: 16px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          i {
-            color: #ff5592;
-            font-size: 18px;
-          }
+          line-height: 18px;
+          margin: 0;
+          color: #231f20;
         }
       }
 
-      .name {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 24px;
-        color: #231f20;
-      }
-      .location {
+      .Accepting {
         display: flex;
+        align-items: center;
         gap: 5px;
-      }
 
-      .address {
-        font-size: 15px;
-        color: #231f20;
-        font-weight: 400;
-        line-height: 21px;
-      }
-      .price {
         span {
-          color: #666b88;
-          font-size: 13px;
-          font-weight: 400;
+          width: 20px;
+          height: 20px;
+          background-color: #47d33b;
+          border-radius: 25%;
         }
         p {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 18px;
+          margin: 0;
           color: #231f20;
-          font-size: 19px;
-          font-weight: 700;
         }
       }
+
+      .in_progress {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          width: 20px;
+          height: 20px;
+          background-color: #46abf4;
+          border-radius: 25%;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 18px;
+          margin: 0;
+          color: #231f20;
+        }
+      }
+      .completed {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          width: 20px;
+          height: 20px;
+          background-color: #6e55ff;
+          border-radius: 25%;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 18px;
+          margin: 0;
+          color: #231f20;
+        }
+      }
+      .rejected {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          width: 20px;
+          height: 20px;
+          background-color: red;
+          border-radius: 25%;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 18px;
+          margin: 0;
+          color: #231f20;
+        }
+      }
+
+      .Date {
+        font-size: 13px;
+        color: #666b88;
+        margin: 0;
+      }
+    }
+    .transport {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      span {
+        background-color: #ffeef4;
+        padding: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          color: #ff5592;
+          font-size: 18px;
+        }
+      }
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 24px;
+      color: #231f20;
+    }
+    .location {
+      display: flex;
+      gap: 5px;
+    }
+
+    .address {
+      font-size: 15px;
+      color: #231f20;
+      font-weight: 400;
+      line-height: 21px;
+    }
+    .price {
+      span {
+        color: #666b88;
+        font-size: 13px;
+        font-weight: 400;
+      }
+      p {
+        color: #231f20;
+        font-size: 19px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// change password
+.changePassword_section {
+  padding: 25px;
+  form {
+    background-color: #f8f8f8;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 25px;
+  }
+}
+
+//Payment Section
+
+.payment_history {
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+  }
+  .history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f8f8f8;
+    padding: 16px;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .img {
+        padding: 16px;
+        background-color: #e6fbe6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          color: #47d33b;
+        }
+      }
+      .date {
+        h4 {
+          margin: 0;
+          color: #231f20;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 21px;
+        }
+        p {
+          margin: 0;
+          color: #777777;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+        }
+      }
+    }
+    .price {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }

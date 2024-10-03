@@ -1817,118 +1817,116 @@ body .terms_section .terms_content p {
   line-height: 40px;
   margin-bottom: 5px;
 }
-body .Profile_section .Profile_Dashpoard {
-  padding: 35px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+body .Profile_section {
+  padding: 32px 0;
 }
-body aside {
-  width: 250px;
-  height: 50dvh;
+body .Profile_section aside {
+  width: 100%;
   background-color: #fffdf1;
-  padding: 26px;
-  border-radius: 25px;
+  padding: 24px;
+  border-radius: 16px;
 }
-body aside .side_list {
+body .Profile_section aside .side_list {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
 }
-body aside .side_list .side_item .side_link {
+body .Profile_section aside .side_list .side_item {
+  width: 100%;
+}
+body .Profile_section aside .side_list .side_item .side_link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 8px;
   color: #231f20;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
-  padding: 15px 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
 }
-body aside .side_list .side_item .side_link i {
+body .Profile_section aside .side_list .side_item .side_link i {
   font-size: 17px;
 }
-body aside .side_list .side_item .active {
-  background-color: #231f20;
-  color: #eee;
+body .Profile_section aside .side_list .side_item .active {
+  background-color: #f4f2ff;
+  color: #6e55ff;
+}
+body .Profile_section .content .Payments_content .Box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 32px 12px;
+  border-radius: 12px;
+  background-color: #f4f2ff;
+  flex: 1;
+}
+body .Profile_section .content .Payments_content .Box p {
+  font-size: 15px;
+  font-weight: 400;
+  list-style: 21px;
+  color: #777777;
+}
+body .Profile_section .content .Payments_content .Box h2 {
+  color: #231f20;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
 }
 body .Dashpoard_section {
   padding: 35px;
 }
-body .Dashpoard_section .Dashpoard_content {
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
-}
-body .Dashpoard_section .Dashpoard_content .Profile_info {
+body .Dashpoard_section .Profile_info {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_info .img img {
+body .Dashpoard_section .Profile_info .img img {
   width: 100px;
   border-radius: 50%;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_info .name h1 {
+body .Dashpoard_section .Profile_info .name h1 {
   color: #000000;
   font-size: 17px;
   font-weight: 600;
   line-height: 24px;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_info .name p {
+body .Dashpoard_section .Profile_info .name p {
   font-size: 14px;
   color: rgba(35, 41, 31, 0.7333333333);
   font-weight: 400;
   line-height: 21px;
   margin: 0;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_Rate {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate {
+body .Dashpoard_section .Box_rate {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
   background-color: #ffffff;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
-  padding: 32px 24px;
+  padding: 18px;
+  border-radius: 12px;
   flex: 1;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate p {
+body .Dashpoard_section .Box_rate .icon_rate p {
   margin: 0;
   color: #777777;
   font-size: 16px;
   font-weight: 400;
 }
-body .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate h2 {
+body .Dashpoard_section .Box_rate h2 {
+  color: #46abf4;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 60px;
 }
 body .MyOrder {
-  padding: 25px;
+  padding: 32px 0;
 }
-body .MyOrder .Order_cards {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-body .MyOrder .Order_cards .card {
+body .MyOrder .card {
   padding: 20px;
-  border: 1px solid #eee;
+  border: 1px solid #f8f8f8;
   background-color: #f8f8f8;
   width: 100%;
   display: flex;
@@ -1937,117 +1935,117 @@ body .MyOrder .Order_cards .card {
   flex: 1;
   border-radius: 8px;
 }
-body .MyOrder .Order_cards .card .status {
+body .MyOrder .card .status {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-body .MyOrder .Order_cards .card .status .pending {
+body .MyOrder .card .status .pending {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .status .pending span {
+body .MyOrder .card .status .pending span {
   width: 20px;
   height: 20px;
   background-color: #ffcf55;
   border-radius: 25%;
 }
-body .MyOrder .Order_cards .card .status .pending p {
+body .MyOrder .card .status .pending p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .status .Accepting {
+body .MyOrder .card .status .Accepting {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .status .Accepting span {
+body .MyOrder .card .status .Accepting span {
   width: 20px;
   height: 20px;
   background-color: #47d33b;
   border-radius: 25%;
 }
-body .MyOrder .Order_cards .card .status .Accepting p {
+body .MyOrder .card .status .Accepting p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .status .in_progress {
+body .MyOrder .card .status .in_progress {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .status .in_progress span {
+body .MyOrder .card .status .in_progress span {
   width: 20px;
   height: 20px;
   background-color: #46abf4;
   border-radius: 25%;
 }
-body .MyOrder .Order_cards .card .status .in_progress p {
+body .MyOrder .card .status .in_progress p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .status .completed {
+body .MyOrder .card .status .completed {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .status .completed span {
+body .MyOrder .card .status .completed span {
   width: 20px;
   height: 20px;
   background-color: #6e55ff;
   border-radius: 25%;
 }
-body .MyOrder .Order_cards .card .status .completed p {
+body .MyOrder .card .status .completed p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .status .rejected {
+body .MyOrder .card .status .rejected {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .status .rejected span {
+body .MyOrder .card .status .rejected span {
   width: 20px;
   height: 20px;
   background-color: red;
   border-radius: 25%;
 }
-body .MyOrder .Order_cards .card .status .rejected p {
+body .MyOrder .card .status .rejected p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .status .Date {
+body .MyOrder .card .status .Date {
   font-size: 13px;
   color: #666b88;
   margin: 0;
 }
-body .MyOrder .Order_cards .card .transport {
+body .MyOrder .card .transport {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-body .MyOrder .Order_cards .card .transport p {
+body .MyOrder .card .transport p {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
 }
-body .MyOrder .Order_cards .card .transport span {
+body .MyOrder .card .transport span {
   background-color: #ffeef4;
   padding: 16px;
   border-radius: 50%;
@@ -2055,35 +2053,92 @@ body .MyOrder .Order_cards .card .transport span {
   align-items: center;
   justify-content: center;
 }
-body .MyOrder .Order_cards .card .transport span i {
+body .MyOrder .card .transport span i {
   color: #ff5592;
   font-size: 18px;
 }
-body .MyOrder .Order_cards .card .name {
+body .MyOrder .card .name {
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: #231f20;
 }
-body .MyOrder .Order_cards .card .location {
+body .MyOrder .card .location {
   display: flex;
   gap: 5px;
 }
-body .MyOrder .Order_cards .card .address {
+body .MyOrder .card .address {
   font-size: 15px;
   color: #231f20;
   font-weight: 400;
   line-height: 21px;
 }
-body .MyOrder .Order_cards .card .price span {
+body .MyOrder .card .price span {
   color: #666b88;
   font-size: 13px;
   font-weight: 400;
 }
-body .MyOrder .Order_cards .card .price p {
+body .MyOrder .card .price p {
   color: #231f20;
   font-size: 19px;
   font-weight: 700;
+}
+body .changePassword_section {
+  padding: 25px;
+}
+body .changePassword_section form {
+  background-color: #f8f8f8;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 25px;
+}
+body .payment_history h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+body .payment_history .history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f8f8f8;
+  padding: 16px;
+}
+body .payment_history .history-row .icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .payment_history .history-row .icon .img {
+  padding: 16px;
+  background-color: #e6fbe6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .payment_history .history-row .icon .img i {
+  color: #47d33b;
+}
+body .payment_history .history-row .icon .date h4 {
+  margin: 0;
+  color: #231f20;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+body .payment_history .history-row .icon .date p {
+  margin: 0;
+  color: #777777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+body .payment_history .history-row .price {
+  font-size: 20px;
+  font-weight: 600;
 }
 body main {
   min-height: calc(100vh - 100px);
@@ -2224,118 +2279,116 @@ body main .explore_ads .filter .grid_view .dropdown .dropdown-item {
 body main .explore_ads .filter .css-1hf1o2u-container {
   min-width: 120px;
 }
-body main .Profile_section .Profile_Dashpoard {
-  padding: 35px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+body main .Profile_section {
+  padding: 32px 0;
 }
-body main aside {
-  width: 250px;
-  height: 50dvh;
+body main .Profile_section aside {
+  width: 100%;
   background-color: #fffdf1;
-  padding: 26px;
-  border-radius: 25px;
+  padding: 24px;
+  border-radius: 16px;
 }
-body main aside .side_list {
+body main .Profile_section aside .side_list {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
 }
-body main aside .side_list .side_item .side_link {
+body main .Profile_section aside .side_list .side_item {
+  width: 100%;
+}
+body main .Profile_section aside .side_list .side_item .side_link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 8px;
   color: #231f20;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
-  padding: 15px 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
 }
-body main aside .side_list .side_item .side_link i {
+body main .Profile_section aside .side_list .side_item .side_link i {
   font-size: 17px;
 }
-body main aside .side_list .side_item .active {
-  background-color: #231f20;
-  color: #eee;
+body main .Profile_section aside .side_list .side_item .active {
+  background-color: #f4f2ff;
+  color: #6e55ff;
+}
+body main .Profile_section .content .Payments_content .Box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 32px 12px;
+  border-radius: 12px;
+  background-color: #f4f2ff;
+  flex: 1;
+}
+body main .Profile_section .content .Payments_content .Box p {
+  font-size: 15px;
+  font-weight: 400;
+  list-style: 21px;
+  color: #777777;
+}
+body main .Profile_section .content .Payments_content .Box h2 {
+  color: #231f20;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
 }
 body main .Dashpoard_section {
   padding: 35px;
 }
-body main .Dashpoard_section .Dashpoard_content {
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
-}
-body main .Dashpoard_section .Dashpoard_content .Profile_info {
+body main .Dashpoard_section .Profile_info {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_info .img img {
+body main .Dashpoard_section .Profile_info .img img {
   width: 100px;
   border-radius: 50%;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_info .name h1 {
+body main .Dashpoard_section .Profile_info .name h1 {
   color: #000000;
   font-size: 17px;
   font-weight: 600;
   line-height: 24px;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_info .name p {
+body main .Dashpoard_section .Profile_info .name p {
   font-size: 14px;
   color: rgba(35, 41, 31, 0.7333333333);
   font-weight: 400;
   line-height: 21px;
   margin: 0;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_Rate {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate {
+body main .Dashpoard_section .Box_rate {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
   background-color: #ffffff;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
-  padding: 32px 24px;
+  padding: 18px;
+  border-radius: 12px;
   flex: 1;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate .icon_rate p {
+body main .Dashpoard_section .Box_rate .icon_rate p {
   margin: 0;
   color: #777777;
   font-size: 16px;
   font-weight: 400;
 }
-body main .Dashpoard_section .Dashpoard_content .Profile_Rate .Box_rate h2 {
+body main .Dashpoard_section .Box_rate h2 {
+  color: #46abf4;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 60px;
 }
 body main .MyOrder {
-  padding: 25px;
+  padding: 32px 0;
 }
-body main .MyOrder .Order_cards {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-body main .MyOrder .Order_cards .card {
+body main .MyOrder .card {
   padding: 20px;
-  border: 1px solid #eee;
+  border: 1px solid #f8f8f8;
   background-color: #f8f8f8;
   width: 100%;
   display: flex;
@@ -2344,117 +2397,117 @@ body main .MyOrder .Order_cards .card {
   flex: 1;
   border-radius: 8px;
 }
-body main .MyOrder .Order_cards .card .status {
+body main .MyOrder .card .status {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-body main .MyOrder .Order_cards .card .status .pending {
+body main .MyOrder .card .status .pending {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .status .pending span {
+body main .MyOrder .card .status .pending span {
   width: 20px;
   height: 20px;
   background-color: #ffcf55;
   border-radius: 25%;
 }
-body main .MyOrder .Order_cards .card .status .pending p {
+body main .MyOrder .card .status .pending p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .status .Accepting {
+body main .MyOrder .card .status .Accepting {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .status .Accepting span {
+body main .MyOrder .card .status .Accepting span {
   width: 20px;
   height: 20px;
   background-color: #47d33b;
   border-radius: 25%;
 }
-body main .MyOrder .Order_cards .card .status .Accepting p {
+body main .MyOrder .card .status .Accepting p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .status .in_progress {
+body main .MyOrder .card .status .in_progress {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .status .in_progress span {
+body main .MyOrder .card .status .in_progress span {
   width: 20px;
   height: 20px;
   background-color: #46abf4;
   border-radius: 25%;
 }
-body main .MyOrder .Order_cards .card .status .in_progress p {
+body main .MyOrder .card .status .in_progress p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .status .completed {
+body main .MyOrder .card .status .completed {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .status .completed span {
+body main .MyOrder .card .status .completed span {
   width: 20px;
   height: 20px;
   background-color: #6e55ff;
   border-radius: 25%;
 }
-body main .MyOrder .Order_cards .card .status .completed p {
+body main .MyOrder .card .status .completed p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .status .rejected {
+body main .MyOrder .card .status .rejected {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .status .rejected span {
+body main .MyOrder .card .status .rejected span {
   width: 20px;
   height: 20px;
   background-color: red;
   border-radius: 25%;
 }
-body main .MyOrder .Order_cards .card .status .rejected p {
+body main .MyOrder .card .status .rejected p {
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   margin: 0;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .status .Date {
+body main .MyOrder .card .status .Date {
   font-size: 13px;
   color: #666b88;
   margin: 0;
 }
-body main .MyOrder .Order_cards .card .transport {
+body main .MyOrder .card .transport {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-body main .MyOrder .Order_cards .card .transport p {
+body main .MyOrder .card .transport p {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
 }
-body main .MyOrder .Order_cards .card .transport span {
+body main .MyOrder .card .transport span {
   background-color: #ffeef4;
   padding: 16px;
   border-radius: 50%;
@@ -2462,35 +2515,92 @@ body main .MyOrder .Order_cards .card .transport span {
   align-items: center;
   justify-content: center;
 }
-body main .MyOrder .Order_cards .card .transport span i {
+body main .MyOrder .card .transport span i {
   color: #ff5592;
   font-size: 18px;
 }
-body main .MyOrder .Order_cards .card .name {
+body main .MyOrder .card .name {
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: #231f20;
 }
-body main .MyOrder .Order_cards .card .location {
+body main .MyOrder .card .location {
   display: flex;
   gap: 5px;
 }
-body main .MyOrder .Order_cards .card .address {
+body main .MyOrder .card .address {
   font-size: 15px;
   color: #231f20;
   font-weight: 400;
   line-height: 21px;
 }
-body main .MyOrder .Order_cards .card .price span {
+body main .MyOrder .card .price span {
   color: #666b88;
   font-size: 13px;
   font-weight: 400;
 }
-body main .MyOrder .Order_cards .card .price p {
+body main .MyOrder .card .price p {
   color: #231f20;
   font-size: 19px;
   font-weight: 700;
+}
+body main .changePassword_section {
+  padding: 25px;
+}
+body main .changePassword_section form {
+  background-color: #f8f8f8;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 25px;
+}
+body main .payment_history h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+body main .payment_history .history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f8f8f8;
+  padding: 16px;
+}
+body main .payment_history .history-row .icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body main .payment_history .history-row .icon .img {
+  padding: 16px;
+  background-color: #e6fbe6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .payment_history .history-row .icon .img i {
+  color: #47d33b;
+}
+body main .payment_history .history-row .icon .date h4 {
+  margin: 0;
+  color: #231f20;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+body main .payment_history .history-row .icon .date p {
+  margin: 0;
+  color: #777777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+body main .payment_history .history-row .price {
+  font-size: 20px;
+  font-weight: 600;
 }
 body main .section-head {
   padding: 35px 5px;
@@ -2621,16 +2731,34 @@ body main .product_details {
 body main .product_details .product_swiper {
   aspect-ratio: 3/2;
 }
+body main .product_details .product_swiper .swiper-slide {
+  isolation: isolate;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eeeeee;
+}
+body main .product_details .product_swiper .swiper-slide .blurde_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: blur(20px);
+  z-index: -1;
+}
 body main .product_details .product_swiper a {
   cursor: zoom-in;
 }
 body main .product_details .product_swiper img,
 body main .product_details .product_swiper video {
-  border-radius: 12px;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 body main .product_details .product_swiper .swiper-pagination-bullet {
   width: 24px;

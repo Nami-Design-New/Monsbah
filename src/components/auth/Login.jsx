@@ -58,6 +58,7 @@ function Login({ setFormType, setShow }) {
   };
 
   return (
+    
     <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
         <h2 className="head">
