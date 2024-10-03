@@ -11,11 +11,16 @@ import i18n from "./utils/i18n";
 import axiosInstance from "./utils/axiosInstance";
 import useGetAuthedUser from "./hooks/users/useGetAuthedUser";
 import SmallMenu from "./ui/Layout/SmallMenu";
+import BackToTop from "./ui/Layout/BackToTop";
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const lang = useSelector((state) => state.language.lang);
+
   const [loading, setLoading] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   const [cookies, , removeCookie] = useCookies(["token", "id"]);
   const token = cookies?.token;
   const id = cookies?.id;
@@ -73,8 +78,6 @@ function App() {
     removeCookie
   ]);
 
-  const lang = useSelector((state) => state.language.lang);
-
   useEffect(() => {
     sessionStorage.setItem("lang", lang);
     const body = document.querySelector("body");
@@ -85,6 +88,20 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 500) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
 
   return loading ? null : (
     <>
@@ -100,6 +117,7 @@ function App() {
       </main>
       <Footer />
       <SmallMenu />
+      <BackToTop show={showBackToTop} />
     </>
   );
 }

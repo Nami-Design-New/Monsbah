@@ -1,7 +1,6 @@
-import React from "react";
 import SectionHeader from "../components/layout/SectionHeader";
 
-const Aboutus = () => {
+export default function About() {
   return (
     <section className="aboutus_section">
       <SectionHeader />
@@ -21,7 +20,6 @@ const Aboutus = () => {
 
           <div className="content">
             <h2 className="name">What is Monsabah Website ?</h2>
-
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
               voluptates natus assumenda dolores qui tenetur modi saepe sed
@@ -83,6 +81,4 @@ const Aboutus = () => {
       </div> */}
     </section>
   );
-};
-
-export default Aboutus;
+}

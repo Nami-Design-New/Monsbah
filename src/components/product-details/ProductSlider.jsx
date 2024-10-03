@@ -62,6 +62,7 @@ export default function ProductSlider({ product }) {
           ) : (
             <img className="blurde_bg" src={image} alt="bluer_image" />
           )}
+
           {isValidVideoExtension(image) ? (
             <video src={image} ref={videoRef} autoPlay loop muted playsInline />
           ) : (
