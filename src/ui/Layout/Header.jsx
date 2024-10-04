@@ -52,7 +52,7 @@ export default function Header() {
                 {t("header.chats")}
               </NavLink>
 
-              <NavLink className="navLink" to="/contact">
+              <NavLink className="navLink" to="/contact-us">
                 {t("header.contact")}
               </NavLink>
             </ul>

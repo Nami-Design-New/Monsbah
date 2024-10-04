@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useGetProducts from "../../hooks/products/useGetProducts";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 
 export default function ProductsSection() {
+  const sectionRef = useRef(null);
   const {
     data: products,
     isLoading,
@@ -14,11 +15,14 @@ export default function ProductsSection() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const currentScroll = window.innerHeight + window.pageYOffset;
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionBottom = section.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
 
       if (
-        scrollHeight - currentScroll < 100 &&
+        sectionBottom <= viewportHeight + 200 &&
         hasNextPage &&
         !isFetchingNextPage
       ) {
@@ -31,7 +35,7 @@ export default function ProductsSection() {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
-    <section className="products_section">
+    <section className="products_section" ref={sectionRef}>
       <div className="container">
         <div className="row">
           {products?.map((product, index) => (

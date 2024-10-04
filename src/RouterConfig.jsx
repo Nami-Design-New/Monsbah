@@ -1,4 +1,5 @@
-import Aboutus from "./routes/Aboutus";
+import About from "./routes/About";
+import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
 import ProductDetails from "./routes/ProductDetails";
@@ -12,7 +13,11 @@ const routerConfig = [
   },
   {
     path: "about-us",
-    element: <Aboutus />
+    element: <About />
+  },
+  {
+    path: "contact-us",
+    element: <Contact />
   },
   {
     path: "terms-and-conditions",

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import ImageLoad from "../loaders/ImageLoad";
+import { isValidVideoExtension } from "../../utils/helpers";
 
 function ProductVertical({ product }) {
   const { t } = useTranslation();
@@ -14,7 +15,18 @@ function ProductVertical({ product }) {
   return (
     <div className="product_vertical">
       <Link to={`/product/${product.id}`} className="img">
-        <img src={product.image} onLoad={handleImageLoad} alt="" />
+        {isValidVideoExtension(product?.image) ? (
+          <video
+            src={product.image}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onLoadedMetadata={handleImageLoad}
+          />
+        ) : (
+          <img src={product.image} onLoad={handleImageLoad} alt="" />
+        )}
         <ImageLoad isImageLoaded={isImageLoaded} />
         <span className="type">{t(`${product?.type}`)}</span>
       </Link>

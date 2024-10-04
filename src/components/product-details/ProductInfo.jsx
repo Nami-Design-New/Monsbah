@@ -22,8 +22,7 @@ function ProductInfo({ product }) {
     <>
       <div className="priceInfo mt-3">
         <h4 className="price">
-          <span>{product?.price}</span> {" "}
-          {product?.currency?.name}
+          <span>{product?.price}</span> {product?.currency?.name}
         </h4>
 
         <button className={`favorite ${product?.is_favorite ? "active" : ""}`}>
@@ -36,7 +35,7 @@ function ProductInfo({ product }) {
           </span>
 
           <span className="action-btn report">
-            <i className="fa-regular fa-flag"></i> {t("report")}
+            <i className="fa-sharp fa-light fa-share-nodes"></i> {t("report")}
           </span>
         </div>
       </div>
