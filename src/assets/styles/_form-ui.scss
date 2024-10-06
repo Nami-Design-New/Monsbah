@@ -534,3 +534,138 @@
     }
   }
 }
+.radios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  .label-content {
+    height: unset !important;
+    padding: 8px 0 !important;
+    flex-direction: column !important;
+    gap: 8px;
+  }
+  label {
+    width: 100%;
+    span {
+      height: 56px;
+      width: 100%;
+      background: $white;
+      color: $dark;
+      font-size: 16px !important;
+      cursor: pointer;
+      border: 1px solid $lightGray;
+      @include centerFlex();
+      border-radius: 12px;
+    }
+    input {
+      display: none;
+      &:checked + span {
+        background: $main;
+        border-color: $main;
+        color: $white;
+      }
+    }
+  }
+}
+.image_upload {
+  border: 1px solid $lightGray;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  max-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  input {
+    display: none;
+  }
+  @include centerFlex();
+  img {
+    height: 60px;
+  }
+  button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+}
+.images_grid_upload {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  gap: 8px;
+  .file_upload {
+    border: 1px solid $lightGray;
+    border-radius: 12px;
+    height: 150px;
+    label {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      input {
+        display: none;
+      }
+      @include centerFlex();
+      img {
+        height: 60px;
+      }
+      .file_upload_dimensions {
+        color: $lightGray;
+        font-weight: 600;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+  }
+  .uploaded_file {
+    border: 1px solid $lightGray;
+    border-radius: 12px;
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    @include centerFlex();
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    button {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 26px;
+      font-size: 16px;
+      height: 26px;
+      border-radius: 50%;
+      background: $main;
+      color: $white;
+    }
+    .doc_icon {
+      @include centerFlex();
+      flex-direction: column;
+      gap: 4px;
+      span {
+        font-size: 10px;
+        line-height: normal;
+        color: $lightGray;
+      }
+      img {
+        width: auto;
+        height: 50px;
+      }
+    }
+  }
+}
