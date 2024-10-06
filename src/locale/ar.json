@@ -97,7 +97,8 @@
     "whatsapp": "واتساب",
     "chat": "محادثة",
     "contactType": "نوع الاتصال",
-    "doYouWantToAddNewPhoneNumber": "هل تريد إضافة رقم جديد للتواصل!"
+    "doYouWantToAddNewPhoneNumber": "هل تريد إضافة رقم جديد للتواصل!",
+    "successfullyAdded": "تمت اضافة الإعلان بنجاح"
   },
   "select": "اختر",
   "all": "الكل",

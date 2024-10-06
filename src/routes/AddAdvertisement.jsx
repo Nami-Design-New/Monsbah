@@ -106,7 +106,7 @@ function AddAdvertisement() {
     try {
       addAd(formData, {
         onSuccess: () => {
-          toast.success(t("subscripedSuccessfully"));
+          toast.success(t("ads.successfullyAdded"));
           setFormData({
             type: "sell",
             name: "",
