@@ -108,6 +108,12 @@
   "Followings":"Followings",
   "Followers":"Followers",
   "Rating":"Rating",
-  "Ad":"Ad"
+  "Ad":"Ad",
+  "AddAdditional-announcement":"AddAdditional announcement",
+  "Favorite":"Favorite",
+  "My-Ads":"My Ads",
+  "Account-verification":"Account verification"
+
+
 
 }

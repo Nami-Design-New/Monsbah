@@ -1742,7 +1742,7 @@ body .product_vertical.skeleton .skeleton-btn {
 }
 body .section-head {
   padding: 35px 5px;
-  background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
+  background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
 }
 body .section-head .small_nav {
   display: flex;
@@ -1750,22 +1750,18 @@ body .section-head .small_nav {
   gap: 20px;
 }
 body .section-head .Arrow_icon {
-  border: 2px solid #231f20;
+  border: 1px solid #231f20;
   border-radius: 50%;
   width: 40px;
+  cursor: pointer;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
 }
-body .section-head .Arrow_icon i::before {
-  line-height: 0 !important;
-  color: #231f20;
-  text-align: center;
-  font-weight: 700;
-  line-height: 0 !important;
-  font-size: 19px;
+body .section-head .Arrow_icon i {
+  transform: scale(-1);
 }
 body .section-head .text {
   display: flex;
@@ -1783,11 +1779,11 @@ body .section-head .text .page_name {
   align-items: center;
   gap: 10px;
 }
-body .section-head .text .page_name Link {
-  color: #6e55ff !important;
+body .section-head .text .page_name a {
+  color: #0d0d0d !important;
 }
 body .section-head .text .page_name i {
-  color: #6e55ff;
+  color: #0d0d0d !important;
   font-size: 11px;
 }
 body .aboutus_section {
@@ -2380,7 +2376,63 @@ body main .contact_section .contact_form .contact_btn {
   padding: 12px 42px;
   border-radius: 50px;
 }
-body main .Profile_section .Profile_Dashpoard {
+body main .Profile_section {
+  padding: 32px 0;
+}
+body main .Profile_section aside {
+  width: 100%;
+  background-color: #fffdf1;
+  padding: 24px;
+  border-radius: 16px;
+}
+body main .Profile_section aside .side_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .Profile_section aside .side_list .side_item {
+  width: 100%;
+}
+body main .Profile_section aside .side_list .side_item .side_link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #231f20;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+body main .Profile_section aside .side_list .side_item .side_link i {
+  font-size: 17px;
+}
+body main .Profile_section aside .side_list .side_item .active {
+  background-color: #f4f2ff;
+  color: #6e55ff;
+}
+body main .Profile_section .content .Payments_content .Box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 32px 12px;
+  border-radius: 12px;
+  background-color: #f4f2ff;
+  flex: 1;
+}
+body main .Profile_section .content .Payments_content .Box p {
+  font-size: 15px;
+  font-weight: 400;
+  list-style: 21px;
+  color: #777777;
+}
+body main .Profile_section .content .Payments_content .Box h2 {
+  color: #231f20;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+body main .Dashpoard_section {
   padding: 35px;
 }
 body main .Dashpoard_section .Profile_info {

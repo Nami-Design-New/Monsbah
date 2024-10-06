@@ -16,16 +16,19 @@ const Sidebar = () => {
         </li>
 
         <li className="side_item">
-          <NavLink to="my-orders" className="side_link">
-            <i className="fa-regular fa-hammer-crash" />
-            {t("MyOrder")}
+          <NavLink to="AddAdditional-announcement" className="side_link">
+            <i className="fa-solid fa-plus" /> {t("AddAdditional-announcement")}
           </NavLink>
         </li>
 
         <li className="side_item">
-          <NavLink to="My-Payments" className="side_link">
-            <i className="fa-solid fa-money-check" />
-            {t("MyPayments")}
+          <NavLink to="Favorite" className="side_link">
+            <i className="fa-regular fa-heart" /> {t("Favorite")}
+          </NavLink>
+        </li>
+        <li className="side_item">
+          <NavLink to="My-Ads" className="side_link">
+            <i className="fa-regular fa-microphone-stand" /> {t("My-Ads")}
           </NavLink>
         </li>
 
@@ -33,6 +36,13 @@ const Sidebar = () => {
           <NavLink to="Settings" className="side_link">
             <i className="fa-solid fa-gear" />
             {t("Settings")}
+          </NavLink>
+        </li>
+
+        <li className="side_item">
+          <NavLink to="Account-verification" className="side_link">
+            <i className="fa-light fa-badge-check" />
+            {t("Account-verification")}
           </NavLink>
         </li>
 
