@@ -38,7 +38,6 @@ function AddAdvertisement() {
     sub_cat_id: 1,
     document_type: "",
     file: "",
-    contact_type: "",
   });
   const { data: subcategories } = useGetSubCategories(formData?.cat_id);
 
@@ -98,8 +97,7 @@ function AddAdvertisement() {
       !formData.document_type ||
       !formData.type ||
       !formData.country_code ||
-      !formData.descr ||
-      !formData.contact_type
+      !formData.descr
     ) {
       toast.error(t("allFieldsRequired"));
       setLoading(false);
@@ -120,7 +118,6 @@ function AddAdvertisement() {
             cat_id: "",
             document_type: "",
             file: "",
-            contact_type: "",
           });
           queryClient.invalidateQueries(["ads"]);
           navigate("/ads");
