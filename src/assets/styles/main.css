@@ -271,10 +271,10 @@ button {
 .back-to-top {
   position: fixed;
   z-index: 99;
-  right: 50px;
-  bottom: 50px;
-  height: 55px;
-  width: 55px;
+  right: 8px;
+  bottom: 88px;
+  height: 45px;
+  width: 45px;
   cursor: pointer;
   display: block;
   border-radius: 50px;
@@ -294,11 +294,11 @@ button {
   font-family: "Font Awesome 6 Pro";
   content: "\f062";
   text-align: center;
-  line-height: 55px;
+  line-height: 45px;
   opacity: 1;
-  height: 55px;
-  width: 55px;
-  font-size: 18px;
+  height: 45px;
+  width: 45px;
+  font-size: 16px;
   font-weight: 600;
   color: #1abc9c;
 }
