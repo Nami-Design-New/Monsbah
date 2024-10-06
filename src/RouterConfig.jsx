@@ -27,8 +27,9 @@ const routerConfig = [
   },
   {
     path: "Profile/*",
-    element: <Profile />
-  }
+    element: <Profile />,
+  },
+  {
     path: "Profile",
     element: <Profile />,
   },
