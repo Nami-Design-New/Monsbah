@@ -28,9 +28,10 @@
 * {
   padding: 0;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.4;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -59,8 +60,8 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #eee;
-  height: 300px;
+  background: #989898;
+  border-radius: 30px;
 }
 
 input[type="number"] {
@@ -241,5 +242,101 @@ $shadow: 0px 2px 8px #0000001a;
     img {
       height: 42px;
     }
+  }
+}
+.css-t3ipsp-control {
+  border-color: $lightGray !important;
+  box-shadow: none !important;
+  &:hover {
+    background-color: $white !important;
+  }
+}
+.css-13cymwt-control {
+  border-color: $lightGray !important;
+}
+.select__indicator-separator {
+  display: none !important;
+}
+.select__menu {
+  z-index: 999999 !important;
+}
+
+.modal-backdrop {
+  --bs-backdrop-opacity: 0.7;
+}
+
+.image_laoder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  opacity: 0;
+  background: #e9e9e9;
+  transition: $transition;
+  &.laoding {
+    opacity: 1;
+  }
+}
+
+.tableLoader {
+  min-height: 548px;
+  @include centerFlex();
+  flex-direction: column;
+  .loader--style8 {
+    width: 40px;
+    height: 40px;
+  }
+  svg path,
+  svg rect {
+    stroke: $main;
+  }
+}
+
+a,
+button {
+  transition: $transition;
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 99;
+  right: 50px;
+  bottom: 50px;
+  height: 55px;
+  width: 55px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(30px);
+  &.active-progress {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  &::before {
+    position: absolute;
+    font-family: "Font Awesome 6 Pro";
+    content: "\f062";
+    text-align: center;
+    line-height: 55px;
+    opacity: 1;
+    height: 55px;
+    width: 55px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $main;
+  }
+  svg.progress-circle path {
+    stroke: $main;
+    stroke-width: 4;
   }
 }
