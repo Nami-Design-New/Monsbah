@@ -11,6 +11,8 @@ body {
   @import "./form-ui";
   @import "./auth_section";
   @import "./product";
+  @import "./articles_section";
+  @import "./profile_section";
 
   main {
     min-height: calc(100vh - 100px);
@@ -93,6 +95,11 @@ body {
     .closeModal {
       right: 16px;
       left: unset;
+    }
+    // .Arrow_icon
+
+    .Arrow_icon {
+      transform: scale(-1);
     }
   }
 }
