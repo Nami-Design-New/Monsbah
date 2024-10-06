@@ -325,46 +325,6 @@ function AddAdvertisement() {
                 </div>
               </div>
               <div className="form_group">
-                <div className="input-field">
-                  <label htmlFor="contactType">{t("ads.contactType")} *</label>
-                  <div className="radios">
-                    <label htmlFor="call">
-                      <input
-                        type="radio"
-                        name="type"
-                        id="call"
-                        value="call"
-                        checked={formData?.contact_type === "call"}
-                        onChange={(e) => handleChange(e, setFormData)}
-                      />
-                      <span>{t("ads.call")}</span>
-                    </label>
-                    <label htmlFor="whatsapp">
-                      <input
-                        type="radio"
-                        name="type"
-                        id="whatsapp"
-                        value="whatsapp"
-                        checked={formData?.type === "whatsapp"}
-                        onChange={(e) => handleChange(e, setFormData)}
-                      />
-                      <span>{t("ads.whatsapp")}</span>
-                    </label>
-                    <label htmlFor="chat">
-                      <input
-                        type="radio"
-                        name="type"
-                        id="chat"
-                        value="chat"
-                        checked={formData?.type === "chat"}
-                        onChange={(e) => handleChange(e, setFormData)}
-                      />
-                      <span>{t("ads.chat")}</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="form_group">
                 <div className="question p-0 pt-2">
                   <label htmlFor="newPhoneNumber" className="quest">
                     {t("ads.doYouWantToAddNewPhoneNumber")}
