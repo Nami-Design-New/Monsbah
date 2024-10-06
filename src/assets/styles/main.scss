@@ -17,6 +17,7 @@ body {
   main {
     min-height: calc(100vh - 100px);
     @import "./home";
+    @import "./contact";
     @import "./profile_section";
     @import "./articles_section";
     @import "./product_details";

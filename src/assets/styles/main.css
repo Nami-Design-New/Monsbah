@@ -2,9 +2,10 @@
 * {
   padding: 0;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.4;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -265,6 +266,45 @@ input[type=number]::-webkit-inner-spin-button {
 a,
 button {
   transition: 0.3s ease-in-out;
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 99;
+  right: 50px;
+  bottom: 50px;
+  height: 55px;
+  width: 55px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(30px);
+}
+.back-to-top.active-progress {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top::before {
+  position: absolute;
+  font-family: "Font Awesome 6 Pro";
+  content: "\f062";
+  text-align: center;
+  line-height: 55px;
+  opacity: 1;
+  height: 55px;
+  width: 55px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1abc9c;
+}
+.back-to-top svg.progress-circle path {
+  stroke: #1abc9c;
+  stroke-width: 4;
 }
 
 body {
@@ -1541,7 +1581,8 @@ body .product_vertical .img .type {
   padding: 4px 12px;
   font-size: 14px;
 }
-body .product_vertical .img img {
+body .product_vertical .img img,
+body .product_vertical .img video {
   transition: 0.3s ease-in-out;
   width: 100%;
   height: 100%;
@@ -2279,63 +2320,67 @@ body main .explore_ads .filter .grid_view .dropdown .dropdown-item {
 body main .explore_ads .filter .css-1hf1o2u-container {
   min-width: 120px;
 }
-body main .Profile_section {
-  padding: 32px 0;
+body main .contact_section {
+  padding: 60px 0;
 }
-body main .Profile_section aside {
-  width: 100%;
-  background-color: #fffdf1;
-  padding: 24px;
-  border-radius: 16px;
-}
-body main .Profile_section aside .side_list {
+body main .contact_section .contact_info {
+  padding: 60px 80px;
+  background: rgba(26, 188, 156, 0.1921568627);
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 32px;
 }
-body main .Profile_section aside .side_list .side_item {
-  width: 100%;
+body main .contact_section .contact_info .title_hint {
+  color: #fff;
+  padding: 4px 24px;
+  border-radius: 50px;
+  background: #1abc9c;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-body main .Profile_section aside .side_list .side_item .side_link {
+body main .contact_section .contact_info h2,
+body main .contact_section .contact_info p {
+  margin: 0;
+  color: #0d0d0d;
+}
+body main .contact_section .contact_info ul {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #231f20;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 12px 16px;
-  border-radius: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  gap: 32px;
 }
-body main .Profile_section aside .side_list .side_item .side_link i {
-  font-size: 17px;
-}
-body main .Profile_section aside .side_list .side_item .active {
-  background-color: #f4f2ff;
-  color: #6e55ff;
-}
-body main .Profile_section .content .Payments_content .Box {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  padding: 32px 12px;
-  border-radius: 12px;
-  background-color: #f4f2ff;
+body main .contact_section .contact_info ul li {
   flex: 1;
+  display: flex;
+  gap: 20px;
 }
-body main .Profile_section .content .Payments_content .Box p {
-  font-size: 15px;
-  font-weight: 400;
-  list-style: 21px;
-  color: #777777;
+body main .contact_section .contact_info ul li .content h6,
+body main .contact_section .contact_info ul li .content a {
+  color: #0d0d0d;
 }
-body main .Profile_section .content .Payments_content .Box h2 {
-  color: #231f20;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 36px;
+body main .contact_section .contact_form {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-body main .Dashpoard_section {
+body main .contact_section .contact_form h3,
+body main .contact_section .contact_form p {
+  text-align: center;
+}
+body main .contact_section .contact_form p {
+  font-size: 14px;
+  color: #666b88;
+}
+body main .contact_section .contact_form .contact_btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+  padding: 12px 42px;
+  border-radius: 50px;
+}
+body main .Profile_section .Profile_Dashpoard {
   padding: 35px;
 }
 body main .Dashpoard_section .Profile_info {
@@ -2604,7 +2649,7 @@ body main .payment_history .history-row .price {
 }
 body main .section-head {
   padding: 35px 5px;
-  background-image: linear-gradient(to right, #f4f2ff, #fffdf1);
+  background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
 }
 body main .section-head .small_nav {
   display: flex;
@@ -2612,22 +2657,18 @@ body main .section-head .small_nav {
   gap: 20px;
 }
 body main .section-head .Arrow_icon {
-  border: 2px solid #231f20;
+  border: 1px solid #231f20;
   border-radius: 50%;
   width: 40px;
+  cursor: pointer;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
 }
-body main .section-head .Arrow_icon i::before {
-  line-height: 0 !important;
-  color: #231f20;
-  text-align: center;
-  font-weight: 700;
-  line-height: 0 !important;
-  font-size: 19px;
+body main .section-head .Arrow_icon i {
+  transform: scale(-1);
 }
 body main .section-head .text {
   display: flex;
@@ -2645,11 +2686,11 @@ body main .section-head .text .page_name {
   align-items: center;
   gap: 10px;
 }
-body main .section-head .text .page_name Link {
-  color: #6e55ff !important;
+body main .section-head .text .page_name a {
+  color: #0d0d0d !important;
 }
 body main .section-head .text .page_name i {
-  color: #6e55ff;
+  color: #0d0d0d !important;
   font-size: 11px;
 }
 body main .aboutus_section {
