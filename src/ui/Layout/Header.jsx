@@ -15,6 +15,7 @@ export default function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -101,7 +102,11 @@ export default function Header() {
 
             {user?.id ? (
               <Link to="/profile" className="link">
-                <img src="/images/icons/user.svg" alt="user" />
+                <img
+                  src={avatarError ? "/images/icons/user.svg" : user?.image}
+                  alt="user"
+                  onError={() => setAvatarError(true)}
+                />
               </Link>
             ) : (
               <button

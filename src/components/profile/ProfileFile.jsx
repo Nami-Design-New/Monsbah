@@ -1,7 +1,13 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const ProfileFile = () => {
   const { t } = useTranslation();
+  const user = useSelector((state) => state.clientData.client);
+  const [avatarError, setAvatarError] = useState(false);
+  const lang = useSelector((state) => state.language.lang);
+
+  console.log(user);
 
   return (
     <div className="Dashpoard_section">
@@ -24,6 +30,7 @@ const ProfileFile = () => {
 
             <div className="icon_rate">
               <p>{t("Followings")}</p>
+              <p>{t("Followings")}</p>
             </div>
           </div>
         </div>
@@ -33,6 +40,7 @@ const ProfileFile = () => {
             <h2>200</h2>
 
             <div className="icon_rate">
+              <p>{t("Followers")}</p>
               <p>{t("Followers")}</p>
             </div>
           </div>
@@ -44,6 +52,7 @@ const ProfileFile = () => {
 
             <div className="icon_rate">
               <p>{t("Rating")}</p>
+              <p>{t("Rating")}</p>
             </div>
           </div>
         </div>
@@ -53,6 +62,7 @@ const ProfileFile = () => {
             <h2>12</h2>
 
             <div className="icon_rate">
+              <p>{t("Ad")}</p>
               <p>{t("Ad")}</p>
             </div>
           </div>

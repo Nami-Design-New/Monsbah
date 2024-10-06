@@ -1,5 +1,6 @@
 import About from "./routes/About";
 import AddAdvertisement from "./routes/addAdvertisement";
+import AltProfile from "./routes/AltProfile";
 import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
@@ -32,6 +33,10 @@ const routerConfig = [
   {
     path: "Profile",
     element: <Profile />,
+  },
+  {
+    path: "alt-profile",
+    element: <AltProfile />,
   },
   {
     path: "verification",
