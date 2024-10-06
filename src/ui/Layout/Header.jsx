@@ -51,7 +51,6 @@ export default function Header() {
               <NavLink className="navLink" to="/chats">
                 {t("header.chats")}
               </NavLink>
-
               <NavLink className="navLink" to="/contact-us">
                 {t("header.contact")}
               </NavLink>
@@ -66,7 +65,7 @@ export default function Header() {
               {t("header.getApp")}
             </button>
 
-            <Link to="/add-ad" className="link text d-lg-flex d-none">
+            <Link to="/profile/add-ad" className="link text d-lg-flex d-none">
               <img src="/images/icons/plus.svg" alt="" />
               {t("header.addPost")}
             </Link>
