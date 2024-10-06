@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import useGetCategories from "../hooks/useGetCategories";
 import SelectField from "../ui/form-elements/SelectField";
 import SubmitButton from "../ui/form-elements/SubmitButton";
@@ -20,6 +21,7 @@ export default function AddAd() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const user = useSelector((state) => state.clientData.client);
+  const queryClient = useQueryClient();
 
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -131,6 +133,7 @@ export default function AddAd() {
       });
       if (res.status === 200) {
         toast.success(res.data.message);
+        queryClient.invalidateQueries({ queryKey: ["user-products"] });
         navigate("/profile/my-ads");
       }
     } catch (error) {
