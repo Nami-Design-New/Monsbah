@@ -27,16 +27,16 @@ const routerConfig = [
     element: <Terms />,
   },
   {
-    path: "Profile/*",
-    element: <Profile />,
+    path: "profile/*",
+    element: <AltProfile />,
   },
   {
-    path: "Profile",
-    element: <Profile />,
+    path: "profile",
+    element: <AltProfile />,
   },
   {
     path: "alt-profile",
-    element: <AltProfile />,
+    element: <Profile />,
   },
   {
     path: "verification",

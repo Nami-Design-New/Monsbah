@@ -1,13 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 
 const ProfileFile = () => {
   const { t } = useTranslation();
-  const user = useSelector((state) => state.clientData.client);
-  const [avatarError, setAvatarError] = useState(false);
-  const lang = useSelector((state) => state.language.lang);
 
-  console.log(user);
 
   return (
     <div className="Dashpoard_section">
