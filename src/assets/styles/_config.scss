@@ -340,3 +340,12 @@ button {
     stroke-width: 4;
   }
 }
+
+.form-check-input {
+  box-shadow: none !important;
+}
+
+.form-check-input:checked {
+  background-color: $main;
+  border-color: $main;
+}

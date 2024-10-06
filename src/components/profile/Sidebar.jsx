@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
@@ -16,7 +15,7 @@ const Sidebar = () => {
         </li>
 
         <li className="side_item">
-          <NavLink to="AddAdditional-announcement" className="side_link">
+          <NavLink to="add-ad" className="side_link">
             <i className="fa-solid fa-plus" /> {t("AddAdditional-announcement")}
           </NavLink>
         </li>
@@ -27,7 +26,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="side_item">
-          <NavLink to="My-Ads" className="side_link">
+          <NavLink to="my-ads" className="side_link">
             <i className="fa-regular fa-microphone-stand" /> {t("My-Ads")}
           </NavLink>
         </li>

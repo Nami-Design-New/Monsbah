@@ -1,13 +1,14 @@
 .section-head {
   padding: 35px 5px;
   background-image: linear-gradient(to right, #d3f2ec, #1abc9c1a);
+
   .small_nav {
     display: flex;
     align-items: center;
     gap: 20px;
   }
 
-  .Arrow_icon {
+  .arrow_icon {
     border: 1px solid #231f20;
     border-radius: 50%;
     width: 40px;
@@ -17,9 +18,6 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    i {
-      transform: scale(-1);
-    }
   }
   .text {
     display: flex;
