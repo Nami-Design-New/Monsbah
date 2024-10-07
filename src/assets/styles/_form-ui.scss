@@ -3,6 +3,23 @@
   flex-direction: column;
   gap: 16px;
 
+  &.reverse-form {
+    .dropdown {
+      button {
+        background-color: $white !important;
+      }
+    }
+    .file_upload label {
+      background-color: $white !important;
+    }
+    input,
+    select,
+    textarea,
+    .image_upload {
+      background-color: $white !important;
+    }
+  }
+
   .resend-code {
     width: 100%;
     display: flex;
@@ -612,6 +629,7 @@
     border: 1px solid $lightGray;
     border-radius: 12px;
     height: 150px;
+    overflow: hidden;
     label {
       height: 100%;
       width: 100%;

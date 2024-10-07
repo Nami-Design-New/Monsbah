@@ -6,6 +6,8 @@ function AltProfile() {
   const user = useSelector((state) => state.clientData.client);
   const lang = useSelector((state) => state.language.lang);
 
+  console.log(user);
+
   return (
     <>
       <div className="profile-page">

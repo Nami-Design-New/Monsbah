@@ -1,4 +1,6 @@
 import About from "./routes/About";
+import AddAd from "./routes/AddAd";
+import AltProfile from "./routes/AltProfile";
 import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
@@ -34,11 +36,19 @@ const routerConfig = [
     element: <Profile />,
   },
   {
+    path: "alt-profile/*",
+    element: <AltProfile />,
+  },
+  {
     path: "verification",
     element: <Verification />,
   },
   {
-    path: "/product/:id",
+    path: "add-ad",
+    element: <AddAd />,
+  },
+  {
+    path: "product/:id",
     element: <ProductDetails />,
   },
   {

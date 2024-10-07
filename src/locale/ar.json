@@ -46,7 +46,15 @@
   "profile": {
     "mainInfo": "المعلومات الشخصية",
     "ads": "الاعلانات",
-    "questions": "الأسئلة"
+    "questions": "الأسئلة",
+    "favorites": "المفضلة",
+    "verification": "توثيق الحساب",
+    "settings": "تعديل الحساب",
+    "logout": "تسجيل الخروج",
+    "deleteProfile": "حذف الحساب",
+    "addAd": "اضافة أعلان",
+    "city": "المدينة",
+    "country": "الدولة"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",
@@ -180,10 +188,10 @@
   "Pending": "قيد الانتظار",
   "Name": "الاسم",
   "descreption": "الوصف",
-  "Followings": "المتابعون",
-  "Followers": "المتابعين اللذين تتابعهم",
-  "Rating": "التقييم",
-  "Ad": "الاعلان",
+  "Followings": "يتابع",
+  "Followers": "متابع",
+  "Rating": "عدد التقييمات",
+  "Ad": "إعلان",
   "AddAdditional-announcement": "اضافه اعلان",
   "Favorite": "المفضله",
   "My-Ads": "اعلاناتي",
