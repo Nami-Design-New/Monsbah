@@ -9,7 +9,7 @@ function ProductInfo({ product }) {
         .share({
           title: product?.name,
           text: product?.description,
-          url: window.location.href
+          url: window.location.href,
         })
         .then(() => console.log("Shared successfully"))
         .catch((error) => console.log("Error sharing:", error));
@@ -31,11 +31,11 @@ function ProductInfo({ product }) {
 
         <div className="actions">
           <span className="action-btn report" onClick={handleShare}>
-            <i className="fa-solid fa-share"></i> {t("share")}
+            <i className="fa-sharp fa-light fa-share-nodes"></i> {t("share")}
           </span>
 
           <span className="action-btn report">
-            <i className="fa-sharp fa-light fa-share-nodes"></i> {t("report")}
+            <i className="fa-regular fa-flag"></i> {t("report")}
           </span>
         </div>
       </div>

@@ -14,7 +14,12 @@ function UserCard({ product }) {
     <div className="advertiserDetails">
       <div className="advertiser">
         <Link to={`/profile/${product?.user?.id}`} className="image_wrapper">
-          <img src={product?.user?.image} loading="lazy" alt="" />
+          <img
+            src={product?.user?.image}
+            onError={(e) => (e.target.src = "/images/icons/user_default.png")}
+            loading="lazy"
+            alt=""
+          />
           <button className="follow_btn">
             <i className="fa-light fa-plus"></i>
           </button>
