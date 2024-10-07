@@ -3340,6 +3340,223 @@ body main .verification-page .field-header .subTitle {
 body main .add-ad-page {
   padding: 40px 0;
 }
+body main .search_section {
+  padding: 32px 0;
+}
+body main .search_section .search_header {
+  width: 100%;
+  background: #f8f8f8;
+  border-radius: 60px;
+  padding: 8px 24px;
+  padding-inline-end: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body main .search_section .search_header input {
+  width: 100%;
+  height: 48px;
+  border: none;
+  background: none;
+  outline: none;
+}
+body main .search_section .search_header button {
+  min-width: 48px;
+  height: 48px;
+  color: #fff;
+  background: #1abc9c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .search_section .search_nav {
+  margin: 24px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border-bottom: 2px solid #f8f8f8;
+}
+body main .search_section .search_nav a {
+  padding: 6px 16px;
+  color: #0d0d0d;
+  transition: 0.3s ease-in-out;
+  position: relative;
+}
+body main .search_section .search_nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) skew(-30deg);
+  width: 0;
+  height: 2px;
+  background: #1abc9c;
+  transition: 0.3s ease-in-out;
+}
+body main .search_section .search_nav a:hover, body main .search_section .search_nav a.active {
+  color: #1abc9c;
+}
+body main .search_section .search_nav a:hover::after, body main .search_section .search_nav a.active::after {
+  width: 100%;
+}
+body main .search_section .desc {
+  font-size: 14px;
+  color: #666b88;
+}
+body main .PersonCard {
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .PersonCard .img_info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+}
+body main .PersonCard .img_info .img {
+  min-width: 64px;
+  height: 64px;
+}
+body main .PersonCard .img_info .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body main .PersonCard .img_info .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+body main .PersonCard .img_info .info h4 {
+  margin: 0;
+  color: #1abc9c;
+  font-size: 18px;
+}
+body main .PersonCard .img_info .info p {
+  font-size: 14px;
+  color: #666b88;
+  margin: 0;
+}
+body main .PersonCard.skeleton .img_info .info {
+  gap: 8px;
+}
+body main .PersonCard.skeleton .skeleton-img {
+  min-width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .PersonCard.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+  width: calc(50% - 4px);
+}
+body main .PersonCard.skeleton .skeleton-text.skeleton-title {
+  width: calc(70% - 4px);
+  height: 20px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .AskCard {
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 12px;
+}
+body main .AskCard .user_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body main .AskCard .user_info .img {
+  min-width: 52px;
+  max-width: 52px;
+  height: 52px;
+}
+body main .AskCard .user_info .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body main .AskCard .user_info .info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+body main .AskCard .user_info .info h6 {
+  color: #1abc9c;
+  margin: 0;
+}
+body main .AskCard .user_info .info span {
+  color: #666b88;
+  font-size: 12px;
+}
+body main .AskCard .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+body main .AskCard .content p {
+  color: #0d0d0d;
+  font-size: 14px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+body main .AskCard .content button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #1abc9c;
+}
+body main .AskCard.skeleton .skeleton-img {
+  min-width: 52px;
+  max-width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .AskCard.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+  width: calc(30% - 4px);
+}
+body main .AskCard.skeleton .skeleton-description {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+  width: 100%;
+}
+body main .AskCard.skeleton .info .skeleton-text {
+  width: calc(50% - 4px);
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;

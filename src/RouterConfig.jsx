@@ -18,7 +18,7 @@ const routerConfig = [
     element: <About />,
   },
   {
-    path: "search",
+    path: "search/*",
     element: <Search />,
   },
   {
