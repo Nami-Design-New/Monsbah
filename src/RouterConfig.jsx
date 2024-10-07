@@ -31,7 +31,7 @@ const routerConfig = [
   },
   {
     path: "profile/*",
-    element: <AltProfile />,
+    element: <Profile />,
   },
   {
     path: "verification",
