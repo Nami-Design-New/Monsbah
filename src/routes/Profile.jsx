@@ -5,6 +5,8 @@ import MyOrders from "../components/profile/MyOrders";
 import Payments from "../components/profile/Payments";
 import ChangePassword from "../components/profile/ChangePassword";
 import ProfileFile from "../components/profile/ProfileFile";
+import AddAd from './AddAd';
+import MyAds from "../components/profile/MyAds";
 
 const Profile = () => {
   return (
@@ -20,8 +22,10 @@ const Profile = () => {
               <div className="content">
                 <Routes>
                   <Route path="/" element={<ProfileFile />} />
-                  <Route path="/My-orders" element={<MyOrders />} />
-                  <Route path="/My-Payments" element={<Payments />} />
+                  <Route path="/add-ad" element={<AddAd />} />
+                  <Route path="/my-ads" element={<MyAds />} />
+                  <Route path="/my-orders" element={<MyOrders />} />
+                  <Route path="/my-payments" element={<Payments />} />
                   <Route path="/settings" element={<></>} />
                   <Route path="/change-password" element={<ChangePassword />} />
                 </Routes>

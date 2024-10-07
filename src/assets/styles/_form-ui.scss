@@ -127,6 +127,10 @@
       opacity: 0.7;
       pointer-events: none;
     }
+    &.fit {
+      width: fit-content;
+      padding: 0 52px;
+    }
   }
 
   .question {
@@ -534,6 +538,7 @@
     }
   }
 }
+
 .radios {
   display: flex;
   align-items: center;
@@ -550,23 +555,25 @@
       height: 56px;
       width: 100%;
       background: $white;
-      color: $dark;
+      color: $dark !important;
       font-size: 16px !important;
       cursor: pointer;
       border: 1px solid $lightGray;
       @include centerFlex();
       border-radius: 12px;
+      transition: $transition;
     }
     input {
       display: none;
       &:checked + span {
         background: $main;
         border-color: $main;
-        color: $white;
+        color: $white !important;
       }
     }
   }
 }
+
 .image_upload {
   border: 1px solid $lightGray;
   border-radius: 12px;
@@ -596,9 +603,10 @@
     left: 8px;
   }
 }
+
 .images_grid_upload {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 8px;
   .file_upload {
     border: 1px solid $lightGray;
@@ -637,7 +645,8 @@
     height: 150px;
     overflow: hidden;
     @include centerFlex();
-    img {
+    img,
+    video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -646,10 +655,20 @@
       position: absolute;
       top: 8px;
       left: 8px;
-      width: 26px;
-      font-size: 16px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
       border-radius: 50%;
+      background: $main;
+      color: $white;
+    }
+    .mainImg {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 8px;
       background: $main;
       color: $white;
     }

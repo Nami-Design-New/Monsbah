@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 
-export default function PhoneInput({ label, onSelect, countryCode, ...props }) {
+export default function PhoneInput({
+  label,
+  onSelect,
+  countryCode,
+  disableSelect,
+  ...props
+}) {
   const dropdownRef = useRef(null);
   const [slectedCountry, setSlectedCountry] = useState("");
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
@@ -36,6 +42,7 @@ export default function PhoneInput({ label, onSelect, countryCode, ...props }) {
 
       <div className="dropdown">
         <button
+          disabled={disableSelect}
           onClick={(e) => {
             e.preventDefault();
             setShowDropDownMenu(!showDropDownMenu);
