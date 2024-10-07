@@ -1,11 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AskCard from "../../ui/cards/AskCard";
 import useGetAsks from "../../hooks/search/useGetAsks";
 import AskLoader from "../../ui/loaders/AskLoader";
+import ViewAsk from "../../ui/modals/ViewAsk";
 
 export default function Asks({ sectionRef }) {
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
+  const [targetAsk, setTargetAsk] = useState({});
 
   const {
     data: aks,
@@ -35,6 +38,7 @@ export default function Asks({ sectionRef }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
+
   return (
     <>
       <div className="col-12 p-2">
@@ -44,7 +48,11 @@ export default function Asks({ sectionRef }) {
 
       {aks?.map((ask, index) => (
         <div className="col-lg-6 col-12 p-2" key={index}>
-          <AskCard ask={ask} />
+          <AskCard
+            ask={ask}
+            setShowModal={setShowModal}
+            setTargetAsk={setTargetAsk}
+          />
         </div>
       ))}
 
@@ -59,6 +67,12 @@ export default function Asks({ sectionRef }) {
             ))}
         </>
       )}
+
+      <ViewAsk
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ask={targetAsk}
+      />
     </>
   );
 }

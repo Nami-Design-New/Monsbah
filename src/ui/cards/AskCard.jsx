@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-export default function AskCard({ ask }) {
+export default function AskCard({ ask, setShowModal, setTargetAsk }) {
   const { t } = useTranslation();
+
   return (
     <div className="AskCard">
       <Link to={`/profile/${ask?.user?.id}`} className="user_info">
@@ -20,7 +21,12 @@ export default function AskCard({ ask }) {
       </Link>
       <div className="content">
         <p>{ask?.description}</p>
-        <button>
+        <button
+          onClick={() => {
+            setShowModal(true);
+            setTargetAsk(ask);
+          }}
+        >
           <i className="fa-regular fa-eye"></i>
           {t("viewComments")} ({ask?.count_comments})
         </button>

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useGetComments from "../../hooks/products/useGetComments";
-import InputField from "../../ui/form-elements/InputField";
+import AddCommentForm from "../AddCommentForm";
 
 export default function Comments() {
   const { t } = useTranslation();
@@ -17,10 +17,7 @@ export default function Comments() {
         <h6 className="noComments">{t("noComments")}</h6>
       </div>
 
-      <form className="form">
-        <InputField placeholder={t("addComment")} />
-        <button>{t("send")}</button>
-      </form>
+      <AddCommentForm />
     </div>
   );
 }
