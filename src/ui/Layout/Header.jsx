@@ -7,6 +7,8 @@ import { setLanguage } from "../../redux/slices/language";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
 import AuthModal from "../../components/auth/AuthModal";
+import useGetNotifications from "../../hooks/notifications/useGetNotifications";
+import NotificationCard from "../cards/NotificationCard";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -15,6 +17,9 @@ export default function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
+  const { data: notifications, total } = useGetNotifications();
+
+  console.log(total);
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -45,6 +50,9 @@ export default function Header() {
               <NavLink className="navLink" to="/categories">
                 {t("header.categories")}
               </NavLink>
+              <NavLink className="navLink" to="/search/asks">
+                {t("header.asks")}
+              </NavLink>
               <NavLink className="navLink" to="/about-us">
                 {t("aboutUs")}
               </NavLink>
@@ -73,10 +81,22 @@ export default function Header() {
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="link">
                 <img src="/images/icons/bell.svg" alt="" />
-                <span className="count"> 10 </span>
+                {total ? <span className="count"> {total} </span> : null}
               </Dropdown.Toggle>
-
-              <Dropdown.Menu></Dropdown.Menu>
+              <Dropdown.Menu className="drop_Message_Menu">
+                <div className="scroll_menu">
+                  {notifications?.map((item) => (
+                    <NotificationCard key={item.id} item={item} />
+                  ))}
+                </div>
+                <Link
+                  className="showall"
+                  to="/notifications"
+                  style={{ textDecoration: "none" }}
+                >
+                  عرض جميع الاشعارات
+                </Link>
+              </Dropdown.Menu>
             </Dropdown>
 
             <Dropdown>

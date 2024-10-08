@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../utils/helpers";
 import useGetCountries from "../hooks/settings/useGetCountries";
-import useGetCategories from "../hooks/useGetCategories";
+import useGetCategories from "../hooks/settings/useGetCategories";
 import SelectField from "../ui/form-elements/SelectField";
 import PhoneInput from "../ui/form-elements/PhoneInput";
 import SubmitButton from "../ui/form-elements/SubmitButton";

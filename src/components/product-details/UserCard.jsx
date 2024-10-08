@@ -1,14 +1,42 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
 function UserCard({ product }) {
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
+  const { client } = useSelector((state) => state.clientData);
+  const [loading, setLoading] = useState(false);
 
   const whatsappMessage = `${t("whatsappMessage")} ${product?.name} ${t(
     "onMonsbah"
   )}`;
 
   const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+
+  const handleFollow = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/store-follower", {
+        profile_id: product?.user?.id,
+      });
+      if (res.status === 200) {
+        setLoading(false);
+        queryClient.invalidateQueries({
+          queryKey: ["product"],
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="advertiserDetails">
@@ -20,9 +48,15 @@ function UserCard({ product }) {
             loading="lazy"
             alt=""
           />
-          <button className="follow_btn">
-            <i className="fa-light fa-plus"></i>
-          </button>
+          {!product?.user?.is_follow && product?.user?.id !== client?.id && (
+            <Link
+              className="follow_btn"
+              onClick={handleFollow}
+              disabled={loading}
+            >
+              <i className="fa-light fa-plus"></i>
+            </Link>
+          )}
         </Link>
         <div className="content">
           <Link to={`/profile/${product?.user?.id}`}>
@@ -48,36 +82,37 @@ function UserCard({ product }) {
           </ul>
         </div>
       </div>
+      {product?.user?.id !== client?.id && (
+        <div className="contact">
+          {product?.active_chat && (
+            <button>
+              <img src="/images/icons/chat.svg" alt="chat" />
+              <span> {t("chating")} </span>
+            </button>
+          )}
 
-      <div className="contact">
-        {product?.active_chat && (
-          <button>
-            <img src="/images/icons/chat.svg" alt="chat" />
-            <span> {t("chating")} </span>
-          </button>
-        )}
+          {product?.active_call && (
+            <Link
+              target="_blank"
+              to={`tel:${product?.user?.phone}`}
+              className="call"
+            >
+              <img src="/images/icons/phone.svg" alt="call" />
+              <span> {t("calling")} </span>
+            </Link>
+          )}
 
-        {product?.active_call && (
-          <Link
-            target="_blank"
-            to={`tel:${product?.user?.phone}`}
-            className="call"
-          >
-            <img src="/images/icons/phone.svg" alt="call" />
-            <span> {t("calling")} </span>
-          </Link>
-        )}
-
-        {product?.active_whatsapp && (
-          <Link
-            target="_blank"
-            to={`https://wa.me/${product?.user?.phone}?text=${encodedWhatsappMessage}`}
-          >
-            <img src="/images/icons/whatsapp.svg" alt="whatsapp" />
-            <span> {t("whatsapp")} </span>
-          </Link>
-        )}
-      </div>
+          {product?.active_whatsapp && (
+            <Link
+              target="_blank"
+              to={`https://wa.me/${product?.user?.phone}?text=${encodedWhatsappMessage}`}
+            >
+              <img src="/images/icons/whatsapp.svg" alt="whatsapp" />
+              <span> {t("whatsapp")} </span>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 }

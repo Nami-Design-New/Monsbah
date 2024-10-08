@@ -14,6 +14,7 @@ import "./assets/styles/all.min.css";
 import "./assets/styles/main.css";
 
 import App from "./App";
+import InterceptorProvider from "./InterceptorProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +22,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <ToastContainer autoClose={2000} />
-        <App />
+        <InterceptorProvider>
+          <App />
+        </InterceptorProvider>
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

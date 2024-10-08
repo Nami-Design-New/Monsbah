@@ -1,17 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 
-function useGetSubCategories(category, enabled) {
+function useGetCategories() {
   const lang = useSelector((state) => state.language.lang);
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["sub-categories", category, lang],
+    queryKey: ["categories", lang],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get(
-          `client/sub-categories?category_id=${category}`
-        );
+        const res = await axiosInstance.get("/client/categories");
         if (res.status === 200) {
           return res.data?.data?.data;
         }
@@ -19,7 +17,6 @@ function useGetSubCategories(category, enabled) {
         throw new Error(error);
       }
     },
-    enabled: enabled,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -29,4 +26,4 @@ function useGetSubCategories(category, enabled) {
   return { isLoading, data, error };
 }
 
-export default useGetSubCategories;
+export default useGetCategories;

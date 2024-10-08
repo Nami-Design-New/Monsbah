@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import Select from "react-select";
 import HeroSlider from "./HeroSlider";
-import useGetCategories from "./../../hooks/useGetCategories";
-import useGetSubCategories from "../../hooks/useGetSubCategories";
+import useGetCategories from "./../../hooks/settings/useGetCategories";
+import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
 import useGetCountries from "./../../hooks/settings/useGetCountries";
 import useGetCities from "./../../hooks/settings/useGetCities";
 import CategoryLoader from "../../ui/loaders/CategoryLoader";
@@ -205,14 +205,14 @@ function HeroSection() {
                     ? {
                         value: country,
                         label: countries?.find((c) => c?.id === Number(country))
-                          ?.name
+                          ?.name,
                       }
                     : null
                 }
                 onChange={(e) => handleSetParams(e?.value, "country")}
                 options={countries?.map(({ id, name }) => ({
                   value: id,
-                  label: name
+                  label: name,
                 }))}
               />
               {selectedCategory === "1" && (
@@ -226,7 +226,7 @@ function HeroSection() {
                   options={[
                     { value: "", label: t("all") },
                     { value: "sale", label: t("sale") },
-                    { value: "rent", label: t("rent") }
+                    { value: "rent", label: t("rent") },
                   ]}
                 />
               )}
