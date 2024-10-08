@@ -1,4 +1,5 @@
 import About from "./routes/About";
+import Chats from "./routes/Chats";
 import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
@@ -16,6 +17,10 @@ const routerConfig = [
   {
     path: "about-us",
     element: <About />,
+  },
+  {
+    path: "chats",
+    element: <Chats />,
   },
   {
     path: "search/*",

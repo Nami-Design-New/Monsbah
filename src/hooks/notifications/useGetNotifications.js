@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetUserProducts() {
+function useGetNotifications() {
   const lang = useSelector((state) => state.language.lang);
 
   const {
@@ -13,10 +13,10 @@ function useGetUserProducts() {
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["user-products", lang],
+    queryKey: ["notifications", lang],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get("/client/user-products", {
+      const res = await axiosInstance.get("/client/notifications", {
         params: {
           page: pageParam,
         },
@@ -46,6 +46,7 @@ function useGetUserProducts() {
   return {
     isLoading,
     data: data?.pages.flatMap((page) => page.data) || [],
+    total: data?.pages?.[0]?.total || 0,
     error,
     hasNextPage,
     fetchNextPage,
@@ -53,4 +54,4 @@ function useGetUserProducts() {
   };
 }
 
-export default useGetUserProducts;
+export default useGetNotifications;

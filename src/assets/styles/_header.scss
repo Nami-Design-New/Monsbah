@@ -9,7 +9,7 @@ header {
   background-color: $white;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid $border;
+  border-bottom: 1px solid $inputStroke;
   .mainLinks {
     margin: 0 auto;
     display: flex;
@@ -185,9 +185,9 @@ header {
           border: none;
           box-shadow: 0px 2px 8px #0000001a;
           animation: fadeIn 0.5s;
-          inset: 26px auto auto 0 !important;
           flex-direction: column;
-          border: 1px solid $border;
+          border-radius: 12px;
+          border: 1px solid $inputStroke;
           @keyframes fadeIn {
             from {
               opacity: 0;
@@ -198,6 +198,7 @@ header {
           }
           &.show {
             display: flex;
+            top: 16px !important;
           }
         }
         .dropdown-item {
@@ -239,7 +240,7 @@ header {
             padding: 8px;
             gap: 4px;
             flex-direction: row;
-            border-radius: 12px;
+            border-radius: 16px;
             p {
               padding: 8px;
               color: $text;
@@ -403,7 +404,51 @@ header {
       }
     }
   }
-  &.headerAnimate {
-    box-shadow: 0px 20px 100px #0000001a;
+  .drop_Message_Menu {
+    z-index: 999;
+    min-width: 350px;
+    padding: 0;
+    height: 300px;
+    flex-direction: column;
+    .scroll_menu {
+      overflow-y: scroll;
+      flex: 1 1 auto;
+      scrollbar-width: none;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .drop_Message {
+        width: 100%;
+        .image-wrapper {
+          align-items: center;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+          width: 32px;
+          aspect-ratio: 1;
+          background-color: #4381f81a;
+          i {
+            font-size: 16px;
+            color: $main;
+          }
+        }
+        p {
+          margin: 0;
+          text-align: start;
+        }
+      }
+    }
+    .showall {
+      width: 100%;
+      text-align: center;
+      color: $main;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 4px;
+      background: $inputBg;
+    }
   }
 }
