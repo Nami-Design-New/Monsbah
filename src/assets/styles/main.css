@@ -2542,6 +2542,11 @@ body main .contact_section .contact_info {
   flex-direction: column;
   gap: 32px;
 }
+@media screen and (max-width: 576px) {
+  body main .contact_section .contact_info {
+    padding: 32px 24px;
+  }
+}
 body main .contact_section .contact_info .title_hint {
   color: #fff;
   padding: 4px 24px;
@@ -3603,6 +3608,36 @@ body main .AskCard.skeleton .skeleton-description {
 body main .AskCard.skeleton .info .skeleton-text {
   width: calc(50% - 4px);
 }
+body main .chats-section {
+  padding: 32px 0;
+}
+body main .chats-section aside {
+  width: 100%;
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 12px;
+}
+body main .chats-section aside .chat_card {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body main .chats-section aside .chat_card .img {
+  min-width: 64px;
+  max-width: 64px;
+  height: 64px;
+}
+body main .chats-section aside .chat_card .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;
@@ -3782,9 +3817,9 @@ body .notificationCard .img {
   min-width: 48px;
   max-width: 48px;
   height: 48px;
-  border: 1px solid #f2f2f2;
 }
 body .notificationCard .img img {
+  border: 1px solid #f2f2f2;
   background: #fff;
   width: 100%;
   height: 100%;

@@ -6,7 +6,7 @@ function NotificationCard({ item }) {
       to={
         item?.type === "product"
           ? `/product/${item?.product_id}`
-          : `/chat/${item?.id}`
+          : `/chat/${item?.user_id}`
       }
       className="notificationCard"
       key={item.id}

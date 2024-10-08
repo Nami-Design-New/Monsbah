@@ -24,6 +24,7 @@ body {
     @import "./user";
     @import "./ads";
     @import "./search";
+    @import "./chat";
 
     .error-section {
       padding: 60px 16px;
@@ -195,8 +196,8 @@ body {
       min-width: 48px;
       max-width: 48px;
       height: 48px;
-      border: 1px solid $inputStroke;
       img {
+        border: 1px solid $inputStroke;
         background: $white;
         width: 100%;
         height: 100%;
