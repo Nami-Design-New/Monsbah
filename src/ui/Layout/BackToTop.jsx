@@ -38,7 +38,7 @@ function BackToTop({ show }) {
           style={{
             transition: "stroke-dashoffset 300ms ease-in-out",
             strokeDasharray: `${circumference}, ${circumference}`,
-            strokeDashoffset: dashOffset
+            strokeDashoffset: dashOffset,
           }}
         ></path>
       </svg>

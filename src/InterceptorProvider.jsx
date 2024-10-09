@@ -1,9 +1,8 @@
 import { useLayoutEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useSelector } from "react-redux";
 import axiosInstance from "./utils/axiosInstance";
 
-const setupAxiosInterceptors = (setCookie, user) => {
+const setupAxiosInterceptors = (setCookie, token) => {
   axiosInstance.interceptors.response.use(
     (res) => res,
     async (err) => {
@@ -12,12 +11,14 @@ const setupAxiosInterceptors = (setCookie, user) => {
       if (err.response?.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
 
+        if (!token) {
+          return Promise.reject(err);
+        }
+
         try {
           delete axiosInstance.defaults.headers.common.Authorization;
-
           const res = await axiosInstance.post("/client/auth/refresh-token", {
-            country_code: user?.country_code,
-            phone: user?.phone,
+            token: token,
           });
 
           if (res.status === 200) {
@@ -50,12 +51,12 @@ const setupAxiosInterceptors = (setCookie, user) => {
 };
 
 const InterceptorProvider = ({ children }) => {
-  const [, setCookie] = useCookies();
-  const user = useSelector((state) => state.clientData.client);
+  const [cookies, setCookie] = useCookies(["token"]);
+  const { token } = cookies;
 
   useLayoutEffect(() => {
-    setupAxiosInterceptors(setCookie, user);
-  }, [setCookie, user]);
+    setupAxiosInterceptors(setCookie, token);
+  }, [setCookie, token]);
 
   return <>{children}</>;
 };

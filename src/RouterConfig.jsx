@@ -21,6 +21,7 @@ const routerConfig = [
   {
     path: "chats",
     element: <Chats />,
+    protected: true,
   },
   {
     path: "search/*",

@@ -2,13 +2,25 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Login from "./Login";
 import Register from "./Register";
+import { useSearchParams } from "react-router-dom";
 
 export default function AuthModal({ show, setShow, type }) {
   const [formType, setFormType] = useState("login");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setFormType(type);
   }, [type]);
+
+  const handleClose = () => {
+    setShow(false);
+
+    if (searchParams.get("redirect") === "true") {
+      const updatedSearchParams = new URLSearchParams(searchParams);
+      updatedSearchParams.delete("redirect");
+      setSearchParams(updatedSearchParams);
+    }
+  };
 
   return (
     <Modal
@@ -20,7 +32,7 @@ export default function AuthModal({ show, setShow, type }) {
       onHide={() => setShow(false)}
     >
       <Modal.Body>
-        <button className="closeModal" onClick={() => setShow(false)}>
+        <button className="closeModal" onClick={handleClose}>
           <i className="fa-regular fa-x"></i>
         </button>
         <section className="auth_section">
