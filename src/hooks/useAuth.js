@@ -1,30 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useCookies } from "react-cookie";
-import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import { setClientData } from "../redux/slices/clientData";
 import axiosInstance from "../utils/axiosInstance";
 import useGetAuthedUser from "../hooks/users/useGetAuthedUser";
 
 export default function useAuth() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isAuthed, setIsAuthed] = useState(false);
   const [cookies, , removeCookie] = useCookies(["token", "id"]);
-  const token = cookies?.token;
-  const id = cookies?.id;
-  let decodedToken = null;
-  let isExpired = false;
+  const { token, id } = cookies;
 
-  if (token) {
+  const { decodedToken, isExpired } = useMemo(() => {
+    if (!token) return { decodedToken: null, isExpired: true };
+
     try {
-      decodedToken = jwtDecode(token);
+      const decoded = jwtDecode(token);
       const currentTime = Date.now() / 1000;
-      isExpired = decodedToken.exp < currentTime;
+      const expired = decoded.exp < currentTime;
+      return { decodedToken: decoded, isExpired: expired };
     } catch (error) {
       console.error("Error decoding token:", error);
+      return { decodedToken: null, isExpired: true };
     }
-    axiosInstance.defaults.headers.common["Authorization"] = `bearer ${token}`;
-  }
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `bearer ${token}`;
+    }
+  }, [token]);
 
   const {
     data: profile,
@@ -33,28 +42,38 @@ export default function useAuth() {
   } = useGetAuthedUser(Boolean(token && id && !isExpired));
 
   useEffect(() => {
-    if (isExpired) {
-      return;
-    }
-
-    if (Number(decodedToken?.sub) !== id || isExpired) {
+    if (isExpired || Number(decodedToken?.sub) !== Number(id)) {
       dispatch(setClientData({}));
       removeCookie("token");
       removeCookie("id");
+      setLoading(false);
+      setIsAuthed(false);
       return;
     }
 
-    if (isFetched) {
-      if (profile) {
-        dispatch(setClientData(profile));
+    const fetchProfile = async () => {
+      try {
+        if (isFetched) {
+          if (profile) {
+            dispatch(setClientData(profile));
+            setIsAuthed(true);
+          } else {
+            console.log("Profile data not available, refetching...");
+            await refetch();
+            setIsAuthed(true);
+          }
+        } else {
+          await refetch();
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        setIsAuthed(false);
+      } finally {
         setLoading(false);
-      } else {
-        console.log("Profile data not available, refetching...");
-        refetch().then(() => setLoading(false));
       }
-    } else {
-      refetch().then(() => setLoading(false));
-    }
+    };
+
+    fetchProfile();
   }, [
     decodedToken?.sub,
     dispatch,
@@ -66,5 +85,5 @@ export default function useAuth() {
     removeCookie,
   ]);
 
-  return { loading, profile };
+  return { loading, isAuthed };
 }
