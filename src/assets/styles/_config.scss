@@ -342,10 +342,13 @@ button {
 }
 
 .form-check-input {
+  cursor: pointer;
   box-shadow: none !important;
-}
-
-.form-check-input:checked {
-  background-color: $main;
-  border-color: $main;
+  &:focus {
+    border-color: var(--bs-border-color);
+  }
+  &:checked {
+    background-color: $main;
+    border-color: $main;
+  }
 }

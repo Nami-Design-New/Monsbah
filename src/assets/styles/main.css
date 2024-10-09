@@ -308,9 +308,12 @@ button {
 }
 
 .form-check-input {
+  cursor: pointer;
   box-shadow: none !important;
 }
-
+.form-check-input:focus {
+  border-color: var(--bs-border-color);
+}
 .form-check-input:checked {
   background-color: #1abc9c;
   border-color: #1abc9c;
@@ -3616,8 +3619,45 @@ body main .chats-section aside {
   background: #f8f8f8;
   padding: 16px;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body main .chats-section aside .checkAll_field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+body main .chats-section aside .checkAll_field .form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+body main .chats-section aside .checkAll_field .form-check .form-check-input {
+  cursor: pointer;
+  margin: 0;
+  float: unset;
+}
+body main .chats-section aside .checkAll_field .form-check label {
+  color: #0d0d0d;
+  font-size: 14px;
+}
+body main .chats-section aside .checkAll_field button {
+  color: #0d0d0d;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+body main .chats-section aside .checkAll_field button i {
+  color: red;
 }
 body main .chats-section aside .chat_card {
+  cursor: pointer;
   width: 100%;
   padding: 12px;
   border-radius: 12px;
@@ -3630,6 +3670,7 @@ body main .chats-section aside .chat_card .img {
   min-width: 64px;
   max-width: 64px;
   height: 64px;
+  position: relative;
 }
 body main .chats-section aside .chat_card .img img {
   width: 100%;
@@ -3637,6 +3678,60 @@ body main .chats-section aside .chat_card .img img {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+body main .chats-section aside .chat_card .img .status {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #777777;
+}
+body main .chats-section aside .chat_card .img .status.online {
+  background: #1abc9c;
+}
+body main .chats-section aside .chat_card .content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+body main .chats-section aside .chat_card .content h6 {
+  color: #0d0d0d;
+  margin: 0;
+}
+body main .chats-section aside .chat_card .content p {
+  margin: 0;
+  font-size: 14px;
+  color: #666b88;
+}
+body main .chats-section aside .chat_card .content span {
+  font-size: 12px;
+}
+body main .chats-section aside .chat_card .content span.online {
+  color: #1abc9c;
+}
+body main .chats-section aside .chat_card.skeleton .skeleton-img {
+  border-radius: 50%;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .chats-section aside .chat_card.skeleton .content {
+  width: 100%;
+  gap: 4px;
+}
+body main .chats-section aside .chat_card.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  width: calc(50% - 4px);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .chats-section aside .chat_card.skeleton .skeleton-title {
+  width: 70%;
+  height: 24px;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 body main .error-section {
   padding: 60px 16px;

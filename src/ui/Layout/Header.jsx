@@ -19,8 +19,6 @@ export default function Header() {
   const [showGetAppModal, setShowGetAppModal] = useState(false);
   const { data: notifications, total } = useGetNotifications();
 
-  console.log(total);
-
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
@@ -115,7 +113,7 @@ export default function Header() {
             </Dropdown>
 
             <Link to="/search" className="link d-lg-flex d-none">
-              <i className="fa-regular fa-magnifying-glass"></i>
+              <img src="/images/icons/search.svg" alt="" />
             </Link>
 
             {user?.id ? (
