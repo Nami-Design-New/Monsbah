@@ -120,9 +120,11 @@
     "online": "متصل",
     "offline": "غير متصل",
     "check": "تحديد",
-    "deleteAll": "حذف",
-    "selectAll": "تحديد الكل"
+    "delete": "حذف",
+    "selectAll": "تحديد الكل",
+    "areYouSureYouWantDeleteThisChats": "هل أنت متاكد من حذف هذه المحادثات؟"
   },
+  "cancel": "الغاء",
   "reply": "رد",
   "delete": "حذف",
   "select": "اختر",
