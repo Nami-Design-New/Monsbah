@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setClientData } from "../../redux/slices/clientData";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
@@ -14,6 +14,9 @@ import axiosInstance from "../../utils/axiosInstance";
 function Login({ setFormType, setShow }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [, setCookie] = useCookies(["token", "id"]);
 
@@ -48,14 +51,13 @@ function Login({ setFormType, setShow }) {
           sameSite: "Strict",
         });
 
+        toast.success(res.data?.message);
+
+        navigate("/profile");
+
         const updatedParams = new URLSearchParams(searchParams);
         updatedParams.delete("redirect");
         setSearchParams(updatedParams);
-
-        console.log(searchParams);
-        
-
-        toast.success(res.data?.message);
         setShow(false);
       }
     } catch (error) {

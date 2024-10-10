@@ -1,21 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
+import AuthModal from "../components/auth/AuthModal";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
   const { loading, isAuthed } = useAuth();
+  const [showAuth, setShowAuth] = useState(false);
 
   useEffect(() => {
     if (!loading && !isAuthed) {
-      const currentSearchParams = new URLSearchParams(location.search);
-
-      if (!currentSearchParams.has("redirect")) {
-        navigate("/?redirect=true", {
-          replace: true,
-          state: { showLoginModal: true },
-        });
-      }
+      setShowAuth(true);
     }
   }, [isAuthed, loading, navigate]);
 
@@ -23,7 +18,17 @@ function ProtectedRoute({ children }) {
     return null;
   }
 
-  return isAuthed ? children : null;
+  return (
+    <>
+      {isAuthed ? children : null}
+      <AuthModal
+        type="login"
+        show={showAuth}
+        setShow={setShowAuth}
+        protectedFlag={true}
+      />
+    </>
+  );
 }
 
 export default ProtectedRoute;

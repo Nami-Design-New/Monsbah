@@ -60,7 +60,6 @@ export default function useAuth() {
           } else {
             console.log("Profile data not available, refetching...");
             await refetch();
-            setIsAuthed(true);
           }
         } else {
           await refetch();
