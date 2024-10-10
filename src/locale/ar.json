@@ -122,8 +122,12 @@
     "check": "تحديد",
     "delete": "حذف",
     "selectAll": "تحديد الكل",
-    "areYouSureYouWantDeleteThisChats": "هل أنت متاكد من حذف هذه المحادثات؟"
+    "areYouSureYouWantDeleteThisChats": "هل أنت متاكد من حذف هذه المحادثات؟",
+    "deleteChat": "حذف المحادثة",
+    "report": "الإبلاغ عن إساءة",
+    "block": "حظر"
   },
+  "typeHere": "اكتب هنا...",
   "cancel": "الغاء",
   "reply": "رد",
   "delete": "حذف",

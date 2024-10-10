@@ -352,3 +352,7 @@ button {
     border-color: $main;
   }
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
