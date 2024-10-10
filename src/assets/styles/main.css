@@ -3733,6 +3733,111 @@ body main .chats-section aside .chat_card.skeleton .skeleton-title {
   height: 24px;
   animation: pulse 1.5s ease-in-out infinite;
 }
+body main .CommentCard {
+  padding: 16px;
+  border-radius: 12px;
+  background: #f8f8f8;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+body main .CommentCard .user_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body main .CommentCard .user_info .img {
+  min-width: 52px;
+  max-width: 52px;
+  height: 52px;
+}
+body main .CommentCard .user_info .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body main .CommentCard .user_info .info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .CommentCard .user_info .info h6 {
+  text-align: start;
+  color: #1abc9c;
+  margin: 0;
+}
+body main .CommentCard .user_info .info span {
+  text-align: start;
+  color: #666b88;
+  font-size: 12px;
+}
+body main .CommentCard p {
+  text-align: start;
+  margin: 0;
+  font-size: 14px;
+  color: #0d0d0d;
+}
+body main .CommentCard .btns {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .CommentCard .btns button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #777777;
+}
+body main .notificationCard {
+  padding: 12px;
+  border-radius: 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8f8f8;
+}
+body main .notificationCard .img {
+  min-width: 48px;
+  max-width: 48px;
+  height: 48px;
+}
+body main .notificationCard .img img {
+  border: 1px solid #f2f2f2;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 50%;
+}
+body main .notificationCard .notify h6 {
+  font-size: 14px;
+  text-align: start;
+  color: #0d0d0d;
+}
+body main .notificationCard .notify p {
+  font-size: 12px;
+  text-align: start;
+  color: #666b88;
+  margin: 0;
+}
+body main .addCommentForm {
+  display: flex !important;
+  align-items: end !important;
+  flex-direction: row;
+}
+body main .addCommentForm button {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  padding: 0 24px !important;
+  height: 56px !important;
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;
@@ -3839,110 +3944,35 @@ body .viewAskModal .modal-body .wrapper {
   gap: 8px;
   overflow-y: scroll;
 }
-body .CommentCard {
-  padding: 16px;
-  border-radius: 12px;
-  background: #f8f8f8;
-  display: flex;
-  gap: 12px;
-  flex-direction: column;
-}
-body .CommentCard .user_info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-body .CommentCard .user_info .img {
-  min-width: 52px;
-  max-width: 52px;
-  height: 52px;
-}
-body .CommentCard .user_info .img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 50%;
-}
-body .CommentCard .user_info .info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-body .CommentCard .user_info .info h6 {
-  text-align: start;
-  color: #1abc9c;
-  margin: 0;
-}
-body .CommentCard .user_info .info span {
-  text-align: start;
-  color: #666b88;
-  font-size: 12px;
-}
-body .CommentCard p {
-  text-align: start;
-  margin: 0;
-  font-size: 14px;
+body .confirm-delete p {
   color: #0d0d0d;
+  font-size: 16px;
+  margin-bottom: 24px;
 }
-body .CommentCard .btns {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+body .confirm-delete p span {
+  color: red;
+  font-weight: 600;
 }
-body .CommentCard .btns button {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 14px;
-  color: #777777;
-}
-body .notificationCard {
+body .confirm-delete .cancel-btn {
+  border: 1px solid #f2f2f2;
+  color: #0d0d0d;
+  width: 100%;
+  outline: none;
+  background: none;
   padding: 12px;
   border-radius: 12px;
+}
+body .confirm-delete .delete-btn {
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #f8f8f8;
+  padding: 8px;
+  background: rgb(255, 0, 0);
+  color: #fff;
+  border-radius: 12px;
+  border: 0;
+  outline: none;
 }
-body .notificationCard .img {
-  min-width: 48px;
-  max-width: 48px;
-  height: 48px;
-}
-body .notificationCard .img img {
-  border: 1px solid #f2f2f2;
-  background: #fff;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border-radius: 50%;
-}
-body .notificationCard .notify h6 {
-  font-size: 14px;
-  text-align: start;
-  color: #0d0d0d;
-}
-body .notificationCard .notify p {
-  font-size: 12px;
-  text-align: start;
-  color: #666b88;
-  margin: 0;
-}
-body .addCommentForm {
-  display: flex !important;
-  align-items: end !important;
-  flex-direction: row;
-}
-body .addCommentForm button {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  padding: 0 24px !important;
-  height: 56px !important;
+body .confirm-delete.other .delete-btn {
+  background: #1abc9c;
 }
 body.en {
   direction: ltr;
