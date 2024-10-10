@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function ChatCard({
   chat,
@@ -10,6 +11,7 @@ export default function ChatCard({
 }) {
   const { t } = useTranslation();
   const [lastMessage, setLastMessage] = useState();
+  const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (chat?.lastMessageType === "contact") {
@@ -27,8 +29,12 @@ export default function ChatCard({
     }
   }, [chat, t]);
 
+  const handleOpenChat = () => {
+    setSearchParams({ user_id: chat?.user_id, product_id: chat?.product_id });
+  };
+
   return (
-    <div className="chat_card">
+    <div className="chat_card" onClick={handleOpenChat}>
       {checkedState && (
         <Form.Check
           type="checkbox"
