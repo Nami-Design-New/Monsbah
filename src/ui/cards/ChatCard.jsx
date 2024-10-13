@@ -8,6 +8,7 @@ export default function ChatCard({
   checkedState,
   selectedChats,
   setSelectedChats,
+  setShowChats,
 }) {
   const { t } = useTranslation();
   const [lastMessage, setLastMessage] = useState();
@@ -30,7 +31,10 @@ export default function ChatCard({
   }, [chat, t]);
 
   const handleOpenChat = () => {
-    setSearchParams({ user_id: chat?.user_id, product_id: chat?.product_id });
+    if (!checkedState) {
+      setSearchParams({ user_id: chat?.user_id, product_id: chat?.product_id });
+      setShowChats(false);
+    }
   };
 
   return (
