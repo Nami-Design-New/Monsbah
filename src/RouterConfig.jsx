@@ -10,8 +10,6 @@ import AltProfile from "./routes/AltProfile";
 import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
-import AltProfile from "./routes/AltProfile";
-import AddAd from "./routes/AddAd";
 
 const routerConfig = [
   {
