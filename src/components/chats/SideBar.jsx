@@ -3,14 +3,13 @@ import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
-import useGetChats from './../../hooks/chat/useGetChats';
+import useGetChats from "./../../hooks/chat/useGetChats";
 import axiosInstance from "../../utils/axiosInstance";
-import ChatCard from './../../ui/cards/ChatCard';
+import ChatCard from "./../../ui/cards/ChatCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
-import ChatItemLoader from './../../ui/loaders/ChatItemLoader';
+import ChatItemLoader from "./../../ui/loaders/ChatItemLoader";
 
-
-export default function SideBar() {
+export default function SideBar({ setShowChats }) {
   const { t } = useTranslation();
   const sideRef = useRef(null);
   const queryClient = useQueryClient();
@@ -81,6 +80,9 @@ export default function SideBar() {
 
   return (
     <aside ref={sideRef}>
+      <button onClick={() => setShowChats(false)} className="close_sidebar"> 
+        <i className="fa-regular fa-x" aria-hidden="true"></i>
+      </button>
       <div className="checkAll_field">
         <Form.Check
           type="checkbox"
@@ -93,10 +95,12 @@ export default function SideBar() {
             {!areArraysEqual() && (
               <button onClick={selectAll}>{t("chat.selectAll")}</button>
             )}
-            <button className="delete_all" onClick={() => setShowModal(true)}>
-              <i className="fa-regular fa-trash" aria-hidden="true"></i>
-              {t("chat.delete")}
-            </button>
+            {selectedChats?.length > 0 && (
+              <button className="delete_all" onClick={() => setShowModal(true)}>
+                <i className="fa-regular fa-trash" aria-hidden="true"></i>
+                {t("chat.delete")}
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -107,6 +111,7 @@ export default function SideBar() {
           checkedState={checkedState}
           setSelectedChats={setSelectedChats}
           selectedChats={selectedChats}
+          setShowChats={setShowChats}
         />
       ))}
 

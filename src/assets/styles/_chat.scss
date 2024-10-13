@@ -4,6 +4,7 @@
   min-height: 600px;
   display: flex;
   flex-direction: column;
+  position: relative;
   aside {
     width: 100%;
     height: 100%;
@@ -167,6 +168,9 @@
             font-size: 12px;
             color: $gray;
             line-height: normal;
+            &.online {
+              color: $main;
+            }
           }
         }
       }
@@ -248,6 +252,10 @@
           border-radius: 12px;
           padding: 4px;
           outline: none;
+          @media screen and (max-width: 576px) {
+            width: 250px;
+            padding: 0;
+          }
         }
         img,
         video {
@@ -264,10 +272,15 @@
           .map_message {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 12px;
             span {
               color: $white;
               font-size: 14px;
+              max-width: 200px;
+              white-space: break-spaces;
+              &.sent {
+                color: $main;
+              }
             }
           }
           .contact_card {
@@ -397,6 +410,69 @@
           transform: scale(-1);
         }
       }
+      .dropdown-toggle {
+        width: auto;
+        background: none;
+        padding: 0;
+        border: 0;
+        min-width: unset;
+        img {
+          height: 20px;
+        }
+      }
+      .dropdown-menu {
+        padding: 12px;
+        box-shadow: $shadow;
+        border: 0;
+        .content {
+          gap: 8px;
+          display: flex;
+          flex-direction: column;
+        }
+        label {
+          text-align: start;
+          cursor: pointer;
+          display: block;
+          input {
+            display: none;
+          }
+        }
+      }
     }
+  }
+}
+
+.sidebar_col {
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    right: -100%;
+    &.active {
+      width: 100%;
+      right: 0;
+      top: 0;
+      z-index: 99;
+      transition: $transition;
+      background: $white;
+    }
+  }
+}
+
+.open_chats {
+  width: 100%;
+  padding: 8px;
+  color: $white;
+  background: $main;
+  border-radius: 8px;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.close_sidebar {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
   }
 }

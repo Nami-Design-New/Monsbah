@@ -1,14 +1,99 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useReactMediaRecorder } from "react-media-recorder";
+import { Dropdown } from "react-bootstrap";
+import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosInstance";
 
-function ChatForm() {
-  const { t } = useTranslation();
-
+function ChatForm({ chat, setMessages }) {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({ audio: true });
 
+  const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const [recordingTime, setRecordingTime] = useState(0);
+  const [timerInterval, setTimerInterval] = useState(null);
+  const [messageContent, setMessageContent] = useState({
+    message: "",
+    type: "",
+  });
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const payload = {
+      type: messageContent.type,
+    };
+
+    if (chat?.id) {
+      payload.chat_id = chat?.id;
+    }
+
+    if (messageContent.type === "voice") {
+      payload.voice = mediaBlobUrl;
+    }
+
+    if (messageContent.message) {
+      payload.message = messageContent.message;
+    }
+
+    try {
+      const res = await axiosInstance.post("/client/chat/send", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.data.status === 200) {
+        toast.success(res.data.message);
+        setMessages((prev) => [...prev, res.data.data]);
+        setMessageContent((prev) => ({ ...prev, message: "", type: "" }));
+        setRecordingTime(0);
+        clearBlobUrl();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleStartRecording = () => {
+    startTimer();
+    startRecording();
+    setRecordingTime(0);
+    setMessageContent({ ...messageContent, type: "voice" });
+  };
+
+  const handleStopRecording = () => {
+    stopRecording();
+    stopTimer();
+  };
+
+  const startTimer = () => {
+    setTimerInterval(
+      setInterval(() => {
+        setRecordingTime((prev) => prev + 1);
+      }, 1000)
+    );
+  };
+
+  const stopTimer = () => {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      setTimerInterval(null);
+    }
+  };
+
+  const formatRecordingTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  };
+
   return (
-    <form className="chat_form">
+    <form className="chat_form" onSubmit={handleSendMessage}>
       <div className="input_field">
         {mediaBlobUrl ? (
           <div className="audio_player">
@@ -21,22 +106,69 @@ function ChatForm() {
           <input
             type="text"
             className="text_input"
+            value={messageContent.message}
             placeholder={t("typeHere")}
+            onChange={(e) =>
+              setMessageContent({
+                ...messageContent,
+                message: e.target.value,
+                type: "text",
+              })
+            }
           />
         )}
         {status !== "recording" && (
-          <span className="record_btn" onClick={startRecording}>
+          <span className="record_btn" onClick={handleStartRecording}>
             <img src="/images/icons/record.svg" alt="record" />
           </span>
         )}
         {status === "recording" && (
-          <span className="record_btn" onClick={stopRecording}>
-            <img src="/images/icons/stop.svg" alt="record" />
+          <span className="record_btn" onClick={handleStopRecording}>
+            <img src="/images/icons/stop.svg" alt="stop" />
           </span>
         )}
+        {status === "recording" && (
+          <span className="recording_timer">
+            {formatRecordingTime(recordingTime)}
+          </span>
+        )}
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-basic" className="link">
+            <img src="/images/icons/paperclip.svg" alt="" />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <div className="content">
+              <label htmlFor="video">
+                <input type="file" name="video" id="video" accept="video/*" />
+                <span>{t("sendVideo")}</span>
+              </label>
+
+              <label htmlFor="image">
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  accept="image/*"
+                  onChange={(e) =>
+                    setMessageContent({
+                      ...messageContent,
+                      type: "image",
+                      image: e.target.files[0],
+                    })
+                  }
+                />
+                <span>{t("sendImage")}</span>
+              </label>
+            </div>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
-      <button type="submit">
-        <i className="fa-solid fa-paper-plane-top"></i>
+      <button type="submit" style={{ opacity: loading ? 0.7 : 1 }}>
+        {loading ? (
+          <i className="fa-solid fa-spinner fa-pulse fa-spin"></i>
+        ) : (
+          <i className="fa-solid fa-paper-plane-top"></i>
+        )}
       </button>
     </form>
   );
