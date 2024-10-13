@@ -5,10 +5,10 @@ import i18n from "./utils/i18n";
 import Footer from "./ui/Layout/Footer";
 import Header from "./ui/Layout/Header";
 import SmallMenu from "./ui/Layout/SmallMenu";
-import routerConfig from "./RouterConfig";
+import router from "./router";
 import BackToTop from "./ui/Layout/BackToTop";
 import useAuth from "./hooks/useAuth";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import ProtectionProvider from "./providers/ProtectionProvider";
 
 function App() {
   const { loading } = useAuth();
@@ -48,17 +48,19 @@ function App() {
       <Header />
       <main>
         <Routes>
-          {routerConfig.map((route, index) =>
-            route.protected ? (
-              <Route
-                key={index}
-                path={route.path}
-                element={<ProtectedRoute>{route.element}</ProtectedRoute>}
-              />
-            ) : (
-              <Route key={index} path={route.path} element={route.element} />
-            )
-          )}
+          {router.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                route.protected ? (
+                  <ProtectionProvider>{route.element}</ProtectionProvider>
+                ) : (
+                  route.element
+                )
+              }
+            />
+          ))}
         </Routes>
       </main>
       <Footer />

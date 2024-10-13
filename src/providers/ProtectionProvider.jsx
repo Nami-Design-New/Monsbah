@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import AuthModal from "../components/auth/AuthModal";
 
-function ProtectedRoute({ children }) {
+function ProtectionProvider({ children }) {
   const navigate = useNavigate();
   const { loading, isAuthed } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
@@ -31,4 +31,4 @@ function ProtectedRoute({ children }) {
   );
 }
 
-export default ProtectedRoute;
+export default ProtectionProvider;

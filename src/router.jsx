@@ -9,7 +9,7 @@ import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
 
-const routerConfig = [
+const router = [
   {
     path: "/",
     element: <Home />,
@@ -53,4 +53,4 @@ const routerConfig = [
   },
 ];
 
-export default routerConfig;
+export default router;
