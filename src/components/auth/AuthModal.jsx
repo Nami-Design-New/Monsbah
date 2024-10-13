@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Login from "./Login";
 import Register from "./Register";
+import useAuth from "../../hooks/useAuth";
 
-export default function AuthModal({ show, setShow, type }) {
+export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const [formType, setFormType] = useState("login");
+  const { isAuthed } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFormType(type);
   }, [type]);
+
+  const handleClose = () => {
+    if (!isAuthed && protectedFlag) {
+      navigate("/");
+    } else {
+      setShow(false);
+    }
+  };
 
   return (
     <Modal
@@ -17,10 +30,9 @@ export default function AuthModal({ show, setShow, type }) {
       className="authModal"
       backdrop="static"
       size="xl"
-      onHide={() => setShow(false)}
     >
       <Modal.Body>
-        <button className="closeModal" onClick={() => setShow(false)}>
+        <button className="closeModal" onClick={handleClose}>
           <i className="fa-regular fa-x"></i>
         </button>
         <section className="auth_section">

@@ -16,7 +16,7 @@ function SmallMenu() {
       </Link>
 
       <div className="menu_item">
-        <Link className="center" to="/add-post">
+        <Link className="center" to="/profile/add-ad">
           <i className="fa-regular fa-plus"></i>
         </Link>
       </div>

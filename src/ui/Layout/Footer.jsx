@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import useGetCategories from "../../hooks/useGetCategories";
+import useGetCategories from "../../hooks/settings/useGetCategories";
 
 export default function Footer() {
   const { t } = useTranslation();

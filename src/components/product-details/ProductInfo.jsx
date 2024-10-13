@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../utils/axiosInstance";
 
 function ProductInfo({ product }) {
   const { t } = useTranslation();
+  const { client } = useSelector((state) => state.clientData);
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -9,12 +17,29 @@ function ProductInfo({ product }) {
         .share({
           title: product?.name,
           text: product?.description,
-          url: window.location.href
+          url: window.location.href,
         })
         .then(() => console.log("Shared successfully"))
         .catch((error) => console.log("Error sharing:", error));
     } else {
       alert(t("share_not_supported"));
+    }
+  };
+  
+  const handleFavorite = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/store-favorite", {
+        product_id: product?.id,
+      });
+      if (res.status === 200) {
+        queryClient.invalidateQueries({ queryKey: ["product"] });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -25,18 +50,25 @@ function ProductInfo({ product }) {
           <span>{product?.price}</span> {product?.currency?.name}
         </h4>
 
-        <button className={`favorite ${product?.is_favorite ? "active" : ""}`}>
-          <i className="fa-light fa-heart"></i>
-        </button>
+        {client?.id !== product?.user?.id && (
+          <button
+            onClick={handleFavorite}
+            disabled={loading}
+            className={`favorite ${product?.is_favorite ? "active" : ""}`}
+          >
+            <i className="fa-light fa-heart"></i>
+          </button>
+        )}
 
         <div className="actions">
           <span className="action-btn report" onClick={handleShare}>
-            <i className="fa-solid fa-share"></i> {t("share")}
+            <i className="fa-sharp fa-light fa-share-nodes"></i> {t("share")}
           </span>
-
-          <span className="action-btn report">
-            <i className="fa-sharp fa-light fa-share-nodes"></i> {t("report")}
-          </span>
+          {client?.id !== product?.user?.id && (
+            <span className="action-btn report">
+              <i className="fa-regular fa-flag"></i> {t("report")}
+            </span>
+          )}
         </div>
       </div>
 

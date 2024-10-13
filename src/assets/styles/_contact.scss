@@ -7,6 +7,9 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    @media screen and (max-width: 576px) {
+      padding: 32px 24px;
+    }
     .title_hint {
       color: $white;
       padding: 4px 24px;

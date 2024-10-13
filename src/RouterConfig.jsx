@@ -1,6 +1,5 @@
 import About from "./routes/About";
-import AddAd from "./routes/AddAd";
-import AltProfile from "./routes/AltProfile";
+import Chats from "./routes/Chats";
 import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
@@ -9,6 +8,8 @@ import Profile from "./routes/Profile";
 import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
+import AltProfile from "./routes/AltProfile";
+import AddAd from "./routes/AddAd";
 
 const routerConfig = [
   {
@@ -20,7 +21,12 @@ const routerConfig = [
     element: <About />,
   },
   {
-    path: "search",
+    path: "chats",
+    element: <Chats />,
+    protected: true,
+  },
+  {
+    path: "search/*",
     element: <Search />,
   },
   {

@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetProducts() {
+function useGetUserProducts() {
   const lang = useSelector((state) => state.language.lang);
 
   const {
@@ -53,4 +53,4 @@ function useGetProducts() {
   };
 }
 
-export default useGetProducts;
+export default useGetUserProducts;

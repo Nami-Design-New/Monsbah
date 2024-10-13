@@ -12,7 +12,7 @@ export default function useGetComments() {
 
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get(`client/comments?product_id=${id}`);
+        const res = await axiosInstance.get(`/client/comments?product_id=${id}`);
         if (res.status === 200) {
           return res.data.data || {};
         }

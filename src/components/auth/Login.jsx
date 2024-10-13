@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setClientData } from "../../redux/slices/clientData";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
@@ -13,6 +14,10 @@ import axiosInstance from "../../utils/axiosInstance";
 function Login({ setFormType, setShow }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const [, setCookie] = useCookies(["token", "id"]);
 
   const [loading, setLoading] = useState(false);
@@ -31,22 +36,28 @@ function Login({ setFormType, setShow }) {
         phone: formData.country_code + formData.phone,
         password: formData.password,
         country_code: formData.country_code,
-        fcm_token: formData.fcm_token
+        fcm_token: formData.fcm_token,
       });
       if (res.status === 200) {
         dispatch(setClientData(res.data?.data.client_data));
         setCookie("token", res.data?.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         setCookie("id", res.data?.data.client_data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
 
         toast.success(res.data?.message);
+
+        navigate("/profile");
+
+        const updatedParams = new URLSearchParams(searchParams);
+        updatedParams.delete("redirect");
+        setSearchParams(updatedParams);
         setShow(false);
       }
     } catch (error) {
@@ -58,7 +69,6 @@ function Login({ setFormType, setShow }) {
   };
 
   return (
-    
     <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
         <h2 className="head">
