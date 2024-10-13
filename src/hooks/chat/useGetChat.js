@@ -16,7 +16,7 @@ export default function useGetChat() {
         const res = await axiosInstance.get(`/client/chat/details`, {
           params: {
             user_id: userId,
-            
+            product_id: productId,
           },
         });
         if (res.status === 200) {
@@ -27,6 +27,7 @@ export default function useGetChat() {
         throw error;
       }
     },
+    enabled: !!userId && !!productId,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

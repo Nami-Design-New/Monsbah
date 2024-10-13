@@ -4084,6 +4084,19 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label {
 body main .chats-section .chat_room .chat_form .dropdown-menu label input {
   display: none;
 }
+body main .chats-section .chat_room .chat_form .dropdown-menu label span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
+  width: 20px;
+  font-size: 14px;
+  color: #1abc9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media screen and (max-width: 768px) {
   body main .sidebar_col {
     position: absolute;

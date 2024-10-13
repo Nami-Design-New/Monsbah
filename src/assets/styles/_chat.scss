@@ -447,6 +447,17 @@
           input {
             display: none;
           }
+          span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            i {
+              width: 20px;
+              font-size: 14px;
+              color: $main;
+              @include centerFlex();
+            }
+          }
         }
       }
     }
