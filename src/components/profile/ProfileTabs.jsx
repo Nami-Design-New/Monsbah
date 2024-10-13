@@ -2,7 +2,7 @@ import { Tab, Tabs } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import MainInfoTab from "./MainInfoTab";
-import AdsTab from "./AdsTab";
+import MyAds from "./MyAds";
 import QuestionsTab from "./QuestionsTab";
 import FavoritesTab from "./FavoritesTab";
 import SettingsTab from "./SettingsTab";
@@ -97,7 +97,7 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <AdsTab user={user} lang={lang} />
+          <MyAds user={user} lang={lang} />
         </Tab>
 
         {/* addAd */}
@@ -105,7 +105,7 @@ function ProfileTabs() {
           eventKey="addAd"
           title={
             <>
-              <i className="fa-regular fa-bullhorn"></i>
+              <i className="fa-regular fa-plus"></i>
               {t("profile.addAd")}
             </>
           }

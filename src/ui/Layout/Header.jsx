@@ -12,6 +12,7 @@ import NotificationCard from "../cards/NotificationCard";
 
 export default function Header() {
   const { t } = useTranslation();
+  const [avatarError, setAvatarError] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.clientData.client);
   const [showAuthModal, setShowAuthModal] = useState(false);

@@ -4,12 +4,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useGetCountries from "../../hooks/settings/useGetCountries";
-import useGetCategories from "../../hooks/useGetCategories";
+
 import useVerification from "../../hooks/verification/useVerification";
 import { useState } from "react";
 import { handleChange } from "../../utils/helpers";
 import SelectField from "../../ui/form-elements/SelectField";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
+import useGetCategories from "../../hooks/settings/useGetCategories";
 
 function VerificationTab() {
   const { t } = useTranslation();

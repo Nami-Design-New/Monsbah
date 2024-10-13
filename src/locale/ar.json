@@ -34,16 +34,24 @@
     "login": "تسجيل الدخول",
     "noAccount": "ليس لديك حساب؟",
     "register": "انشاء حساب",
-    "userName": "إسم المستخدم",
+    "userName": "اسم المستخدم",
     "userNamePlaceHolder": " ادخل أسم المستخدم ( حروف انجليزية )",
-    "fullName": "الإسم بالكامل",
+    "fullName": "الاسم بالكامل",
     "email": "البريد الإلكترونى",
     "country": "الدولة",
     "city": "المحافظة",
     "area": "المنطقة",
     "haveAccount": "لديك حساب؟",
     "byContinueYouAccept": "بمواصلتك، فإنك توافق على",
-    "termsOfUse": "سياسة الإستخدام"
+    "termsOfUse": "سياسة الإستخدام",
+    "areYouSureYouWantToDeleteAccount": "هل أنت متأكد من حذف الحساب؟",
+    "passwordSuccessfullyChanged": "تم تغيير كلمة المرور بنجاح",
+    "passwordConfirmation": "تاكيد كلمة المرور",
+    "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟",
+    "oldPassword": "كلمة المرور القديمة",
+    "doYouWantToChangeCountry": "هل تريد تغيير الدولة؟",
+    "personalCover": "أضف صورة الغلاف",
+    "doYouWantToChangePhone": "هل تريد تغيير الرقم؟"
   },
   "profile": {
     "mainInfo": "المعلومات الشخصية",
@@ -56,7 +64,13 @@
     "deleteProfile": "حذف الحساب",
     "addAd": "اضافة أعلان",
     "city": "المدينة",
-    "country": "الدولة"
+    "country": "الدولة",
+    "deleteAccount": "حذف الحساب",
+    "changePassword": "تغيير كلمة المرور",
+    "countrySuccessfullyChanged": "تم تغيير الدولة بنجاح",
+    "changeCountry": "تغيير الدولة",
+    "profileSuccessfullyUpdated": "تم تحديث الملف الشخصي بنجاح",
+    "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",
@@ -248,5 +262,6 @@
   "addComment": "اضافة تعليق",
   "send": "ارسال",
   "search": "بحث",
-  "add": "اضافة"
+  "add": "اضافة",
+  "save": "حفظ"
 }
