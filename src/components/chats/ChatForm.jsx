@@ -105,6 +105,7 @@ function ChatForm({ chat, setMessages }) {
       {(messageContent?.image || messageContent.file) && (
         <div className="priview_img">
           <button
+            disabled={loading}
             onClick={() =>
               setMessageContent({ ...messageContent, image: null })
             }
@@ -180,7 +181,9 @@ function ChatForm({ chat, setMessages }) {
                     })
                   }
                 />
-                <span>{t("sendVideo")}</span>
+                <span>
+                  <i className="fa-solid fa-video"></i> {t("sendVideo")}
+                </span>
               </label>
 
               <label htmlFor="image">
@@ -197,7 +200,16 @@ function ChatForm({ chat, setMessages }) {
                     })
                   }
                 />
-                <span>{t("sendImage")}</span>
+                <span>
+                  <i className="fa-solid fa-image"></i> {t("sendImage")}
+                </span>
+              </label>
+
+              <label htmlFor="location">
+                <span>
+                  <i className="fa-solid fa-location-dot"></i>{" "}
+                  {t("sendLocation")}
+                </span>
               </label>
             </div>
           </Dropdown.Menu>

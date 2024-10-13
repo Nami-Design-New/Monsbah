@@ -37,9 +37,10 @@ function ChatRoomHeader({ chat }) {
       <div className="user">
         <Link to="/profile" className="img">
           <img
-            src={chat?.user_image}
+            src={chat?.user_image || "/images/icons/user_default.png"}
             alt="avatar"
             loading="lazy"
+            onLoad={(e) => (e.target.src = "/images/icons/user_default.png")}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
           />
         </Link>
