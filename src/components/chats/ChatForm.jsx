@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import axiosInstance from "../../utils/axiosInstance";
 
 function ChatForm({ chat, setMessages }) {
@@ -44,6 +45,11 @@ function ChatForm({ chat, setMessages }) {
 
     if (messageContent.type === "file") {
       payload.file = messageContent.file;
+    }
+
+    if (messageContent.type === "location") {
+      payload.lat = messageContent.lat;
+      payload.lng = messageContent.lng;
     }
 
     try {
@@ -100,9 +106,21 @@ function ChatForm({ chat, setMessages }) {
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
+  const handleSelectLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setMessageContent({
+        type: "location",
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  };
+
   return (
     <form className="chat_form" onSubmit={handleSendMessage}>
-      {(messageContent?.image || messageContent.file) && (
+      {(messageContent?.image ||
+        messageContent.file ||
+        messageContent?.type === "location") && (
         <div className="priview_img">
           <button
             disabled={loading}
@@ -120,6 +138,30 @@ function ChatForm({ chat, setMessages }) {
               src={URL.createObjectURL(messageContent.image)}
               alt="preview"
             />
+          )}
+          {messageContent.type === "location" && (
+            <LoadScript googleMapsApiKey="AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw">
+              <GoogleMap
+                options={{
+                  streetViewControl: false,
+                  mapTypeControl: false,
+                  fullscreenControl: false,
+                  disableDefaultUI: true,
+                  clickableIcons: false,
+                }}
+                zoom={8}
+                mapContainerStyle={{ width: "100%", height: "100%" }}
+                center={{ lat: messageContent.lat, lng: messageContent.lng }}
+              >
+                <Marker
+                  icon="/images/icons/mapPin.svg"
+                  position={{
+                    lat: messageContent.lat,
+                    lng: messageContent.lng,
+                  }}
+                ></Marker>
+              </GoogleMap>
+            </LoadScript>
           )}
         </div>
       )}
@@ -205,7 +247,7 @@ function ChatForm({ chat, setMessages }) {
                 </span>
               </label>
 
-              <label htmlFor="location">
+              <label htmlFor="location" onClick={handleSelectLocation}>
                 <span>
                   <i className="fa-solid fa-location-dot"></i>{" "}
                   {t("sendLocation")}
