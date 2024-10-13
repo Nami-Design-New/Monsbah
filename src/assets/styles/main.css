@@ -2998,6 +2998,19 @@ body .image-change-wrapper .upload .plus i {
   font-size: 14px;
   color: #fff;
 }
+body .delete-account {
+  padding: 8px 16px;
+  min-width: 140px;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  position: relative;
+  border-radius: 12px;
+}
 body main {
   min-height: calc(100vh - 100px);
 }
@@ -4110,6 +4123,19 @@ body main .image-change-wrapper .upload .plus {
 body main .image-change-wrapper .upload .plus i {
   font-size: 14px;
   color: #fff;
+}
+body main .delete-account {
+  padding: 8px 16px;
+  min-width: 140px;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  position: relative;
+  border-radius: 12px;
 }
 body main .section-head {
   padding: 35px 5px;

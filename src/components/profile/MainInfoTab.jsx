@@ -9,7 +9,6 @@ import { setClientData, logout } from "../../redux/slices/clientData";
 import { useNavigate } from "react-router-dom";
 
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
-import { Dropdown } from "react-bootstrap";
 
 function MainInfoTab({ user, lang }) {
   const { t } = useTranslation();
@@ -50,34 +49,28 @@ function MainInfoTab({ user, lang }) {
     <>
       <div className="Dashpoard_section w-100">
         <div className="row m-0">
-          <div className="cover-logo-wrapper col-12 p-2 mb-4 d-flex flex-column justify-content-between align-items-between">
+          <div className="cover-logo-wrapper col-12 p-2 mb-4 d-flex flex-column justify-content-end align-items-start">
             <div className="cover-wrapper">
               {coverError ? null : (
                 <img
-                  src={coverError ? "/public/images/banner.png" : user?.cover}
+                  src={
+                    coverError || !user?.cover
+                      ? "/public/images/banner.png"
+                      : user?.cover
+                  }
                   alt="user cover image"
                   onError={() => setCoverError(true)}
                 />
               )}
             </div>
-            <div className="user-dropdown d-flex algin-items-center justify-content-end">
-              <Dropdown>
-                <Dropdown.Toggle className="butn" id="dropdown-basic">
-                  <i className="fa-regular fa-ellipsis-vertical"></i>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  {isMyAccount ? (
-                    <Dropdown.Item onClick={() => setShowDeleteModal(true)}>
-                      {t("profile.deleteAccount")}
-                    </Dropdown.Item>
-                  ) : null}
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
             <div className="Profile_info">
               <div className="logo-wrapper">
                 <img
-                  src={avatarError ? "/images/icons/user.svg" : user?.image}
+                  src={
+                    avatarError || !user?.image
+                      ? "/images/icons/user.svg"
+                      : user?.image
+                  }
                   alt="user logo image"
                   onError={() => setAvatarError(true)}
                 />
@@ -103,66 +96,89 @@ function MainInfoTab({ user, lang }) {
             </div>
           </div>
 
-          <div className="col-lg-6 col-12 p-2">
-            <div className="user-details-box">
-              <span className="title">{t("profile.country")}</span>
-              <span className="value">
-                <div className="img-wrapper">
-                  <img src={user?.country?.image} alt="user logo image" />
+          {user?.country ? (
+            <div className="col-lg-6 col-12 p-2">
+              <div className="user-details-box">
+                <span className="title">{t("profile.country")}</span>
+                <span className="value">
+                  <div className="img-wrapper">
+                    <img src={user?.country?.image} alt="user logo image" />
+                  </div>
+                  {user?.country?.name}
+                </span>
+              </div>
+            </div>
+          ) : null}
+
+          {user?.city ? (
+            <div className="col-lg-6 col-12 p-2">
+              <div className="user-details-box">
+                <span className="title">{t("profile.city")}</span>
+                <span className="value">
+                  {lang === "en" ? user?.city?.name_en : user?.city?.name_ar}
+                </span>
+              </div>
+            </div>
+          ) : null}
+
+          {user?.["following-count"] || +user?.["following-count"] === 0 ? (
+            <div className="col-lg-3 col-md-6 col-12 p-2">
+              <div className="Box_rate">
+                <h2>{user?.["following-count"]}</h2>
+
+                <div className="icon_rate">
+                  <p>{t("Followings")}</p>
                 </div>
-                {user?.country?.name}
+              </div>
+            </div>
+          ) : null}
+
+          {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
+            <div className="col-lg-3 col-md-6 col-12 p-2">
+              <div className="Box_rate">
+                <h2>{user?.["followers-count"]}</h2>
+
+                <div className="icon_rate">
+                  <p>{t("Followers")}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
+            <div className="col-lg-3 col-md-6 col-12 p-2">
+              <div className="Box_rate">
+                <h2>{user?.["rate-count"]}</h2>
+
+                <div className="icon_rate">
+                  <p>{t("Rating")}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
+            <div className="col-lg-3 col-md-6 col-12 p-2">
+              <div className="Box_rate">
+                <h2>{user?.["ads-count"]}</h2>
+
+                <div className="icon_rate">
+                  <p>{t("Ad")}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {isMyAccount ? (
+            <div className="col-12 d-flex mt-4 align-items-center justify-content-end">
+              <span
+                className="delete-account"
+                onClick={() => setShowDeleteModal(true)}
+              >
+                {t("profile.deleteAccount")}
               </span>
             </div>
-          </div>
-
-          <div className="col-lg-6 col-12 p-2">
-            <div className="user-details-box">
-              <span className="title">{t("profile.city")}</span>
-              <span className="value">
-                {lang === "en" ? user?.city?.name_en : user?.city?.name_ar}
-              </span>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6 col-12 p-2">
-            <div className="Box_rate">
-              <h2>{user?.["following-count"]}</h2>
-
-              <div className="icon_rate">
-                <p>{t("Followings")}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6 col-12 p-2">
-            <div className="Box_rate">
-              <h2>{user?.["followers-count"]}</h2>
-
-              <div className="icon_rate">
-                <p>{t("Followers")}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6 col-12 p-2">
-            <div className="Box_rate">
-              <h2>{user?.["rate-count"]}</h2>
-
-              <div className="icon_rate">
-                <p>{t("Rating")}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-6 col-12 p-2">
-            <div className="Box_rate">
-              <h2>{user?.["ads-count"]}</h2>
-
-              <div className="icon_rate">
-                <p>{t("Ad")}</p>
-              </div>
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
       <ConfirmationModal

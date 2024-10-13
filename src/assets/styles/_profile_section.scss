@@ -930,3 +930,16 @@
     }
   }
 }
+.delete-account {
+  padding: 8px 16px;
+  min-width: 140px;
+  background-color: red;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  position: relative;
+  border-radius: 12px;
+}
