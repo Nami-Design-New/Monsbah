@@ -38,6 +38,14 @@ function ChatForm({ chat, setMessages }) {
       payload.message = messageContent.message;
     }
 
+    if (messageContent.type === "image") {
+      payload.images = [messageContent.image];
+    }
+
+    if (messageContent.type === "file") {
+      payload.file = messageContent.file;
+    }
+
     try {
       const res = await axiosInstance.post("/client/chat/send", payload, {
         headers: {
@@ -47,7 +55,7 @@ function ChatForm({ chat, setMessages }) {
       if (res.data.status === 200) {
         toast.success(res.data.message);
         setMessages((prev) => [...prev, res.data.data]);
-        setMessageContent((prev) => ({ ...prev, message: "", type: "" }));
+        setMessageContent({ message: "", type: "" });
         setRecordingTime(0);
         clearBlobUrl();
       }
@@ -94,6 +102,26 @@ function ChatForm({ chat, setMessages }) {
 
   return (
     <form className="chat_form" onSubmit={handleSendMessage}>
+      {(messageContent?.image || messageContent.file) && (
+        <div className="priview_img">
+          <button
+            onClick={() =>
+              setMessageContent({ ...messageContent, image: null })
+            }
+          >
+            <i className="fa-regular fa-xmark"></i>
+          </button>
+          {messageContent.file && (
+            <video src={URL.createObjectURL(messageContent.file)} controls />
+          )}
+          {messageContent.image && (
+            <img
+              src={URL.createObjectURL(messageContent.image)}
+              alt="preview"
+            />
+          )}
+        </div>
+      )}
       <div className="input_field">
         {mediaBlobUrl ? (
           <div className="audio_player">
@@ -139,7 +167,19 @@ function ChatForm({ chat, setMessages }) {
           <Dropdown.Menu>
             <div className="content">
               <label htmlFor="video">
-                <input type="file" name="video" id="video" accept="video/*" />
+                <input
+                  type="file"
+                  name="video"
+                  id="video"
+                  accept="video/*"
+                  onChange={(e) =>
+                    setMessageContent({
+                      ...messageContent,
+                      type: "file",
+                      file: e.target.files[0],
+                    })
+                  }
+                />
                 <span>{t("sendVideo")}</span>
               </label>
 
@@ -163,7 +203,7 @@ function ChatForm({ chat, setMessages }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <button type="submit" style={{ opacity: loading ? 0.7 : 1 }}>
+      <button type="submit" style={{ opacity: loading ? 0.7 : 1, zIndex: 2 }}>
         {loading ? (
           <i className="fa-solid fa-spinner fa-pulse fa-spin"></i>
         ) : (
