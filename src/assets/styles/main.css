@@ -1631,7 +1631,7 @@ body .image_upload input {
   display: none;
 }
 body .image_upload img {
-  height: 60px;
+  height: 64px !important;
 }
 body .image_upload button {
   width: 28px;
