@@ -1,11 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-export default function AskCard({ ask, setShowModal, setTargetAsk }) {
+export default function AskCard({
+  ask,
+  setShowModal,
+  setTargetAsk,
+  className,
+}) {
   const { t } = useTranslation();
 
   return (
-    <div className="AskCard">
+    <div className={`AskCard ${className}`}>
       <Link to={`/profile/${ask?.user?.id}`} className="user_info">
         <div className="img">
           <img

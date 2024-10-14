@@ -30,7 +30,6 @@ function SettingsTab() {
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [showPhoneModal, setShowPhoneModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  
 
   const user = useSelector((state) => state.clientData.client);
 

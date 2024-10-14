@@ -6,7 +6,7 @@ export default function useGetAuthedUser(enabled) {
     queryKey: ["authed-user"],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get("/Identity/UserData");
+        const res = await axiosInstance.get("/client/auth/profile");
         if (res.status === 200) {
           return res.data.data || {};
         }

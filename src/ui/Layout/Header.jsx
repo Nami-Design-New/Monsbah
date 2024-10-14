@@ -72,7 +72,10 @@ export default function Header() {
               {t("header.getApp")}
             </button>
 
-            <Link to="/profile/add-ad" className="link text d-lg-flex d-none">
+            <Link
+              to="/profile?tab=addAd"
+              className="link text d-lg-flex d-none"
+            >
               <img src="/images/icons/plus.svg" alt="" />
               {t("header.addPost")}
             </Link>

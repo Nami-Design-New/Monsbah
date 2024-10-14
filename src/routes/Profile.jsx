@@ -1,14 +1,17 @@
 import SectionHeader from "../components/layout/SectionHeader";
 import ProfileTabs from "../components/profile/ProfileTabs";
+import useAuth from "../hooks/useAuth";
+import PageLoader from "../ui/loaders/PageLoader";
 
 const Profile = () => {
+  const { loading } = useAuth();
   return (
     <>
       <SectionHeader />
       <div className="profile-page">
         <div className="container ">
           <div className="row m-0">
-            <ProfileTabs />
+            {loading ? <PageLoader /> : <ProfileTabs />}
           </div>
         </div>
       </div>

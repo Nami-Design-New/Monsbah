@@ -1,6 +1,10 @@
 .section-head {
-  padding: 35px 5px;
+  padding: 16px 0;
   background-image: linear-gradient(to right, #d3f2ec, #1abc9c1a);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
   .small_nav {
     display: flex;

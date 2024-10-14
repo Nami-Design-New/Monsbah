@@ -97,7 +97,7 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <MyAds user={user} lang={lang} />
+          <MyAds user={user} lang={lang} className="my-ad" />
         </Tab>
 
         {/* addAd */}

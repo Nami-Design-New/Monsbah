@@ -1799,6 +1799,9 @@ body .product_vertical {
   border-radius: 8px;
   display: flex;
 }
+body .product_vertical.my-ad {
+  background-color: #fff !important;
+}
 body .product_vertical .img {
   min-width: 140px;
   max-width: 140px;
@@ -1979,8 +1982,13 @@ body .product_vertical.skeleton .skeleton-btn {
   }
 }
 body .section-head {
-  padding: 35px 5px;
+  padding: 16px 0;
   background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
+}
+@media screen and (max-width: 768px) {
+  body .section-head {
+    display: none;
+  }
 }
 body .section-head .small_nav {
   display: flex;
@@ -2221,13 +2229,22 @@ body .profile-page .tab-content .tab-pane.active {
 body .profile-page .profileNavCol {
   border-radius: 16px;
   margin-bottom: 50px;
-  position: relative;
+  position: sticky;
+  top: 84px;
+  height: -moz-fit-content;
+  height: fit-content;
   gap: 12px !important;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
   border: none !important;
+}
+@media screen and (max-width: 768px) {
+  body .profile-page .profileNavCol {
+    position: relative;
+    top: 0;
+  }
 }
 body .profile-page .profileNavCol a {
   padding: 12px 16px;
@@ -2303,6 +2320,7 @@ body .profile-page .page-header .cover-wrapper img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+  height: 100%;
   border-radius: 12px;
   -o-object-position: center;
      object-position: center;
@@ -2570,12 +2588,17 @@ body .user-details-box .value img {
   border-radius: 4px;
 }
 body .Dashpoard_section {
-  padding: 35px;
+  padding: 8px;
 }
 body .Dashpoard_section .cover-logo-wrapper {
   position: relative;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16/3;
+}
+@media screen and (max-width: 768px) {
+  body .Dashpoard_section .cover-logo-wrapper {
+    aspect-ratio: 3/2;
+  }
 }
 body .Dashpoard_section .cover-logo-wrapper .cover-wrapper {
   width: 100%;
@@ -2600,6 +2623,7 @@ body .Dashpoard_section .cover-logo-wrapper .cover-wrapper img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+  height: 100%;
   -o-object-position: center;
      object-position: center;
 }
@@ -2678,7 +2702,7 @@ body .Dashpoard_section .Box_rate .icon_rate p {
   font-weight: 400;
 }
 body .Dashpoard_section .Box_rate h2 {
-  color: #46abf4;
+  color: #1abc9c;
   font-size: 40px;
   font-weight: 500;
 }
@@ -2938,7 +2962,7 @@ body .image-change-wrapper .img-wrap {
   width: 86px !important;
   height: 86px !important;
   border-radius: 50%;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #777777;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -3347,13 +3371,22 @@ body main .profile-page .tab-content .tab-pane.active {
 body main .profile-page .profileNavCol {
   border-radius: 16px;
   margin-bottom: 50px;
-  position: relative;
+  position: sticky;
+  top: 84px;
+  height: -moz-fit-content;
+  height: fit-content;
   gap: 12px !important;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
   border: none !important;
+}
+@media screen and (max-width: 768px) {
+  body main .profile-page .profileNavCol {
+    position: relative;
+    top: 0;
+  }
 }
 body main .profile-page .profileNavCol a {
   padding: 12px 16px;
@@ -3429,6 +3462,7 @@ body main .profile-page .page-header .cover-wrapper img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+  height: 100%;
   border-radius: 12px;
   -o-object-position: center;
      object-position: center;
@@ -3696,12 +3730,17 @@ body main .user-details-box .value img {
   border-radius: 4px;
 }
 body main .Dashpoard_section {
-  padding: 35px;
+  padding: 8px;
 }
 body main .Dashpoard_section .cover-logo-wrapper {
   position: relative;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16/3;
+}
+@media screen and (max-width: 768px) {
+  body main .Dashpoard_section .cover-logo-wrapper {
+    aspect-ratio: 3/2;
+  }
 }
 body main .Dashpoard_section .cover-logo-wrapper .cover-wrapper {
   width: 100%;
@@ -3726,6 +3765,7 @@ body main .Dashpoard_section .cover-logo-wrapper .cover-wrapper img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+  height: 100%;
   -o-object-position: center;
      object-position: center;
 }
@@ -3804,7 +3844,7 @@ body main .Dashpoard_section .Box_rate .icon_rate p {
   font-weight: 400;
 }
 body main .Dashpoard_section .Box_rate h2 {
-  color: #46abf4;
+  color: #1abc9c;
   font-size: 40px;
   font-weight: 500;
 }
@@ -4064,7 +4104,7 @@ body main .image-change-wrapper .img-wrap {
   width: 86px !important;
   height: 86px !important;
   border-radius: 50%;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #777777;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -4138,8 +4178,13 @@ body main .delete-account {
   border-radius: 12px;
 }
 body main .section-head {
-  padding: 35px 5px;
+  padding: 16px 0;
   background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
+}
+@media screen and (max-width: 768px) {
+  body main .section-head {
+    display: none;
+  }
 }
 body main .section-head .small_nav {
   display: flex;
@@ -4743,6 +4788,9 @@ body main .AskCard {
   justify-content: space-between;
   height: 100%;
   gap: 12px;
+}
+body main .AskCard.my-ask {
+  background-color: #fff !important;
 }
 body main .AskCard .user_info {
   display: flex;

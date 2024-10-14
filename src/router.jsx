@@ -40,6 +40,7 @@ const router = [
   {
     path: "profile",
     element: <Profile />,
+    protected: true,
   },
   {
     path: "profile/*",

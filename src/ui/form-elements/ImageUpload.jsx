@@ -36,7 +36,10 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
             avatarError ? "/images/icons/user.svg" : "/images/icons/user.svg"
           }
           alt="avatar"
-          onError={() => setAvatarError(true)}
+          onError={() => {
+            setAvatarError(true);
+            imgView.current.src = "/images/icons/user.svg";
+          }}
         />
       </div>
 
@@ -45,7 +48,10 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
           ref={coverView}
           src={coverError ? "/images/banner.png" : "/images/banner.png"}
           alt="cover"
-          onError={() => setCoverError(true)}
+          onError={() => {
+            setCoverError(true);
+            coverView.current.src = "/images/banner.png";
+          }}
         />
       </div>
 
