@@ -7,16 +7,14 @@ export default function useGetChat() {
   const lang = useSelector((state) => state.language.lang);
   const [searchParams] = useSearchParams();
   const userId = searchParams.get("user_id");
-  const productId = searchParams.get("product_id");
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["chat", lang, userId, productId],
+    queryKey: ["chat", lang, userId],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(`/client/chat/details`, {
           params: {
             user_id: userId,
-            product_id: productId,
           },
         });
         if (res.status === 200) {
@@ -27,7 +25,7 @@ export default function useGetChat() {
         throw error;
       }
     },
-    enabled: !!userId && !!productId,
+    enabled: Boolean(userId),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

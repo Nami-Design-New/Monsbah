@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Dropdown } from "react-bootstrap";
@@ -10,6 +10,9 @@ function ChatForm({ chat, setMessages }) {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({ audio: true });
 
+  const GOOGLE_KEY = import.meta.env.VITE_GOOGLE_KEY;
+
+  const formRef = useRef(null);
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -116,6 +119,7 @@ function ChatForm({ chat, setMessages }) {
   };
 
   const handleSelectLocation = () => {
+    document.querySelector(".dropdown-menu").classList.remove("show");
     navigator.geolocation.getCurrentPosition((position) => {
       setMessageContent({
         type: "location",
@@ -126,16 +130,24 @@ function ChatForm({ chat, setMessages }) {
   };
 
   return (
-    <form className="chat_form" onSubmit={handleSendMessage}>
+    <form className="chat_form" onSubmit={handleSendMessage} ref={formRef}>
       {(messageContent?.image ||
         messageContent.file ||
         messageContent?.type === "location") && (
         <div className="priview_img">
           <button
             disabled={loading}
-            onClick={() =>
-              setMessageContent({ ...messageContent, image: null })
-            }
+            onClick={() => {
+              setMessageContent({
+                ...messageContent,
+                image: "",
+                file: "",
+                lat: "",
+                lng: "",
+                type: "",
+              });
+              formRef.current.reset();
+            }}
           >
             <i className="fa-regular fa-xmark"></i>
           </button>
@@ -148,30 +160,37 @@ function ChatForm({ chat, setMessages }) {
               alt="preview"
             />
           )}
-          {messageContent.type === "location" && (
-            <LoadScript googleMapsApiKey="AIzaSyD_N1k4WKCdiZqCIjjgO0aaKz1Y19JqYqw">
-              <GoogleMap
-                options={{
-                  streetViewControl: false,
-                  mapTypeControl: false,
-                  fullscreenControl: false,
-                  disableDefaultUI: true,
-                  clickableIcons: false,
-                }}
-                zoom={8}
-                mapContainerStyle={{ width: "100%", height: "100%" }}
-                center={{ lat: messageContent.lat, lng: messageContent.lng }}
-              >
-                <Marker
-                  icon="/images/icons/mapPin.svg"
-                  position={{
-                    lat: messageContent.lat,
-                    lng: messageContent.lng,
+          {messageContent.type === "location" &&
+            messageContent?.lat &&
+            messageContent?.lng && (
+              <LoadScript googleMapsApiKey={GOOGLE_KEY}>
+                <GoogleMap
+                  options={{
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                    disableDefaultUI: true,
+                    clickableIcons: false,
                   }}
-                ></Marker>
-              </GoogleMap>
-            </LoadScript>
-          )}
+                  zoom={15}
+                  mapContainerStyle={{ width: "100%", height: "100%" }}
+                  center={{
+                    lat: messageContent?.lat,
+                    lng: messageContent?.lng,
+                  }}
+                >
+                  {messageContent?.lat && messageContent?.lng && (
+                    <Marker
+                      icon="/images/icons/map-pin.svg"
+                      position={{
+                        lat: messageContent?.lat,
+                        lng: messageContent?.lng,
+                      }}
+                    />
+                  )}
+                </GoogleMap>
+              </LoadScript>
+            )}
         </div>
       )}
       <div className="input_field">
@@ -224,13 +243,16 @@ function ChatForm({ chat, setMessages }) {
                   name="video"
                   id="video"
                   accept="video/*"
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setMessageContent({
                       ...messageContent,
                       type: "file",
                       file: e.target.files[0],
-                    })
-                  }
+                    });
+                    document
+                      .querySelector(".dropdown-menu")
+                      .classList.remove("show");
+                  }}
                 />
                 <span>
                   <i className="fa-solid fa-video"></i> {t("sendVideo")}
@@ -243,13 +265,16 @@ function ChatForm({ chat, setMessages }) {
                   name="image"
                   id="image"
                   accept="image/*"
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setMessageContent({
                       ...messageContent,
                       type: "image",
                       image: e.target.files[0],
-                    })
-                  }
+                    });
+                    document
+                      .querySelector(".dropdown-menu")
+                      .classList.remove("show");
+                  }}
                 />
                 <span>
                   <i className="fa-solid fa-image"></i> {t("sendImage")}

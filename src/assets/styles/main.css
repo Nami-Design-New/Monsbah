@@ -4072,13 +4072,14 @@ body main .chats-section .chat_room .chat_form .dropdown-menu {
   border: 0;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu .content {
-  gap: 8px;
+  gap: 4px;
   display: flex;
   flex-direction: column;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label {
   text-align: start;
   cursor: pointer;
+  padding: 8px;
   display: block;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label input {
@@ -4087,7 +4088,8 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label input {
 body main .chats-section .chat_room .chat_form .dropdown-menu label span {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  font-size: 14px;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
   width: 20px;
@@ -4133,10 +4135,10 @@ body main .close_sidebar {
 }
 body main .priview_img {
   position: absolute;
-  top: -410px;
+  top: -58.4vh;
   left: 0;
   width: 100%;
-  height: 499.2px;
+  height: 71vh;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -4156,8 +4158,21 @@ body main .priview_img button {
   position: absolute;
   left: 8px;
   top: 8px;
-  min-width: 32px !important;
-  height: 32px !important;
+  background: #fff !important;
+  min-width: 30px !important;
+  z-index: 10;
+  height: 30px !important;
+}
+body main .priview_img button i {
+  font-size: 16px !important;
+  color: #1abc9c !important;
+}
+body main .lottie_player_holder {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body main .CommentCard {
   padding: 16px;
