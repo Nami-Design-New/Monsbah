@@ -75,7 +75,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
         </Link>
         <p>{ask?.description}</p>
         <div className="comments">
-          <h6>
+          <h6 className="mb-2">
             {t("comments")} ({ask?.count_comments})
           </h6>
           <div className="wrapper">
