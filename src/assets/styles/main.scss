@@ -1,11 +1,9 @@
 @import "./config";
-
 body {
   position: relative;
   overflow-x: hidden;
   direction: rtl;
   font-family: "Baloo Bhaijaan 2", sans-serif;
-
   @import "./header";
   @import "./footer";
   @import "./form-ui";
@@ -13,7 +11,6 @@ body {
   @import "./product";
   @import "./articles_section";
   @import "./profile_section";
-
   main {
     min-height: calc(100vh - 100px);
     @import "./home";
@@ -25,7 +22,6 @@ body {
     @import "./ads";
     @import "./search";
     @import "./chat";
-
     .error-section {
       padding: 60px 16px;
       @include centerFlex();
@@ -78,7 +74,6 @@ body {
       }
     }
   }
-
   .viewAskModal .modal-body {
     display: flex;
     flex-direction: column;
@@ -130,9 +125,15 @@ body {
         display: none;
       }
       scrollbar-width: none;
+      > .CommentWrapper {
+        > .CommentCard {
+          &::before {
+            display: none;
+          }
+        }
+      }
     }
   }
-
   .confirm-delete {
     p {
       color: $dark;
@@ -167,7 +168,6 @@ body {
       }
     }
   }
-
   .notificationCard {
     padding: 12px;
     border-radius: 12px;
@@ -203,11 +203,30 @@ body {
       }
     }
   }
-
   .CommentCard {
     gap: 12px;
     display: flex;
-
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 18px;
+      border-radius: 0 0 24px 0;
+      right: -30px;
+      top: 0;
+      border-right: 1px solid #a5a5a5;
+      border-bottom: 1px solid #a5a5a5;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 42px;
+      width: 1px;
+      height: calc(100% - 0px);
+      background: #a5a5a5;
+    }
     .img {
       min-width: 36px;
       max-width: 36px;
@@ -219,7 +238,6 @@ body {
         border-radius: 50%;
       }
     }
-
     .content {
       width: 100%;
       display: flex;
@@ -238,7 +256,6 @@ body {
         }
       }
     }
-
     .actions {
       margin-top: 8px;
       display: flex;
@@ -257,7 +274,64 @@ body {
       }
     }
   }
-
+  .CommentWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .replies {
+      padding-right: 48px;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        top: 0px;
+        width: 1px;
+        height: 100%;
+        background: #a5a5a5;
+      }
+      .CommentCard {
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+      .CommentWrapper {
+        &:last-child{
+          &::after {
+            content: "";
+            width: 1px;
+            height: calc(100% - 5px);
+            border-radius: 50%;
+            background: #f8f8f8;
+            position: absolute;
+            right: -30px;
+            top: 5px;
+            z-index: 2;
+          }
+        }
+      }
+    }
+    &:not(:has(.replies)) {
+      .CommentWrapper {
+        .CommentCard {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+    &:not(:has(.replies .CommentWrapper)) {
+      .CommentCard {
+        &::after {
+          display: none;
+        }
+      }
+    }
+   
+  }
   .addCommentForm {
     display: flex !important;
     align-items: end !important;
@@ -268,28 +342,6 @@ body {
       height: 56px !important;
     }
   }
-
-  .CommentWrapper {
-    .replies {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin: 24px 0;
-      position: relative;
-      margin-inline-start: 48px;
-      &::after {
-        content: "";
-        position: absolute;
-        width: 24px;
-        right: -30px;
-        top: -85%;
-        height: 100%;
-        border-radius: 0 0 24px 0;
-        border-right: 1px solid #a5a5a5;
-      }
-    }
-  }
-
   &.en {
     direction: ltr;
     header .mainLinks .moreActions .dropdown .dropdown-menu.show {

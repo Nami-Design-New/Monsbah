@@ -4287,6 +4287,9 @@ body .viewAskModal .modal-body .wrapper {
 body .viewAskModal .modal-body .wrapper::-webkit-scrollbar {
   display: none;
 }
+body .viewAskModal .modal-body .wrapper > .CommentWrapper > .CommentCard::before {
+  display: none;
+}
 body .confirm-delete p {
   color: #0d0d0d;
   font-size: 16px;
@@ -4354,6 +4357,27 @@ body .notificationCard .notify p {
 body .CommentCard {
   gap: 12px;
   display: flex;
+  position: relative;
+}
+body .CommentCard::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 18px;
+  border-radius: 0 0 24px 0;
+  right: -30px;
+  top: 0;
+  border-right: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+body .CommentCard::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 42px;
+  width: 1px;
+  height: calc(100% - 0px);
+  background: #a5a5a5;
 }
 body .CommentCard .img {
   min-width: 36px;
@@ -4402,6 +4426,45 @@ body .CommentCard .actions button {
   font-size: 12px;
   color: #777777;
 }
+body .CommentWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+body .CommentWrapper .replies {
+  padding-right: 48px;
+  position: relative;
+}
+body .CommentWrapper .replies::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 0px;
+  width: 1px;
+  height: 100%;
+  background: #a5a5a5;
+}
+body .CommentWrapper .replies .CommentCard:last-child::after {
+  display: none;
+}
+body .CommentWrapper .replies .CommentWrapper:last-child::after {
+  content: "";
+  width: 1px;
+  height: calc(100% - 5px);
+  border-radius: 50%;
+  background: #f8f8f8;
+  position: absolute;
+  right: -30px;
+  top: 5px;
+  z-index: 2;
+}
+body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
+  display: none;
+}
+body .CommentWrapper:not(:has(.replies .CommentWrapper)) .CommentCard::after {
+  display: none;
+}
 body .addCommentForm {
   display: flex !important;
   align-items: end !important;
@@ -4412,24 +4475,6 @@ body .addCommentForm button {
   width: fit-content !important;
   padding: 0 24px !important;
   height: 56px !important;
-}
-body .CommentWrapper .replies {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin: 24px 0;
-  position: relative;
-  margin-inline-start: 48px;
-}
-body .CommentWrapper .replies::after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  right: -30px;
-  top: -85%;
-  height: 100%;
-  border-radius: 0 0 24px 0;
-  border-right: 1px solid #a5a5a5;
 }
 body.en {
   direction: ltr;
