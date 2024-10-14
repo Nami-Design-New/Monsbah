@@ -23,33 +23,42 @@ function ChatForm({ chat, setMessages }) {
     e.preventDefault();
     setLoading(true);
 
-    const payload = {
-      type: messageContent.type,
-    };
+    const payload = new FormData();
+    payload.append("type", messageContent.type);
 
     if (chat?.id) {
-      payload.chat_id = chat?.id;
+      payload.append("chat_id", chat?.id);
     }
 
     if (messageContent.type === "voice") {
-      payload.voice = mediaBlobUrl;
+      try {
+        const response = await fetch(mediaBlobUrl);
+        const blob = await response.blob();
+        const file = new File([blob], "voice_message.wav", {
+          type: "audio/wav",
+        });
+        payload.append("voice", file);
+      } catch (error) {
+        console.error("Error converting blob URL to file:", error);
+        return;
+      }
     }
 
     if (messageContent.message) {
-      payload.message = messageContent.message;
+      payload.append("message", messageContent.message);
     }
 
     if (messageContent.type === "image") {
-      payload.images = [messageContent.image];
+      payload.append("images", messageContent.image);
     }
 
     if (messageContent.type === "file") {
-      payload.file = messageContent.file;
+      payload.append("file", messageContent.file);
     }
 
     if (messageContent.type === "location") {
-      payload.lat = messageContent.lat;
-      payload.lng = messageContent.lng;
+      payload.append("lat", messageContent.lat);
+      payload.append("lng", messageContent.lng);
     }
 
     try {
