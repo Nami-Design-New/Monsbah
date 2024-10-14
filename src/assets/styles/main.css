@@ -370,7 +370,6 @@ body header .mainLinks .navbar-brand {
 body header .mainLinks .navbar-brand img {
   height: 52px;
   max-width: 250px;
-  width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   -o-object-position: right;
@@ -4376,7 +4375,7 @@ body .CommentCard::after {
   right: 18px;
   top: 42px;
   width: 1px;
-  height: calc(100% + 16px);
+  height: 100%;
   background: #a5a5a5;
 }
 body .CommentCard .img {
@@ -4418,6 +4417,7 @@ body .CommentCard .actions {
 body .CommentCard .actions span {
   font-size: 12px;
   color: #777777;
+  flex: 1;
 }
 body .CommentCard .actions button {
   display: flex;
@@ -4457,7 +4457,7 @@ body .CommentWrapper .replies .CommentWrapper:last-child::after {
   background: #f8f8f8;
   position: absolute;
   right: -30px;
-  top: 14px;
+  top: 12px;
   z-index: 2;
 }
 body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
