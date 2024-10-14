@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 import { useCookies } from "react-cookie";
-import axiosInstance from "./utils/axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 
 const setupAxiosInterceptors = (setCookie, token) => {
   axiosInstance.interceptors.response.use(

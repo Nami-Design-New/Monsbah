@@ -27,6 +27,7 @@ export default function useGetChat() {
         throw error;
       }
     },
+    enabled: !!userId && !!productId,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

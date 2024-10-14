@@ -150,10 +150,16 @@
     "delete": "حذف",
     "selectAll": "تحديد الكل",
     "areYouSureYouWantDeleteThisChats": "هل أنت متاكد من حذف هذه المحادثات؟",
+    "areYouSureYouWantDeleteThisChat": "هل أنت متاكد من حذف هذه المحادثة؟",
     "deleteChat": "حذف المحادثة",
     "report": "الإبلاغ عن إساءة",
-    "block": "حظر"
+    "block": "حظر",
+    "call": "اتصال"
   },
+  "sendVideo": "ارسال فيديو",
+  "sendImage": "ارسال صورة",
+  "sendContact": "ارسال جهة الاتصال",
+  "sendLocation": "ارسال موقع",
   "typeHere": "اكتب هنا...",
   "cancel": "الغاء",
   "reply": "رد",

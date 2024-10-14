@@ -85,10 +85,12 @@ function UserCard({ product }) {
       {product?.user?.id !== client?.id && (
         <div className="contact">
           {product?.active_chat && (
-            <button>
+            <Link
+              to={`/chats?user_id=${product?.user?.id}&product_id=${product?.id}`}
+            >
               <img src="/images/icons/chat.svg" alt="chat" />
               <span> {t("chating")} </span>
-            </button>
+            </Link>
           )}
 
           {product?.active_call && (
