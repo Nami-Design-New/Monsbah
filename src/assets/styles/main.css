@@ -4376,7 +4376,7 @@ body .CommentCard::after {
   right: 18px;
   top: 42px;
   width: 1px;
-  height: calc(100% - 0px);
+  height: calc(100% + 16px);
   background: #a5a5a5;
 }
 body .CommentCard .img {
@@ -4430,6 +4430,7 @@ body .CommentWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 8px 0;
   gap: 24px;
 }
 body .CommentWrapper .replies {
@@ -4456,7 +4457,7 @@ body .CommentWrapper .replies .CommentWrapper:last-child::after {
   background: #f8f8f8;
   position: absolute;
   right: -30px;
-  top: 5px;
+  top: 14px;
   z-index: 2;
 }
 body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
@@ -4464,6 +4465,18 @@ body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
 }
 body .CommentWrapper:not(:has(.replies .CommentWrapper)) .CommentCard::after {
   display: none;
+}
+body .replyTo {
+  font-size: 14px;
+  color: #777777;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body .replyTo b {
+  color: #1abc9c;
 }
 body .addCommentForm {
   display: flex !important;
