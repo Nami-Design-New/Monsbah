@@ -5280,13 +5280,14 @@ body main .chats-section .chat_room .chat_form .dropdown-menu {
   border: 0;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu .content {
-  gap: 8px;
+  gap: 4px;
   display: flex;
   flex-direction: column;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label {
   text-align: start;
   cursor: pointer;
+  padding: 8px;
   display: block;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label input {
@@ -5295,7 +5296,8 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label input {
 body main .chats-section .chat_room .chat_form .dropdown-menu label span {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  font-size: 14px;
 }
 body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
   width: 20px;
@@ -5341,10 +5343,10 @@ body main .close_sidebar {
 }
 body main .priview_img {
   position: absolute;
-  top: -410px;
+  top: -58.4vh;
   left: 0;
   width: 100%;
-  height: 499.2px;
+  height: 71vh;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -5364,79 +5366,21 @@ body main .priview_img button {
   position: absolute;
   left: 8px;
   top: 8px;
-  min-width: 32px !important;
-  height: 32px !important;
+  background: #fff !important;
+  min-width: 30px !important;
+  z-index: 10;
+  height: 30px !important;
 }
-body main .CommentCard {
-  padding: 16px;
-  border-radius: 12px;
-  background: #f8f8f8;
-  display: flex;
-  gap: 12px;
-  flex-direction: column;
+body main .priview_img button i {
+  font-size: 16px !important;
+  color: #1abc9c !important;
 }
-body main .CommentCard .user_info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-body main .CommentCard .user_info .img {
-  min-width: 52px;
-  max-width: 52px;
-  height: 52px;
-}
-body main .CommentCard .user_info .img img {
-  width: 100%;
+body main .lottie_player_holder {
+  padding: 40px;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 50%;
-}
-body main .CommentCard .user_info .info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-body main .CommentCard .user_info .info h6 {
-  text-align: start;
-  color: #1abc9c;
-  margin: 0;
-}
-body main .CommentCard .user_info .info span {
-  text-align: start;
-  color: #666b88;
-  font-size: 12px;
-}
-body main .CommentCard p {
-  text-align: start;
-  margin: 0;
-  font-size: 14px;
-  color: #0d0d0d;
-}
-body main .CommentCard .btns {
-  margin-top: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-body main .CommentCard .btns button {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 14px;
-  color: #777777;
-}
-body main .addCommentForm {
-  display: flex !important;
-  align-items: end !important;
-  flex-direction: row;
-}
-body main .addCommentForm button {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  padding: 0 24px !important;
-  height: 56px !important;
+  justify-content: center;
 }
 body main .error-section {
   padding: 60px 16px;
@@ -5538,11 +5482,21 @@ body .viewAskModal .modal-body p {
   margin: 0;
 }
 body .viewAskModal .modal-body .wrapper {
-  height: 300px;
+  height: 50vh;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 24px;
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 16px;
   overflow-y: scroll;
+  scrollbar-width: none;
+}
+body .viewAskModal .modal-body .wrapper::-webkit-scrollbar {
+  display: none;
+}
+body .viewAskModal .modal-body .wrapper > .CommentWrapper > .CommentCard::before {
+  display: none;
 }
 body .confirm-delete p {
   color: #0d0d0d;
@@ -5607,6 +5561,128 @@ body .notificationCard .notify p {
   text-align: start;
   color: #666b88;
   margin: 0;
+}
+body .CommentCard {
+  gap: 12px;
+  display: flex;
+  position: relative;
+}
+body .CommentCard::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 18px;
+  border-radius: 0 0 24px 0;
+  right: -30px;
+  top: 0;
+  border-right: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+body .CommentCard::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 42px;
+  width: 1px;
+  height: calc(100% - 0px);
+  background: #a5a5a5;
+}
+body .CommentCard .img {
+  min-width: 36px;
+  max-width: 36px;
+  height: 36px;
+}
+body .CommentCard .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body .CommentCard .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body .CommentCard .content h6 {
+  color: #1abc9c;
+  margin-bottom: 8px;
+}
+body .CommentCard .content .comment {
+  background: #fff;
+  padding: 12px;
+  border-radius: 12px;
+}
+body .CommentCard .content .comment p {
+  font-size: 14px;
+  margin: 0;
+}
+body .CommentCard .actions {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body .CommentCard .actions span {
+  font-size: 12px;
+  color: #777777;
+}
+body .CommentCard .actions button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #777777;
+}
+body .CommentWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+body .CommentWrapper .replies {
+  padding-right: 48px;
+  position: relative;
+}
+body .CommentWrapper .replies::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 0px;
+  width: 1px;
+  height: 100%;
+  background: #a5a5a5;
+}
+body .CommentWrapper .replies .CommentCard:last-child::after {
+  display: none;
+}
+body .CommentWrapper .replies .CommentWrapper:last-child::after {
+  content: "";
+  width: 1px;
+  height: calc(100% - 5px);
+  border-radius: 50%;
+  background: #f8f8f8;
+  position: absolute;
+  right: -30px;
+  top: 5px;
+  z-index: 2;
+}
+body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
+  display: none;
+}
+body .CommentWrapper:not(:has(.replies .CommentWrapper)) .CommentCard::after {
+  display: none;
+}
+body .addCommentForm {
+  display: flex !important;
+  align-items: end !important;
+  flex-direction: row;
+}
+body .addCommentForm button {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  padding: 0 24px !important;
+  height: 56px !important;
 }
 body.en {
   direction: ltr;

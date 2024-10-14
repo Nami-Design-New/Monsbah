@@ -5,9 +5,21 @@ import ChatContainer from "./ChatContainer";
 import ChatForm from "./ChatForm";
 import ChatRoomHeader from "./ChatRoomHeader";
 import Pusher from "pusher-js";
+import PageLoader from "../../ui/loaders/PageLoader";
+import lottieChat from "../../assets/lotties/chat.json";
+import Lottie from "react-lottie";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: lottieChat,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 export default function ChatRoom() {
-  const { data: chat } = useGetChat();
+  const { data: chat, isLoading } = useGetChat();
   const { client } = useSelector((state) => state.clientData);
   const [messages, setMessages] = useState([]);
 
@@ -43,10 +55,24 @@ export default function ChatRoom() {
   }
 
   return (
-    <div className="chat_room">
-      <ChatRoomHeader chat={chat?.chat} />
-      <ChatContainer messages={messages} />
-      <ChatForm chat={chat?.chat} setMessages={setMessages} />
-    </div>
+    <>
+      {isLoading ? (
+        <PageLoader />
+      ) : (
+        <>
+          {chat ? (
+            <div className="chat_room">
+              <ChatRoomHeader chat={chat?.chat} />
+              <ChatContainer messages={messages} />
+              <ChatForm chat={chat?.chat} setMessages={setMessages} />
+            </div>
+          ) : (
+            <div className="lottie_player_holder">
+              <Lottie options={defaultOptions} height={250} width={250} />
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 }

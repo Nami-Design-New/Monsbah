@@ -1,11 +1,9 @@
 @import "./config";
-
 body {
   position: relative;
   overflow-x: hidden;
   direction: rtl;
   font-family: "Baloo Bhaijaan 2", sans-serif;
-
   @import "./header";
   @import "./footer";
   @import "./form-ui";
@@ -13,7 +11,6 @@ body {
   @import "./product";
   @import "./articles_section";
   @import "./profile_section";
-
   main {
     min-height: calc(100vh - 100px);
     @import "./home";
@@ -25,78 +22,6 @@ body {
     @import "./ads";
     @import "./search";
     @import "./chat";
-
-    .CommentCard {
-      padding: 16px;
-      border-radius: 12px;
-      background: $inputBg;
-      display: flex;
-      gap: 12px;
-      flex-direction: column;
-      .user_info {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        .img {
-          min-width: 52px;
-          max-width: 52px;
-          height: 52px;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-          }
-        }
-        .info {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          h6 {
-            text-align: start;
-            color: $main;
-            margin: 0;
-          }
-          span {
-            text-align: start;
-            color: $text;
-            font-size: 12px;
-          }
-        }
-      }
-      p {
-        text-align: start;
-        margin: 0;
-        font-size: 14px;
-        color: $dark;
-      }
-      .btns {
-        margin-top: 8px;
-        @include space-between();
-        button {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 14px;
-          color: $gray;
-        }
-      }
-    }
-
-    
-
-    .addCommentForm {
-      display: flex !important;
-      align-items: end !important;
-      flex-direction: row;
-      button {
-        width: fit-content !important;
-        padding: 0 24px !important;
-        height: 56px !important;
-      }
-    }
-
     .error-section {
       padding: 60px 16px;
       @include centerFlex();
@@ -149,7 +74,6 @@ body {
       }
     }
   }
-
   .viewAskModal .modal-body {
     display: flex;
     flex-direction: column;
@@ -189,14 +113,27 @@ body {
       margin: 0;
     }
     .wrapper {
-      height: 300px;
+      height: 50vh;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 24px;
+      background: $inputBg;
+      padding: 16px;
+      border-radius: 16px;
       overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      scrollbar-width: none;
+      > .CommentWrapper {
+        > .CommentCard {
+          &::before {
+            display: none;
+          }
+        }
+      }
     }
   }
-
   .confirm-delete {
     p {
       color: $dark;
@@ -231,7 +168,6 @@ body {
       }
     }
   }
-
   .notificationCard {
     padding: 12px;
     border-radius: 12px;
@@ -267,7 +203,145 @@ body {
       }
     }
   }
-
+  .CommentCard {
+    gap: 12px;
+    display: flex;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 18px;
+      border-radius: 0 0 24px 0;
+      right: -30px;
+      top: 0;
+      border-right: 1px solid #a5a5a5;
+      border-bottom: 1px solid #a5a5a5;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 42px;
+      width: 1px;
+      height: calc(100% - 0px);
+      background: #a5a5a5;
+    }
+    .img {
+      min-width: 36px;
+      max-width: 36px;
+      height: 36px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+    .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      h6 {
+        color: $main;
+        margin-bottom: 8px;
+      }
+      .comment {
+        background: $white;
+        padding: 12px;
+        border-radius: 12px;
+        p {
+          font-size: 14px;
+          margin: 0;
+        }
+      }
+    }
+    .actions {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      span {
+        font-size: 12px;
+        color: $gray;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: $gray;
+      }
+    }
+  }
+  .CommentWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .replies {
+      padding-right: 48px;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        top: 0px;
+        width: 1px;
+        height: 100%;
+        background: #a5a5a5;
+      }
+      .CommentCard {
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+      .CommentWrapper {
+        &:last-child{
+          &::after {
+            content: "";
+            width: 1px;
+            height: calc(100% - 5px);
+            border-radius: 50%;
+            background: #f8f8f8;
+            position: absolute;
+            right: -30px;
+            top: 5px;
+            z-index: 2;
+          }
+        }
+      }
+    }
+    &:not(:has(.replies)) {
+      .CommentWrapper {
+        .CommentCard {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+    &:not(:has(.replies .CommentWrapper)) {
+      .CommentCard {
+        &::after {
+          display: none;
+        }
+      }
+    }
+   
+  }
+  .addCommentForm {
+    display: flex !important;
+    align-items: end !important;
+    flex-direction: row;
+    button {
+      width: fit-content !important;
+      padding: 0 24px !important;
+      height: 56px !important;
+    }
+  }
   &.en {
     direction: ltr;
     header .mainLinks .moreActions .dropdown .dropdown-menu.show {

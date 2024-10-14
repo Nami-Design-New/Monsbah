@@ -436,13 +436,14 @@
         box-shadow: $shadow;
         border: 0;
         .content {
-          gap: 8px;
+          gap: 4px;
           display: flex;
           flex-direction: column;
         }
         label {
           text-align: start;
           cursor: pointer;
+          padding: 8px;
           display: block;
           input {
             display: none;
@@ -450,7 +451,8 @@
           span {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
+            font-size: 14px;
             i {
               width: 20px;
               font-size: 14px;
@@ -501,10 +503,10 @@
 
 .priview_img {
   position: absolute;
-  top: -410px;
+  top: -58.4vh;
   left: 0;
   width: 100%;
-  height: calc(569.2px - 70px);
+  height: 71vh;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -520,7 +522,21 @@
     position: absolute;
     left: 8px;
     top: 8px;
-    min-width: 32px !important;
-    height: 32px !important;
+    background: $white !important;
+    min-width: 30px !important;
+    z-index: 10;
+    height: 30px !important;
+    i {
+      font-size: 16px !important;
+      color: $main !important;
+    }
   }
+}
+
+.lottie_player_holder {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

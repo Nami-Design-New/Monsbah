@@ -7,33 +7,304 @@ function CommentCard({ comment, deleteComment }) {
   const authedUser = useSelector((state) => state.clientData.client);
 
   return (
-    <div className="CommentCard">
-      <Link to={`/profile/${comment?.user_id}`} className="user_info">
-        <div className="img">
+    <div className="CommentWrapper">
+      <div className="CommentCard">
+        <Link to={`/profile/${comment?.user_id}`} className="img">
           <img
             src={comment?.user_image}
             alt={comment?.user_name}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
           />
-        </div>
-        <div className="info">
+        </Link>
+        <div className="content">
           <h6>{comment?.user_name}</h6>
-          <span>{comment?.date}</span>
+          <div className="comment">
+            <p>{comment?.comment}</p>
+          </div>
+          <div className="actions">
+            <span>{comment?.date}</span>
+            <button>{t("reply")}</button>
+            {comment?.user_id === authedUser?.id && (
+              <button onClick={() => deleteComment(comment?.id)}>
+                {t("delete")}
+              </button>
+            )}
+            <button>{t("report")}</button>
+          </div>
         </div>
-      </Link>
-      <p>{comment?.comment}</p>
-      <div className="btns">
-        <button>
-          <i className="fa-solid fa-reply-all"></i> {t("reply")}
-        </button>
-        {comment?.user_id === authedUser?.id && (
-          <button onClick={() => deleteComment(comment?.id)}>
-            <i className="fa-solid fa-trash"></i> {t("delete")}
-          </button>
-        )}
-        <button>
-          <i className="fa-solid fa-flag"></i> {t("report")}
-        </button>
+      </div>
+      <div className="replies">
+        <div className="CommentWrapper">
+          <div className="CommentCard">
+            <Link to={`/profile/${comment?.user_id}`} className="img">
+              <img
+                src={comment?.user_image}
+                alt={comment?.user_name}
+                onError={(e) =>
+                  (e.target.src = "/images/icons/user_default.png")
+                }
+              />
+            </Link>
+            <div className="content">
+              <h6>{comment?.user_name}</h6>
+              <div className="comment">
+                <p>{comment?.comment}</p>
+              </div>
+              <div className="actions">
+                <span>{comment?.date}</span>
+                <button>{t("reply")}</button>
+                {comment?.user_id === authedUser?.id && (
+                  <button onClick={() => deleteComment(comment?.id)}>
+                    {t("delete")}
+                  </button>
+                )}
+                <button>{t("report")}</button>
+              </div>
+            </div>
+          </div>
+          <div className="replies">
+            <div className="CommentWrapper">
+              <div className="CommentCard">
+                <Link to={`/profile/${comment?.user_id}`} className="img">
+                  <img
+                    src={comment?.user_image}
+                    alt={comment?.user_name}
+                    onError={(e) =>
+                      (e.target.src = "/images/icons/user_default.png")
+                    }
+                  />
+                </Link>
+                <div className="content">
+                  <h6>{comment?.user_name}</h6>
+                  <div className="comment">
+                    <p>{comment?.comment}</p>
+                  </div>
+                  <div className="actions">
+                    <span>{comment?.date}</span>
+                    <button>{t("reply")}</button>
+                    {comment?.user_id === authedUser?.id && (
+                      <button onClick={() => deleteComment(comment?.id)}>
+                        {t("delete")}
+                      </button>
+                    )}
+                    <button>{t("report")}</button>
+                  </div>
+                </div>
+              </div>
+              <div className="replies"></div>
+            </div>
+            <div className="CommentWrapper">
+              <div className="CommentCard">
+                <Link to={`/profile/${comment?.user_id}`} className="img">
+                  <img
+                    src={comment?.user_image}
+                    alt={comment?.user_name}
+                    onError={(e) =>
+                      (e.target.src = "/images/icons/user_default.png")
+                    }
+                  />
+                </Link>
+                <div className="content">
+                  <h6>{comment?.user_name}</h6>
+                  <div className="comment">
+                    <p>{comment?.comment}</p>
+                  </div>
+                  <div className="actions">
+                    <span>{comment?.date}</span>
+                    <button>{t("reply")}</button>
+                    {comment?.user_id === authedUser?.id && (
+                      <button onClick={() => deleteComment(comment?.id)}>
+                        {t("delete")}
+                      </button>
+                    )}
+                    <button>{t("report")}</button>
+                  </div>
+                </div>
+              </div>
+              <div className="replies"></div>
+            </div>
+            <div className="CommentWrapper">
+              <div className="CommentCard">
+                <Link to={`/profile/${comment?.user_id}`} className="img">
+                  <img
+                    src={comment?.user_image}
+                    alt={comment?.user_name}
+                    onError={(e) =>
+                      (e.target.src = "/images/icons/user_default.png")
+                    }
+                  />
+                </Link>
+                <div className="content">
+                  <h6>{comment?.user_name}</h6>
+                  <div className="comment">
+                    <p>{comment?.comment}</p>
+                  </div>
+                  <div className="actions">
+                    <span>{comment?.date}</span>
+                    <button>{t("reply")}</button>
+                    {comment?.user_id === authedUser?.id && (
+                      <button onClick={() => deleteComment(comment?.id)}>
+                        {t("delete")}
+                      </button>
+                    )}
+                    <button>{t("report")}</button>
+                  </div>
+                </div>
+              </div>
+              <div className="replies">
+                <div className="CommentWrapper">
+                  <div className="CommentCard">
+                    <Link to={`/profile/${comment?.user_id}`} className="img">
+                      <img
+                        src={comment?.user_image}
+                        alt={comment?.user_name}
+                        onError={(e) =>
+                          (e.target.src = "/images/icons/user_default.png")
+                        }
+                      />
+                    </Link>
+                    <div className="content">
+                      <h6>{comment?.user_name}</h6>
+                      <div className="comment">
+                        <p>{comment?.comment}</p>
+                      </div>
+                      <div className="actions">
+                        <span>{comment?.date}</span>
+                        <button>{t("reply")}</button>
+                        {comment?.user_id === authedUser?.id && (
+                          <button onClick={() => deleteComment(comment?.id)}>
+                            {t("delete")}
+                          </button>
+                        )}
+                        <button>{t("report")}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="replies"></div>
+                </div>
+                <div className="CommentWrapper">
+                  <div className="CommentCard">
+                    <Link to={`/profile/${comment?.user_id}`} className="img">
+                      <img
+                        src={comment?.user_image}
+                        alt={comment?.user_name}
+                        onError={(e) =>
+                          (e.target.src = "/images/icons/user_default.png")
+                        }
+                      />
+                    </Link>
+                    <div className="content">
+                      <h6>{comment?.user_name}</h6>
+                      <div className="comment">
+                        <p>{comment?.comment}</p>
+                      </div>
+                      <div className="actions">
+                        <span>{comment?.date}</span>
+                        <button>{t("reply")}</button>
+                        {comment?.user_id === authedUser?.id && (
+                          <button onClick={() => deleteComment(comment?.id)}>
+                            {t("delete")}
+                          </button>
+                        )}
+                        <button>{t("report")}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="replies"></div>
+                </div>
+                <div className="CommentWrapper">
+                  <div className="CommentCard">
+                    <Link to={`/profile/${comment?.user_id}`} className="img">
+                      <img
+                        src={comment?.user_image}
+                        alt={comment?.user_name}
+                        onError={(e) =>
+                          (e.target.src = "/images/icons/user_default.png")
+                        }
+                      />
+                    </Link>
+                    <div className="content">
+                      <h6>{comment?.user_name}</h6>
+                      <div className="comment">
+                        <p>{comment?.comment}</p>
+                      </div>
+                      <div className="actions">
+                        <span>{comment?.date}</span>
+                        <button>{t("reply")}</button>
+                        {comment?.user_id === authedUser?.id && (
+                          <button onClick={() => deleteComment(comment?.id)}>
+                            {t("delete")}
+                          </button>
+                        )}
+                        <button>{t("report")}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="CommentWrapper">
+          <div className="CommentCard">
+            <Link to={`/profile/${comment?.user_id}`} className="img">
+              <img
+                src={comment?.user_image}
+                alt={comment?.user_name}
+                onError={(e) =>
+                  (e.target.src = "/images/icons/user_default.png")
+                }
+              />
+            </Link>
+            <div className="content">
+              <h6>{comment?.user_name}</h6>
+              <div className="comment">
+                <p>{comment?.comment}</p>
+              </div>
+              <div className="actions">
+                <span>{comment?.date}</span>
+                <button>{t("reply")}</button>
+                {comment?.user_id === authedUser?.id && (
+                  <button onClick={() => deleteComment(comment?.id)}>
+                    {t("delete")}
+                  </button>
+                )}
+                <button>{t("report")}</button>
+              </div>
+            </div>
+          </div>
+          <div className="replies"></div>
+        </div>
+        <div className="CommentWrapper">
+          <div className="CommentCard">
+            <Link to={`/profile/${comment?.user_id}`} className="img">
+              <img
+                src={comment?.user_image}
+                alt={comment?.user_name}
+                onError={(e) =>
+                  (e.target.src = "/images/icons/user_default.png")
+                }
+              />
+            </Link>
+            <div className="content">
+              <h6>{comment?.user_name}</h6>
+              <div className="comment">
+                <p>{comment?.comment}</p>
+              </div>
+              <div className="actions">
+                <span>{comment?.date}</span>
+                <button>{t("reply")}</button>
+                {comment?.user_id === authedUser?.id && (
+                  <button onClick={() => deleteComment(comment?.id)}>
+                    {t("delete")}
+                  </button>
+                )}
+                <button>{t("report")}</button>
+              </div>
+            </div>
+          </div>
+          <div className="replies"></div>
+        </div>
       </div>
     </div>
   );
