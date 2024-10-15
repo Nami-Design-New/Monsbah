@@ -370,7 +370,6 @@ body header .mainLinks .navbar-brand {
 body header .mainLinks .navbar-brand img {
   height: 52px;
   max-width: 250px;
-  width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   -o-object-position: right;
@@ -2156,6 +2155,40 @@ body .Profile_section .content .Payments_content .Box h2 {
 body .profile-page {
   padding: 40px 0;
 }
+body .profile-page .vertical-tabs {
+  margin: 24px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px !important;
+  border-bottom: none !important;
+}
+body .profile-page .vertical-tabs .nav-tabs {
+  width: 100% !important;
+}
+body .profile-page .vertical-tabs li button {
+  padding: 6px 16px;
+  color: #0d0d0d;
+  transition: 0.3s ease-in-out;
+  position: relative;
+}
+body .profile-page .vertical-tabs li button::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) skew(-30deg);
+  width: 0;
+  height: 2px;
+  background: #1abc9c;
+  transition: 0.3s ease-in-out;
+}
+body .profile-page .vertical-tabs li button:hover, body .profile-page .vertical-tabs li button.active {
+  color: #1abc9c;
+}
+body .profile-page .vertical-tabs li button:hover::after, body .profile-page .vertical-tabs li button.active::after {
+  width: 100%;
+}
 body .profile-page .tabs-section {
   display: flex;
   padding: 0 !important;
@@ -2632,6 +2665,29 @@ body .Dashpoard_section .Profile_info {
   align-items: center;
   gap: 15px;
   position: relative;
+  width: 100%;
+}
+body .Dashpoard_section .Profile_info .actions-wrapper {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body .Dashpoard_section .Profile_info .actions-wrapper .action-btn {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #1abc9c;
+  min-width: 120px;
+  cursor: pointer;
 }
 body .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
@@ -2664,6 +2720,9 @@ body .Dashpoard_section .Profile_info .img img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body .Dashpoard_section .Profile_info .name {
+  flex: 1 0;
 }
 body .Dashpoard_section .Profile_info .name h1 {
   color: #fff;
@@ -3298,6 +3357,40 @@ body main .Profile_section .content .Payments_content .Box h2 {
 body main .profile-page {
   padding: 40px 0;
 }
+body main .profile-page .vertical-tabs {
+  margin: 24px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px !important;
+  border-bottom: none !important;
+}
+body main .profile-page .vertical-tabs .nav-tabs {
+  width: 100% !important;
+}
+body main .profile-page .vertical-tabs li button {
+  padding: 6px 16px;
+  color: #0d0d0d;
+  transition: 0.3s ease-in-out;
+  position: relative;
+}
+body main .profile-page .vertical-tabs li button::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) skew(-30deg);
+  width: 0;
+  height: 2px;
+  background: #1abc9c;
+  transition: 0.3s ease-in-out;
+}
+body main .profile-page .vertical-tabs li button:hover, body main .profile-page .vertical-tabs li button.active {
+  color: #1abc9c;
+}
+body main .profile-page .vertical-tabs li button:hover::after, body main .profile-page .vertical-tabs li button.active::after {
+  width: 100%;
+}
 body main .profile-page .tabs-section {
   display: flex;
   padding: 0 !important;
@@ -3774,6 +3867,29 @@ body main .Dashpoard_section .Profile_info {
   align-items: center;
   gap: 15px;
   position: relative;
+  width: 100%;
+}
+body main .Dashpoard_section .Profile_info .actions-wrapper {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body main .Dashpoard_section .Profile_info .actions-wrapper .action-btn {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #1abc9c;
+  min-width: 120px;
+  cursor: pointer;
 }
 body main .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
@@ -3806,6 +3922,9 @@ body main .Dashpoard_section .Profile_info .img img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body main .Dashpoard_section .Profile_info .name {
+  flex: 1 0;
 }
 body main .Dashpoard_section .Profile_info .name h1 {
   color: #fff;
@@ -4508,7 +4627,7 @@ body main .product_details .advertiserDetails .advertiser .image_wrapper .follow
   position: absolute;
   bottom: -4px;
   left: -4px;
-  background: #4381f8;
+  background: #1abc9c;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -5632,7 +5751,7 @@ body .CommentCard::after {
   right: 18px;
   top: 42px;
   width: 1px;
-  height: calc(100% - 0px);
+  height: 100%;
   background: #a5a5a5;
 }
 body .CommentCard .img {
@@ -5674,6 +5793,7 @@ body .CommentCard .actions {
 body .CommentCard .actions span {
   font-size: 12px;
   color: #777777;
+  flex: 1;
 }
 body .CommentCard .actions button {
   display: flex;
@@ -5686,6 +5806,7 @@ body .CommentWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 8px 0;
   gap: 24px;
 }
 body .CommentWrapper .replies {
@@ -5712,7 +5833,7 @@ body .CommentWrapper .replies .CommentWrapper:last-child::after {
   background: #f8f8f8;
   position: absolute;
   right: -30px;
-  top: 5px;
+  top: 12px;
   z-index: 2;
 }
 body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
@@ -5720,6 +5841,18 @@ body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
 }
 body .CommentWrapper:not(:has(.replies .CommentWrapper)) .CommentCard::after {
   display: none;
+}
+body .replyTo {
+  font-size: 14px;
+  color: #777777;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body .replyTo b {
+  color: #1abc9c;
 }
 body .addCommentForm {
   display: flex !important;

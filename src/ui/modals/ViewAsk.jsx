@@ -8,24 +8,39 @@ import useGetAskComments from "../../hooks/comments/useGetAskComments";
 import CommentCard from "../cards/CommentCard";
 import AddCommentForm from "../../components/AddCommentForm";
 import axiosInstance from "../../utils/axiosInstance";
+import PageLoader from "./../loaders/PageLoader";
 
 function ViewAsk({ showModal, setShowModal, ask }) {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
+  const { data: comments, isLoading } = useGetAskComments(ask?.id);
+
   const queryClient = useQueryClient();
-  const { data: comments } = useGetAskComments(ask?.id);
+
+  const [targetComment, setTargetComment] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e, comment, setValue) => {
     e.preventDefault();
     setLoading(true);
+
+    const payLoad = {
+      question_id: ask?.id,
+      comment: comment,
+    };
+
+    if (targetComment) {
+      payLoad.parent_id = targetComment.id;
+    }
+
     try {
-      const res = await axiosInstance.post("/client/store-question-comment", {
-        question_id: ask?.id,
-        comment: comment,
-      });
+      const res = await axiosInstance.post(
+        "/client/store-question-comment",
+        payLoad
+      );
       if (res.status === 200) {
         toast.success(res.data.message);
         setValue("");
+        setTargetComment(null);
         queryClient.invalidateQueries({ queryKey: ["ask-comments"] });
       }
     } catch (error) {
@@ -79,16 +94,27 @@ function ViewAsk({ showModal, setShowModal, ask }) {
             {t("comments")} ({ask?.count_comments})
           </h6>
           <div className="wrapper">
-            {comments?.map((comment) => (
-              <CommentCard
-                comment={comment}
-                key={comment?.id}
-                deleteComment={deleteComment}
-              />
-            ))}
+            {isLoading ? (
+              <PageLoader minHeight={"50vh"} />
+            ) : (
+              <>
+                {comments?.map((comment) => (
+                  <CommentCard
+                    comment={comment}
+                    key={comment?.id}
+                    setTargetComment={setTargetComment}
+                    deleteComment={deleteComment}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
-        <AddCommentForm loading={loading} handleSubmit={handleSubmit} />
+        <AddCommentForm
+          loading={loading}
+          handleSubmit={handleSubmit}
+          targetComment={targetComment}
+        />
       </Modal.Body>
     </Modal>
   );

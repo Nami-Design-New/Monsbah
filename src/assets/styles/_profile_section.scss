@@ -62,6 +62,42 @@
 .profile-page {
   padding: 40px 0;
 
+  .vertical-tabs {
+    margin: 24px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px !important;
+    border-bottom: none !important;
+    .nav-tabs {
+      width: 100% !important;
+    }
+    li button {
+      padding: 6px 16px;
+      color: $dark;
+      transition: $transition;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%) skew(-30deg);
+        width: 0;
+        height: 2px;
+        background: $main;
+        transition: $transition;
+      }
+      &:hover,
+      &.active {
+        color: $main;
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
   .tabs-section {
     display: flex;
     padding: 0 !important;
@@ -520,6 +556,30 @@
     align-items: center;
     gap: 15px;
     position: relative;
+    width: 100%;
+
+    .actions-wrapper {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+
+      .action-btn {
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 12px;
+        @include centerFlex();
+        background-color: $white;
+        color: $main;
+        min-width: 120px;
+        cursor: pointer;
+      }
+    }
+
     .logo-wrapper {
       width: 68px;
       height: 68px;
@@ -551,6 +611,7 @@
       }
     }
     .name {
+      flex: 1 0;
       h1 {
         color: $white;
         font-size: 22px;

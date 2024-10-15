@@ -6,10 +6,12 @@ import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
 import ProductDetails from "./routes/ProductDetails";
 import Profile from "./routes/Profile";
+
 import AltProfile from "./routes/AltProfile";
 import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
+import UserProfile from "./routes/UserProfile";
 
 const router = [
   {
@@ -43,8 +45,8 @@ const router = [
     protected: true,
   },
   {
-    path: "profile/*",
-    element: <Profile />,
+    path: "profile/:id",
+    element: <UserProfile />,
   },
   {
     path: "alt-profile/*",

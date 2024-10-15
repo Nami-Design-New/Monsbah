@@ -1,18 +1,17 @@
 import { useEffect, useRef } from "react";
-import ProductLoader from "../../ui/loaders/ProductLoader";
+import AskLoader from "../../ui/loaders/AskLoader";
+import useGetRates from "../../hooks/rates/useGetRates";
+import RateCard from "../../ui/cards/RateCard";
 
-import ProductVertical from "../../ui/cards/ProductVertical";
-import useGetProducts from "../../hooks/products/useGetProducts";
-
-function AdsTab({ user }) {
+function RatesTab({ user }) {
   const sectionRef = useRef(null);
   const {
-    data: products,
+    data: rates,
     isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetProducts();
+  } = useGetRates(user?.id);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,11 +38,9 @@ function AdsTab({ user }) {
     <section className="products_section" ref={sectionRef}>
       <div className="container">
         <div className="row">
-          {products?.map((product, index) => (
+          {rates?.map((rate, index) => (
             <div className="col-lg-6 col-12 p-2" key={index}>
-              {+product?.user?.id === +user?.id ? (
-                <ProductVertical product={product} className="my-ad" />
-              ) : null}
+              <RateCard rate={rate} className="my-ad" />
             </div>
           ))}
 
@@ -53,7 +50,7 @@ function AdsTab({ user }) {
                 .fill(0)
                 .map((_, index) => (
                   <div className="col-lg-6 col-12 p-2" key={`loader-${index}`}>
-                    <ProductLoader />
+                    <AskLoader />
                   </div>
                 ))}
             </>
@@ -64,4 +61,4 @@ function AdsTab({ user }) {
   );
 }
 
-export default AdsTab;
+export default RatesTab;

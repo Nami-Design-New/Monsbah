@@ -19,7 +19,8 @@
     "add-ad": "اضافة اعلان",
     "verification": "توثيق الحساب",
     "profile": "الملف الشخصي",
-    "search": "بحث"
+    "search": "بحث",
+    "about-us": "من نحن"
   },
   "getApp": {
     "title": "احصل على تطبيق",
@@ -70,7 +71,8 @@
     "countrySuccessfullyChanged": "تم تغيير الدولة بنجاح",
     "changeCountry": "تغيير الدولة",
     "profileSuccessfullyUpdated": "تم تحديث الملف الشخصي بنجاح",
-    "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح"
+    "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح",
+    "rates": "التقييمات"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",
@@ -156,6 +158,7 @@
     "block": "حظر",
     "call": "اتصال"
   },
+  "replyTo": "الرد على تعليق",
   "sendVideo": "ارسال فيديو",
   "sendImage": "ارسال صورة",
   "sendContact": "ارسال جهة الاتصال",
