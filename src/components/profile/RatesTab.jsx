@@ -1,50 +1,40 @@
-import { useEffect, useRef } from "react";
 import AskLoader from "../../ui/loaders/AskLoader";
-import useGetRates from "../../hooks/rates/useGetRates";
 import RateCard from "../../ui/cards/RateCard";
+import { useTranslation } from "react-i18next";
+import useGetAllRates from "../../hooks/rates/useGetAllRates";
+import { useState } from "react";
+import CreateRateModal from "../../ui/modals/CreateRateModal";
 
 function RatesTab({ user }) {
-  const sectionRef = useRef(null);
-  const {
-    data: rates,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetRates(user?.id);
+  const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
+  const { data: rates, isLoading } = useGetAllRates(user?.id);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const sectionBottom = section.getBoundingClientRect().bottom;
-      const viewportHeight = window.innerHeight;
-
-      if (
-        sectionBottom <= viewportHeight + 200 &&
-        hasNextPage &&
-        !isFetchingNextPage
-      ) {
-        fetchNextPage();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  console.log(rates);
 
   return (
-    <section className="products_section" ref={sectionRef}>
+    <section className="products_section w-100">
       <div className="container">
+        <div className="w-100">
+          <div className=" w-100 actions-wrapper p-0 d-flex align-items-center justify-content-end">
+            <span
+              className="customBtn m-0 d-flex align-items-center gap-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowModal(true)}
+            >
+              <i className="fa-regular fa-star"></i>
+              {t("rate")}
+            </span>
+          </div>
+        </div>
         <div className="row">
-          {rates?.map((rate, index) => (
-            <div className="col-lg-6 col-12 p-2" key={index}>
-              <RateCard rate={rate} className="my-ad" />
+          {rates?.data?.data?.data?.map((rate, index) => (
+            <div className="col-12 p-2" key={index}>
+              <RateCard rate={rate} userId={user?.id} className="reverse" />
             </div>
           ))}
 
-          {(isLoading || isFetchingNextPage) && (
+          {isLoading && (
             <>
               {Array(3)
                 .fill(0)
@@ -57,6 +47,11 @@ function RatesTab({ user }) {
           )}
         </div>
       </div>
+      <CreateRateModal
+        id={user?.id}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </section>
   );
 }

@@ -211,6 +211,20 @@ body {
     gap: 12px;
     display: flex;
     position: relative;
+    &.reverse {
+      padding: 16px;
+      border-radius: 12px;
+      background-color: $white;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      .comment {
+        background-color: #f9f9f9 !important;
+      }
+    }
     &::before {
       content: "";
       position: absolute;

@@ -1732,6 +1732,34 @@ body .images_grid_upload .uploaded_file .doc_icon img {
   width: auto;
   height: 50px;
 }
+body .stars {
+  display: flex;
+  gap: 4px;
+}
+body .stars li {
+  color: #eeeeee;
+}
+body .stars li.star {
+  color: #ffd500;
+}
+body .star-rating-service {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+body .star-rating-service label {
+  cursor: pointer;
+  color: #eeeeee;
+}
+body .star-rating-service label.active {
+  color: #ffd500;
+}
+body .star-rating-service input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: none;
+}
 body .auth_section {
   width: 100%;
   display: flex;
@@ -2620,6 +2648,28 @@ body .user-details-box .value img {
      object-fit: contain;
   border-radius: 4px;
 }
+body .actions-wrapper {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body .actions-wrapper .action-btn {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #1abc9c;
+  min-width: 120px;
+  cursor: pointer;
+}
 body .Dashpoard_section {
   padding: 8px;
 }
@@ -2666,28 +2716,6 @@ body .Dashpoard_section .Profile_info {
   gap: 15px;
   position: relative;
   width: 100%;
-}
-body .Dashpoard_section .Profile_info .actions-wrapper {
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-}
-body .Dashpoard_section .Profile_info .actions-wrapper .action-btn {
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  color: #1abc9c;
-  min-width: 120px;
-  cursor: pointer;
 }
 body .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
@@ -3822,6 +3850,28 @@ body main .user-details-box .value img {
      object-fit: contain;
   border-radius: 4px;
 }
+body main .actions-wrapper {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+body main .actions-wrapper .action-btn {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #1abc9c;
+  min-width: 120px;
+  cursor: pointer;
+}
 body main .Dashpoard_section {
   padding: 8px;
 }
@@ -3868,28 +3918,6 @@ body main .Dashpoard_section .Profile_info {
   gap: 15px;
   position: relative;
   width: 100%;
-}
-body main .Dashpoard_section .Profile_info .actions-wrapper {
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-}
-body main .Dashpoard_section .Profile_info .actions-wrapper .action-btn {
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  color: #1abc9c;
-  min-width: 120px;
-  cursor: pointer;
 }
 body main .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
@@ -5733,6 +5761,17 @@ body .CommentCard {
   gap: 12px;
   display: flex;
   position: relative;
+}
+body .CommentCard.reverse {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+body .CommentCard.reverse::before, body .CommentCard.reverse::after {
+  display: none;
+}
+body .CommentCard.reverse .comment {
+  background-color: #f9f9f9 !important;
 }
 body .CommentCard::before {
   content: "";

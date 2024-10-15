@@ -272,5 +272,9 @@
   "send": "ارسال",
   "search": "بحث",
   "add": "اضافة",
-  "save": "حفظ"
+  "save": "حفظ",
+  "createRate": "أضف تقييم",
+  "writeHere": "اكتب هنا",
+  "addBtn": "اضف",
+  "successfullyRated": "تم التقييم بنجاح"
 }

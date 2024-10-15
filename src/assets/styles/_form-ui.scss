@@ -706,3 +706,31 @@
     }
   }
 }
+
+.stars {
+  display: flex;
+  gap: 4px;
+  li {
+    color: $lightGray;
+    &.star {
+      color: $starColor;
+    }
+  }
+}
+
+.star-rating-service {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+  label {
+    cursor: pointer;
+    color: $lightGray;
+    &.active {
+      color: $starColor;
+    }
+  }
+  input {
+    appearance: none;
+    display: none;
+  }
+}
