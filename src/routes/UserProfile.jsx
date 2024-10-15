@@ -13,6 +13,7 @@ import useGetAllProducts from "../hooks/products/useGetAllProducts";
 import { Tab, Tabs } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import RatesTab from "../components/profile/RatesTab";
+import EmptyData from "../ui/EmptyData";
 
 function UserProfile() {
   const { t } = useTranslation();
@@ -57,9 +58,11 @@ function UserProfile() {
     }
   };
 
+  console.log(user);
+
   return (
     <>
-      <SectionHeader />
+      <SectionHeader title={user?.name} />
       <div className="profile-page">
         <div className="container ">
           <div className="row m-0">
@@ -115,7 +118,7 @@ function UserProfile() {
                             <div className="name">
                               {user?.name ? (
                                 <h1>
-                                  {lang === "en" ? user?.username : user?.name}{" "}
+                                  {user?.name}{" "}
                                   <span>
                                     ({" "}
                                     {lang === "en"
@@ -250,34 +253,48 @@ function UserProfile() {
                     }
                     className="tab_item"
                   >
-                    <section className="products_section" ref={sectionRef}>
-                      <div className="row">
-                        {products?.data?.data?.data?.map((product, index) =>
-                          +product?.user?.id === +user?.id ? (
-                            <div className="col-lg-6 col-12 p-2" key={index}>
-                              <ProductVertical
-                                product={product}
-                                className="my-ad"
-                              />
-                            </div>
-                          ) : null
-                        )}
-
-                        {isLoading && (
-                          <>
-                            {Array(3)
-                              .fill(0)
-                              .map((_, index) => (
+                    <section
+                      className="products_section w-100"
+                      ref={sectionRef}
+                    >
+                      {products?.length > 0 ? (
+                        <>
+                          <div className="row">
+                            {products?.data?.data?.data?.map((product, index) =>
+                              +product?.user?.id === +user?.id ? (
                                 <div
                                   className="col-lg-6 col-12 p-2"
-                                  key={`loader-${index}`}
+                                  key={index}
                                 >
-                                  <ProductLoader />
+                                  <ProductVertical
+                                    product={product}
+                                    className="my-ad"
+                                  />
                                 </div>
-                              ))}
-                          </>
-                        )}
-                      </div>
+                              ) : null
+                            )}
+
+                            {isLoading && (
+                              <>
+                                {Array(3)
+                                  .fill(0)
+                                  .map((_, index) => (
+                                    <div
+                                      className="col-lg-6 col-12 p-2"
+                                      key={`loader-${index}`}
+                                    >
+                                      <ProductLoader />
+                                    </div>
+                                  ))}
+                              </>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <EmptyData minHeight="200px">
+                          <p>{t("ads.userNoAds")}</p>
+                        </EmptyData>
+                      )}
                     </section>
                   </Tab>
 
