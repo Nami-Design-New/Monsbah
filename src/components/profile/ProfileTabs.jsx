@@ -7,7 +7,7 @@ import QuestionsTab from "./QuestionsTab";
 import FavoritesTab from "./FavoritesTab";
 import SettingsTab from "./SettingsTab";
 import VerificationTab from "./VerificationTab";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../utils/axiosInstance";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +15,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { setClientData } from "../../redux/slices/clientData";
 import { toast } from "react-toastify";
 import AddAd from "../../routes/AddAd";
+import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
 function ProfileTabs() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "main";
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const user = useSelector((state) => state.clientData.client);
   const lang = useSelector((state) => state.language.lang);
@@ -36,33 +40,39 @@ function ProfileTabs() {
     setSearchParams({ tab });
   }
 
+  const performLogout = async () => {
+    setLogoutLoading(true);
+    try {
+      const deleteToken = await axios.get("/client/auth/logout", {
+        token: token,
+      });
+
+      if (deleteToken.data.status === 200) {
+        deleteCookie("token");
+        deleteCookie("id");
+        delete axios.defaults.headers.common["Authorization"];
+        dispatch(setClientData({}));
+        navigate("/", { replace: true });
+        queryClient.clear();
+        sessionStorage.clear();
+        toast.success(deleteToken.data.message);
+        setShowLogoutModal(false);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw new Error(error.message);
+    } finally {
+      setLogoutLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (activeTab === "logout") {
-      const performLogout = async () => {
-        try {
-          const deleteToken = await axios.get("/client/auth/logout", {
-            token: token,
-          });
-
-          if (deleteToken.data.status === 200) {
-            deleteCookie("token");
-            deleteCookie("id");
-            delete axios.defaults.headers.common["Authorization"];
-            dispatch(setClientData({}));
-            navigate("/", { replace: true });
-            queryClient.clear();
-            sessionStorage.clear();
-            toast.success(deleteToken.data.message);
-          }
-        } catch (error) {
-          console.error("Error during logout:", error);
-          throw new Error(error.message);
-        }
-      };
-
-      performLogout("Logout tab selected");
+      setShowLogoutModal(true);
+      searchParams.set("tab", "main");
+      setSearchParams(searchParams);
     }
-  }, [activeTab, token, deleteCookie, dispatch, navigate, queryClient]);
+  }, [activeTab, searchParams, setSearchParams]);
 
   return (
     <div className="tabs-section">
@@ -182,6 +192,15 @@ function ProfileTabs() {
           className="tab_item"
         ></Tab>
       </Tabs>
+      <ConfirmationModal
+        showModal={showLogoutModal}
+        setShowModal={setShowLogoutModal}
+        type="logout"
+        eventFun={performLogout}
+        loading={logoutLoading}
+        buttonText={t("profile.logout")}
+        text={t("auth.areYouSureYouWantToLogout")}
+      />
     </div>
   );
 }

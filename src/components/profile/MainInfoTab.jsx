@@ -89,11 +89,14 @@ function MainInfoTab({ user, lang }) {
                   </h1>
                 ) : null}
                 {user?.email ? <p>{user?.email}</p> : null}
-                {/* {user?.about_en || user?.about_ar ? (
-                <p>{lang === "en" ? user?.about_en : user?.about_ar}</p>
-              ) : null} */}
               </div>
             </div>
+          </div>
+
+          <div className="col-12 p-2">
+            {user?.about_en || user?.about_ar ? (
+              <p>{lang === "en" ? user?.about_en : user?.about_ar}</p>
+            ) : null}
           </div>
 
           {user?.country ? (

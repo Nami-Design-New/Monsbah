@@ -46,13 +46,21 @@
     "byContinueYouAccept": "بمواصلتك، فإنك توافق على",
     "termsOfUse": "سياسة الإستخدام",
     "areYouSureYouWantToDeleteAccount": "هل أنت متأكد من حذف الحساب؟",
+    "areYouSureYouWantToLogout": "هل أنت متأكد من رغبتك بتسجيل الخروج؟",
     "passwordSuccessfullyChanged": "تم تغيير كلمة المرور بنجاح",
     "passwordConfirmation": "تاكيد كلمة المرور",
     "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟",
     "oldPassword": "كلمة المرور القديمة",
     "doYouWantToChangeCountry": "هل تريد تغيير الدولة؟",
     "personalCover": "أضف صورة الغلاف",
-    "doYouWantToChangePhone": "هل تريد تغيير الرقم؟"
+    "doYouWantToChangePhone": "هل تريد تغيير الرقم؟",
+    "verify": "تحقق",
+    "resetPasswordSubtitle": "ادخل الرقم المسجل به حسابك",
+    "resetPasswordTitle": "هل نسيت كلمة المرور؟",
+    "confirmOTPSubtitle": "الرجاء فحص بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
+    "confirmOTPTitle": "الرمز مكونًا من 4 أرقام",
+    "changePasswordSubtitle": "ادخل كلمة المرور الجديدة واحرص على اختيار كلمة مرور مناسبة",
+    "changePasswordTitle": "تغيير كلمة المرور"
   },
   "profile": {
     "mainInfo": "المعلومات الشخصية",
@@ -70,6 +78,7 @@
     "changePassword": "تغيير كلمة المرور",
     "countrySuccessfullyChanged": "تم تغيير الدولة بنجاح",
     "changeCountry": "تغيير الدولة",
+    "changePhone": "تغيير الرقم",
     "profileSuccessfullyUpdated": "تم تحديث الملف الشخصي بنجاح",
     "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح",
     "rates": "التقييمات"

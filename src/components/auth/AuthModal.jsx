@@ -4,10 +4,15 @@ import { Modal } from "react-bootstrap";
 import Login from "./Login";
 import Register from "./Register";
 import useAuth from "../../hooks/useAuth";
+import ResetPassword from "./ResetPassword";
+import OTPConfirm from "./OTPConfirm";
+import ChangePassword from "./ChangePassword";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const [formType, setFormType] = useState("login");
   const { isAuthed } = useAuth();
+
+  const [otpCode, setOtpCode] = useState("");
 
   const navigate = useNavigate();
 
@@ -50,6 +55,23 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
             )}
             {formType === "register" && (
               <Register setFormType={setFormType} setShow={setShow} />
+            )}
+            {formType === "forget" && (
+              <ResetPassword
+                setFormType={setFormType}
+                setShow={setShow}
+                setOtpCode={setOtpCode}
+              />
+            )}
+            {formType === "otp" && (
+              <OTPConfirm
+                setFormType={setFormType}
+                setShow={setShow}
+                otpCode={otpCode}
+              />
+            )}
+            {formType === "reset" && (
+              <ChangePassword setFormType={setFormType} setShow={setShow} />
             )}
           </div>
         </section>

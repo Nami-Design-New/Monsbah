@@ -104,7 +104,13 @@ function Login({ setFormType, setShow }) {
         onChange={(e) => handleChange(e, setFormData)}
       />
 
-      <span className="forgetpass">{t("auth.forgetPassword")}</span>
+      <span
+        className="forgetpass"
+        style={{ cursor: "pointer" }}
+        onClick={() => setFormType("forget")}
+      >
+        {t("auth.forgetPassword")}
+      </span>
 
       <SubmitButton name={t("auth.login")} loading={loading} />
 

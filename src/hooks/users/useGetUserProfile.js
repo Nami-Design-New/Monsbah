@@ -11,7 +11,7 @@ function useGetUserProfile(enabled) {
       try {
         const res = await axiosInstance.get("/client/UserProfile", {
           params: {
-            profile_id: id,
+            profile_id: +id,
           },
         });
         if (res.status === 200) {

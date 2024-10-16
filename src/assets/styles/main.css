@@ -1760,6 +1760,39 @@ body .star-rating-service input {
           appearance: none;
   display: none;
 }
+body .otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+}
+@media (max-width: 576px) {
+  body .otp-container {
+    gap: 8px;
+  }
+}
+body .otp-container .otp-input {
+  border-radius: 12px;
+  flex: 1;
+  width: inherit;
+  height: 80px !important;
+  text-align: center;
+  border: 1px solid #1abc9c;
+  background: #ecfcf9;
+  font-size: 28px !important;
+  font-weight: 600;
+  color: #1abc9c !important;
+  outline: none;
+}
+body .otp-container .otp-input::-webkit-inner-spin-button {
+  display: none;
+}
+@media (max-width: 576px) {
+  body .otp-container .otp-input {
+    height: 60px !important;
+  }
+}
 body .auth_section {
   width: 100%;
   display: flex;

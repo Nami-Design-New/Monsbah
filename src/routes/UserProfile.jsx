@@ -129,9 +129,6 @@ function UserProfile() {
                                 </h1>
                               ) : null}
                               {user?.email ? <p>{user?.email}</p> : null}
-                              {/* {user?.about_en || user?.about_ar ? (
-                <p>{lang === "en" ? user?.about_en : user?.about_ar}</p>
-              ) : null} */}
                             </div>
                             <div className="actions-wrapper">
                               {user?.is_follow ? (
@@ -156,6 +153,14 @@ function UserProfile() {
                             </div>
                           </div>
                         </div>
+
+                        {user?.about_en || user?.about_ar ? (
+                          <div className="col-12 p-2">
+                            <p>
+                              {lang === "en" ? user?.about_en : user?.about_ar}
+                            </p>
+                          </div>
+                        ) : null}
 
                         {user?.country ? (
                           <div className="col-lg-6 col-12 p-2">

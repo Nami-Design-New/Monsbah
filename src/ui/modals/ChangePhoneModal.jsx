@@ -59,7 +59,7 @@ function ChangePhoneModal({
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
-        <h5>{t(`profile.changeCountry`)}</h5>
+        <h5>{t(`profile.changePhone`)}</h5>
       </Modal.Header>
       <Modal.Body>
         <div className="container">
