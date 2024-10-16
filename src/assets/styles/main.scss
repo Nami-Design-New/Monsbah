@@ -323,12 +323,12 @@ body {
         &:last-child {
           &::after {
             content: "";
-            width: 1px;
+            width: 3px;
             height: calc(100% - 5px);
             border-radius: 50%;
             background: #f8f8f8;
             position: absolute;
-            right: -30px;
+            right: -31px;
             top: 12px;
             z-index: 2;
           }
@@ -376,6 +376,10 @@ body {
       padding: 0 24px !important;
       height: 56px !important;
     }
+  }
+
+  .categories-page {
+    padding: 40px 0;
   }
 
   &.en {
