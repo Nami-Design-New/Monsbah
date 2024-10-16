@@ -6,7 +6,7 @@ import Register from "./Register";
 import useAuth from "../../hooks/useAuth";
 import ResetPassword from "./ResetPassword";
 import OTPConfirm from "./OTPConfirm";
-import ChangePassword from "./ChangePassword";
+import ForgetPassword from "./ForgetPassword";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const [formType, setFormType] = useState("login");
@@ -26,6 +26,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     } else {
       setShow(false);
     }
+    setFormType("login");
   };
 
   return (
@@ -57,7 +58,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               <Register setFormType={setFormType} setShow={setShow} />
             )}
             {formType === "forget" && (
-              <ResetPassword
+              <ForgetPassword
                 setFormType={setFormType}
                 setShow={setShow}
                 setOtpCode={setOtpCode}
@@ -71,7 +72,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               />
             )}
             {formType === "reset" && (
-              <ChangePassword setFormType={setFormType} setShow={setShow} />
+              <ResetPassword setFormType={setFormType} setShow={setShow} />
             )}
           </div>
         </section>

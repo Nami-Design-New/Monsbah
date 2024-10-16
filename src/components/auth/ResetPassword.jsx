@@ -1,43 +1,43 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
-import { toast } from "react-toastify";
-import PhoneInput from "../../ui/form-elements/PhoneInput";
-import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { handleChange } from "../../utils/helpers";
+import { toast } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
+import PasswordField from "../../ui/form-elements/PasswordField";
+import SubmitButton from "../../ui/form-elements/SubmitButton";
 
-function ResetPassword({ setFormType, setOtpCode }) {
+import axiosInstance from "../../utils/axiosInstance";
+
+function ResetPassword({ setFormType, setShow }) {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    phone: "",
-    country_code: "965",
+    password: "",
+    password_confirmation: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/client/auth/forget-password", {
+      const res = await axiosInstance.post("/client/auth/change-password", {
         phone: formData.country_code + formData.phone,
+        password: formData.password,
         country_code: formData.country_code,
+        fcm_token: formData.fcm_token,
       });
       if (res.status === 200) {
-        console.log(res.data);
-
         toast.success(res.data?.message);
 
-        setOtpCode(res.data?.data.otp);
-
-        setFormType("otp");
+        setFormType("login");
 
         const updatedParams = new URLSearchParams(searchParams);
         updatedParams.delete("redirect");
         setSearchParams(updatedParams);
+        setShow(false);
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -50,27 +50,31 @@ function ResetPassword({ setFormType, setOtpCode }) {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
-        <h2 className="head">{t("auth.resetPasswordSubtitle")} </h2>
-        <p className="sub-head">{t("auth.resetPasswordSubtitle")}</p>
+        <h2 className="head">{t("auth.changePasswordTitle")} </h2>
+        <p className="sub-head">{t("auth.changePasswordSubtitle")}</p>
       </div>
 
-      <PhoneInput
-        label={t("auth.phone")}
+      <PasswordField
+        label={t("auth.password")}
+        placeholder={t("auth.password")}
         required
-        type="number"
-        id="phone"
-        name="phone"
-        placeholder={t("auth.phone")}
-        value={formData.mobile_number}
-        countryCode={formData.country_code}
+        id="password"
+        name="password"
+        value={formData.password}
         onChange={(e) => handleChange(e, setFormData)}
-        onSelect={(code, setShow) => {
-          setFormData((prev) => ({ ...prev, country_code: code }));
-          setShow(false);
-        }}
       />
 
-      <SubmitButton name={t("send")} loading={loading} />
+      <PasswordField
+        label={t("auth.passwordConfirmation")}
+        placeholder={t("auth.passwordConfirmation")}
+        required
+        id="password_confirmation"
+        name="password_confirmation"
+        value={formData.password_confirmation}
+        onChange={(e) => handleChange(e, setFormData)}
+      />
+
+      <SubmitButton name={t("save")} loading={loading} />
     </form>
   );
 }
