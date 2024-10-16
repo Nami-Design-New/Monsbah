@@ -286,5 +286,9 @@
   "createRate": "أضف تقييم",
   "writeHere": "اكتب هنا",
   "addBtn": "اضف",
-  "successfullyRated": "تم التقييم بنجاح"
+  "successfullyRated": "تم التقييم بنجاح",
+  "change_cover": "تغيير صورة الغلاف",
+  "change_avatar": "تغيير الصورة الشخصية",
+  "remove_cover": "حذف صورة الغلاف",
+  "remove_avatar": "حذف الصورة الشخصية"
 }

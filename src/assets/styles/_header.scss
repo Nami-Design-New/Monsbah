@@ -180,6 +180,7 @@ header {
         }
       }
       .dropdown {
+        position: relative !important;
         .dropdown-menu {
           border: none;
           box-shadow: 0px 2px 8px #0000001a;

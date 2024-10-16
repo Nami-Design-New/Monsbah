@@ -983,6 +983,50 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .dropdown {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1;
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      i {
+        font-size: 14px;
+      }
+    }
+
+    .upload-btn {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: forestgreen !important;
+
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+
+      cursor: pointer;
+      transition: $transition;
+
+      * {
+        cursor: pointer;
+      }
+      i {
+        font-size: 18px;
+        line-height: 2;
+      }
+    }
   }
   .upload {
     input {
