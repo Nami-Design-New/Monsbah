@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "../../ui/form-elements/InputField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { useTranslation } from "react-i18next";

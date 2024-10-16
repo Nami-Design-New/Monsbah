@@ -3,6 +3,23 @@
   flex-direction: column;
   gap: 16px;
 
+  &.reverse-form {
+    .dropdown {
+      button {
+        background-color: $white !important;
+      }
+    }
+    .file_upload label {
+      background-color: $white !important;
+    }
+    input,
+    select,
+    textarea,
+    .image_upload {
+      background-color: $white !important;
+    }
+  }
+
   .resend-code {
     width: 100%;
     display: flex;
@@ -592,7 +609,7 @@
   }
   @include centerFlex();
   img {
-    height: 60px;
+    height: 64px !important;
   }
   button {
     width: 28px;
@@ -612,6 +629,7 @@
     border: 1px solid $lightGray;
     border-radius: 12px;
     height: 150px;
+    overflow: hidden;
     label {
       height: 100%;
       width: 100%;
@@ -685,6 +703,64 @@
         width: auto;
         height: 50px;
       }
+    }
+  }
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  li {
+    color: $lightGray;
+    &.star {
+      color: $starColor;
+    }
+  }
+}
+
+.star-rating-service {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+  label {
+    cursor: pointer;
+    color: $lightGray;
+    &.active {
+      color: $starColor;
+    }
+  }
+  input {
+    appearance: none;
+    display: none;
+  }
+}
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+  @media (max-width: 576px) {
+    gap: 8px;
+  }
+  .otp-input {
+    border-radius: 12px;
+    flex: 1;
+    width: inherit;
+    height: 80px !important;
+    text-align: center;
+    border: 1px solid $main;
+    background: $main10;
+    font-size: 28px !important;
+    font-weight: 600;
+    color: $main !important;
+    outline: none;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+    @media (max-width: 576px) {
+      height: 60px !important;
     }
   }
 }

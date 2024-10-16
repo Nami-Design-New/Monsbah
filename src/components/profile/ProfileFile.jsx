@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 const ProfileFile = () => {
   const { t } = useTranslation();
 
+
   return (
     <div className="Dashpoard_section">
       <div className="row m-0">
@@ -24,6 +25,7 @@ const ProfileFile = () => {
 
             <div className="icon_rate">
               <p>{t("Followings")}</p>
+              <p>{t("Followings")}</p>
             </div>
           </div>
         </div>
@@ -33,6 +35,7 @@ const ProfileFile = () => {
             <h2>200</h2>
 
             <div className="icon_rate">
+              <p>{t("Followers")}</p>
               <p>{t("Followers")}</p>
             </div>
           </div>
@@ -44,6 +47,7 @@ const ProfileFile = () => {
 
             <div className="icon_rate">
               <p>{t("Rating")}</p>
+              <p>{t("Rating")}</p>
             </div>
           </div>
         </div>
@@ -53,6 +57,7 @@ const ProfileFile = () => {
             <h2>12</h2>
 
             <div className="icon_rate">
+              <p>{t("Ad")}</p>
               <p>{t("Ad")}</p>
             </div>
           </div>

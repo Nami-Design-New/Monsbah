@@ -146,7 +146,7 @@ export default function AddAd() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form col-12 p-4 reverse-form" onSubmit={handleSubmit}>
       {/* gallery */}
       <div className="form_group">
         <div className="input-field">

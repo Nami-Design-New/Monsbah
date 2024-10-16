@@ -12,6 +12,7 @@ import NotificationCard from "../cards/NotificationCard";
 
 export default function Header() {
   const { t } = useTranslation();
+  const [avatarError, setAvatarError] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.clientData.client);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -71,7 +72,10 @@ export default function Header() {
               {t("header.getApp")}
             </button>
 
-            <Link to="/profile/add-ad" className="link text d-lg-flex d-none">
+            <Link
+              to="/profile?tab=addAd"
+              className="link text d-lg-flex d-none"
+            >
               <img src="/images/icons/plus.svg" alt="" />
               {t("header.addPost")}
             </Link>
@@ -118,7 +122,11 @@ export default function Header() {
 
             {user?.id ? (
               <Link to="/profile" className="link">
-                <img src="/images/icons/user.svg" alt="user" />
+                <img
+                  src={avatarError ? "/images/icons/user.svg" : user?.image}
+                  alt="user"
+                  onError={() => setAvatarError(true)}
+                />
               </Link>
             ) : (
               <button

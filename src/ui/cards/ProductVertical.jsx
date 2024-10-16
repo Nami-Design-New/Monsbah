@@ -2,18 +2,20 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { isValidVideoExtension } from "../../utils/helpers";
-import { useSelector } from "react-redux";
 import ImageLoad from "../loaders/ImageLoad";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
+import { useSelector } from "react-redux";
 
-function ProductVertical({ product }) {
+function ProductVertical({ product, className }) {
   const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const client = useSelector((state) => state.clientData.client.country);
+
   const queryClient = useQueryClient();
-  const { client } = useSelector((state) => state.clientData);
 
   const handleFavorite = async (e) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ function ProductVertical({ product }) {
   };
 
   return (
-    <div className="product_vertical">
+    <div className={`product_vertical ${className}`}>
       <Link to={`/product/${product.id}`} className="img">
         {isValidVideoExtension(product?.image) ? (
           <video
@@ -61,10 +63,10 @@ function ProductVertical({ product }) {
       </Link>
 
       <div className="content">
-        <Link to={`product/${product.id}`} className="title">
+        <Link to={`/product/${product.id}`} className="title">
           <h3>{product.name}</h3>
           {client?.id !== product?.user?.id && (
-            <Link
+            <span
               disabled={loading}
               onClick={handleFavorite}
               className={`favourite_btn ${
@@ -72,7 +74,7 @@ function ProductVertical({ product }) {
               }`}
             >
               <i className="fa-light fa-heart"></i>
-            </Link>
+            </span>
           )}
         </Link>
 
