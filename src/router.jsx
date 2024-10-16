@@ -7,16 +7,20 @@ import Home from "./routes/Home";
 import ProductDetails from "./routes/ProductDetails";
 import Profile from "./routes/Profile";
 
-import AltProfile from "./routes/AltProfile";
 import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
 import UserProfile from "./routes/UserProfile";
+import Categories from "./routes/Categories";
 
 const router = [
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "categories",
+    element: <Categories />,
   },
   {
     path: "about-us",
@@ -48,17 +52,16 @@ const router = [
     path: "profile/:id",
     element: <UserProfile />,
   },
-  {
-    path: "alt-profile/*",
-    element: <AltProfile />,
-  },
+
   {
     path: "verification",
     element: <Verification />,
+    protected: true,
   },
   {
     path: "add-ad",
     element: <AddAd />,
+    protected: true,
   },
   {
     path: "product/:id",

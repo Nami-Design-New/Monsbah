@@ -11,7 +11,7 @@ export default function AskCard({
 
   return (
     <div className={`AskCard ${className}`}>
-      <Link to={`/profile/${ask?.user?.id}`} className="user_info">
+      <Link to={`/profile/${ask?.user_id}`} className="user_info">
         <div className="img">
           <img
             src={ask?.user_image}

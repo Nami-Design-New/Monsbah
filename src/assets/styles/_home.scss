@@ -3,7 +3,7 @@
   @media screen and (max-width: 576px) {
     padding: 0;
     padding-bottom: 24px;
-    .container{
+    .container {
       padding: 0;
     }
   }
@@ -40,6 +40,12 @@
 .explore_ads {
   .categories_slider {
     width: 100%;
+
+    &.subcategories_slider {
+      .swiper-wrapper {
+        gap: 24px !important;
+      }
+    }
     .swiper-slide {
       width: fit-content !important;
       white-space: nowrap;
@@ -55,10 +61,32 @@
         border-radius: 200px;
         background: $inputBg;
         border: 1px solid $inputStroke;
-        &:nth-child(1){
+        &:nth-child(1) {
           margin-inline-start: 0;
         }
-        .img {
+
+        &.sub {
+          min-width: 180px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 12px !important;
+          .image-wrapper {
+            width: 100%;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            height: 180px;
+
+            img {
+              object-fit: cover;
+              height: 100%;
+            }
+          }
+        }
+
+        > .img {
           border-radius: 50%;
           background: $white;
           min-width: 32px;
