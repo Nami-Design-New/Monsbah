@@ -89,10 +89,31 @@ function SettingsTab() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const requestBody = {
+      name: formData.name,
+      username: formData.username,
+      email: formData.email,
+      phone: formData.phone,
+      country_code: formData.country_code,
+      fcm_token: formData.fcm_token,
+      country_id: user?.country?.id,
+      city_id: user?.city?.id,
+      state_id: user?.state?.id,
+    };
+
+    if (String(formData?.image?.type)?.startsWith("image")) {
+      requestBody.image = formData.image;
+    }
+
+    if (String(formData?.cover?.type)?.startsWith("image")) {
+      requestBody.cover = formData.cover;
+    }
+
     try {
       const res = await axiosInstance.post(
         `/client/auth/profile/update`,
-        formData
+        requestBody
       );
       if (res.status === 200) {
         toast.success(t("profile.profileSuccessfullyUpdated"));
