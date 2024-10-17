@@ -18,6 +18,8 @@ export default function Asks({ sectionRef }) {
     isFetchingNextPage,
   } = useGetAsks();
 
+  console.log(aks);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
