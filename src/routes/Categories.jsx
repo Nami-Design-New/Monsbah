@@ -169,7 +169,7 @@ function Categories() {
             <DataLoader minHeight="100px" maxHeight="100px" />
           ) : (
             (subCategories?.length > 0 || cities?.length > 0) && (
-              <div className="categories_slider subcategories_slider">
+              <div className="categories_slider subcategories_slider gap-2">
                 {selectedCountry && searchParams.get("ask")
                   ? cities?.map((city) => (
                       <Link
