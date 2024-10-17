@@ -173,7 +173,7 @@ function Categories() {
                 {selectedCountry && searchParams.get("ask")
                   ? cities?.map((city) => (
                       <Link
-                        to={`/search/asks`}
+                        to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
                         key={city.id}
                         onClick={() => handleSetParams(city.id, "city")}
                         className={`category sub d-flex align-items-center flex-column gap-4 ${
