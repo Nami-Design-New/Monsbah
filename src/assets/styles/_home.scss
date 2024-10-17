@@ -3,7 +3,7 @@
   @media screen and (max-width: 576px) {
     padding: 0;
     padding-bottom: 24px;
-    .container{
+    .container {
       padding: 0;
     }
   }
@@ -40,54 +40,93 @@
 .explore_ads {
   .categories_slider {
     width: 100%;
+
+    &.subcategories_slider {
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      gap: 20px;
+
+      .category {
+        &.sub {
+          background-color: $white;
+        }
+      }
+    }
     .swiper-slide {
       width: fit-content !important;
       white-space: nowrap;
-      .category {
-        cursor: pointer;
+    }
+  }
+  .category {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 4px 4px 26px;
+    margin: 0 8px;
+    white-space: nowrap;
+    color: $dark;
+    border-radius: 200px;
+    background: $inputBg;
+    border: 1px solid $inputStroke;
+    &:nth-child(1) {
+      margin-inline-start: 0;
+    }
+
+    &.sub {
+      min-width: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px !important;
+      .image-wrapper {
+        width: 100%;
         display: flex;
+        position: relative;
         align-items: center;
-        gap: 12px;
-        padding: 4px 4px 4px 26px;
-        margin: 0 8px;
-        white-space: nowrap;
-        color: $dark;
-        border-radius: 200px;
-        background: $inputBg;
-        border: 1px solid $inputStroke;
-        &:nth-child(1){
-          margin-inline-start: 0;
+        justify-content: center;
+        height: 180px;
+
+        img {
+          object-fit: cover;
+          height: 100%;
         }
-        .img {
-          border-radius: 50%;
-          background: $white;
-          min-width: 32px;
-          height: 32px;
-          @include centerFlex();
-          img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-          }
-        }
-        h6 {
-          margin: 0;
-        }
-        &.active {
-          background: $main;
-          h6 {
-            color: $white;
-          }
-        }
-        &.sub {
-          padding: 10px 16px;
-        }
-        &.skeleton {
-          animation: pulse 1.5s ease-in-out infinite;
-          h6 {
-            min-width: 32px;
-          }
-        }
+      }
+    }
+
+    > .img {
+      border-radius: 50%;
+      background: $white;
+      min-width: 32px;
+      height: 32px;
+      @include centerFlex();
+      img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+    }
+    h6 {
+      margin: 0;
+    }
+    &.active {
+      background: $main;
+      h6 {
+        color: $white;
+      }
+    }
+    &.sub {
+      padding: 10px 16px;
+    }
+    &.skeleton {
+      animation: pulse 1.5s ease-in-out infinite;
+      h6 {
+        min-width: 32px;
       }
     }
   }

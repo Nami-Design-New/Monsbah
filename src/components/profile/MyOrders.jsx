@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 const MyOrders = () => {
@@ -24,7 +23,7 @@ const MyOrders = () => {
               </span>
               <p>Transport</p>
             </div>
-            
+
             <div className="name">Mercedes e200 - 2022</div>
             <div className="location">
               <i className="fa-light fa-location-dot" />

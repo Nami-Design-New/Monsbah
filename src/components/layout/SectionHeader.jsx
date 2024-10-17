@@ -16,7 +16,6 @@ function SectionHeader({ title, backLinks }) {
           </div>
 
           <div className="text">
-            <h1>{title}</h1>
             <div className="page_name">
               <Link to="/">{t("header.home")}</Link>
 

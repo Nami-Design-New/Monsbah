@@ -40,7 +40,7 @@ export default function MyAds() {
         <div className="row">
           {products?.map((product, index) => (
             <div className="col-lg-6 col-12 p-2" key={index}>
-              <ProductVertical product={product} />
+              <ProductVertical product={product} className="my-ad" />
             </div>
           ))}
 

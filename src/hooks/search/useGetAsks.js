@@ -7,6 +7,8 @@ function useGetAsks() {
   const lang = useSelector((state) => state.language.lang);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
+  const country_id = searchParams.get("country-id");
+  const city_id = searchParams.get("city-id");
 
   const {
     isLoading,
@@ -16,13 +18,15 @@ function useGetAsks() {
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["asks", lang, search],
+    queryKey: ["asks", lang, search, country_id, city_id],
 
     queryFn: async ({ pageParam = 1 }) => {
       const res = await axiosInstance.get("/client/questions", {
         params: {
           page: pageParam,
           search: search,
+          country_id: country_id,
+          city_id: city_id,
         },
       });
       if (res.status === 200) {

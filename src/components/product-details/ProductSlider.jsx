@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { isValidVideoExtension } from "../../utils/helpers";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
@@ -27,13 +30,18 @@ export default function ProductSlider({ product }) {
     }
   }, [videoRef]);
 
+  // Initialize Fancybox on mount
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox]", {});
+  }, []);
+
   return (
     <Swiper
       effect="fade"
       loop={true}
       className="product_swiper"
       pagination={{
-        clickable: true
+        clickable: true,
       }}
       modules={[EffectFade, Autoplay, Pagination]}
       autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
@@ -49,25 +57,29 @@ export default function ProductSlider({ product }) {
     >
       {images?.map((image, index) => (
         <SwiperSlide key={index}>
-          {isValidVideoExtension(image) ? (
-            <video
-              className="blurde_bg"
-              src={image}
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-          ) : (
-            <img className="blurde_bg" src={image} alt="bluer_image" />
-          )}
-
-          {isValidVideoExtension(image) ? (
-            <video src={image} ref={videoRef} autoPlay loop muted playsInline />
-          ) : (
-            <img src={image} alt={image} />
-          )}
+          <a
+            href={image}
+            data-fancybox="gallery"
+            data-caption={isValidVideoExtension(image) ? "Video" : "Image"}
+          >
+            {isValidVideoExtension(image) ? (
+              <video
+                className="blurde_bg"
+                src={image}
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <img
+                className="blurde_bg"
+                src={image}
+                alt={"product image #" + index}
+              />
+            )}
+          </a>
         </SwiperSlide>
       ))}
     </Swiper>

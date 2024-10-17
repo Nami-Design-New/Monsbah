@@ -4,11 +4,20 @@ import AskCard from "../../ui/cards/AskCard";
 import useGetAsks from "../../hooks/search/useGetAsks";
 import AskLoader from "../../ui/loaders/AskLoader";
 import ViewAsk from "../../ui/modals/ViewAsk";
+import { useSearchParams } from "react-router-dom";
+import useGetCountries from "../../hooks/settings/useGetCountries";
+import CreateCountryAsk from "../../ui/modals/CreateCountryAsk";
 
 export default function Asks({ sectionRef }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [showCountryAskModal, setShowCountryAskModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
+  const [searchParams] = useSearchParams();
+  const country = searchParams.get("country-id");
+  const city = searchParams.get("city-id");
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const { data: countries } = useGetCountries();
 
   const {
     data: aks,
@@ -39,11 +48,34 @@ export default function Asks({ sectionRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
+  useEffect(() => {
+    if (countries?.length > 0 && searchParams.get("country-id")) {
+      setSelectedCountry(
+        countries?.filter((c) => c?.id === +searchParams.get("country-id"))[0]
+      );
+    }
+  }, [countries, searchParams]);
+
   return (
     <>
-      <div className="col-12 p-2">
-        <h6 className="title">{t("popularAsks")}</h6>
-        <p className="desc">{t("popularAsksDesc")}</p>
+      <div className="col-12 p-2 d-flex justify-content-between align-items-center">
+        <div className="div">
+          <h6 className="title">{t("popularAsks")}</h6>
+          <p className="desc">{t("popularAsksDesc")}</p>
+        </div>
+        {country && city ? (
+          <span
+            className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowCountryAskModal(true)}
+          >
+            <i className="fa-regular fa-comment-plus"></i>
+
+            <h6 className="m-0" style={{ lineHeight: 1 }}>{`${t("ask")} ${
+              selectedCountry?.name
+            }`}</h6>
+          </span>
+        ) : null}
       </div>
 
       {aks?.map((ask, index) => (
@@ -72,6 +104,14 @@ export default function Asks({ sectionRef }) {
         showModal={showModal}
         setShowModal={setShowModal}
         ask={targetAsk}
+      />
+
+      <CreateCountryAsk
+        showModal={showCountryAskModal}
+        setShowModal={setShowCountryAskModal}
+        country_id={country}
+        city_id={city}
+        title={`${t("ask")} ${selectedCountry?.name}`}
       />
     </>
   );
