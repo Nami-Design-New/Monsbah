@@ -3,12 +3,13 @@ export default function SubmitButton({
   name,
   className,
   fileLoading,
-  event = undefined
+  event = undefined,
+  style,
 }) {
   return (
     <button
       onClick={event ? event : undefined}
-      style={{ opacity: loading || fileLoading ? 0.7 : 1 }}
+      style={{ ...style, opacity: loading || fileLoading ? 0.7 : 1 }}
       disabled={loading || fileLoading}
       type="submit"
       className={`log ${className || ""}`}

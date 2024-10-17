@@ -6164,4 +6164,12 @@ body.en .Arrow_icon {
   font-weight: 800;
   color: #cecece;
   line-height: 1.6;
+}
+
+.fancybox__caption {
+  display: none !important;
+}
+
+.blurde_bg {
+  filter: blur(0px) !important;
 }/*# sourceMappingURL=main.css.map */
