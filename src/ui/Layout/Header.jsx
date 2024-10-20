@@ -93,7 +93,7 @@ export default function Header() {
                 </div>
                 <Link
                   className="showall"
-                  to="/notifications"
+                  to="/notifcations"
                   style={{ textDecoration: "none" }}
                 >
                   عرض جميع الاشعارات

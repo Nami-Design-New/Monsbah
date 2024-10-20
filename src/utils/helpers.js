@@ -6,9 +6,27 @@ export const handleChange = (e, setFormData) => {
   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 };
 
-
 export function isValidVideoExtension(source) {
-  const validExtensions = ['mp4', 'avi', 'mkv', 'mov', 'wmv', 'flv', 'webm', 'm4v', '3gp', 'ts'];
-  const extension = source.split('.').pop().toLowerCase();
+  const validExtensions = [
+    "mp4",
+    "avi",
+    "mkv",
+    "mov",
+    "wmv",
+    "flv",
+    "webm",
+    "m4v",
+    "3gp",
+    "ts",
+  ];
+  const extension = source.split(".").pop().toLowerCase();
   return validExtensions.includes(extension);
 }
+
+export const calculateDate = (createdAt) => {
+  const createdDate = new Date(createdAt);
+  const dd = String(createdDate.getDate()).padStart(2, "0");
+  const mm = String(createdDate.getMonth() + 1).padStart(2, "0");
+  const yyyy = createdDate.getFullYear();
+  return `${dd} / ${mm} / ${yyyy}`;
+};

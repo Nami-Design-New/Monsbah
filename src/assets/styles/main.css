@@ -5950,6 +5950,9 @@ body .confirm-delete .delete-btn {
 body .confirm-delete.other .delete-btn {
   background: #1abc9c;
 }
+body .notifications_section {
+  padding: 40px 0;
+}
 body .notificationCard {
   padding: 12px;
   border-radius: 12px;
