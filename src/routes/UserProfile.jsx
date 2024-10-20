@@ -35,6 +35,12 @@ function UserProfile() {
     setSearchParams({ tab });
   }
 
+  // products?.data?.data?.data?.map((product) => {
+  //   console.log(product?.user?.id);
+  // });
+
+  console.log(user);
+
   const handleFollow = async (type) => {
     setLoading(true);
     try {
@@ -57,8 +63,6 @@ function UserProfile() {
       setLoading(false);
     }
   };
-
-  console.log(user);
 
   return (
     <>
@@ -103,7 +107,7 @@ function UserProfile() {
                               />
                             )}
                           </div>
-                          <div className="Profile_info w-100">
+                          <div className="Profile_info w-100 flex-wrap">
                             <div className="logo-wrapper">
                               <img
                                 src={
@@ -130,7 +134,10 @@ function UserProfile() {
                               ) : null}
                               {user?.email ? <p>{user?.email}</p> : null}
                             </div>
-                            <div className="actions-wrapper">
+                            <div
+                              className="actions-wrapper d-flex justify-content-end"
+                              style={{ flex: 1 }}
+                            >
                               {user?.is_follow ? (
                                 <div
                                   className="action-btn follow_btn"
