@@ -261,6 +261,21 @@ input[type=number]::-webkit-inner-spin-button {
 .tableLoader svg path,
 .tableLoader svg rect {
   stroke: #1abc9c;
+}
+
+.data-loader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.data-loader .loader--style8 {
+  width: 80px;
+  height: 80px;
+}
+.data-loader svg path,
+.data-loader svg rect {
   fill: #1abc9c;
 }
 
@@ -3323,8 +3338,6 @@ body main .explore_ads .categories_slider.subcategories_slider {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 20px;
 }
 body main .explore_ads .categories_slider.subcategories_slider .category.sub {
   background-color: #fff;
@@ -3351,7 +3364,6 @@ body main .explore_ads .category:nth-child(1) {
   margin-inline-start: 0;
 }
 body main .explore_ads .category.sub {
-  min-width: 180px;
   display: flex;
   justify-content: center;
   align-items: center;

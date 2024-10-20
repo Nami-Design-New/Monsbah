@@ -169,40 +169,48 @@ function Categories() {
             <DataLoader minHeight="100px" maxHeight="100px" />
           ) : (
             (subCategories?.length > 0 || cities?.length > 0) && (
-              <div className="categories_slider subcategories_slider gap-2">
+              <div className="categories_slider subcategories_slider">
                 {selectedCountry && searchParams.get("ask")
                   ? cities?.map((city) => (
-                      <Link
-                        to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
+                      <div
+                        className="col-lg-3 col-md-4 col-6 p-2"
                         key={city.id}
-                        onClick={() => handleSetParams(city.id, "city")}
-                        className={`category sub d-flex align-items-center flex-column gap-4 ${
-                          city?.id === Number(searchParams.get("city"))
-                            ? "active"
-                            : ""
-                        }`}
                       >
-                        <h6>{city?.name}</h6>
-                      </Link>
+                        <Link
+                          to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
+                          key={city.id}
+                          onClick={() => handleSetParams(city.id, "city")}
+                          className={`category sub d-flex align-items-center flex-column gap-4 ${
+                            city?.id === Number(searchParams.get("city"))
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          <h6>{city?.name}</h6>
+                        </Link>
+                      </div>
                     ))
                   : subCategories?.map((sub) => (
-                      <Link
-                        key={sub.id}
-                        to={`/?category=${selectedCategory}&country=${searchParams.get(
-                          "country"
-                        )}&sub_category=${sub.id}`}
-                        onClick={() => handleSetParams(sub.id, "sub_category")}
-                        className={`category sub d-flex align-items-center flex-column gap-4 ${
-                          sub?.id === Number(selectedSubCategory)
-                            ? "active"
-                            : ""
-                        }`}
-                      >
-                        <div className="image-wrapper">
-                          <img src={sub?.image} alt={sub?.name} />
-                        </div>
-                        <h6>{sub?.name}</h6>
-                      </Link>
+                      <div className="col-lg-3 col-md-4 col-6 p-2" key={sub.id}>
+                        <Link
+                          to={`/?category=${selectedCategory}&country=${searchParams.get(
+                            "country"
+                          )}&sub_category=${sub.id}`}
+                          onClick={() =>
+                            handleSetParams(sub.id, "sub_category")
+                          }
+                          className={`category sub d-flex align-items-center flex-column gap-4 ${
+                            sub?.id === Number(selectedSubCategory)
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          <div className="image-wrapper">
+                            <img src={sub?.image} alt={sub?.name} />
+                          </div>
+                          <h6>{sub?.name}</h6>
+                        </Link>
+                      </div>
                     ))}
               </div>
             )
