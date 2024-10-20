@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 function NotificationCard({ item }) {
-  console.log(item);
-
   return (
     <Link
       to={item?.type === "product" ? `/product/${item?.product_id}` : `/chats`}
