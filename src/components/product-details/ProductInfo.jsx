@@ -19,13 +19,13 @@ function ProductInfo({ product }) {
           text: product?.description,
           url: window.location.href,
         })
-        .then(() => console.log("Shared successfully"))
-        .catch((error) => console.log("Error sharing:", error));
+        .then(() => t("Shared successfully"))
+        .catch((error) => t("Error sharing:", error));
     } else {
       alert(t("share_not_supported"));
     }
   };
-  
+
   const handleFavorite = async () => {
     setLoading(true);
     try {
@@ -37,7 +37,7 @@ function ProductInfo({ product }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

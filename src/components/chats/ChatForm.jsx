@@ -78,8 +78,8 @@ function ChatForm({ chat, setMessages }) {
         clearBlobUrl();
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

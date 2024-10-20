@@ -25,7 +25,7 @@ function Register({ setFormType }) {
     country_id: "",
     city_id: "",
     state_id: "",
-    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi"
+    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
   const { data: countries } = useGetCountries();
@@ -45,7 +45,7 @@ function Register({ setFormType }) {
     if (validInput.test(value)) {
       setFormData((prev) => ({
         ...prev,
-        username: value
+        username: value,
       }));
     }
   };
@@ -54,10 +54,10 @@ function Register({ setFormType }) {
     <form className="form">
       <div className="mb-4">
         <h2 className="head">
-          {t("auth.loginTitle")}{" "}
+          {t("auth.registerTitle")}{" "}
           <img src="/images/icons/waving-hand.svg" alt="hand-wave" />
         </h2>
-        <p className="sub-head">{t("auth.loginSubtitle")}</p>
+        <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
 
       <div className="form_group">
@@ -93,12 +93,12 @@ function Register({ setFormType }) {
               ...formData,
               country_id: e.target.value,
               city_id: "",
-              state_id: ""
+              state_id: "",
             })
           }
           options={countries?.map((country) => ({
             name: country?.name,
-            value: country?.id
+            value: country?.id,
           }))}
         />
         <SelectField
@@ -111,7 +111,7 @@ function Register({ setFormType }) {
           }
           options={cities?.map((city) => ({
             name: city?.name,
-            value: city?.id
+            value: city?.id,
           }))}
         />
         <SelectField
@@ -122,7 +122,7 @@ function Register({ setFormType }) {
           onChange={(e) => handleChange(e, setFormData)}
           options={states?.map((state) => ({
             name: state?.name,
-            value: state?.id
+            value: state?.id,
           }))}
         />
       </div>

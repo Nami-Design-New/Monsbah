@@ -22,7 +22,7 @@ function RateCard({ rate, userId, className }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     }
   };
 

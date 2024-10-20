@@ -29,6 +29,8 @@
   "auth": {
     "loginTitle": "Welcome Back!",
     "loginSubtitle": "Log in to access your account and continue your journey with us.",
+    "registerTitle": "Hello & Welcome !",
+    "registerSubtitle": "Fill in the required data to register for your account and become part of our community.",
     "phone": "Phone Number",
     "password": "Password",
     "forgetPassword": "Forgot your password?",
@@ -268,7 +270,6 @@
   "Calling": "Calling",
   "WhatsApp": "WhatsApp",
   "Following": "Following",
-  "Followers": "Followers",
   "Posts": "Posts",
   "Rate": "Rate",
   "WhatsAppMessage": "I want to talk to you about your ad",
