@@ -108,8 +108,8 @@ function Verification() {
                   </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-6 d-flex flex-column gap-3">
+              <div className="col-12">
+                <div className="col-lg-6 col-12 d-flex flex-column gap-3">
                   <div className="form_group">
                     <SelectField
                       label={`${t("verification.country")} *`}
@@ -163,7 +163,7 @@ function Verification() {
                     }))}
                   />
                 </div>
-                <div className="col-6 d-flex flex-column gap-3">
+                <div className="col-lg-6 col-12 d-flex flex-column gap-3">
                   <div className="col-12 field-header">
                     <h6 className="title">
                       {t("verification.verificationConfirmationTitle")}:

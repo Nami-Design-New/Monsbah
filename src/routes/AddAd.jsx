@@ -151,7 +151,8 @@ export default function AddAd() {
       <div className="form_group">
         <div className="input-field">
           <label htmlFor="certificate-image">
-            {t("ads.images")} * <span>({t("ads.imagesHint")})</span>
+            <div style={{ whiteSpace: "nowrap" }}>{t("ads.images")}</div>{" "}
+            <span>({t("ads.imagesHint")})</span>
           </label>
 
           <div className="images_grid_upload">
