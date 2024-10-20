@@ -387,7 +387,31 @@ body {
   }
 
   &.en {
-    direction: ltr;
+    direction: ltr !important;
+    input,
+    select,
+    textarea {
+      direction: ltr !important;
+    }
+
+    .form .image-change-wrapper .img-wrap {
+      .dropdown {
+        left: unset !important;
+        right: 0 !important;
+      }
+      .upload-btn {
+        left: unset !important;
+        right: -4px !important;
+      }
+    }
+
+    .image-change-wrapper .cover-wrap {
+      .dropdown {
+        left: unset !important;
+        right: 16px !important;
+      }
+    }
+
     header .mainLinks .moreActions .dropdown .dropdown-menu.show {
       inset: 26px auto auto -26px !important;
     }
