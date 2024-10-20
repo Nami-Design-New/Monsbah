@@ -123,7 +123,7 @@
     "verify": "Verify"
   },
   "ads": {
-    "images": "Upload an image for the ad",
+    "images": "Upload an image for the ad *",
     "imagesHint": "Choose images from different angles and details. You can upload up to 6 images.",
     "mainCategory": "Main Category",
     "subCategory": "Sub Category",
