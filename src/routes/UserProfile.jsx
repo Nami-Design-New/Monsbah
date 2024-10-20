@@ -39,7 +39,7 @@ function UserProfile() {
   //   console.log(product?.user?.id);
   // });
 
-  console.log(user);
+  // console.log(user)
 
   const handleFollow = async (type) => {
     setLoading(true);
