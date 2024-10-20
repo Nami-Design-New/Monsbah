@@ -27,8 +27,6 @@ function ForgetPassword({ setFormType, setOtpCode }) {
         country_code: formData.country_code,
       });
       if (res.status === 200) {
-        console.log(res.data);
-
         toast.success(res.data?.message);
 
         setOtpCode(res.data?.data.otp);

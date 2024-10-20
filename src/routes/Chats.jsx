@@ -9,8 +9,6 @@ function Chats() {
   const { t } = useTranslation();
   const { data: chats } = useGetChats();
 
-  console.log(chats);
-
   const [showChats, setShowChats] = useState(false);
   return (
     <section className="chats-section">
