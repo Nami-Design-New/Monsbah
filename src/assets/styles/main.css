@@ -4885,7 +4885,7 @@ body main .product_details .advertiserDetails .advertiser .image_wrapper .follow
   position: absolute;
   bottom: -4px;
   left: -4px;
-  background: #1abc9c;
+  background: #4381f8;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -6199,12 +6199,4 @@ body.en .Arrow_icon {
   font-weight: 800;
   color: #cecece;
   line-height: 1.6;
-}
-
-.fancybox__caption {
-  display: none !important;
-}
-
-.blurde_bg {
-  filter: blur(0px) !important;
 }/*# sourceMappingURL=main.css.map */

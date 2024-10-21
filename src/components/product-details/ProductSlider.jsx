@@ -4,23 +4,19 @@ import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { isValidVideoExtension } from "../../utils/helpers";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-
 export default function ProductSlider({ product }) {
   const [images, setImages] = useState([]);
   const [autoplayDelay, setAutoplayDelay] = useState(3000);
   const videoRef = useRef(null);
-
   useEffect(() => {
     const srcs = product?.images?.map((image) => image?.image);
     if (srcs) {
       setImages([product?.image, ...srcs]);
     }
   }, [product]);
-
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.onloadedmetadata = () => {
@@ -29,12 +25,10 @@ export default function ProductSlider({ product }) {
       };
     }
   }, [videoRef]);
-
   // Initialize Fancybox on mount
   useEffect(() => {
     Fancybox.bind("[data-fancybox]", {});
   }, []);
-
   return (
     <Swiper
       effect="fade"
@@ -51,20 +45,31 @@ export default function ProductSlider({ product }) {
           videoRef.current.play();
           setAutoplayDelay(videoRef.current.duration * 1000);
         } else {
-          setAutoplayDelay(3000);
+          setAutoplayDelay(30000);
         }
       }}
     >
       {images?.map((image, index) => (
         <SwiperSlide key={index}>
+          {isValidVideoExtension(image) ? (
+            <video
+              className="blurde_bg"
+              src={image}
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ) : (
+            <img className="blurde_bg" src={image} alt="bluer_image" />
+          )}
           <a
             href={image}
             data-fancybox="gallery"
-            data-caption={isValidVideoExtension(image) ? "Video" : "Image"}
           >
             {isValidVideoExtension(image) ? (
               <video
-                className="blurde_bg"
                 src={image}
                 ref={videoRef}
                 autoPlay
@@ -73,11 +78,7 @@ export default function ProductSlider({ product }) {
                 playsInline
               />
             ) : (
-              <img
-                className="blurde_bg"
-                src={image}
-                alt={"product image #" + index}
-              />
+              <img src={image} alt={image} />
             )}
           </a>
         </SwiperSlide>
