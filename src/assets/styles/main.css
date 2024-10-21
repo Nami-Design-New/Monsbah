@@ -4814,10 +4814,36 @@ body main .product_details .priceInfo .favorite {
   color: #0d0d0d;
   font-size: 20px;
 }
-body main .product_details .priceInfo .favorite:hover i, body main .product_details .priceInfo .favorite.active i {
+body main .product_details .priceInfo .favorite:hover:not(.dropdown-icon) i, body main .product_details .priceInfo .favorite.active:not(.dropdown-icon) i {
   transition: 0.3s ease-in-out;
   color: red;
   font-weight: 600;
+}
+body main .product_details .priceInfo .favorite .dropdown-toggle {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  color: #0d0d0d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+body main .product_details .priceInfo .favorite .dropdown-item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+}
+body main .product_details .priceInfo .favorite .dropdown-item i {
+  font-size: 14px;
+  font-weight: 400;
 }
 body main .product_details .priceInfo .share {
   display: flex;

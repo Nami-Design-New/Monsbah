@@ -21,6 +21,8 @@ export default function AskCard({
 
   const user = useSelector((state) => state.clientData.client);
 
+  console.log(ask);
+
   const queryClient = useQueryClient();
 
   const handleOpenDeleteModal = (e) => {
@@ -71,25 +73,27 @@ export default function AskCard({
             <h6>{ask?.user_name}</h6>
             <span>{ask?.date}</span>
           </div>
-          <div className="d-flex align-items-center gap-2">
-            <span
-              className={`favourite_btn dark`}
-              style={{ display: "none" }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                // setShowEditModal(true);
-              }}
-            >
-              <i className="fa-light fa-pen-to-square"></i>
-            </span>
-            <span
-              onClick={handleOpenDeleteModal}
-              className={`favourite_btn dark`}
-            >
-              <i className="fa-light fa-trash"></i>
-            </span>
-          </div>
+          {ask?.user_id === user?.id ? (
+            <div className="d-flex align-items-center gap-2">
+              <span
+                className={`favourite_btn dark`}
+                style={{ display: "none" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  // setShowEditModal(true);
+                }}
+              >
+                <i className="fa-light fa-pen-to-square"></i>
+              </span>
+              <span
+                onClick={handleOpenDeleteModal}
+                className={`favourite_btn dark`}
+              >
+                <i className="fa-light fa-trash"></i>
+              </span>
+            </div>
+          ) : null}
         </div>
       </Link>
       <div className="content">
