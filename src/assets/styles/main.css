@@ -1525,9 +1525,6 @@ body .form .phone_field {
   gap: 2px;
   direction: rtl !important;
 }
-body .form .phone_field label {
-  direction: ltr !important;
-}
 body .form .phone_field input {
   border-radius: 0 12px 12px 0;
 }
@@ -2027,6 +2024,9 @@ body .product_vertical .content .title .favourite_btn {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+body .product_vertical .content .title .favourite_btn.dark {
+  background-color: #f9f9f9;
 }
 body .product_vertical .content .title .favourite_btn.active i {
   font-weight: 600;
@@ -5169,6 +5169,30 @@ body main .AskCard {
 body main .AskCard.my-ask {
   background-color: #fff !important;
 }
+body main .AskCard .title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+body main .AskCard .title .favourite_btn {
+  background: #fff;
+  color: #0d0d0d;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .AskCard .title .favourite_btn.dark {
+  background-color: #f9f9f9;
+}
+body main .AskCard .title .favourite_btn.active i {
+  font-weight: 600;
+  color: red;
+}
 body main .AskCard .user_info {
   display: flex;
   align-items: center;
@@ -6168,6 +6192,9 @@ body.en main .explore_ads .categories_slider .swiper-slide .category {
 }
 body.en main .explore_ads .categories_slider .swiper-slide .category.sub {
   padding: 10px 16px;
+}
+body.en .form .phone_field label {
+  direction: ltr !important;
 }
 body.en .form .phone_field .countriesMenu {
   right: 0;
