@@ -45,7 +45,7 @@ export default function ProductSlider({ product }) {
           videoRef.current.play();
           setAutoplayDelay(videoRef.current.duration * 1000);
         } else {
-          setAutoplayDelay(30000);
+          setAutoplayDelay(3000);
         }
       }}
     >
