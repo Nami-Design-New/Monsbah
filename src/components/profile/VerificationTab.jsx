@@ -179,17 +179,34 @@ function VerificationTab() {
                   document_type: e.target.value,
                 })
               }
-              options={[
-                { name: `${t("verification.id")}`, value: "id" },
-                {
-                  name: `${t("verification.passport")}`,
-                  value: "passport",
-                },
-                {
-                  name: `${t("verification.license")}`,
-                  value: "license",
-                },
-              ]}
+              options={
+                formData?.type === "person"
+                  ? [
+                      { name: `${t("verification.id")}`, value: "id" },
+                      {
+                        name: `${t("verification.passport")}`,
+                        value: "passport",
+                      },
+                      {
+                        name: `${t("verification.license")}`,
+                        value: "license",
+                      },
+                    ]
+                  : [
+                      {
+                        name: `${t("verification.associationContract")}`,
+                        value: "associationContract",
+                      },
+                      {
+                        name: `${t("verification.commercialRegister")}`,
+                        value: "commercialRegister",
+                      },
+                      {
+                        name: `${t("verification.businessLicense")}`,
+                        value: "businessLicense",
+                      },
+                    ]
+              }
             />
           </div>
           <div className="input-field">
