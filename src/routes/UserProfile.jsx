@@ -26,7 +26,7 @@ function UserProfile() {
   const lang = useSelector((state) => state.language.lang);
 
   const sectionRef = useRef(null);
-  const { data: products, isLoading } = useGetAllProducts();
+  const { data: products, isLoading } = useGetAllProducts(user?.id);
 
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
@@ -34,6 +34,8 @@ function UserProfile() {
   function handleTabChange(tab) {
     setSearchParams({ tab });
   }
+
+  console.log(products?.data?.data?.data);
 
   // products?.data?.data?.data?.map((product) => {
   //   console.log(product?.user?.id);
@@ -269,22 +271,20 @@ function UserProfile() {
                       className="products_section w-100"
                       ref={sectionRef}
                     >
-                      {products?.length > 0 ? (
+                      {products?.data?.data?.data?.length > 0 ? (
                         <>
                           <div className="row">
-                            {products?.data?.data?.data?.map((product, index) =>
-                              +product?.user?.id === +user?.id ? (
-                                <div
-                                  className="col-lg-6 col-12 p-2"
-                                  key={index}
-                                >
-                                  <ProductVertical
-                                    product={product}
-                                    className="my-ad"
-                                  />
-                                </div>
-                              ) : null
-                            )}
+                            {products?.data?.data?.data?.map((product) => (
+                              <div
+                                className="col-lg-6 col-12 p-2"
+                                key={product?.id}
+                              >
+                                <ProductVertical
+                                  product={product}
+                                  className="my-ad"
+                                />
+                              </div>
+                            ))}
 
                             {isLoading && (
                               <>
