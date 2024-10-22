@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAllProducts() {
+function useGetAllProducts(id) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["allProducts"],
+    queryKey: ["allProducts", id],
     queryFn: async () => {
-      const res = await axiosInstance.get("/client/products");
+      const res = await axiosInstance.get("/client/products", {
+        params: {
+          user_id: id,
+        },
+      });
       if (res.status === 200) {
         return {
           data: res.data,
@@ -14,6 +18,7 @@ function useGetAllProducts() {
         throw new Error("Failed to fetch products");
       }
     },
+    enabled: Boolean(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
