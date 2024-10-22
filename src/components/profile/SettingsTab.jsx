@@ -192,6 +192,7 @@ function SettingsTab() {
             name: country?.name,
             value: country?.id,
           }))}
+          disabled={true}
         />
         <SelectField
           label={t("auth.city")}

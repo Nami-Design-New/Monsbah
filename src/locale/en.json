@@ -151,7 +151,8 @@
     "descriptionEn": "Description in English",
     "maxImages": "The maximum number of images and videos is 6.",
     "nameEn": "Name in English",
-    "userNoAds": "No ads for this user."
+    "userNoAds": "No ads for this user.",
+    "areYouSureYouWantToDelete": "Are you sure you want to delete this ad?"
   },
   "chat": {
     "contact": "Contact",
@@ -215,6 +216,7 @@
   "asks": "Asks",
   "popularPersons": "Popular Persons",
   "popularPersonsDesc": "The right people for your search result",
+  "areYouSureYouWantToDeleteAsk": "Are you sure you want to delete this ask?",
   "popularAsks": "Popular Inquiries",
   "popularAsksDesc": "The inquiries suitable for your search result",
   "popularAds": "Popular Ads",
@@ -288,5 +290,8 @@
   "CreateRate": "Add Rating",
   "WriteHere": "Write Here",
   "AddBtn": "Add",
-  "SuccessfullyRated": "Successfully Rated"
+  "SuccessfullyRated": "Successfully Rated",
+  "confirm": "Confirm",
+  "editAsk": "Edit Question",
+  "edit": "Edit"
 }

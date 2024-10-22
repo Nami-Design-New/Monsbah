@@ -7,13 +7,16 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import { useSelector } from "react-redux";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 function ProductVertical({ product, className }) {
   const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const client = useSelector((state) => state.clientData.client.country);
+  const client = useSelector((state) => state.clientData.client);
 
   const queryClient = useQueryClient();
 
@@ -36,6 +39,33 @@ function ProductVertical({ product, className }) {
       throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOpenDeleteModal = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDeleteModal(true);
+  };
+
+  const performDelete = async () => {
+    setDeleteLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/delete-product", {
+        product_id: product?.id,
+      });
+      if (res.status === 200) {
+        queryClient.invalidateQueries({
+          queryKey: ["products"],
+        });
+        queryClient.invalidateQueries({ queryKey: ["product"] });
+      }
+      setShowDeleteModal(false);
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -65,16 +95,32 @@ function ProductVertical({ product, className }) {
       <div className="content">
         <Link to={`/product/${product.id}`} className="title">
           <h3>{product.name}</h3>
-          {client?.id !== product?.user?.id && (
+          {client?.id !== product?.user?.id ? (
             <span
               disabled={loading}
               onClick={handleFavorite}
-              className={`favourite_btn ${
+              className={`favourite_btn dark ${
                 product?.is_favorite ? "active" : ""
               }`}
             >
               <i className="fa-light fa-heart"></i>
             </span>
+          ) : (
+            <div className="d-flex align-items-center gap-2">
+              <Link
+                to={`/profile?tab=addAd&product_id=${product?.id}`}
+                className={`favourite_btn dark`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <i className="fa-light fa-pen-to-square"></i>
+              </Link>
+              <span
+                onClick={handleOpenDeleteModal}
+                className={`favourite_btn dark`}
+              >
+                <i className="fa-light fa-trash"></i>
+              </span>
+            </div>
           )}
         </Link>
 
@@ -99,6 +145,15 @@ function ProductVertical({ product, className }) {
           </li>
         </ul>
       </div>
+      <ConfirmationModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        type="delete"
+        eventFun={performDelete}
+        loading={deleteLoading}
+        buttonText={t("confirm")}
+        text={t("ads.areYouSureYouWantToDelete")}
+      />
     </div>
   );
 }

@@ -83,7 +83,9 @@ export default function Header() {
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="link">
                 <img src="/images/icons/bell.svg" alt="" />
-                {total ? <span className="count"> {total} </span> : null}
+                {total ? (
+                  <span className="count"> {total < 100 ? total : "99+"} </span>
+                ) : null}
               </Dropdown.Toggle>
               <Dropdown.Menu className="drop_Message_Menu">
                 <div className="scroll_menu">

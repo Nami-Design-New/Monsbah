@@ -421,9 +421,14 @@ body {
         padding: 10px 16px;
       }
     }
-    .form .phone_field .countriesMenu {
-      right: 0;
-      left: unset;
+    .form .phone_field {
+      label {
+        direction: ltr !important;
+      }
+      .countriesMenu {
+        right: 0;
+        left: unset;
+      }
     }
     .closeModal {
       right: 16px;

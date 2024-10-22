@@ -137,6 +137,29 @@
   &.my-ask {
     background-color: $white !important;
   }
+  .title {
+    flex: 1;
+    @include space-between();
+    gap: 16px;
+    .favourite_btn {
+      background: $white;
+      color: $dark;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      @include centerFlex();
+
+      &.dark {
+        background-color: #f9f9f9;
+      }
+      &.active {
+        i {
+          font-weight: 600;
+          color: red;
+        }
+      }
+    }
+  }
   .user_info {
     display: flex;
     align-items: center;
