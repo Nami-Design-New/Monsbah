@@ -57,6 +57,7 @@ const router = [
   {
     path: "profile/:id",
     element: <UserProfile />,
+    protected: true,
   },
 
   {

@@ -141,6 +141,24 @@
     flex: 1;
     @include space-between();
     gap: 16px;
+    .report_btn {
+      background-color: $white;
+      color: $dark;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 12px;
+
+      padding: 4px 12px;
+      @include centerFlex();
+      gap: 8px;
+      font-size: 14px;
+      i {
+        font-size: 14px;
+      }
+      &.dark {
+        background-color: #f9f9f9;
+      }
+    }
     .favourite_btn {
       background: $white;
       color: $dark;

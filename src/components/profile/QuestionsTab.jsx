@@ -26,6 +26,7 @@ function QuestionsTab() {
                 setShowModal={setShowModal}
                 setTargetAsk={setTargetAsk}
                 className="my-ask"
+                reverseBg={true}
               />
             </div>
           ) : null

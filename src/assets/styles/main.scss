@@ -394,6 +394,15 @@ body {
       direction: ltr !important;
     }
 
+    .pass-group {
+      .show-pass {
+        border-radius: 0 12px 12px 0 !important;
+      }
+      input {
+        border-radius: 12px 0 0 12px !important;
+      }
+    }
+
     .form .image-change-wrapper .img-wrap {
       .dropdown {
         left: unset !important;

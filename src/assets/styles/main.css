@@ -1522,7 +1522,6 @@ body .form .phone_field {
   width: 100%;
   align-items: end;
   position: relative;
-  gap: 2px;
   direction: rtl !important;
 }
 body .form .phone_field input {
@@ -3336,7 +3335,7 @@ body main .explore_ads .categories_slider {
 }
 body main .explore_ads .categories_slider.subcategories_slider {
   background-color: #f8f8f8;
-  padding: 20px;
+  padding: 8px;
   border-radius: 12px;
   width: 100%;
   display: flex;
@@ -5202,6 +5201,25 @@ body main .AskCard .title {
   justify-content: space-between;
   gap: 16px;
 }
+body main .AskCard .title .report_btn {
+  background-color: #fff;
+  color: #0d0d0d;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+}
+body main .AskCard .title .report_btn i {
+  font-size: 14px;
+}
+body main .AskCard .title .report_btn.dark {
+  background-color: #f9f9f9;
+}
 body main .AskCard .title .favourite_btn {
   background: #fff;
   color: #0d0d0d;
@@ -6197,6 +6215,12 @@ body.en input,
 body.en select,
 body.en textarea {
   direction: ltr !important;
+}
+body.en .pass-group .show-pass {
+  border-radius: 0 12px 12px 0 !important;
+}
+body.en .pass-group input {
+  border-radius: 12px 0 0 12px !important;
 }
 body.en .form .image-change-wrapper .img-wrap .dropdown {
   left: unset !important;

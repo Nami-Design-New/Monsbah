@@ -9,6 +9,7 @@ import GetApp from "../modals/GetApp";
 import AuthModal from "../../components/auth/AuthModal";
 import useGetNotifications from "../../hooks/notifications/useGetNotifications";
 import NotificationCard from "../cards/NotificationCard";
+import useAuth from "../../hooks/useAuth";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -19,6 +20,8 @@ export default function Header() {
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
   const { data: notifications, total } = useGetNotifications();
+
+  const { isAuthed } = useAuth();
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -80,28 +83,33 @@ export default function Header() {
               {t("header.addPost")}
             </Link>
 
-            <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" className="link">
-                <img src="/images/icons/bell.svg" alt="" />
-                {total ? (
-                  <span className="count"> {total < 100 ? total : "99+"} </span>
-                ) : null}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="drop_Message_Menu">
-                <div className="scroll_menu">
-                  {notifications?.map((item) => (
-                    <NotificationCard key={item.id} item={item} />
-                  ))}
-                </div>
-                <Link
-                  className="showall"
-                  to="/notifcations"
-                  style={{ textDecoration: "none" }}
-                >
-                  عرض جميع الاشعارات
-                </Link>
-              </Dropdown.Menu>
-            </Dropdown>
+            {isAuthed ? (
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic" className="link">
+                  <img src="/images/icons/bell.svg" alt="" />
+                  {total ? (
+                    <span className="count">
+                      {" "}
+                      {total < 100 ? total : "99+"}{" "}
+                    </span>
+                  ) : null}
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="drop_Message_Menu">
+                  <div className="scroll_menu">
+                    {notifications?.map((item) => (
+                      <NotificationCard key={item.id} item={item} />
+                    ))}
+                  </div>
+                  <Link
+                    className="showall"
+                    to="/notifcations"
+                    style={{ textDecoration: "none" }}
+                  >
+                    عرض جميع الاشعارات
+                  </Link>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : null}
 
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" className="link">

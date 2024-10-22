@@ -22,14 +22,17 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
 
   const handleImageUpload = (e) => {
     imgView.current.src = URL.createObjectURL(e.target.files[0]);
-    if (String(image?.type)?.startsWith("image")) {
+
+    console.log(String(e.target.files[0]?.type)?.startsWith("image"));
+
+    if (String(e.target.files[0]?.type)?.startsWith("image")) {
       setFormData({ ...formData, [e.target.name]: e.target.files[0] });
     }
   };
 
   const handleCoverUpload = (e) => {
     coverView.current.src = URL.createObjectURL(e.target.files[0]);
-    if (String(image?.type)?.startsWith("image")) {
+    if (String(e.target.files[0]?.type)?.startsWith("image")) {
       setFormData({ ...formData, [e.target.name]: e.target.files[0] });
     }
   };
