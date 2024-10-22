@@ -120,7 +120,10 @@
     "license": "Driver's License",
     "verificationConfirmationSubtitle": "Please add an official document to verify your identity",
     "uploadDocument": "Upload Document",
-    "verify": "Verify"
+    "verify": "Verify",
+    "associationContract": "Association Contract",
+    "commercialRegister": "Commercial Register",
+    "businessLicense": "Business License"
   },
   "ads": {
     "images": "Upload an image for the ad *",
