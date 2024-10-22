@@ -34,53 +34,59 @@ export default function PhoneInput({
   }, [dropdownRef]);
 
   return (
-    <div className="phone_field">
-      <div className="input-field">
-        <label htmlFor={props?.id}>{label}</label>
-        <Form.Control className="form-control" {...props} />
-      </div>
+    <div className="phone-field-wrapper d-flex flex-column gap-2">
+      <label htmlFor={props?.id}>{label}</label>
+      <div className="phone_field">
+        <div className="input-field">
+          <Form.Control className="form-control" {...props} />
+        </div>
 
-      <div className="dropdown">
-        <button
-          disabled={disableSelect}
-          onClick={(e) => {
-            e.preventDefault();
-            setShowDropDownMenu(!showDropDownMenu);
-          }}
-        >
-          {slectedCountry && (
-            <>
-              <span>+{slectedCountry.country_code}</span>
-              <img
-                src={slectedCountry?.image}
-                alt={slectedCountry.name}
-                loading="lazy"
-              />
-            </>
-          )}
-        </button>
+        <div className="dropdown">
+          <button
+            disabled={disableSelect}
+            onClick={(e) => {
+              e.preventDefault();
+              setShowDropDownMenu(!showDropDownMenu);
+            }}
+          >
+            {slectedCountry && (
+              <>
+                <span>+{slectedCountry.country_code}</span>
+                <img
+                  src={slectedCountry?.image}
+                  alt={slectedCountry.name}
+                  loading="lazy"
+                />
+              </>
+            )}
+          </button>
 
-        <div
-          ref={dropdownRef}
-          className={`countriesMenu ${showDropDownMenu ? "active" : ""}`}
-        >
-          {countries?.map((country) => {
-            return (
-              <div
-                key={country.id}
-                className="country"
-                onClick={() =>
-                  onSelect(country.country_code, setShowDropDownMenu)
-                }
-              >
-                <div className="text">
-                  <img src={country?.image} alt={country.name} loading="lazy" />
-                  <h6>{country.name}</h6>
+          <div
+            ref={dropdownRef}
+            className={`countriesMenu ${showDropDownMenu ? "active" : ""}`}
+          >
+            {countries?.map((country) => {
+              return (
+                <div
+                  key={country.id}
+                  className="country"
+                  onClick={() =>
+                    onSelect(country.country_code, setShowDropDownMenu)
+                  }
+                >
+                  <div className="text">
+                    <img
+                      src={country?.image}
+                      alt={country.name}
+                      loading="lazy"
+                    />
+                    <h6>{country.name}</h6>
+                  </div>
+                  <p>+{country.country_code}</p>
                 </div>
-                <p>+{country.country_code}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

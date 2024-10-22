@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
+import ReportModal from "../../ui/modals/ReportModal";
 
 function ProductInfo({ product }) {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ function ProductInfo({ product }) {
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const handleShare = () => {
@@ -119,7 +121,10 @@ function ProductInfo({ product }) {
             <i className="fa-sharp fa-light fa-share-nodes"></i> {t("share")}
           </span>
           {client?.id !== product?.user?.id && (
-            <span className="action-btn report">
+            <span
+              className="action-btn report"
+              onClick={() => setShowReportModal(true)}
+            >
               <i className="fa-regular fa-flag"></i> {t("report")}
             </span>
           )}
@@ -150,6 +155,12 @@ function ProductInfo({ product }) {
         loading={deleteLoading}
         buttonText={t("confirm")}
         text={t("ads.areYouSureYouWantToDelete")}
+      />
+      <ReportModal
+        id={product?.id}
+        type="product"
+        showModal={showReportModal}
+        setShowModal={setShowReportModal}
       />
     </>
   );

@@ -299,5 +299,7 @@
   "ask": "اسأل",
   "confirm": "تأكيد",
   "editAsk": "تعديل السؤال",
-  "edit": "تعديل"
+  "edit": "تعديل",
+  "createReport": "ابلاغ",
+  "successfullyReported": "تم الابلاغ بنجاح"
 }

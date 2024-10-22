@@ -135,7 +135,13 @@ function ProductVertical({ product, className }) {
           </li>
 
           <li style={{ flex: 1 }}>
-            <Link to={`/profile/${product.user?.id}`}>
+            <Link
+              to={`${
+                +product?.user?.id === +client?.id
+                  ? "/profile"
+                  : `/profile/${product?.user?.id}`
+              }`}
+            >
               <i className="fa-light fa-user"></i> {product.user?.username}
             </Link>
           </li>

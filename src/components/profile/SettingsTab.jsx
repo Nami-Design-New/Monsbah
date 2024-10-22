@@ -113,7 +113,8 @@ function SettingsTab() {
     try {
       const res = await axiosInstance.post(
         `/client/auth/profile/update`,
-        requestBody
+        requestBody,
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
       if (res.status === 200) {
         toast.success(t("profile.profileSuccessfullyUpdated"));

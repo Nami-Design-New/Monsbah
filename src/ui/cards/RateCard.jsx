@@ -29,7 +29,14 @@ function RateCard({ rate, userId, className }) {
   return (
     <div className="CommentWrapper">
       <div className={`CommentCard ${className}`}>
-        <Link to={`/profile/${rate?.user_id}`} className="img">
+        <Link
+          to={`${
+            +rate?.user_id === +authedUser?.id
+              ? "/profile"
+              : `/profile/${rate?.user_id}`
+          }`}
+          className="img"
+        >
           <img
             src={rate?.user_image}
             alt={rate?.user_name}

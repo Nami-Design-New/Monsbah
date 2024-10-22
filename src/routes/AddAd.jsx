@@ -51,6 +51,10 @@ export default function AddAd() {
   });
 
   const { data: categories } = useGetCategories();
+  const showAdTypeOptionsId = categories?.find(
+    (category) => category?.name === "فساتين"
+  )?.id;
+
   const { data: cities } = useGetCities(
     user?.country?.id,
     Boolean(user?.country?.id)
@@ -304,22 +308,27 @@ export default function AddAd() {
                 name="type"
                 id="sale"
                 value="sale"
-                checked={formData?.type === "sale"}
+                checked={
+                  formData?.type === "sale" ||
+                  +showAdTypeOptionsId === +formData?.category_id
+                }
                 onChange={(e) => handleChange(e, setFormData)}
               />
               <span>{t("ads.sell")}</span>
             </label>
-            <label htmlFor="rent">
-              <input
-                type="radio"
-                name="type"
-                id="rent"
-                value="rent"
-                checked={formData?.type === "rent"}
-                onChange={(e) => handleChange(e, setFormData)}
-              />
-              <span>{t("ads.tajeer")}</span>
-            </label>
+            {+showAdTypeOptionsId === +formData?.category_id ? (
+              <label htmlFor="rent">
+                <input
+                  type="radio"
+                  name="type"
+                  id="rent"
+                  value="rent"
+                  checked={formData?.type === "rent"}
+                  onChange={(e) => handleChange(e, setFormData)}
+                />
+                <span>{t("ads.tajeer")}</span>
+              </label>
+            ) : null}
           </div>
         </div>
       </div>
@@ -344,13 +353,14 @@ export default function AddAd() {
           id="category_id"
           name="category_id"
           value={formData.category_id}
-          onChange={(e) =>
+          onChange={(e) => {
             setFormData({
               ...formData,
               category_id: e.target.value,
               sub_category_id: "",
-            })
-          }
+              type: "sale",
+            });
+          }}
           options={categories?.map((category) => ({
             name: category?.name,
             value: category?.id,

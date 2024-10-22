@@ -293,5 +293,7 @@
   "SuccessfullyRated": "Successfully Rated",
   "confirm": "Confirm",
   "editAsk": "Edit Question",
-  "edit": "Edit"
+  "edit": "Edit",
+  "createReport": "Report",
+  "successfullyReported": "Successfully Reported"
 }

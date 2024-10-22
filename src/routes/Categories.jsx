@@ -173,7 +173,7 @@ function Categories() {
                 {selectedCountry && searchParams.get("ask")
                   ? cities?.map((city) => (
                       <div
-                        className="col-lg-3 col-md-4 col-6 p-2"
+                        className="col-xl-2 col-lg-3 col-md-4 col-6 p-1"
                         key={city.id}
                       >
                         <Link
@@ -191,7 +191,7 @@ function Categories() {
                       </div>
                     ))
                   : subCategories?.map((sub) => (
-                      <div className="col-lg-3 col-md-4 col-6 p-2" key={sub.id}>
+                      <div className="col-lg-3 col-md-4 col-6 p-1" key={sub.id}>
                         <Link
                           to={`/?category=${selectedCategory}&country=${searchParams.get(
                             "country"

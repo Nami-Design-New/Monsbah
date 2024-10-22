@@ -7,21 +7,22 @@ import ConfirmationModal from "../modals/ConfirmationModal";
 import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 import { useQueryClient } from "@tanstack/react-query";
+import ReportModal from "../modals/ReportModal";
 
 export default function AskCard({
   ask,
   setShowModal,
   setTargetAsk,
   className,
+  reverseBg,
 }) {
   const { t } = useTranslation();
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const user = useSelector((state) => state.clientData.client);
-
-  console.log(ask);
 
   const queryClient = useQueryClient();
 
@@ -57,7 +58,9 @@ export default function AskCard({
   return (
     <div className={`AskCard ${className}`}>
       <Link
-        to={`/profile/${ask?.user_id}`}
+        to={`${
+          +ask?.user_id === +user?.id ? "/profile" : `/profile/${ask?.user_id}`
+        }`}
         className="user_info"
         onClick={(e) => e.stopPropagation()}
       >
@@ -76,7 +79,7 @@ export default function AskCard({
           {ask?.user_id === user?.id ? (
             <div className="d-flex align-items-center gap-2">
               <span
-                className={`favourite_btn dark`}
+                className={`favourite_btn ${reverseBg ? "dark" : ""}`}
                 style={{ display: "none" }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -88,12 +91,25 @@ export default function AskCard({
               </span>
               <span
                 onClick={handleOpenDeleteModal}
-                className={`favourite_btn dark`}
+                className={`favourite_btn ${reverseBg ? "dark" : ""}`}
               >
                 <i className="fa-light fa-trash"></i>
               </span>
             </div>
-          ) : null}
+          ) : (
+            <div className="d-flex align-items-center gap-2">
+              <span
+                className={`report_btn`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowReportModal(true);
+                }}
+              >
+                <i className="fa-regular fa-flag"></i> {t("report")}
+              </span>
+            </div>
+          )}
         </div>
       </Link>
       <div className="content">
@@ -126,6 +142,13 @@ export default function AskCard({
         loading={deleteLoading}
         buttonText={t("confirm")}
         text={t("areYouSureYouWantToDeleteAsk")}
+      />
+
+      <ReportModal
+        id={ask?.id}
+        type="question"
+        showModal={showReportModal}
+        setShowModal={setShowReportModal}
       />
     </div>
   );
