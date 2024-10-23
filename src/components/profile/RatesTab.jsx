@@ -10,8 +10,6 @@ function RatesTab({ user }) {
   const [showModal, setShowModal] = useState(false);
   const { data: rates, isLoading } = useGetAllRates(user?.id);
 
-  console.log(rates);
-
   return (
     <section className="products_section w-100">
       <div className="container">

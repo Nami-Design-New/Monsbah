@@ -32,7 +32,7 @@ function UserCard({ product }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -41,7 +41,14 @@ function UserCard({ product }) {
   return (
     <div className="advertiserDetails">
       <div className="advertiser">
-        <Link to={`/profile/${product?.user?.id}`} className="image_wrapper">
+        <Link
+          to={`${
+            +product?.user?.id === +client?.id
+              ? "/profile"
+              : `/profile/${product?.user?.id}`
+          }`}
+          className="image_wrapper"
+        >
           <img
             src={product?.user?.image}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
@@ -59,7 +66,13 @@ function UserCard({ product }) {
           )}
         </Link>
         <div className="content">
-          <Link to={`/profile/${product?.user?.id}`}>
+          <Link
+            to={`${
+              +product?.user?.id === +client?.id
+                ? "/profile"
+                : `/profile/${product?.user?.id}`
+            }`}
+          >
             <h3 className="name"> {product?.user?.name}</h3>
           </Link>
           <ul>

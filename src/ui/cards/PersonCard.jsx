@@ -4,11 +4,14 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
+import { useSelector } from "react-redux";
 
 function PersonCard({ person }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
+
+  const client = useSelector((state) => state.clientData.client);
 
   const handleFollow = async (type) => {
     setLoading(true);
@@ -29,7 +32,7 @@ function PersonCard({ person }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -37,7 +40,12 @@ function PersonCard({ person }) {
 
   return (
     <div className="PersonCard">
-      <Link to={`/profile/${person?.id}`} className="img_info">
+      <Link
+        to={`${
+          +person?.id === +client?.id ? "/profile" : `/profile/${person?.id}`
+        }`}
+        className="img_info"
+      >
         <div className="img">
           <img
             src={person?.image}

@@ -22,14 +22,21 @@ function RateCard({ rate, userId, className }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     }
   };
 
   return (
     <div className="CommentWrapper">
       <div className={`CommentCard ${className}`}>
-        <Link to={`/profile/${rate?.user_id}`} className="img">
+        <Link
+          to={`${
+            +rate?.user_id === +authedUser?.id
+              ? "/profile"
+              : `/profile/${rate?.user_id}`
+          }`}
+          className="img"
+        >
           <img
             src={rate?.user_image}
             alt={rate?.user_name}

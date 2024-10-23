@@ -3,17 +3,21 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
-export default function useGetProduct() {
+export default function useGetProduct(product_id) {
   const { id } = useParams();
   const lang = useSelector((state) => state.language.lang);
 
+
   const { isLoading, data, error } = useQuery({
-    queryKey: ["product", lang, id],
+    queryKey: ["product", lang, id, product_id],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get(
-          `/client/product-details?product_id=${id}`
-        );
+        const res = await axiosInstance.get(`/client/product-details`, {
+          params: {
+            product_id: product_id ? product_id : id,
+          },
+        });
+
         if (res.status === 200) {
           return res.data.data || {};
         }
@@ -22,11 +26,11 @@ export default function useGetProduct() {
         throw error;
       }
     },
-    enabled: Boolean(id),
+    enabled: Boolean(id) || Boolean(product_id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    refetchOnReconnect: false
+    refetchOnReconnect: false,
   });
   return { isLoading, data, error };
 }

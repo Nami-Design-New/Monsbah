@@ -20,7 +20,8 @@
     "verification": "توثيق الحساب",
     "profile": "الملف الشخصي",
     "search": "بحث",
-    "about-us": "من نحن"
+    "about-us": "من نحن",
+    "notifcations": "الاشعارات"
   },
   "getApp": {
     "title": "احصل على تطبيق",
@@ -29,6 +30,8 @@
   "auth": {
     "loginTitle": "مرحبًا بعودتك !",
     "loginSubtitle": "سجّل دخولك للوصول إلى حسابك ومتابعة رحلتك معنا.",
+    "registerTitle": "أهلً ومرحبًا بك !",
+    "registerSubtitle": "املأ البيانات المطلوبة للتسجيل في حسابك لتصبح جزء من مجتمعنا.",
     "phone": "رقم الجوال",
     "password": "كلمة المرور",
     "forgetPassword": "نسيت كلمة المرور؟",
@@ -117,10 +120,13 @@
     "license": "رخصة القيادة",
     "verificationConfirmationSubtitle": "يرجى إضافة مستند رسمي لإثبات الهوية الشخصية",
     "uploadDocument": "رفع المستند",
-    "verify": "توثيق"
+    "verify": "توثيق",
+    "associationContract": "عقد تأسيس",
+    "commercialRegister": "سجل تجاري",
+    "businessLicense": "الرخصة التجارية"
   },
   "ads": {
-    "images": "ارفع صورة للإعلان",
+    "images": "ارفع صورة للإعلان *",
     "imagesHint": "قم باختيار صور بزوايا وتفاصيل مختلفة يمكنك تحميل 6 صور كحد أقصى",
     "mainCategory": "القسم الرئيسي",
     "subCategory": "القسم الفرعي",
@@ -148,7 +154,8 @@
     "descriptionEn": "الوصف باللغة الانجليزية",
     "maxImages": " الحد الأقصى من الصور والفيديوهات 6",
     "nameEn": "الاسم باللغة الانجليزية",
-    "userNoAds": "لا يوجد اعلانات لهذا المستخدم"
+    "userNoAds": "لا يوجد اعلانات لهذا المستخدم",
+    "areYouSureYouWantToDelete": "هل أنت متاكد من حذف هذا الإعلان؟"
   },
   "chat": {
     "contact": "جهة الاتصال",
@@ -214,6 +221,7 @@
   "popularPersonsDesc": "الأشخاص المناسبة لنتيجة بحثك",
   "popularAsks": "أشهر الإستفسارات",
   "popularAsksDesc": "الإستفسارات المناسبة لنتيجة لبحثك",
+  "areYouSureYouWantToDeleteAsk": "هل أنت متاكد من حذف هذا السؤال؟",
   "popularAds": "أشهر الإعلانات",
   "popularAdsDesc": "الإعلانات المناسبة لنتيجة لبحثك",
   "follow": "متابعة",
@@ -291,5 +299,10 @@
   "change_avatar": "تغيير الصورة الشخصية",
   "remove_cover": "حذف صورة الغلاف",
   "remove_avatar": "حذف الصورة الشخصية",
-  "ask": "اسأل"
+  "ask": "اسأل",
+  "confirm": "تأكيد",
+  "editAsk": "تعديل السؤال",
+  "edit": "تعديل",
+  "createReport": "ابلاغ",
+  "successfullyReported": "تم الابلاغ بنجاح"
 }

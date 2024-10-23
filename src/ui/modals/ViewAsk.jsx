@@ -9,6 +9,7 @@ import CommentCard from "../cards/CommentCard";
 import AddCommentForm from "../../components/AddCommentForm";
 import axiosInstance from "../../utils/axiosInstance";
 import PageLoader from "./../loaders/PageLoader";
+import { useSelector } from "react-redux";
 
 function ViewAsk({ showModal, setShowModal, ask }) {
   const { t } = useTranslation();
@@ -18,6 +19,8 @@ function ViewAsk({ showModal, setShowModal, ask }) {
 
   const [targetComment, setTargetComment] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const client = useSelector((state) => state.clientData.client);
 
   const handleSubmit = async (e, comment, setValue) => {
     e.preventDefault();
@@ -45,7 +48,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -62,7 +65,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     }
   };
 
@@ -75,7 +78,14 @@ function ViewAsk({ showModal, setShowModal, ask }) {
     >
       <Modal.Header className="pb-0" closeButton />
       <Modal.Body>
-        <Link to={`/profile/${ask?.user?.id}`} className="user_info">
+        <Link
+          to={`${
+            +ask?.user?.id === +client?.id
+              ? "/profile"
+              : `/profile/${ask?.user?.id}`
+          }`}
+          className="user_info"
+        >
           <div className="img">
             <img
               src={ask?.user_image}

@@ -10,13 +10,14 @@ import TextField from "../form-elements/TextField";
 function CreateCountryAsk({
   showModal,
   setShowModal,
+  targetedAsk,
   country_id,
   city_id,
   title,
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(targetedAsk?.description || "");
 
   const queryClient = useQueryClient();
 
@@ -42,7 +43,7 @@ function CreateCountryAsk({
       setShowModal(false);
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -71,7 +72,7 @@ function CreateCountryAsk({
           />
           <SubmitButton
             loading={loading}
-            name={t("send")}
+            name={t(`${targetedAsk ? "save" : "send"}`)}
             style={{
               padding: "8px 16px !important",
               minWidth: "140px",

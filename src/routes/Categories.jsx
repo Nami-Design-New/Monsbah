@@ -6,36 +6,28 @@ import { useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CategoryLoader from "../ui/loaders/CategoryLoader";
-import DataLoader from "../ui/loaders/DataLoader";
 import useGetCountries from "../hooks/settings/useGetCountries";
 import useGetCities from "../hooks/settings/useGetCities";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-
+import PageLoader from "../ui/loaders/PageLoader";
 function Categories() {
   const { t } = useTranslation();
-
   const userCity = useSelector((state) => state.clientData.client.city);
   const userCountry = useSelector((state) => state.clientData.client.country);
-
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
-
   const { data: countries, isLoading: countriesLoading } = useGetCountries();
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     selectedCountry?.id,
     selectedCountry?.id && searchParams.get("ask") ? true : false
   );
-
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: subCategories, isLoading: subcategoriesLoading } =
     useGetSubCategories(selectedCategory, selectedCategory ? true : false);
-
   useEffect(() => {
     if (searchParams.get("category")) {
       setSelectedCategory(searchParams.get("category"));
@@ -48,14 +40,12 @@ function Categories() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, t]);
-
   useEffect(() => {
     if (userCountry) {
       handleSetParams(userCountry?.id, "country");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userCity, userCountry]);
-
   const handleSetParams = (value, type) => {
     if (value) {
       if (value === "") {
@@ -71,7 +61,6 @@ function Categories() {
       setSearchParams(searchParams);
     }
   };
-
   useEffect(() => {
     if (
       !searchParams.get("category") &&
@@ -82,7 +71,6 @@ function Categories() {
       setSearchParams(searchParams);
     }
   });
-
   useEffect(() => {
     if (countries?.length > 0 && searchParams.get("country")) {
       setSelectedCountry(
@@ -90,7 +78,6 @@ function Categories() {
       );
     }
   }, [countries, searchParams]);
-
   return (
     <div className="categories-page">
       <section className="explore_ads">
@@ -164,45 +151,52 @@ function Categories() {
               </>
             )}
           </Swiper>
-
           {subcategoriesLoading || citiesLoading ? (
-            <DataLoader minHeight="100px" maxHeight="100px" />
+            <PageLoader/>
           ) : (
             (subCategories?.length > 0 || cities?.length > 0) && (
-              <div className="categories_slider subcategories_slider gap-2">
+              <div className="categories_slider subcategories_slider">
                 {selectedCountry && searchParams.get("ask")
                   ? cities?.map((city) => (
-                      <Link
-                        to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
+                      <div
+                        className="col-xl-2 col-lg-3 col-md-4 col-6 p-1"
                         key={city.id}
-                        onClick={() => handleSetParams(city.id, "city")}
-                        className={`category sub d-flex align-items-center flex-column gap-4 ${
-                          city?.id === Number(searchParams.get("city"))
-                            ? "active"
-                            : ""
-                        }`}
                       >
-                        <h6>{city?.name}</h6>
-                      </Link>
+                        <Link
+                          to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
+                          key={city.id}
+                          onClick={() => handleSetParams(city.id, "city")}
+                          className={`category sub d-flex align-items-center flex-column gap-4 ${
+                            city?.id === Number(searchParams.get("city"))
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          <h6>{city?.name}</h6>
+                        </Link>
+                      </div>
                     ))
                   : subCategories?.map((sub) => (
-                      <Link
-                        key={sub.id}
-                        to={`/?category=${selectedCategory}&country=${searchParams.get(
-                          "country"
-                        )}&sub_category=${sub.id}`}
-                        onClick={() => handleSetParams(sub.id, "sub_category")}
-                        className={`category sub d-flex align-items-center flex-column gap-4 ${
-                          sub?.id === Number(selectedSubCategory)
-                            ? "active"
-                            : ""
-                        }`}
-                      >
-                        <div className="image-wrapper">
-                          <img src={sub?.image} alt={sub?.name} />
-                        </div>
-                        <h6>{sub?.name}</h6>
-                      </Link>
+                      <div className="col-lg-3 col-md-4 col-6 p-1" key={sub.id}>
+                        <Link
+                          to={`/?category=${selectedCategory}&country=${searchParams.get(
+                            "country"
+                          )}&sub_category=${sub.id}`}
+                          onClick={() =>
+                            handleSetParams(sub.id, "sub_category")
+                          }
+                          className={`category sub d-flex align-items-center flex-column gap-4 ${
+                            sub?.id === Number(selectedSubCategory)
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          <div className="image-wrapper">
+                            <img src={sub?.image} alt={sub?.name} />
+                          </div>
+                          <h6>{sub?.name}</h6>
+                        </Link>
+                      </div>
                     ))}
               </div>
             )
@@ -212,5 +206,4 @@ function Categories() {
     </div>
   );
 }
-
 export default Categories;

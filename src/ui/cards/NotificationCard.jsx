@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 function NotificationCard({ item }) {
   return (
     <Link
-      to={
-        item?.type === "product"
-          ? `/product/${item?.product_id}`
-          : `/chat/${item?.user_id}`
-      }
+      to={item?.type === "product" ? `/product/${item?.product_id}` : `/chats`}
       className="notificationCard"
       key={item.id}
     >

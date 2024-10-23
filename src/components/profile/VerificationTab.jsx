@@ -104,7 +104,7 @@ function VerificationTab() {
         </div>
       </div>
       <div className="row">
-        <div className="col-6 d-flex flex-column gap-3">
+        <div className="col-lg-6 col-12 d-flex flex-column gap-3 mb-3">
           <div className="form_group">
             <SelectField
               label={`${t("verification.country")} *`}
@@ -158,7 +158,7 @@ function VerificationTab() {
             }))}
           />
         </div>
-        <div className="col-6 d-flex flex-column gap-3">
+        <div className="col-lg-6 col-12 d-flex flex-column gap-3 mb-3">
           <div className="col-12 field-header">
             <h6 className="title">
               {t("verification.verificationConfirmationTitle")}:
@@ -179,17 +179,34 @@ function VerificationTab() {
                   document_type: e.target.value,
                 })
               }
-              options={[
-                { name: `${t("verification.id")}`, value: "id" },
-                {
-                  name: `${t("verification.passport")}`,
-                  value: "passport",
-                },
-                {
-                  name: `${t("verification.license")}`,
-                  value: "license",
-                },
-              ]}
+              options={
+                formData?.type === "person"
+                  ? [
+                      { name: `${t("verification.id")}`, value: "id" },
+                      {
+                        name: `${t("verification.passport")}`,
+                        value: "passport",
+                      },
+                      {
+                        name: `${t("verification.license")}`,
+                        value: "license",
+                      },
+                    ]
+                  : [
+                      {
+                        name: `${t("verification.associationContract")}`,
+                        value: "associationContract",
+                      },
+                      {
+                        name: `${t("verification.commercialRegister")}`,
+                        value: "commercialRegister",
+                      },
+                      {
+                        name: `${t("verification.businessLicense")}`,
+                        value: "businessLicense",
+                      },
+                    ]
+              }
             />
           </div>
           <div className="input-field">

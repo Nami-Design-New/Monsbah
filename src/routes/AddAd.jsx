@@ -4,7 +4,7 @@ import { handleChange } from "../utils/helpers";
 import { toast } from "react-toastify";
 import { Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import SelectField from "../ui/form-elements/SelectField";
@@ -16,12 +16,20 @@ import useGetStates from "../hooks/settings/useGetStates";
 import TextField from "../ui/form-elements/TextField";
 import PhoneInput from "../ui/form-elements/PhoneInput";
 import axiosInstance from "../utils/axiosInstance";
+import useGetProduct from "../hooks/products/useGetProduct";
 
 export default function AddAd() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const user = useSelector((state) => state.clientData.client);
   const queryClient = useQueryClient();
+
+  const [searchParams] = useSearchParams();
+  const product_id = searchParams.get("product_id");
+
+  const { data: product } = useGetProduct(+product_id);
+
+  console.log(product);
 
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,6 +51,10 @@ export default function AddAd() {
   });
 
   const { data: categories } = useGetCategories();
+  const showAdTypeOptionsId = categories?.find(
+    (category) => category?.name === "فساتين"
+  )?.id;
+
   const { data: cities } = useGetCities(
     user?.country?.id,
     Boolean(user?.country?.id)
@@ -74,6 +86,30 @@ export default function AddAd() {
       }));
     }
   }, [user]);
+
+  useEffect(() => {
+    if (product) {
+      setFormData((prevState) => ({
+        ...prevState,
+        name_ar: product?.name,
+        name_en: product?.name,
+        category_id: product?.category?.id,
+        sub_category_id: product?.sub_category?.id,
+        city_id: product?.city?.id,
+        state_id: product?.state?.id,
+        description_ar: product?.description,
+        description_en: product?.description,
+        type: product?.type,
+        price: product?.price,
+        active_chat: product?.active_chat,
+        active_whatsapp: product?.active_whatsapp,
+        active_call: product?.active_call,
+        images: product?.images?.map((image) =>
+          image?.image ? image?.image : null
+        ),
+      }));
+    }
+  }, [product]);
 
   const handleImagesChange = (e) => {
     e.preventDefault();
@@ -125,21 +161,58 @@ export default function AddAd() {
       return;
     }
 
-    try {
-      const res = await axiosInstance.post("/client/store-product", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    const requestBody = {
+      name_ar: formData?.name_ar,
+      name_en: formData?.name_en,
+      price: formData?.price,
+      category_id: formData?.category_id,
+      sub_category_id: formData?.sub_category_id,
+      city_id: formData?.city_id,
+      state_id: formData?.state_id,
+      description_ar: formData?.description_ar,
+      description_en: formData?.description_en,
+      type: formData?.type,
+      active_chat: formData?.active_chat,
+      active_whatsapp: formData?.active_whatsapp,
+      active_call: formData?.active_call,
+      delete_images: formData?.delete_images,
+      country_id: formData?.country_id,
+      country_code: formData?.country_code,
+      phone: formData?.phone,
+      currency_id: formData?.currency_id,
+    };
+
+    if (product_id) {
+      requestBody.id = product_id;
+    }
+
+    if (formData?.images?.length > 0) {
+      formData?.images.forEach((image) => {
+        if (image?.type?.startsWith("image/")) {
+          requestBody.images.push(image);
+        }
       });
+    }
+
+    try {
+      const res = await axiosInstance.post(
+        `/client/${product_id ? "update-product" : "store-product"}`,
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       if (res.status === 200) {
         toast.success(res.data.message);
         queryClient.invalidateQueries({ queryKey: ["user-products"] });
-        navigate("/profile/my-ads");
+        navigate("/profile?tab=ads");
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
       toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -151,7 +224,8 @@ export default function AddAd() {
       <div className="form_group">
         <div className="input-field">
           <label htmlFor="certificate-image">
-            {t("ads.images")} * <span>({t("ads.imagesHint")})</span>
+            <div style={{ whiteSpace: "nowrap" }}>{t("ads.images")}</div>{" "}
+            <span>({t("ads.imagesHint")})</span>
           </label>
 
           <div className="images_grid_upload">
@@ -193,7 +267,7 @@ export default function AddAd() {
                     src={
                       image?.type?.startsWith("image/")
                         ? URL.createObjectURL(image)
-                        : image?.image
+                        : image
                     }
                     alt="file"
                   />
@@ -234,22 +308,27 @@ export default function AddAd() {
                 name="type"
                 id="sale"
                 value="sale"
-                checked={formData?.type === "sale"}
+                checked={
+                  formData?.type === "sale" ||
+                  +showAdTypeOptionsId === +formData?.category_id
+                }
                 onChange={(e) => handleChange(e, setFormData)}
               />
               <span>{t("ads.sell")}</span>
             </label>
-            <label htmlFor="rent">
-              <input
-                type="radio"
-                name="type"
-                id="rent"
-                value="rent"
-                checked={formData?.type === "rent"}
-                onChange={(e) => handleChange(e, setFormData)}
-              />
-              <span>{t("ads.tajeer")}</span>
-            </label>
+            {+showAdTypeOptionsId === +formData?.category_id ? (
+              <label htmlFor="rent">
+                <input
+                  type="radio"
+                  name="type"
+                  id="rent"
+                  value="rent"
+                  checked={formData?.type === "rent"}
+                  onChange={(e) => handleChange(e, setFormData)}
+                />
+                <span>{t("ads.tajeer")}</span>
+              </label>
+            ) : null}
           </div>
         </div>
       </div>
@@ -274,13 +353,14 @@ export default function AddAd() {
           id="category_id"
           name="category_id"
           value={formData.category_id}
-          onChange={(e) =>
+          onChange={(e) => {
             setFormData({
               ...formData,
               category_id: e.target.value,
               sub_category_id: "",
-            })
-          }
+              type: "sale",
+            });
+          }}
           options={categories?.map((category) => ({
             name: category?.name,
             value: category?.id,
@@ -458,7 +538,10 @@ export default function AddAd() {
       )}
 
       <div className="d-flex justify-content-end mt-2">
-        <SubmitButton loading={loading} name={t("add")} />
+        <SubmitButton
+          loading={loading}
+          name={t(`${product_id ? "save" : "add"}`)}
+        />
       </div>
     </form>
   );

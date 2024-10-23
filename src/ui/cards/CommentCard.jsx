@@ -9,7 +9,11 @@ function CommentCard({ comment, deleteComment, setTargetComment }) {
   return (
     <div className="CommentWrapper">
       <div className="CommentCard">
-        <Link to={`/profile/${comment?.user_id}`} className="img">
+        <Link to={`${
+            +comment?.user_id === +authedUser?.id
+              ? "/profile"
+              : `/profile/${comment?.user_id}`
+          }`} className="img">
           <img
             src={comment?.user_image}
             alt={comment?.user_name}
@@ -33,8 +37,6 @@ function CommentCard({ comment, deleteComment, setTargetComment }) {
                 {t("delete")}
               </button>
             )}
-
-            <button>{t("report")}</button>
           </div>
         </div>
       </div>
