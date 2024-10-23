@@ -9,31 +9,45 @@ import "swiper/css/effect-fade";
 
 function HeroSlider() {
   const { data: sliders, isLoading } = useGetSliders();
+  
+  const sliderData = sliders?.data?.data?.data || [];
+  const slidesCount = sliderData.length;
 
   return (
     <section className="hero_section">
       <div className="container">
         <div className="swiper_wrapper">
-          <div className="swiperControl">
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
-          </div>
+          {/* Conditionally hide navigation controls if there are fewer than 2 slides */}
+          {slidesCount > 1 && (
+            <div className="swiperControl d-none d-md-block">
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
+            </div>
+          )}
 
           <Swiper
             speed={1000}
             effect="fade"
-            loop={true}
+            loop={slidesCount > 1}
             modules={[Navigation, EffectFade, Autoplay, Pagination]}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            pagination={{
-              clickable: true,
-            }}
+            navigation={
+              slidesCount > 1
+                ? {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                  }
+                : false
+            }
+            pagination={
+              slidesCount > 1
+                ? {
+                    clickable: true,
+                  }
+                : false
+            }
             spaceBetween={30}
             className="hero_swiper"
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={slidesCount > 1 ? { delay: 3000, disableOnInteraction: false } : false}
           >
             {isLoading ? (
               <>
@@ -43,15 +57,13 @@ function HeroSlider() {
               </>
             ) : (
               <>
-                {sliders?.data?.data?.data &&
-                  sliders?.data?.data?.data?.length > 0 &&
-                  sliders?.data?.data?.data?.map((slider) => (
-                    <SwiperSlide key={slider?.id}>
-                      <Link>
-                        <img src={slider?.image} alt="" />
-                      </Link>
-                    </SwiperSlide>
-                  ))}
+                {sliderData.map((slider) => (
+                  <SwiperSlide key={slider?.id}>
+                    <Link>
+                      <img src={slider?.image} alt="" />
+                    </Link>
+                  </SwiperSlide>
+                ))}
               </>
             )}
           </Swiper>

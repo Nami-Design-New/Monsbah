@@ -6416,4 +6416,8 @@ body.en .Arrow_icon {
   width: min(100% - 24px, 1140px);
   margin: 20px auto;
   justify-content: center;
+}
+
+.row {
+  margin: 0;
 }/*# sourceMappingURL=main.css.map */

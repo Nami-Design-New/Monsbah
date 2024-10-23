@@ -34,26 +34,37 @@ export default function ProductSlider({ product }) {
     Fancybox.bind("[data-fancybox]", {});
   }, []);
 
+  const slidesCount = images.length;
+
   return (
     <div className="swiper_wrapper">
-      <div className="swiperControl">
-        <div className="swiper-button-prev"></div>
-        <div className="swiper-button-next"></div>
-      </div>
+      {/* Conditionally show navigation controls if there are more than 1 slide */}
+      {slidesCount > 1 && (
+        <div className="swiperControl d-none d-md-block">
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+        </div>
+      )}
 
       <Swiper
         effect="fade"
-        loop={true}
+        loop={slidesCount > 1}
         className="product_swiper"
-        pagination={{
-          clickable: true,
-        }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
+        pagination={slidesCount > 1 ? { clickable: true } : false}
+        navigation={
+          slidesCount > 1
+            ? {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }
+            : false
+        }
         modules={[Navigation, EffectFade, Autoplay, Pagination]}
-        autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
+        autoplay={
+          slidesCount > 1
+            ? { delay: autoplayDelay, disableOnInteraction: false }
+            : false
+        }
         onSlideChange={(swiper) => {
           if (swiper.realIndex === 0 && videoRef.current) {
             videoRef.current.currentTime = 0;
