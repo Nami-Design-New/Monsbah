@@ -3459,7 +3459,7 @@ body main .explore_ads .filter .css-1hf1o2u-container {
   min-width: 120px;
 }
 body main .contact_section {
-  padding: 60px 0;
+  padding: 24px 0;
 }
 body main .contact_section .contact_info {
   padding: 60px 80px;
@@ -5980,7 +5980,7 @@ body .viewAskModal .modal-body p {
   margin: 0;
 }
 body .viewAskModal .modal-body .wrapper {
-  height: 50vh;
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -6281,4 +6281,9 @@ body.en .Arrow_icon {
   font-weight: 800;
   color: #cecece;
   line-height: 1.6;
+}
+
+.container {
+  max-width: unset;
+  width: min(100%, 1320px);
 }/*# sourceMappingURL=main.css.map */
