@@ -980,7 +980,7 @@ body .small_menu {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
   display: none;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 991px) {
   body .small_menu {
     display: flex;
   }
@@ -5805,7 +5805,7 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
   body main .sidebar_col {
     position: absolute;
     transition: 0.3s ease-in-out;
@@ -6286,4 +6286,123 @@ body.en .Arrow_icon {
 .container {
   max-width: unset;
   width: min(100%, 1320px);
+}
+
+.swiperControl {
+  height: 100%;
+  max-width: inherit;
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+  padding: 8px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .swiperControl {
+    display: none;
+  }
+}
+.swiperControl .swiperBtns {
+  max-width: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.swiperControl .swiperBtns .swiper-button-next,
+.swiperControl .swiperBtns .swiper-button-prev {
+  position: relative;
+  right: unset;
+  left: unset;
+  top: unset;
+  bottom: unset;
+  margin: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  border-radius: 100%;
+  transition: 0.3s ease-in-out;
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.5803921569);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+}
+@media screen and (max-width: 768px) {
+  .swiperControl .swiperBtns .swiper-button-next,
+  .swiperControl .swiperBtns .swiper-button-prev {
+    width: 32px;
+    height: 32px;
+  }
+}
+.swiperControl .swiperBtns .swiper-button-next::after,
+.swiperControl .swiperBtns .swiper-button-prev::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-image: url("../../../public/images/icons/arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.3s ease-in-out;
+  filter: brightness(0);
+}
+@media screen and (max-width: 768px) {
+  .swiperControl .swiperBtns .swiper-button-next::after,
+  .swiperControl .swiperBtns .swiper-button-prev::after {
+    width: 16px;
+    height: 16px;
+  }
+}
+.swiperControl .swiperBtns .swiper-button-next:hover,
+.swiperControl .swiperBtns .swiper-button-prev:hover {
+  opacity: 1;
+  background-color: #1abc9c;
+  color: #1abc9c;
+  border-color: #1abc9c;
+}
+.swiperControl .swiperBtns .swiper-button-next:hover::after,
+.swiperControl .swiperBtns .swiper-button-prev:hover::after {
+  filter: brightness(0) invert(1);
+}
+.swiperControl .swiperBtns .swiper-button-next.swiper-button-disabled,
+.swiperControl .swiperBtns .swiper-button-prev.swiper-button-disabled {
+  opacity: 0.2;
+}
+.swiperControl .swiperBtns .swiper-button-next {
+  right: unset;
+}
+.swiperControl .swiperBtns .swiper-button-next::after {
+  transform: scaleX(-1);
+}
+.swiperControl .swiper-pagination {
+  position: relative;
+  min-height: 16px;
+  right: unset;
+  left: unset;
+  top: unset;
+  bottom: unset;
+  margin: unset;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.swiperControl .swiper-pagination .swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.5764705882);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3098039216);
+  transition: 0.3s ease-in-out;
+  border-radius: 16px;
+}
+.swiperControl .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 16px;
+  height: 16px;
 }/*# sourceMappingURL=main.css.map */
