@@ -87,7 +87,8 @@
     "changePhone": "تغيير الرقم",
     "profileSuccessfullyUpdated": "تم تحديث الملف الشخصي بنجاح",
     "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح",
-    "rates": "التقييمات"
+    "rates": "التقييمات",
+    "passwordSuccessfullyUpdated": "تم تغيير كلمة المرور بنجاح"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",

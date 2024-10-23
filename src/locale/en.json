@@ -87,7 +87,8 @@
     "changePhone": "Change Phone Number",
     "profileSuccessfullyUpdated": "Profile updated successfully",
     "phoneSuccessfullyChanged": "Phone number changed successfully",
-    "rates": "Ratings"
+    "rates": "Ratings",
+    "passwordSuccessfullyUpdated": "Password updated successfully"
   },
   "contact": {
     "title": "Need more information? Contact us",
