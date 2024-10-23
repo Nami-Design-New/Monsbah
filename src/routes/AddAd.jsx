@@ -298,53 +298,7 @@ export default function AddAd() {
         </div>
       </div>
 
-      {/*  price & type */}
-      <div className="form_group">
-        <InputField
-          required
-          label={t("ads.price")}
-          placeholder={t("ads.priceNote")}
-          name="price"
-          id="price"
-          type="number"
-          value={formData?.price}
-          onChange={(e) => {
-            handleChange(e, setFormData);
-          }}
-        />
-        <div className="input-field">
-          <label htmlFor="type">{t("ads.type")}</label>
-          <div className="radios">
-            <label htmlFor="sale">
-              <input
-                type="radio"
-                name="type"
-                id="sale"
-                value="sale"
-                checked={
-                  formData?.type === "sale" ||
-                  +showAdTypeOptionsId === +formData?.category_id
-                }
-                onChange={(e) => handleChange(e, setFormData)}
-              />
-              <span>{t("ads.sell")}</span>
-            </label>
-            {+showAdTypeOptionsId === +formData?.category_id ? (
-              <label htmlFor="rent">
-                <input
-                  type="radio"
-                  name="type"
-                  id="rent"
-                  value="rent"
-                  checked={formData?.type === "rent"}
-                  onChange={(e) => handleChange(e, setFormData)}
-                />
-                <span>{t("ads.tajeer")}</span>
-              </label>
-            ) : null}
-          </div>
-        </div>
-      </div>
+    
 
       {/* name */}
       <div className="form_group">
@@ -400,6 +354,54 @@ export default function AddAd() {
         />
       </div>
 
+  {/*  price & type */}
+  <div className="form_group">
+        <InputField
+          required
+          label={t("ads.price")}
+          placeholder={t("ads.priceNote")}
+          name="price"
+          id="price"
+          type="number"
+          value={formData?.price}
+          onChange={(e) => {
+            handleChange(e, setFormData);
+          }}
+        />
+        <div className="input-field">
+          <label htmlFor="type">{t("ads.type")}</label>
+          <div className="radios">
+            <label htmlFor="sale">
+              <input
+                type="radio"
+                name="type"
+                id="sale"
+                value="sale"
+                checked={
+                  formData?.type === "sale" ||
+                  +showAdTypeOptionsId === +formData?.category_id
+                }
+                onChange={(e) => handleChange(e, setFormData)}
+              />
+              <span>{t("ads.sell")}</span>
+            </label>
+            {+showAdTypeOptionsId === +formData?.category_id ? (
+              <label htmlFor="rent">
+                <input
+                  type="radio"
+                  name="type"
+                  id="rent"
+                  value="rent"
+                  checked={formData?.type === "rent"}
+                  onChange={(e) => handleChange(e, setFormData)}
+                />
+                <span>{t("ads.tajeer")}</span>
+              </label>
+            ) : null}
+          </div>
+        </div>
+      </div>
+      
       {/* city, region */}
       <div className="form_group">
         <SelectField
