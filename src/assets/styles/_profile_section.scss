@@ -104,7 +104,6 @@
     .nav-tabs {
       background-color: $main10;
       padding: 12px;
-    
       .nav-item {
         display: flex;
         color: #231f20;
@@ -126,17 +125,15 @@
             justify-content: flex-start;
             font-size: 16px;
           }
-          &.active {
-            background-color: $main;
-            color: $white;
-          }
           &:hover {
             background-color: $main10;
             color: $main;
           }
-          
+          &.active {
+            background-color: $main;
+            color: $white;
+          }
         }
-       
       }
     }
   }
@@ -172,7 +169,6 @@
       position: relative;
       top: 0;
     }
-
     @media (max-width: 760px) {
       margin-bottom: 10px;
       flex-wrap: wrap;

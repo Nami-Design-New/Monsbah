@@ -2408,13 +2408,13 @@ body .profile-page .tabs-section .nav-tabs .nav-item button i {
   justify-content: flex-start;
   font-size: 16px;
 }
-body .profile-page .tabs-section .nav-tabs .nav-item button.active {
-  background-color: #1abc9c;
-  color: #fff;
-}
 body .profile-page .tabs-section .nav-tabs .nav-item button:hover {
   background-color: rgba(26, 188, 156, 0.1019607843);
   color: #1abc9c;
+}
+body .profile-page .tabs-section .nav-tabs .nav-item button.active {
+  background-color: #1abc9c;
+  color: #fff;
 }
 body .profile-page .tab-content {
   flex: 1 0;
@@ -3658,13 +3658,13 @@ body main .profile-page .tabs-section .nav-tabs .nav-item button i {
   justify-content: flex-start;
   font-size: 16px;
 }
-body main .profile-page .tabs-section .nav-tabs .nav-item button.active {
-  background-color: #1abc9c;
-  color: #fff;
-}
 body main .profile-page .tabs-section .nav-tabs .nav-item button:hover {
   background-color: rgba(26, 188, 156, 0.1019607843);
   color: #1abc9c;
+}
+body main .profile-page .tabs-section .nav-tabs .nav-item button.active {
+  background-color: #1abc9c;
+  color: #fff;
 }
 body main .profile-page .tab-content {
   flex: 1 0;
