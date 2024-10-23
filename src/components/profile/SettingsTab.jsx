@@ -48,11 +48,11 @@ function SettingsTab() {
   });
 
   const { data: countries } = useGetCountries();
-  const { data: cities } = useGetCities(
+  const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
     formData?.country_id ? true : false
   );
-  const { data: states } = useGetStates(
+  const { data: states, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     formData?.city_id ? true : false
   );
@@ -198,6 +198,8 @@ function SettingsTab() {
           />
           <SelectField
             label={t("auth.city")}
+            loading={citiesLoading}
+            loadingText={t("isLoading")}
             id="city_id"
             name="city_id"
             value={formData.city_id}
@@ -215,6 +217,8 @@ function SettingsTab() {
           />
           <SelectField
             label={t("auth.area")}
+            loading={areasLoading}
+            loadingText={t("isLoading")}
             id="state_id"
             name="state_id"
             value={formData.state_id}

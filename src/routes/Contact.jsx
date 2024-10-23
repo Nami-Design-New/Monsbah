@@ -3,6 +3,11 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import InputField from "./../ui/form-elements/InputField";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
+import { toast } from "react-toastify";
+import axiosInstance from "../utils/axiosInstance";
+import { handleChange } from "../utils/helpers";
+import PhoneInput from "../ui/form-elements/PhoneInput";
+import TextField from "../ui/form-elements/TextField";
 
 function Contact() {
   const { t } = useTranslation();
@@ -10,13 +15,36 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
-    message: ""
+    phone: "",
+    message: "",
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post(`/client/store-contact`, formData);
+      if (res.status === 200) {
+        toast.success(t("messageSentSuccessfully"));
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        toast.error(t("someThingWentWrong"));
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || t("someThingWentWrong"));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
-      
       <section className="contact_section">
         <div className="container">
           <div className="row">
@@ -62,10 +90,11 @@ function Contact() {
               <div className="contact_form">
                 <h3>{t("contact.sendMessage")}</h3>
                 <p>{t("contact.sendSubtitle")}</p>
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                   <div className="row m-0">
                     <div className="col-12 p-2">
                       <InputField
+                        required
                         type="text"
                         name="name"
                         value={formData.name}
@@ -76,36 +105,47 @@ function Contact() {
                       />
                     </div>
                     <div className="col-lg-6 col-12 p-2">
-                      <InputField
-                        type="tel"
+                      <PhoneInput
+                        required
+                        type="number"
+                        id="phone"
                         name="phone"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
                         placeholder={t("contact.phone")}
+                        value={formData.phone}
+                        countryCode={formData.country_code}
+                        onChange={(e) => handleChange(e, setFormData)}
+                        onSelect={(code, setShow) => {
+                          setFormData((prev) => ({
+                            ...prev,
+                            country_code: code,
+                          }));
+                          setShow(false);
+                        }}
                       />
                     </div>
                     <div className="col-lg-6 col-12 p-2">
                       <InputField
-                        type="email"
+                        required
+                        placeholder={t("contact.email")}
+                        id="email"
                         name="email"
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        placeholder={t("contact.email")}
+                        onChange={(e) => handleChange(e, setFormData)}
                       />
                     </div>
                     <div className="col-12 p-2">
-                      <InputField
-                        as={"textarea"}
-                        name="message"
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
+                      <TextField
+                        required
                         placeholder={t("contact.message")}
+                        name="message"
+                        id="message"
+                        value={formData?.message}
+                        onChange={(e) => {
+                          setFormData({
+                            ...formData,
+                            message: e.target.value,
+                          });
+                        }}
                       />
                     </div>
                     <div className="col-12 p-2 d-flex justify-content-center">

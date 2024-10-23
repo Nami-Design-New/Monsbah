@@ -59,11 +59,9 @@ export default function AddAd() {
     user?.country?.id,
     Boolean(user?.country?.id)
   );
-  const { data: subcategories } = useGetSubCategories(
-    formData?.category_id,
-    Boolean(formData?.category_id)
-  );
-  const { data: areas } = useGetStates(
+  const { data: subcategories, isLoading: subcategoriesLoading } =
+    useGetSubCategories(formData?.category_id, Boolean(formData?.category_id));
+  const { data: areas, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     Boolean(formData?.city_id)
   );
@@ -155,11 +153,11 @@ export default function AddAd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (formData?.images?.length < 1) {
-      toast.error(t("ads.imagesRequired"));
-      setLoading(false);
-      return;
-    }
+    // if (formData?.images?.length < 1) {
+    //   toast.error(t("ads.imagesRequired"));
+    //   setLoading(false);
+    //   return;
+    // }
 
     const requestBody = {
       name_ar: formData?.name_ar,
@@ -369,6 +367,8 @@ export default function AddAd() {
 
         <SelectField
           label={`${t("ads.subCategory")} *`}
+          loading={subcategoriesLoading}
+          loadingText={t("isLoading")}
           id="sub_category_id"
           name="sub_category_id"
           value={formData.sub_category_id}
@@ -406,6 +406,8 @@ export default function AddAd() {
         />
         <SelectField
           label={`${t("ads.area")} *`}
+          loading={areasLoading}
+          loadingText={t("isLoading")}
           id="state_id"
           name="state_id"
           value={formData.state_id}

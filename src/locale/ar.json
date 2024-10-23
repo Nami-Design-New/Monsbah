@@ -6,7 +6,7 @@
     "categories": "الأقسام",
     "listing": "قائمة العقارات",
     "chats": "المحادثات",
-    "contact": "توصل معنا",
+    "contact": "تواصل معنا",
     "getApp": "تحميل التطبيق",
     "addPost": "اضافة إعلان",
     "login": "تسجيل الدخول",
@@ -152,7 +152,7 @@
     "contactType": "نوع الاتصال",
     "doYouWantToAddNewPhoneNumber": "هل تريد إضافة رقم جديد للتواصل!",
     "successfullyAdded": "تمت اضافة الإعلان بنجاح",
-    "contact": "نوع التوصل",
+    "contact": "نوع التواصل",
     "contactNote": "حدد الوسائل التى سيتواصل بها العملاء معك لهذا الإعلان",
     "imagesRequired": "يجب عليك تحميل صورة للإعلان",
     "descriptionEn": "الوصف باللغة الانجليزية",
@@ -309,5 +309,7 @@
   "edit": "تعديل",
   "createReport": "ابلاغ",
   "successfullyReported": "تم الابلاغ بنجاح",
-  "home": "الرئيسية"
+  "home": "الرئيسية",
+  "messageSentSuccessfully": "تم إرسال رسالتك بنجاح",
+  "isLoading": "جاري التحميل ..."
 }
