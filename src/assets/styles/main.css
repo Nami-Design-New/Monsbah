@@ -3344,6 +3344,10 @@ body main .explore_ads .categories_slider.subcategories_slider {
 }
 body main .explore_ads .categories_slider.subcategories_slider .category.sub {
   background-color: #fff;
+  color: #0d0d0d !important;
+}
+body main .explore_ads .categories_slider.subcategories_slider .category.sub h6 {
+  color: #0d0d0d !important;
 }
 body main .explore_ads .categories_slider .swiper-slide {
   width: -moz-fit-content !important;

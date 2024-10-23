@@ -4,8 +4,11 @@ import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import useGetSliders from "../../hooks/settings/useGetSliders";
 
 function HeroSlider() {
+  const { data: sliders } = useGetSliders();
+
   return (
     <section className="hero_section">
       <div className="container">
@@ -15,26 +18,20 @@ function HeroSlider() {
           spaceBetween={30}
           className="hero_swiper"
           pagination={{
-            clickable: true
+            clickable: true,
           }}
           modules={[Pagination, EffectFade, Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
         >
-          <SwiperSlide>
-            <Link>
-              <img src="/images/s1.webp" alt="" />
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link>
-              <img src="/images/banner.jpg" alt="" />
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link>
-              <img src="/images/s1.jpg" alt="" />
-            </Link>
-          </SwiperSlide>
+          {sliders?.data?.data?.data &&
+            sliders?.data?.data?.data?.length > 0 &&
+            sliders?.data?.data?.data?.map((slider) => (
+              <SwiperSlide key={slider?.id}>
+                <Link>
+                  <img src={slider?.image} alt="" />
+                </Link>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </section>
