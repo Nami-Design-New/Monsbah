@@ -81,7 +81,7 @@ function Categories() {
   return (
     <div className="categories-page">
       <section className="explore_ads">
-        <div className="container d-flex flex-column gap-4">
+        <div className="container d-flex flex-column gap-3">
           {selectedCountry ? (
             <div
               onClick={() => {
