@@ -53,6 +53,11 @@
       .category {
         &.sub {
           background-color: $white;
+          color: $dark !important;
+
+          h6 {
+            color: $dark !important;
+          }
         }
       }
     }
