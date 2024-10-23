@@ -55,7 +55,7 @@ function MainInfoTab({ user, lang }) {
                 <img
                   src={
                     coverError || !user?.cover
-                      ? "/public/images/banner.png"
+                      ? "/images/banner.png"
                       : user?.cover
                   }
                   alt="user cover image"
