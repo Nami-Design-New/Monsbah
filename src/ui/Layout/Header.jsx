@@ -126,7 +126,7 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="/search" className="link d-lg-flex d-none">
+            <Link to="/search" className="link">
               <img src="/images/icons/search.svg" alt="" />
             </Link>
 

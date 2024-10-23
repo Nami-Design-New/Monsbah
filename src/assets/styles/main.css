@@ -491,7 +491,7 @@ body header .mainLinks .moreActions .link {
   gap: 8px;
   padding: 8px;
   justify-content: center;
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   height: 40px;
   border: 0;
   min-width: 40px;
@@ -522,7 +522,7 @@ body header .mainLinks .moreActions .link:hover:not(.profile-link) img {
   filter: brightness(0) opacity(1) invert(1);
 }
 body header .mainLinks .moreActions .link:hover:not(.profile-link) .count {
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   color: #1abc9c;
 }
 body header .mainLinks .moreActions .link.text {
@@ -730,7 +730,7 @@ body header .headerCategoriesWithSub .singleCategory .menu .sub {
   text-transform: capitalize;
 }
 body header .headerCategoriesWithSub .singleCategory .menu .sub:hover {
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   color: #1abc9c;
 }
 body header .headerCategoriesWithSub .singleCategory.more {
@@ -752,7 +752,7 @@ body header .headerCategoriesWithSub .singleCategory.more .menu .singleCategory 
   text-transform: capitalize;
 }
 body header .headerCategoriesWithSub .singleCategory.more .menu .singleCategory .link:hover {
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   color: #1abc9c !important;
 }
 body header .headerCategoriesWithSub .singleCategory.more .menu .singleCategory .menu {
@@ -1485,7 +1485,7 @@ body .form .advice {
   width: 100%;
   margin: 40px 0;
   border-radius: 4px;
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   position: relative;
   padding-top: 22px;
   padding-bottom: 32px;
@@ -1505,7 +1505,7 @@ body .form .advice .icon {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #ecfcf9;
+  background: rgba(26, 188, 156, 0.1019607843);
   border: 2px solid #fff;
   display: flex;
   align-items: center;
@@ -1898,7 +1898,7 @@ body .otp-container .otp-input {
   height: 80px !important;
   text-align: center;
   border: 1px solid #1abc9c;
-  background: #ecfcf9;
+  background: rgba(26, 188, 156, 0.1019607843);
   font-size: 28px !important;
   font-weight: 600;
   color: #1abc9c !important;
@@ -2382,7 +2382,7 @@ body .profile-page .tabs-section {
   }
 }
 body .profile-page .tabs-section .nav-tabs {
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   padding: 12px;
 }
 body .profile-page .tabs-section .nav-tabs .nav-item {
@@ -2411,6 +2411,10 @@ body .profile-page .tabs-section .nav-tabs .nav-item button i {
 body .profile-page .tabs-section .nav-tabs .nav-item button.active {
   background-color: #1abc9c;
   color: #fff;
+}
+body .profile-page .tabs-section .nav-tabs .nav-item button:hover {
+  background-color: rgba(26, 188, 156, 0.1019607843);
+  color: #1abc9c;
 }
 body .profile-page .tab-content {
   flex: 1 0;
@@ -2733,7 +2737,7 @@ body .profile-page .page-header .dropdown .dropdown-menu .social li a {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #ecfcf9;
+  background: rgba(26, 188, 156, 0.1019607843);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3628,7 +3632,7 @@ body main .profile-page .tabs-section {
   }
 }
 body main .profile-page .tabs-section .nav-tabs {
-  background-color: #ecfcf9;
+  background-color: rgba(26, 188, 156, 0.1019607843);
   padding: 12px;
 }
 body main .profile-page .tabs-section .nav-tabs .nav-item {
@@ -3657,6 +3661,10 @@ body main .profile-page .tabs-section .nav-tabs .nav-item button i {
 body main .profile-page .tabs-section .nav-tabs .nav-item button.active {
   background-color: #1abc9c;
   color: #fff;
+}
+body main .profile-page .tabs-section .nav-tabs .nav-item button:hover {
+  background-color: rgba(26, 188, 156, 0.1019607843);
+  color: #1abc9c;
 }
 body main .profile-page .tab-content {
   flex: 1 0;
@@ -3979,7 +3987,7 @@ body main .profile-page .page-header .dropdown .dropdown-menu .social li a {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #ecfcf9;
+  background: rgba(26, 188, 156, 0.1019607843);
   display: flex;
   align-items: center;
   justify-content: center;

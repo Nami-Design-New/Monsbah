@@ -130,6 +130,11 @@
             background-color: $main;
             color: $white;
           }
+          &:hover {
+            background-color: $main10;
+            color: $main;
+          }
+          
         }
        
       }
