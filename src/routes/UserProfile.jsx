@@ -77,7 +77,7 @@ function UserProfile() {
             ) : (
               <div className="tabs-section">
                 <Tabs
-                  className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
+                  className="profileNavCol col-md-4 col-xl-3 p-2"
                   activeKey={activeTab}
                   onSelect={(tab) => handleTabChange(tab)}
                   id="uncontrolled-tab-example"

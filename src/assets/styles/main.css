@@ -2362,19 +2362,12 @@ body .profile-page .tabs-section {
   }
 }
 body .profile-page .tabs-section .nav-tabs {
-  background-color: #fffdf1;
-  padding: 24px !important;
-  margin: 0 8px;
-}
-@media screen and (max-width: 768px) {
-  body .profile-page .tabs-section .nav-tabs {
-    margin: 8px 0;
-  }
+  background-color: #ecfcf9;
+  padding: 12px;
 }
 body .profile-page .tabs-section .nav-tabs .nav-item {
   display: flex;
   color: #231f20;
-  flex: unset !important;
 }
 body .profile-page .tabs-section .nav-tabs .nav-item button {
   flex: 1;
@@ -2383,6 +2376,10 @@ body .profile-page .tabs-section .nav-tabs .nav-item button {
   gap: 4px;
   align-items: center;
   justify-content: flex-start;
+  border: transparent !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  white-space: nowrap;
 }
 body .profile-page .tabs-section .nav-tabs .nav-item button i {
   width: 24px;
@@ -2392,16 +2389,8 @@ body .profile-page .tabs-section .nav-tabs .nav-item button i {
   font-size: 16px;
 }
 body .profile-page .tabs-section .nav-tabs .nav-item button.active {
-  background-color: #ecfcf9;
-  color: #1abc9c;
-}
-body .profile-page .tabs-section .nav-tabs .nav-item button {
-  border-radius: 6px !important;
-}
-@media screen and (max-width: 768px) {
-  body .profile-page .tabs-section .nav-tabs .nav-item {
-    flex: 1 0 !important;
-  }
+  background-color: #1abc9c;
+  color: #fff;
 }
 body .profile-page .tab-content {
   flex: 1 0;
@@ -2429,7 +2418,6 @@ body .profile-page .profileNavCol {
   top: 84px;
   height: -moz-fit-content;
   height: fit-content;
-  gap: 12px !important;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -2442,41 +2430,14 @@ body .profile-page .profileNavCol {
     top: 0;
   }
 }
-body .profile-page .profileNavCol a {
-  padding: 12px 16px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  transition: 0.3s ease-in-out;
-  border-radius: 12px;
-  border: 1px solid #eee;
-  text-transform: capitalize;
-}
-body .profile-page .profileNavCol a img {
-  width: 20px;
-  height: 20px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  transition: 0.3s ease-in-out;
-}
-body .profile-page .profileNavCol a.active, body .profile-page .profileNavCol a:hover {
-  background-color: #1abc9c;
-  color: #fff;
-}
-body .profile-page .profileNavCol a.active img, body .profile-page .profileNavCol a:hover img {
-  filter: brightness(0) invert(1);
-}
 @media (max-width: 760px) {
   body .profile-page .profileNavCol {
     margin-bottom: 10px;
     flex-wrap: wrap;
     flex-direction: row;
   }
-  body .profile-page .profileNavCol a {
-    padding: 12px 10px;
-    display: inline-flex;
-    flex: 1 140px;
-    border-radius: 8px;
+  body .profile-page .profileNavCol .nav-item {
+    flex: 1 calc(50% - 4px);
   }
 }
 body .profile-page .page-header {
@@ -3647,19 +3608,12 @@ body main .profile-page .tabs-section {
   }
 }
 body main .profile-page .tabs-section .nav-tabs {
-  background-color: #fffdf1;
-  padding: 24px !important;
-  margin: 0 8px;
-}
-@media screen and (max-width: 768px) {
-  body main .profile-page .tabs-section .nav-tabs {
-    margin: 8px 0;
-  }
+  background-color: #ecfcf9;
+  padding: 12px;
 }
 body main .profile-page .tabs-section .nav-tabs .nav-item {
   display: flex;
   color: #231f20;
-  flex: unset !important;
 }
 body main .profile-page .tabs-section .nav-tabs .nav-item button {
   flex: 1;
@@ -3668,6 +3622,10 @@ body main .profile-page .tabs-section .nav-tabs .nav-item button {
   gap: 4px;
   align-items: center;
   justify-content: flex-start;
+  border: transparent !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  white-space: nowrap;
 }
 body main .profile-page .tabs-section .nav-tabs .nav-item button i {
   width: 24px;
@@ -3677,16 +3635,8 @@ body main .profile-page .tabs-section .nav-tabs .nav-item button i {
   font-size: 16px;
 }
 body main .profile-page .tabs-section .nav-tabs .nav-item button.active {
-  background-color: #ecfcf9;
-  color: #1abc9c;
-}
-body main .profile-page .tabs-section .nav-tabs .nav-item button {
-  border-radius: 6px !important;
-}
-@media screen and (max-width: 768px) {
-  body main .profile-page .tabs-section .nav-tabs .nav-item {
-    flex: 1 0 !important;
-  }
+  background-color: #1abc9c;
+  color: #fff;
 }
 body main .profile-page .tab-content {
   flex: 1 0;
@@ -3714,7 +3664,6 @@ body main .profile-page .profileNavCol {
   top: 84px;
   height: -moz-fit-content;
   height: fit-content;
-  gap: 12px !important;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -3727,41 +3676,14 @@ body main .profile-page .profileNavCol {
     top: 0;
   }
 }
-body main .profile-page .profileNavCol a {
-  padding: 12px 16px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  transition: 0.3s ease-in-out;
-  border-radius: 12px;
-  border: 1px solid #eee;
-  text-transform: capitalize;
-}
-body main .profile-page .profileNavCol a img {
-  width: 20px;
-  height: 20px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  transition: 0.3s ease-in-out;
-}
-body main .profile-page .profileNavCol a.active, body main .profile-page .profileNavCol a:hover {
-  background-color: #1abc9c;
-  color: #fff;
-}
-body main .profile-page .profileNavCol a.active img, body main .profile-page .profileNavCol a:hover img {
-  filter: brightness(0) invert(1);
-}
 @media (max-width: 760px) {
   body main .profile-page .profileNavCol {
     margin-bottom: 10px;
     flex-wrap: wrap;
     flex-direction: row;
   }
-  body main .profile-page .profileNavCol a {
-    padding: 12px 10px;
-    display: inline-flex;
-    flex: 1 140px;
-    border-radius: 8px;
+  body main .profile-page .profileNavCol .nav-item {
+    flex: 1 calc(50% - 4px);
   }
 }
 body main .profile-page .page-header {
