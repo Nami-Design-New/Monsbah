@@ -27,7 +27,7 @@ function HeroSlider() {
           </SwiperSlide>
           <SwiperSlide>
             <Link>
-              <img src="/images/s2.jpg" alt="" />
+              <img src="/images/banner.jpg" alt="" />
             </Link>
           </SwiperSlide>
           <SwiperSlide>

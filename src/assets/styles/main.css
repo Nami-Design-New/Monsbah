@@ -3288,7 +3288,7 @@ body main {
   min-height: calc(100vh - 100px);
 }
 body main .hero_section {
-  padding: 32px 0;
+  padding: 24px 0;
 }
 @media screen and (max-width: 576px) {
   body main .hero_section {
@@ -3301,7 +3301,8 @@ body main .hero_section {
 }
 body main .hero_section .hero_swiper {
   width: 100%;
-  height: 182px;
+  aspect-ratio: 5/1;
+  min-height: 182px;
 }
 body main .hero_section .hero_swiper a {
   display: block;
@@ -6206,7 +6207,7 @@ body .addCommentForm button {
   height: 56px !important;
 }
 body .categories-page {
-  padding: 40px 0;
+  padding: 24px 0;
 }
 body.en {
   direction: ltr !important;

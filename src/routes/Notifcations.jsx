@@ -1,7 +1,7 @@
 import SectionHeader from "../components/layout/SectionHeader";
 import useGetNotifications from "../hooks/notifications/useGetNotifications";
 import NotificationCard from "../ui/cards/NotificationCard";
-import DataLoader from "../ui/loaders/DataLoader";
+import PageLoader from "../ui/loaders/PageLoader";
 
 const Notifcations = () => {
   const { isLoading, data: notifications } = useGetNotifications();
@@ -13,7 +13,7 @@ const Notifcations = () => {
         <div className="container">
           <div className="row justify-content-center">
             {isLoading ? (
-              <DataLoader minHeight="200px" />
+              <PageLoader/>
             ) : (
               <div className="col-12 d-flex flex-column gap-3">
                 {notifications?.map((notification) => (
