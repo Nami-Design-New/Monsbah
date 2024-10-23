@@ -100,7 +100,7 @@ function HeroSection() {
                 {Array(6)
                   .fill(0)
                   .map((_, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={index} className="p-1">
                       <CategoryLoader />
                     </SwiperSlide>
                   ))}

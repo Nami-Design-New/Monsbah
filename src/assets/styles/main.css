@@ -4878,7 +4878,7 @@ body main .product_details .advertiserDetails .advertiser .image_wrapper .follow
   position: absolute;
   bottom: -4px;
   left: -4px;
-  background: #4381f8;
+  background: #1abc9c;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -6337,38 +6337,15 @@ body.en .Arrow_icon {
   width: min(100%, 1320px);
 }
 
-.swiperControl {
-  height: 100%;
-  max-width: inherit;
-  width: 100%;
-  z-index: 20;
-  position: absolute;
-  padding: 8px;
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-@media screen and (max-width: 768px) {
-  .swiperControl {
-    display: none;
-  }
-}
-.swiperControl .swiperBtns {
-  max-width: inherit;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.swiperControl .swiperBtns .swiper-button-next,
-.swiperControl .swiperBtns .swiper-button-prev {
+.swiper_wrapper {
   position: relative;
-  right: unset;
-  left: unset;
-  top: unset;
-  bottom: unset;
-  margin: unset;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  left: 12px;
+  top: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -6384,19 +6361,19 @@ body.en .Arrow_icon {
           backdrop-filter: blur(12px);
 }
 @media screen and (max-width: 768px) {
-  .swiperControl .swiperBtns .swiper-button-next,
-  .swiperControl .swiperBtns .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     width: 32px;
     height: 32px;
   }
 }
-.swiperControl .swiperBtns .swiper-button-next::after,
-.swiperControl .swiperBtns .swiper-button-prev::after {
+.swiper-button-next::after,
+.swiper-button-prev::after {
   content: "";
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background-image: url("../../../public/images/icons/arrow.svg");
+  background-image: url("../../../images/icons/arrow.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -6404,56 +6381,34 @@ body.en .Arrow_icon {
   filter: brightness(0);
 }
 @media screen and (max-width: 768px) {
-  .swiperControl .swiperBtns .swiper-button-next::after,
-  .swiperControl .swiperBtns .swiper-button-prev::after {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
     width: 16px;
     height: 16px;
   }
 }
-.swiperControl .swiperBtns .swiper-button-next:hover,
-.swiperControl .swiperBtns .swiper-button-prev:hover {
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
   opacity: 1;
   background-color: #1abc9c;
   color: #1abc9c;
   border-color: #1abc9c;
 }
-.swiperControl .swiperBtns .swiper-button-next:hover::after,
-.swiperControl .swiperBtns .swiper-button-prev:hover::after {
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after {
   filter: brightness(0) invert(1);
 }
-.swiperControl .swiperBtns .swiper-button-next.swiper-button-disabled,
-.swiperControl .swiperBtns .swiper-button-prev.swiper-button-disabled {
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
   opacity: 0.2;
 }
-.swiperControl .swiperBtns .swiper-button-next {
-  right: unset;
-}
-.swiperControl .swiperBtns .swiper-button-next::after {
-  transform: scaleX(-1);
-}
-.swiperControl .swiper-pagination {
-  position: relative;
-  min-height: 16px;
-  right: unset;
+
+.swiper-button-next {
+  right: 12px;
   left: unset;
-  top: unset;
-  bottom: unset;
-  margin: unset;
-  display: flex;
-  justify-content: end;
-  align-items: center;
 }
-.swiperControl .swiper-pagination .swiper-pagination-bullet {
-  background-color: rgba(255, 255, 255, 0.5764705882);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  border: 1px solid rgba(0, 0, 0, 0.3098039216);
-  transition: 0.3s ease-in-out;
-  border-radius: 16px;
-}
-.swiperControl .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  width: 16px;
-  height: 16px;
+.swiper-button-next::after {
+  transform: scaleX(-1);
 }
 
 .modal .modal-xl {
