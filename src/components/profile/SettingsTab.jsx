@@ -129,148 +129,153 @@ function SettingsTab() {
   };
 
   return (
-    <form
-      className="form col-12 w-100 p-4 reverse-form"
-      onSubmit={handleSubmit}
-    >
-      <ImageUpload
-        type="file"
-        name="userImage"
-        id="img-upload"
-        accept="image/*"
-        formData={formData}
-        image={user?.image}
-        cover={user?.cover}
-        setFormData={setFormData}
-      />
-      <div className="form_group">
-        <InputField
-          required
-          label={t("auth.userName")}
-          placeholder={t("auth.userNamePlaceHolder")}
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={(e) => handleChangeUserName(e, setFormData)}
+    <>
+      <form
+        className="form col-12 w-100 p-4 reverse-form"
+        onSubmit={handleSubmit}
+      >
+        <ImageUpload
+          type="file"
+          name="userImage"
+          id="img-upload"
+          accept="image/*"
+          formData={formData}
+          image={user?.image}
+          cover={user?.cover}
+          setFormData={setFormData}
         />
+        <div className="form_group">
+          <InputField
+            required
+            label={t("auth.userName")}
+            placeholder={t("auth.userNamePlaceHolder")}
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={(e) => handleChangeUserName(e, setFormData)}
+          />
 
-        <InputField
-          required
-          label={t("auth.fullName")}
-          placeholder={t("auth.fullName")}
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={(e) => handleChange(e, setFormData)}
-        />
-      </div>
+          <InputField
+            required
+            label={t("auth.fullName")}
+            placeholder={t("auth.fullName")}
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+        </div>
 
-      <div className="form_group">
-        <SelectField
-          label={
-            <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
-              {t("auth.country")}
-              <span
-                style={{ cursor: "pointer", color: "#1abc9c" }}
-                onClick={() => setShowCountryModal(true)}
-              >
-                {t("auth.doYouWantToChangeCountry")}
-              </span>
-            </div>
-          }
-          id="country_id"
-          name="country_id"
-          value={formData.country_id}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              country_id: e.target.value,
-              city_id: "",
-              state_id: "",
-            })
-          }
-          options={countries?.map((country) => ({
-            name: country?.name,
-            value: country?.id,
-          }))}
-          disabled={true}
-        />
-        <SelectField
-          label={t("auth.city")}
-          id="city_id"
-          name="city_id"
-          value={formData.city_id}
-          onChange={(e) =>
-            setFormData({ ...formData, city_id: e.target.value, state_id: "" })
-          }
-          options={cities?.map((city) => ({
-            name: city?.name,
-            value: city?.id,
-          }))}
-        />
-        <SelectField
-          label={t("auth.area")}
-          id="state_id"
-          name="state_id"
-          value={formData.state_id}
-          onChange={(e) => handleChange(e, setFormData)}
-          options={states?.map((state) => ({
-            name: state?.name,
-            value: state?.id,
-          }))}
-        />
-      </div>
+        <div className="form_group">
+          <SelectField
+            label={
+              <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
+                {t("auth.country")}
+                <span
+                  style={{ cursor: "pointer", color: "#1abc9c" }}
+                  onClick={() => setShowCountryModal(true)}
+                >
+                  {t("auth.doYouWantToChangeCountry")}
+                </span>
+              </div>
+            }
+            id="country_id"
+            name="country_id"
+            value={formData.country_id}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                country_id: e.target.value,
+                city_id: "",
+                state_id: "",
+              })
+            }
+            options={countries?.map((country) => ({
+              name: country?.name,
+              value: country?.id,
+            }))}
+            disabled={true}
+          />
+          <SelectField
+            label={t("auth.city")}
+            id="city_id"
+            name="city_id"
+            value={formData.city_id}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                city_id: e.target.value,
+                state_id: "",
+              })
+            }
+            options={cities?.map((city) => ({
+              name: city?.name,
+              value: city?.id,
+            }))}
+          />
+          <SelectField
+            label={t("auth.area")}
+            id="state_id"
+            name="state_id"
+            value={formData.state_id}
+            onChange={(e) => handleChange(e, setFormData)}
+            options={states?.map((state) => ({
+              name: state?.name,
+              value: state?.id,
+            }))}
+          />
+        </div>
 
-      <div className="form_group">
-        <InputField
-          required
-          label={t("auth.email")}
-          placeholder={t("auth.email")}
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={(e) => handleChange(e, setFormData)}
-        />
-        <PhoneInput
-          label={
-            <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
-              {t("auth.phone")}
-              <span
-                style={{ cursor: "pointer", color: "#1abc9c" }}
-                onClick={() => setShowPhoneModal(true)}
-              >
-                {t("auth.doYouWantToChangePhone")}
-              </span>
-            </div>
-          }
-          required
-          type="number"
-          id="phone"
-          name="phone"
-          placeholder={t("auth.phone")}
-          value={formData.phone}
-          countryCode={formData.country_code}
-          onChange={(e) => handleChange(e, setFormData)}
-          onSelect={(code, setShow) => {
-            setFormData((prev) => ({ ...prev, country_code: code }));
-            setShow(false);
-          }}
-        />
-      </div>
-      <div className="question p-0 pt-2">
-        <label htmlFor="wantChangePassword" className="quest">
-          {t("auth.doYouWantChangePassword")}
-        </label>
-        <Form.Switch
-          id="wantChangePassword"
-          name="wantChangePassword"
-          checked={showPasswordModal}
-          onChange={() => setShowPasswordModal(!showPasswordModal)}
-        />
-      </div>
+        <div className="form_group">
+          <InputField
+            required
+            label={t("auth.email")}
+            placeholder={t("auth.email")}
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+          <PhoneInput
+            label={
+              <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
+                {t("auth.phone")}
+                <span
+                  style={{ cursor: "pointer", color: "#1abc9c" }}
+                  onClick={() => setShowPhoneModal(true)}
+                >
+                  {t("auth.doYouWantToChangePhone")}
+                </span>
+              </div>
+            }
+            required
+            type="number"
+            id="phone"
+            name="phone"
+            placeholder={t("auth.phone")}
+            value={formData.phone}
+            countryCode={formData.country_code}
+            onChange={(e) => handleChange(e, setFormData)}
+            onSelect={(code, setShow) => {
+              setFormData((prev) => ({ ...prev, country_code: code }));
+              setShow(false);
+            }}
+          />
+        </div>
+        <div className="question p-0 pt-2">
+          <label htmlFor="wantChangePassword" className="quest">
+            {t("auth.doYouWantChangePassword")}
+          </label>
+          <Form.Switch
+            id="wantChangePassword"
+            name="wantChangePassword"
+            checked={showPasswordModal}
+            onChange={() => setShowPasswordModal(!showPasswordModal)}
+          />
+        </div>
 
-      <SubmitButton name={t("save")} loading={loading} />
-
+        <SubmitButton name={t("save")} loading={loading} />
+      </form>
       <ChangePasswordModal
         showModal={showPasswordModal}
         setShowModal={setShowPasswordModal}
@@ -290,7 +295,7 @@ function SettingsTab() {
         showModal={showPhoneModal}
         setShowModal={setShowPhoneModal}
       />
-    </form>
+    </>
   );
 }
 

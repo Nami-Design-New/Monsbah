@@ -26,8 +26,13 @@ function ChangePasswordModal({ showModal, setShowModal }) {
         formData
       );
       if (res.status === 200) {
-        toast.success(t("profile.passwordSuccessfullyChanged"));
+        toast.success(t("profile.passwordSuccessfullyUpdated"));
         setShowModal(false);
+        setFormData({
+          old_password: "",
+          password: "",
+          password_confirmation: "",
+        });
       } else {
         toast.error(t("someThingWentWrong"));
       }

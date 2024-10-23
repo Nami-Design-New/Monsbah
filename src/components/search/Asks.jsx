@@ -7,10 +7,13 @@ import ViewAsk from "../../ui/modals/ViewAsk";
 import { useSearchParams } from "react-router-dom";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 import CreateCountryAsk from "../../ui/modals/CreateCountryAsk";
+import AuthModal from "../auth/AuthModal";
+import useAuth from "../../hooks/useAuth";
 
 export default function Asks({ sectionRef }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCountryAskModal, setShowCountryAskModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
   const [searchParams] = useSearchParams();
@@ -18,6 +21,8 @@ export default function Asks({ sectionRef }) {
   const city = searchParams.get("city-id");
   const [selectedCountry, setSelectedCountry] = useState(null);
   const { data: countries } = useGetCountries();
+
+  const { isAuthed } = useAuth();
 
   const {
     data: aks,
@@ -67,7 +72,11 @@ export default function Asks({ sectionRef }) {
           <span
             className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
             style={{ cursor: "pointer" }}
-            onClick={() => setShowCountryAskModal(true)}
+            onClick={() => {
+              console.log(isAuthed);
+
+              isAuthed ? setShowCountryAskModal(true) : setShowAuthModal(true);
+            }}
           >
             <i className="fa-regular fa-comment-plus"></i>
 
@@ -112,6 +121,12 @@ export default function Asks({ sectionRef }) {
         country_id={country}
         city_id={city}
         title={`${t("ask")} ${selectedCountry?.name}`}
+      />
+
+      <AuthModal
+        type={"login"}
+        show={showAuthModal}
+        setShow={setShowAuthModal}
       />
     </>
   );
