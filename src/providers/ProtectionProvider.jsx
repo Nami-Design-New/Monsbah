@@ -18,6 +18,8 @@ function ProtectionProvider({ children }) {
     return null;
   }
 
+  console.log(isAuthed);
+
   return (
     <>
       {isAuthed ? children : null}
