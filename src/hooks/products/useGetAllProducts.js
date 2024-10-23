@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAllProducts(id) {
+function useGetAllProducts({ id, enabled }) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["allProducts", id],
     queryFn: async () => {
@@ -18,11 +18,11 @@ function useGetAllProducts(id) {
         throw new Error("Failed to fetch products");
       }
     },
-    enabled: Boolean(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
+    enabled: Boolean(id) && Boolean(enabled),
   });
 
   return { isLoading, data, error };

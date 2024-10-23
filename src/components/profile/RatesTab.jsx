@@ -5,10 +5,13 @@ import useGetAllRates from "../../hooks/rates/useGetAllRates";
 import { useState } from "react";
 import CreateRateModal from "../../ui/modals/CreateRateModal";
 
-function RatesTab({ user }) {
+function RatesTab({ user, isActive }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  const { data: rates, isLoading } = useGetAllRates(user?.id);
+  const { data: rates, isLoading } = useGetAllRates({
+    id: user?.id,
+    enabled: isActive,
+  });
 
   return (
     <section className="products_section w-100">

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAllAsks() {
+function useGetAllAsks(enabled) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["allQuestions"],
     queryFn: async () => {
@@ -18,6 +18,7 @@ function useGetAllAsks() {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
+    enabled: Boolean(enabled?.isActive),
   });
 
   return { isLoading, data, error };

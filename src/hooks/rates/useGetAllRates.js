@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAllRates(id) {
+function useGetAllRates({ id, enabled }) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["allRates"],
     queryFn: async () => {
@@ -22,6 +22,7 @@ function useGetAllRates(id) {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
+    enabled: Boolean(enabled),
   });
 
   return { isLoading, data, error };

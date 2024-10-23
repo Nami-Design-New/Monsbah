@@ -6,14 +6,14 @@ import ViewAsk from "../../ui/modals/ViewAsk";
 import { useSelector } from "react-redux";
 import useGetAllAsks from "../../hooks/search/useGetAllAsks";
 
-function QuestionsTab() {
+function QuestionsTab(isActive) {
   const [showModal, setShowModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
   const sectionRef = useRef();
 
   const user = useSelector((state) => state.clientData.client);
 
-  const { data: asks, isLoading } = useGetAllAsks();
+  const { data: asks, isLoading } = useGetAllAsks(isActive);
 
   return (
     <section className="search_section px-2 w-100" ref={sectionRef}>
