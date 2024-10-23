@@ -331,7 +331,8 @@ button {
   border-color: var(--bs-border-color);
 }
 .form-check-input:checked {
-  background-color: #1abc9c;
+  background-position: right center;
+  background-image: url("../../../public/images/icons/check-checked-icon.svg");
   border-color: #1abc9c;
 }
 
@@ -953,27 +954,34 @@ body .download-app li:hover {
   background: #1abc9c;
 }
 body .download-app li:hover a .icon i,
-body .download-app li:hover a p {
+body .download-app li:hover a p,
+body .download-app li:hover span .icon i,
+body .download-app li:hover span p {
   color: #fff;
 }
-body .download-app li a {
+body .download-app li a,
+body .download-app li span {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   padding: 12px;
+  cursor: pointer;
 }
-body .download-app li a .icon {
+body .download-app li a .icon,
+body .download-app li span .icon {
   width: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body .download-app li a .icon i {
+body .download-app li a .icon i,
+body .download-app li span .icon i {
   font-size: 18px;
   color: #0d0d0d;
 }
-body .download-app li a p {
+body .download-app li a p,
+body .download-app li span p {
   font-size: 14px;
   text-align: end;
   color: #0d0d0d;
@@ -1028,6 +1036,18 @@ body .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+body .form.reverse-form .form-check-input {
+  cursor: pointer;
+  box-shadow: none !important;
+}
+body .form.reverse-form .form-check-input:focus {
+  border-color: var(--bs-border-color);
+}
+body .form.reverse-form .form-check-input:checked {
+  background-position: right center;
+  background-image: url("../../../public/images/icons/check-checked-icon.svg");
+  border-color: #1abc9c;
 }
 body .form.reverse-form .dropdown button {
   background-color: #fff !important;

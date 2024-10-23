@@ -303,5 +303,7 @@
   "edit": "Edit",
   "createReport": "Report",
   "successfullyReported": "Successfully Reported",
-  "home": "Home"
+  "home": "Home",
+  "messageSentSuccessfully": "Your message sent successfully",
+  "isLoading": "Loading ..."
 }

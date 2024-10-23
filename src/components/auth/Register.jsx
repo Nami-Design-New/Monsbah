@@ -30,11 +30,11 @@ function Register({ setFormType }) {
     gender: "",
   });
   const { data: countries } = useGetCountries();
-  const { data: cities } = useGetCities(
+  const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
     formData?.country_id ? true : false
   );
-  const { data: states } = useGetStates(
+  const { data: states, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     formData?.city_id ? true : false
   );
@@ -128,6 +128,8 @@ function Register({ setFormType }) {
         />
         <SelectField
           required
+          loading={citiesLoading}
+          loadingText={t("isLoading")}
           label={t("auth.city")}
           id="city_id"
           name="city_id"
@@ -142,6 +144,8 @@ function Register({ setFormType }) {
         />
         <SelectField
           required
+          loading={areasLoading}
+          loadingText={t("isLoading")}
           label={t("auth.area")}
           id="state_id"
           name="state_id"
@@ -201,15 +205,15 @@ function Register({ setFormType }) {
             setShow(false);
           }}
         />
-          <InputField
-            required
-            label={t("auth.email")}
-            placeholder={t("auth.email")}
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
+        <InputField
+          required
+          label={t("auth.email")}
+          placeholder={t("auth.email")}
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={(e) => handleChange(e, setFormData)}
+        />
       </div>
       <div className="form_group">
         <PasswordField

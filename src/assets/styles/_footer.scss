@@ -129,19 +129,22 @@ footer {
     transition: all 0.3s ease-in-out;
     &:hover {
       background: $main;
-      a {
+      a,
+      span {
         .icon i,
         p {
           color: #fff;
         }
       }
     }
-    a {
+    a,
+    span {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
       padding: 12px;
+      cursor: pointer;
       .icon {
         width: 32px;
         display: flex;

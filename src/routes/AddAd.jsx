@@ -59,11 +59,9 @@ export default function AddAd() {
     user?.country?.id,
     Boolean(user?.country?.id)
   );
-  const { data: subcategories } = useGetSubCategories(
-    formData?.category_id,
-    Boolean(formData?.category_id)
-  );
-  const { data: areas } = useGetStates(
+  const { data: subcategories, isLoading: subcategoriesLoading } =
+    useGetSubCategories(formData?.category_id, Boolean(formData?.category_id));
+  const { data: areas, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     Boolean(formData?.city_id)
   );
@@ -155,12 +153,6 @@ export default function AddAd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (formData?.images?.length < 1) {
-      toast.error(t("ads.imagesRequired"));
-      setLoading(false);
-      return;
-    }
-
     const requestBody = {
       name_ar: formData?.name_ar,
       name_en: formData?.name_en,
@@ -182,16 +174,21 @@ export default function AddAd() {
       currency_id: formData?.currency_id,
     };
 
-    if (product_id) {
-      requestBody.id = product_id;
-    }
-
-    if (formData?.images?.length > 0) {
+    if (formData?.images?.length < 1) {
+      toast.error(t("ads.imagesRequired"));
+      setLoading(false);
+      return;
+    } else {
       formData?.images.forEach((image) => {
         if (image?.type?.startsWith("image/")) {
-          requestBody.images.push(image);
+          requestBody?.images?.push(image);
         }
       });
+      requestBody.image = formData?.images?.[0];
+    }
+
+    if (product_id) {
+      requestBody.id = product_id;
     }
 
     try {
@@ -208,6 +205,22 @@ export default function AddAd() {
         toast.success(res.data.message);
         queryClient.invalidateQueries({ queryKey: ["user-products"] });
         navigate("/profile?tab=ads");
+        setFormData({
+          images: [],
+          image: "",
+          name_ar: "",
+          name_en: "",
+          category_id: "",
+          sub_category_id: "",
+          city_id: "",
+          state_id: "",
+          description_ar: "",
+          description_en: "",
+          type: "sale",
+          active_chat: "inactive",
+          active_whatsapp: "inactive",
+          active_call: "inactive",
+        });
       }
     } catch (error) {
       setLoading(false);
@@ -369,6 +382,8 @@ export default function AddAd() {
 
         <SelectField
           label={`${t("ads.subCategory")} *`}
+          loading={subcategoriesLoading}
+          loadingText={t("isLoading")}
           id="sub_category_id"
           name="sub_category_id"
           value={formData.sub_category_id}
@@ -406,6 +421,8 @@ export default function AddAd() {
         />
         <SelectField
           label={`${t("ads.area")} *`}
+          loading={areasLoading}
+          loadingText={t("isLoading")}
           id="state_id"
           name="state_id"
           value={formData.state_id}

@@ -363,7 +363,8 @@ button {
     border-color: var(--bs-border-color);
   }
   &:checked {
-    background-color: $main;
+    background-position: right center;
+    background-image: url("../../../public/images/icons/check-checked-icon.svg");
     border-color: $main;
   }
 }

@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import useGetCategories from "../../hooks/settings/useGetCategories";
+import GetApp from "../modals/GetApp";
+import { useState } from "react";
 
 export default function Footer() {
   const { t } = useTranslation();
   const { data: categories } = useGetCategories();
+  const [showGetAppModal, setShowGetAppModal] = useState(false);
   return (
     <footer>
       <div className="container">
@@ -38,11 +41,11 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faqs">
+                  <Link to="/search/asks">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
-                    {t("faqs")}
+                    {t("header.asks")}
                   </Link>
                 </li>
                 <li>
@@ -78,7 +81,7 @@ export default function Footer() {
               <ul>
                 {categories?.map((category) => (
                   <li key={category.id}>
-                    <Link to={`/categories/${category.id}`}>
+                    <Link to={`/?category=${category.id}`}>
                       <span>
                         <i className="fa-sharp fa-light fa-arrow-right"></i>
                       </span>
@@ -94,24 +97,24 @@ export default function Footer() {
               <h3>{t("downloadApp")}</h3>
               <ul className="download-app">
                 <li>
-                  <Link to="" target="_blank">
+                  <span onClick={() => setShowGetAppModal(true)}>
                     <div className="icon">
                       <i className="fa-brands fa-apple"></i>
                     </div>
                     <div className="text">
                       <p>App Store</p>
                     </div>
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="" target="_blank">
+                  <span onClick={() => setShowGetAppModal(true)}>
                     <div className="icon">
                       <i className="fa-brands fa-google-play"></i>
                     </div>
                     <div className="text">
                       <p>Google Play</p>
                     </div>
-                  </Link>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -126,22 +129,38 @@ export default function Footer() {
               <div className="social_media">
                 <ul>
                   <li>
-                    <Link to="" target="_blank">
+                    <Link
+                      to=""
+                      target="_blank"
+                      onClick={(e) => e.preventDefault()}
+                    >
                       <i className="fa-brands fa-facebook-f"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" target="_blank">
+                    <Link
+                      to=""
+                      target="_blank"
+                      onClick={(e) => e.preventDefault()}
+                    >
                       <i className="fa-brands fa-instagram"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" target="_blank">
+                    <Link
+                      to=""
+                      target="_blank"
+                      onClick={(e) => e.preventDefault()}
+                    >
                       <i className="fa-brands fa-linkedin-in"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="" target="_blank">
+                    <Link
+                      to=""
+                      target="_blank"
+                      onClick={(e) => e.preventDefault()}
+                    >
                       <i className="fa-brands fa-twitter"></i>
                     </Link>
                   </li>
@@ -151,6 +170,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      <GetApp show={showGetAppModal} setShow={setShowGetAppModal} />
     </footer>
   );
 }

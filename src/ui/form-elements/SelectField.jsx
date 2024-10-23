@@ -1,17 +1,24 @@
 import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-export default function SelectField({ label, hint, options, ...props }) {
+export default function SelectField({
+  label,
+  hint,
+  options,
+  loading,
+  loadingText,
+  ...props
+}) {
   const { t } = useTranslation();
-  
+
   return (
     <div className="input-field">
       <label htmlFor={props?.id}>
         {label} {hint && <span className="hint">{hint}</span>}
       </label>
-      <Form.Select {...props}>
+      <Form.Select {...props} disabled={loading}>
         <option value="" disabled>
-          {t("select")}
+          {loading ? loadingText : t("select")}
         </option>
         {options?.map((option, index) => (
           <option key={index} value={option.value}>

@@ -33,6 +33,8 @@ function ProductVertical({ product, className, isShowAction = true }) {
           queryKey: ["products"],
         });
         queryClient.invalidateQueries({ queryKey: ["product"] });
+        queryClient.invalidateQueries({ queryKey: ["user-products"] });
+        queryClient.invalidateQueries({ queryKey: ["allProducts"] });
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -59,6 +61,8 @@ function ProductVertical({ product, className, isShowAction = true }) {
           queryKey: ["products"],
         });
         queryClient.invalidateQueries({ queryKey: ["product"] });
+        queryClient.invalidateQueries({ queryKey: ["user-products"] });
+        queryClient.invalidateQueries({ queryKey: ["allProducts"] });
       }
       setShowDeleteModal(false);
     } catch (error) {
