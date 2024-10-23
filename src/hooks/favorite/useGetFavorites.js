@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import { useSelector } from "react-redux";
 
-function useGetFavorites() {
+function useGetFavorites(enabled) {
   const lang = useSelector((state) => state.language.lang);
 
   const {
@@ -41,6 +41,7 @@ function useGetFavorites() {
     refetchOnMount: false,
     refetchOnReconnect: false,
     retry: false,
+    enabled: Boolean(enabled?.isActive),
   });
 
   return {

@@ -3,7 +3,7 @@ import useGetUserProducts from "../../hooks/products/useGetUserProducts";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 
-export default function MyAds() {
+export default function MyAds({ isActive }) {
   const sectionRef = useRef(null);
   const {
     data: products,
@@ -11,7 +11,7 @@ export default function MyAds() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetUserProducts();
+  } = useGetUserProducts(isActive);
 
   useEffect(() => {
     const handleScroll = () => {
