@@ -467,7 +467,7 @@
 }
 
 .sidebar_col {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 991px) {
     position: absolute;
     transition: $transition;
     z-index: 99;

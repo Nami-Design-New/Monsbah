@@ -152,7 +152,7 @@ function Categories() {
             )}
           </Swiper>
           {subcategoriesLoading || citiesLoading ? (
-            <PageLoader/>
+            <PageLoader />
           ) : (
             (subCategories?.length > 0 || cities?.length > 0) && (
               <div className="categories_slider subcategories_slider">

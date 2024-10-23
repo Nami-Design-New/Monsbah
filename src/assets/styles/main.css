@@ -980,7 +980,7 @@ body .small_menu {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
   display: none;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 991px) {
   body .small_menu {
     display: flex;
   }
@@ -5805,7 +5805,7 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
   body main .sidebar_col {
     position: absolute;
     transition: 0.3s ease-in-out;
