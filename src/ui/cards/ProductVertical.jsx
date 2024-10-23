@@ -9,7 +9,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { useSelector } from "react-redux";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
-function ProductVertical({ product, className }) {
+function ProductVertical({ product, className, isShowAction = true }) {
   const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -105,7 +105,7 @@ function ProductVertical({ product, className }) {
             >
               <i className="fa-light fa-heart"></i>
             </span>
-          ) : (
+          ) : isShowAction ? (
             <div className="d-flex align-items-center gap-2">
               <Link
                 to={`/profile?tab=addAd&product_id=${product?.id}`}
@@ -121,7 +121,7 @@ function ProductVertical({ product, className }) {
                 <i className="fa-light fa-trash"></i>
               </span>
             </div>
-          )}
+          ) : null}
         </Link>
 
         <h3 className="price">

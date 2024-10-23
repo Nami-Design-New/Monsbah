@@ -503,14 +503,14 @@ body header .mainLinks .moreActions .link img {
   height: 16px;
   transition: 0.3s ease-in-out;
 }
-body header .mainLinks .moreActions .link:hover {
+body header .mainLinks .moreActions .link:hover:not(.disabled) {
   background-color: #1abc9c;
   color: #fff;
 }
-body header .mainLinks .moreActions .link:hover img {
+body header .mainLinks .moreActions .link:hover:not(.disabled) img {
   filter: brightness(0) opacity(1) invert(1);
 }
-body header .mainLinks .moreActions .link:hover .count {
+body header .mainLinks .moreActions .link:hover:not(.disabled) .count {
   background-color: #ecfcf9;
   color: #1abc9c;
 }

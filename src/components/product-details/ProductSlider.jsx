@@ -31,7 +31,7 @@ export default function ProductSlider({ product }) {
     Fancybox.bind("[data-fancybox]", {});
   }, []);
   return (
-    <div className="swiper-wrapper">
+    <>
       <div className="swiperControl">
         <div className="swiperBtns">
           <div id="product-swiper-button-next" className="swiper-button-next" />
@@ -46,8 +46,8 @@ export default function ProductSlider({ product }) {
           clickable: true,
         }}
         navigation={{
-          nextEl: "#product-swiper-button-next",
-          prevEl: "#product-swiper-button-prev",
+          nextEl: "#hero-swiper-button-next",
+          prevEl: "#hero-swiper-button-prev",
         }}
         modules={[Pagination, EffectFade, Autoplay, Navigation]}
         autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
@@ -93,6 +93,6 @@ export default function ProductSlider({ product }) {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </>
   );
 }

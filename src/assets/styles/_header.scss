@@ -142,14 +142,16 @@ header {
           transition: $transition;
         }
         &:hover {
-          background-color: $main;
-          color: $white;
-          img {
-            filter: brightness(0) opacity(1) invert(1);
-          }
-          .count {
-            background-color: $main10;
-            color: $main;
+          &:not(.disabled) {
+            background-color: $main;
+            color: $white;
+            img {
+              filter: brightness(0) opacity(1) invert(1);
+            }
+            .count {
+              background-color: $main10;
+              color: $main;
+            }
           }
         }
         &.text {

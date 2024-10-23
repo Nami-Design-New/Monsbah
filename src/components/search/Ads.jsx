@@ -44,7 +44,7 @@ export default function Ads({ sectionRef }) {
 
       {ads?.map((ad, index) => (
         <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-          <ProductVertical product={ad} />
+          <ProductVertical product={ad} isShowAction={false} />
         </div>
       ))}
 
