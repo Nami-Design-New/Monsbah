@@ -3,7 +3,7 @@ import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 import useGetFavorites from "../../hooks/favorite/useGetFavorites";
 
-function FavoritesTab() {
+function FavoritesTab(isActive) {
   const sectionRef = useRef(null);
   const {
     data: products,
@@ -11,7 +11,7 @@ function FavoritesTab() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetFavorites();
+  } = useGetFavorites(isActive);
 
   useEffect(() => {
     const handleScroll = () => {

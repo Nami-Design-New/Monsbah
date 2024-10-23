@@ -107,7 +107,12 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <MyAds user={user} lang={lang} className="my-ad" />
+          <MyAds
+            user={user}
+            lang={lang}
+            className="my-ad"
+            isActive={activeTab === "ads"}
+          />
         </Tab>
 
         {/* addAd */}
@@ -121,7 +126,7 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <AddAd user={user} lang={lang} />
+          <AddAd user={user} lang={lang} isActive={activeTab === "addAd"} />
         </Tab>
 
         {/* questions */}
@@ -135,7 +140,11 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <QuestionsTab user={user} lang={lang} />
+          <QuestionsTab
+            user={user}
+            lang={lang}
+            isActive={activeTab === "questions"}
+          />
         </Tab>
 
         {/* favorites */}
@@ -149,7 +158,11 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <FavoritesTab user={user} lang={lang} />
+          <FavoritesTab
+            user={user}
+            lang={lang}
+            isActive={activeTab === "favorites"}
+          />
         </Tab>
 
         {/* settings */}
@@ -163,7 +176,11 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <SettingsTab user={user} lang={lang} />
+          <SettingsTab
+            user={user}
+            lang={lang}
+            isActive={activeTab === "settings"}
+          />
         </Tab>
 
         {/* verification */}
@@ -177,7 +194,11 @@ function ProfileTabs() {
           }
           className="tab_item"
         >
-          <VerificationTab user={user} lang={lang} />
+          <VerificationTab
+            user={user}
+            lang={lang}
+            isActive={activeTab === "verification"}
+          />
         </Tab>
 
         {/* logout */}
