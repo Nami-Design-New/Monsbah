@@ -83,7 +83,7 @@ function Categories() {
       <section className="explore_ads">
         <div className="container d-flex flex-column gap-4">
           {selectedCountry ? (
-            <buttton
+            <div
               onClick={() => {
                 searchParams.delete("category");
                 searchParams.delete("sub_category");
@@ -94,7 +94,7 @@ function Categories() {
                 handleSetParams(selectedCountry?.id, "country");
                 handleSetParams(selectedCountry?.id, "ask");
               }}
-              className={`category ${
+              className={` askCustomCountry  ${
                 selectedCountry?.id === Number(searchParams.get("country")) &&
                 Number(searchParams.get("ask"))
                   ? "active"
@@ -104,8 +104,15 @@ function Categories() {
               <div className="img">
                 <i className="fa-regular fa-comment-plus"></i>
               </div>
-              <h6>{`${t("ask")} ${selectedCountry?.name}`}</h6>
-            </buttton>
+              <h6 className="selectedName">{`${t("ask")} ${selectedCountry?.name}`}</h6>
+
+              <div className="shapes">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            </div>
           ) : null}
           <Swiper slidesPerView="auto" className="categories_slider">
             {categoriesLoading || countriesLoading ? (
@@ -121,7 +128,7 @@ function Categories() {
             ) : (
               <>
                 {categories?.map((category) => (
-                  <SwiperSlide key={category.id}>
+                  <SwiperSlide key={category.id} className="p-1">
                     <buttton
                       onClick={() => {
                         searchParams.delete("sub_category");
