@@ -30,7 +30,7 @@
   "auth": {
     "loginTitle": "مرحبًا بعودتك !",
     "loginSubtitle": "سجّل دخولك للوصول إلى حسابك ومتابعة رحلتك معنا.",
-    "registerTitle": "أهلً ومرحبًا بك !",
+    "registerTitle": "أهلًا ومرحبًا بك !",
     "registerSubtitle": "املأ البيانات المطلوبة للتسجيل في حسابك لتصبح جزء من مجتمعنا.",
     "phone": "رقم الجوال",
     "password": "كلمة المرور",
@@ -63,7 +63,10 @@
     "confirmOTPSubtitle": "الرجاء فحص بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
     "confirmOTPTitle": "الرمز مكونًا من 4 أرقام",
     "changePasswordSubtitle": "ادخل كلمة المرور الجديدة واحرص على اختيار كلمة مرور مناسبة",
-    "changePasswordTitle": "تغيير كلمة المرور"
+    "changePasswordTitle": "تغيير كلمة المرور",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى"
   },
   "profile": {
     "mainInfo": "المعلومات الشخصية",
@@ -304,5 +307,6 @@
   "editAsk": "تعديل السؤال",
   "edit": "تعديل",
   "createReport": "ابلاغ",
-  "successfullyReported": "تم الابلاغ بنجاح"
+  "successfullyReported": "تم الابلاغ بنجاح",
+  "home": "الرئيسية"
 }

@@ -1,31 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAllProducts({ id, enabled }) {
+function useGetSliders() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["allProducts", id],
+    queryKey: ["sliders"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/client/products", {
-        params: {
-          user_id: id,
-        },
-      });
+      const res = await axiosInstance.get("/client/sliders");
       if (res.status === 200) {
         return {
           data: res.data,
         };
       } else {
-        throw new Error("Failed to fetch products");
+        throw new Error("Failed to fetch sliders");
       }
     },
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    enabled: Boolean(id) && Boolean(enabled),
   });
 
   return { isLoading, data, error };
 }
 
-export default useGetAllProducts;
+export default useGetSliders;

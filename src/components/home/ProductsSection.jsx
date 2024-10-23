@@ -10,7 +10,7 @@ export default function ProductsSection() {
     isLoading,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useGetProducts();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function ProductsSection() {
         <div className="row">
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-              <ProductVertical product={product} />
+              <ProductVertical product={product} isShowAction={false} />
             </div>
           ))}
 

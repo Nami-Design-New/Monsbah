@@ -172,7 +172,7 @@ footer {
   align-items: center;
   box-shadow: $shadow;
   display: none;
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 991px) {
     display: flex;
   }
   .menu_item {

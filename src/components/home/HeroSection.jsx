@@ -107,7 +107,7 @@ function HeroSection() {
               </>
             ) : (
               <>
-                <SwiperSlide>
+                <SwiperSlide className="p-1">
                   <button
                     className={`category ${
                       selectedCategory === null ? "active" : ""
@@ -130,7 +130,7 @@ function HeroSection() {
                 </SwiperSlide>
 
                 {categories?.map((category) => (
-                  <SwiperSlide key={category.id}>
+                  <SwiperSlide key={category.id} className="p-1">
                     <buttton
                       onClick={() => {
                         searchParams.delete("sub_category");
@@ -160,7 +160,7 @@ function HeroSection() {
           {/* sub categories */}
           {subCategories?.length > 0 && (
             <Swiper slidesPerView="auto" className="categories_slider">
-              <SwiperSlide>
+              <SwiperSlide className="p-1">
                 <button
                   className={`category sub ${
                     selectedSubCategory === null ? "active" : ""
@@ -176,7 +176,7 @@ function HeroSection() {
               </SwiperSlide>
 
               {subCategories?.map((sub) => (
-                <SwiperSlide key={sub.id}>
+                <SwiperSlide key={sub.id} className="p-1">
                   <buttton
                     onClick={() => handleSetParams(sub.id, "sub_category")}
                     className={`category sub ${

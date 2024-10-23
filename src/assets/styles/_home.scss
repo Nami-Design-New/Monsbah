@@ -11,7 +11,8 @@
     width: 100%;
     aspect-ratio: 5 / 1;
     min-height: 182px;
-    a {
+    a,
+    .slider_loader {
       display: block;
       width: 100%;
       height: 100%;
@@ -25,6 +26,11 @@
         }
       }
     }
+    .slider_loader {
+      border-radius: 12px;
+      background: #e0e0e0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
     .swiper-pagination-bullet {
       width: 24px;
       border-radius: 0;
@@ -37,11 +43,9 @@
     }
   }
 }
-
 .explore_ads {
   .categories_slider {
     width: 100%;
-
     &.subcategories_slider {
       background-color: #f8f8f8;
       padding: 8px;
@@ -49,10 +53,13 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-
       .category {
         &.sub {
           background-color: $white;
+          color: $dark !important;
+          h6 {
+            color: $dark !important;
+          }
         }
       }
     }
@@ -67,7 +74,6 @@
     align-items: center;
     gap: 12px;
     padding: 4px 4px 4px 26px;
-    margin: 0 8px;
     white-space: nowrap;
     color: $dark;
     border-radius: 200px;
@@ -76,27 +82,27 @@
     &:nth-child(1) {
       margin-inline-start: 0;
     }
-
     &.sub {
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 12px !important;
+      margin: 0;
       .image-wrapper {
         width: 100%;
         display: flex;
         position: relative;
         align-items: center;
         justify-content: center;
-        height: 180px;
-
         img {
           object-fit: cover;
-          height: 100%;
+          width: 100%;
+          aspect-ratio: 1;
+          object-fit: contain;
+          max-height: 180px;
         }
       }
     }
-
     > .img {
       border-radius: 50%;
       background: $white;
@@ -119,7 +125,7 @@
       }
     }
     &.sub {
-      padding: 10px 16px;
+      padding: 16px;
     }
     &.skeleton {
       animation: pulse 1.5s ease-in-out infinite;

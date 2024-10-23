@@ -81,7 +81,39 @@ function Categories() {
   return (
     <div className="categories-page">
       <section className="explore_ads">
-        <div className="container d-flex flex-column gap-4">
+        <div className="container d-flex flex-column gap-3">
+          {selectedCountry ? (
+            <div
+              onClick={() => {
+                searchParams.delete("category");
+                searchParams.delete("sub_category");
+                searchParams.delete("type");
+                setSearchParams(searchParams);
+                setSelectedSubCategory(null);
+                setSelectedCategory(null);
+                handleSetParams(selectedCountry?.id, "country");
+                handleSetParams(selectedCountry?.id, "ask");
+              }}
+              className={` askCustomCountry  ${
+                selectedCountry?.id === Number(searchParams.get("country")) &&
+                Number(searchParams.get("ask"))
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="img">
+                <i className="fa-regular fa-comment-plus"></i>
+              </div>
+              <h6 className="selectedName">{`${t("ask")} ${selectedCountry?.name}`}</h6>
+
+              <div className="shapes">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            </div>
+          ) : null}
           <Swiper slidesPerView="auto" className="categories_slider">
             {categoriesLoading || countriesLoading ? (
               <>
@@ -96,7 +128,7 @@ function Categories() {
             ) : (
               <>
                 {categories?.map((category) => (
-                  <SwiperSlide key={category.id}>
+                  <SwiperSlide key={category.id} className="p-1">
                     <buttton
                       onClick={() => {
                         searchParams.delete("sub_category");
@@ -120,39 +152,11 @@ function Categories() {
                     </buttton>
                   </SwiperSlide>
                 ))}
-                {selectedCountry ? (
-                  <SwiperSlide key={"country"}>
-                    <buttton
-                      onClick={() => {
-                        searchParams.delete("category");
-                        searchParams.delete("sub_category");
-                        searchParams.delete("type");
-                        setSearchParams(searchParams);
-                        setSelectedSubCategory(null);
-                        setSelectedCategory(null);
-                        handleSetParams(selectedCountry?.id, "country");
-                        handleSetParams(selectedCountry?.id, "ask");
-                      }}
-                      className={`category ${
-                        selectedCountry?.id ===
-                          Number(searchParams.get("country")) &&
-                        Number(searchParams.get("ask"))
-                          ? "active"
-                          : ""
-                      }`}
-                    >
-                      <div className="img">
-                        <i className="fa-regular fa-comment-plus"></i>
-                      </div>
-                      <h6>{`${t("ask")} ${selectedCountry?.name}`}</h6>
-                    </buttton>
-                  </SwiperSlide>
-                ) : null}
               </>
             )}
           </Swiper>
           {subcategoriesLoading || citiesLoading ? (
-            <PageLoader/>
+            <PageLoader />
           ) : (
             (subCategories?.length > 0 || cities?.length > 0) && (
               <div className="categories_slider subcategories_slider">

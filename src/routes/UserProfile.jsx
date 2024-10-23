@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import SectionHeader from "../components/layout/SectionHeader";
+
 import useGetUserProfile from "../hooks/users/useGetUserProfile";
 import PageLoader from "../ui/loaders/PageLoader";
 import { useRef, useState } from "react";
@@ -26,7 +26,10 @@ function UserProfile() {
   const lang = useSelector((state) => state.language.lang);
 
   const sectionRef = useRef(null);
-  const { data: products, isLoading } = useGetAllProducts(user?.id);
+  const { data: products, isLoading } = useGetAllProducts({
+    id: user?.id,
+    enabled: activeTab === "ads",
+  });
 
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
@@ -34,8 +37,6 @@ function UserProfile() {
   function handleTabChange(tab) {
     setSearchParams({ tab });
   }
-
-  console.log(products?.data?.data?.data);
 
   // products?.data?.data?.data?.map((product) => {
   //   console.log(product?.user?.id);
@@ -68,7 +69,6 @@ function UserProfile() {
 
   return (
     <>
-      <SectionHeader title={user?.name} />
       <div className="profile-page">
         <div className="container ">
           <div className="row m-0">
@@ -77,7 +77,7 @@ function UserProfile() {
             ) : (
               <div className="tabs-section">
                 <Tabs
-                  className="profileNavCol col-md-5 col-lg-4 col-xl-3 p-2"
+                  className="profileNavCol col-md-4 col-xl-3 p-2"
                   activeKey={activeTab}
                   onSelect={(tab) => handleTabChange(tab)}
                   id="uncontrolled-tab-example"
@@ -271,10 +271,23 @@ function UserProfile() {
                       className="products_section w-100"
                       ref={sectionRef}
                     >
-                      {products?.data?.data?.data?.length > 0 ? (
-                        <>
-                          <div className="row">
-                            {products?.data?.data?.data?.map((product) => (
+                      <>
+                        <div className="row">
+                          {isLoading ? (
+                            <>
+                              {Array(3)
+                                .fill(0)
+                                .map((_, index) => (
+                                  <div
+                                    className="col-lg-6 col-12 p-2"
+                                    key={`loader-${index}`}
+                                  >
+                                    <ProductLoader />
+                                  </div>
+                                ))}
+                            </>
+                          ) : products?.data?.data?.data?.length > 0 ? (
+                            products?.data?.data?.data?.map((product) => (
                               <div
                                 className="col-lg-6 col-12 p-2"
                                 key={product?.id}
@@ -284,29 +297,18 @@ function UserProfile() {
                                   className="my-ad"
                                 />
                               </div>
-                            ))}
+                            ))
+                          ) : (
+                            <EmptyData minHeight="200px">
+                              <p>{t("ads.userNoAds")}</p>
+                            </EmptyData>
+                          )}
+                        </div>
+                      </>
 
-                            {isLoading && (
-                              <>
-                                {Array(3)
-                                  .fill(0)
-                                  .map((_, index) => (
-                                    <div
-                                      className="col-lg-6 col-12 p-2"
-                                      key={`loader-${index}`}
-                                    >
-                                      <ProductLoader />
-                                    </div>
-                                  ))}
-                              </>
-                            )}
-                          </div>
-                        </>
-                      ) : (
-                        <EmptyData minHeight="200px">
+                      {/* <EmptyData minHeight="200px">
                           <p>{t("ads.userNoAds")}</p>
-                        </EmptyData>
-                      )}
+                        </EmptyData> */}
                     </section>
                   </Tab>
 
@@ -321,7 +323,7 @@ function UserProfile() {
                     }
                     className="tab_item"
                   >
-                    <RatesTab user={user} />
+                    <RatesTab user={user} isActive={activeTab === "rates"} />
                   </Tab>
                 </Tabs>
               </div>
