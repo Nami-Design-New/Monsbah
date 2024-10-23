@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
+import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { isValidVideoExtension } from "../../utils/helpers";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import "swiper/css/navigation";
 export default function ProductSlider({ product }) {
   const [images, setImages] = useState([]);
   const [autoplayDelay, setAutoplayDelay] = useState(3000);
@@ -31,41 +30,46 @@ export default function ProductSlider({ product }) {
     Fancybox.bind("[data-fancybox]", {});
   }, []);
   return (
-    <>
-      <div className="swiperControl">
-        <div className="swiperBtns">
-          <div id="product-swiper-button-next" className="swiper-button-next" />
-          <div id="product-swiper-button-prev" className="swiper-button-prev" />
-        </div>
-      </div>
-      <Swiper
-        effect="fade"
-        loop={true}
-        className="product_swiper"
-        pagination={{
-          clickable: true,
-        }}
-        navigation={{
-          nextEl: "#hero-swiper-button-next",
-          prevEl: "#hero-swiper-button-prev",
-        }}
-        modules={[Pagination, EffectFade, Autoplay, Navigation]}
-        autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
-        onSlideChange={(swiper) => {
-          if (swiper.realIndex === 0 && videoRef.current) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.play();
-            setAutoplayDelay(videoRef.current.duration * 1000);
-          } else {
-            setAutoplayDelay(3000);
-          }
-        }}
-      >
-        {images?.map((image, index) => (
-          <SwiperSlide key={index}>
+    <Swiper
+      effect="fade"
+      loop={true}
+      className="product_swiper"
+      pagination={{
+        clickable: true,
+      }}
+      modules={[EffectFade, Autoplay, Pagination]}
+      autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
+      onSlideChange={(swiper) => {
+        if (swiper.realIndex === 0 && videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play();
+          setAutoplayDelay(videoRef.current.duration * 1000);
+        } else {
+          setAutoplayDelay(3000);
+        }
+      }}
+    >
+      {images?.map((image, index) => (
+        <SwiperSlide key={index}>
+          {isValidVideoExtension(image) ? (
+            <video
+              className="blurde_bg"
+              src={image}
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ) : (
+            <img className="blurde_bg" src={image} alt="bluer_image" />
+          )}
+          <a
+            href={image}
+            data-fancybox="gallery"
+          >
             {isValidVideoExtension(image) ? (
               <video
-                className="blurde_bg"
                 src={image}
                 ref={videoRef}
                 autoPlay
@@ -74,25 +78,11 @@ export default function ProductSlider({ product }) {
                 playsInline
               />
             ) : (
-              <img className="blurde_bg" src={image} alt="bluer_image" />
+              <img src={image} alt={image} />
             )}
-            <a href={image} data-fancybox="gallery">
-              {isValidVideoExtension(image) ? (
-                <video
-                  src={image}
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              ) : (
-                <img src={image} alt={image} />
-              )}
-            </a>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+          </a>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }

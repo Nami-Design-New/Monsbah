@@ -1,9 +1,9 @@
-import SectionHeader from "../components/layout/SectionHeader";
+
 
 export default function About() {
   return (
     <section className="aboutus_section">
-      <SectionHeader />
+      
       <div className="Head_image">
         <img src="/images/s2.jpg" alt="" />
       </div>

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import SectionHeader from "../components/layout/SectionHeader";
+
 import useGetUserProfile from "../hooks/users/useGetUserProfile";
 import PageLoader from "../ui/loaders/PageLoader";
 import { useRef, useState } from "react";
@@ -68,7 +68,6 @@ function UserProfile() {
 
   return (
     <>
-      <SectionHeader title={user?.name} />
       <div className="profile-page">
         <div className="container ">
           <div className="row m-0">

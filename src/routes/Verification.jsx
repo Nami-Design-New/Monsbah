@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import useVerification from "../hooks/verification/useVerification";
-import SectionHeader from "../components/layout/SectionHeader";
 
 function Verification() {
   const { t } = useTranslation();
@@ -74,7 +73,6 @@ function Verification() {
 
   return (
     <div className="verification-page">
-      <SectionHeader />
       <div className="container mt-4">
         <div className="row m-0">
           <div className="col-12 p-2">
