@@ -114,7 +114,7 @@ body {
       margin: 0;
     }
     .wrapper {
-      height: 50vh;
+      max-height: 50vh;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -466,4 +466,9 @@ body {
     color: #cecece;
     line-height: 1.6;
   }
+}
+
+.container {
+  max-width: unset;
+  width: min(100% , 1320px);
 }
