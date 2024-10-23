@@ -3304,12 +3304,14 @@ body main .hero_section .hero_swiper {
   aspect-ratio: 5/1;
   min-height: 182px;
 }
-body main .hero_section .hero_swiper a {
+body main .hero_section .hero_swiper a,
+body main .hero_section .hero_swiper .slider_loader {
   display: block;
   width: 100%;
   height: 100%;
 }
-body main .hero_section .hero_swiper a img {
+body main .hero_section .hero_swiper a img,
+body main .hero_section .hero_swiper .slider_loader img {
   border-radius: 12px;
   width: 100%;
   height: 100%;
@@ -3317,9 +3319,15 @@ body main .hero_section .hero_swiper a img {
      object-fit: cover;
 }
 @media screen and (max-width: 576px) {
-  body main .hero_section .hero_swiper a img {
+  body main .hero_section .hero_swiper a img,
+  body main .hero_section .hero_swiper .slider_loader img {
     border-radius: 0;
   }
+}
+body main .hero_section .hero_swiper .slider_loader {
+  border-radius: 12px;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 body main .hero_section .hero_swiper .swiper-pagination-bullet {
   width: 24px;
