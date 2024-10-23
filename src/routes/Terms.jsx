@@ -1,4 +1,3 @@
-import SectionHeader from "../components/layout/SectionHeader";
 import { useTranslation } from "react-i18next";
 
 const Terms = () => {
@@ -6,8 +5,6 @@ const Terms = () => {
 
   return (
     <section className="terms_section">
-      <SectionHeader />
-
       <div className="terms_content container">
         <h1>{t("TermsConditions")}</h1>
         <p>{t("Conditions1")}</p>
