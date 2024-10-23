@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import SectionHeader from "../components/layout/SectionHeader";
 import { Link } from "react-router-dom";
 import InputField from "./../ui/form-elements/InputField";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
@@ -17,7 +16,7 @@ function Contact() {
 
   return (
     <>
-      <SectionHeader title={t("header.contact")} />
+      
       <section className="contact_section">
         <div className="container">
           <div className="row">

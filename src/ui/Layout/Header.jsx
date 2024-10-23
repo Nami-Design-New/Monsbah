@@ -131,7 +131,7 @@ export default function Header() {
             </Link>
 
             {user?.id ? (
-              <Link to="/profile" className="link">
+              <Link to="/profile" className="link profile-link">
                 <img
                   src={avatarError ? "/images/icons/user.svg" : user?.image}
                   alt="user"
