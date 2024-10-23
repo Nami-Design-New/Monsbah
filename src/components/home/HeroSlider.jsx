@@ -4,8 +4,11 @@ import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import useGetSliders from "../../hooks/settings/useGetSliders";
 
 function HeroSlider() {
+  const { isLoading, data: sliders } = useGetSliders();
+
   return (
     <section className="hero_section">
       <div className="container">

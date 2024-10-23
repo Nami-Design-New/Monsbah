@@ -63,7 +63,10 @@
     "confirmOTPSubtitle": "الرجاء فحص بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
     "confirmOTPTitle": "الرمز مكونًا من 4 أرقام",
     "changePasswordSubtitle": "ادخل كلمة المرور الجديدة واحرص على اختيار كلمة مرور مناسبة",
-    "changePasswordTitle": "تغيير كلمة المرور"
+    "changePasswordTitle": "تغيير كلمة المرور",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى"
   },
   "profile": {
     "mainInfo": "المعلومات الشخصية",

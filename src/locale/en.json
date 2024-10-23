@@ -63,7 +63,10 @@
     "confirmOTPSubtitle": "Please check your email or phone for the activation code",
     "confirmOTPTitle": "The code is 4 digits",
     "changePasswordSubtitle": "Enter the new password and make sure to choose a suitable one",
-    "changePasswordTitle": "Change Password"
+    "changePasswordTitle": "Change Password",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female"
   },
   "profile": {
     "mainInfo": "Personal Information",
