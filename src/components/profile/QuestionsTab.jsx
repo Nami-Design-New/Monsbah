@@ -16,11 +16,11 @@ function QuestionsTab(isActive) {
   const { data: asks, isLoading } = useGetAllAsks(isActive);
 
   return (
-    <section className="search_section px-2 w-100" ref={sectionRef}>
-      <div className="row px-2">
+    <section className="search_section  w-100 p-0" ref={sectionRef}>
+      <div className="row">
         {asks?.data?.data?.data?.map((ask, index) =>
           ask?.user_id === user?.id ? (
-            <div className="col-lg-6 col-12 p-2" key={index}>
+            <div className="col-lg-6 col-12 p-1" key={index}>
               <AskCard
                 ask={ask}
                 setShowModal={setShowModal}

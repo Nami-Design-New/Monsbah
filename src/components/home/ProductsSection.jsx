@@ -36,7 +36,7 @@ export default function ProductsSection() {
 
   return (
     <section className="products_section" ref={sectionRef}>
-      <div className="container">
+      <div className="container p-1">
         <div className="row">
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>

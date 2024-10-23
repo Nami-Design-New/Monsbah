@@ -15,7 +15,6 @@ function RatesTab({ user, isActive }) {
 
   return (
     <section className="products_section w-100">
-      <div className="container">
         <div className="w-100">
           <div className=" w-100 actions-wrapper p-0 d-flex align-items-center justify-content-end">
             <span
@@ -47,7 +46,6 @@ function RatesTab({ user, isActive }) {
             </>
           )}
         </div>
-      </div>
       <CreateRateModal
         id={user?.id}
         showModal={showModal}

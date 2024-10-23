@@ -131,7 +131,7 @@ function SettingsTab() {
   return (
     <>
       <form
-        className="form col-12 w-100 p-4 reverse-form"
+        className="form col-12 p-1 w-100 p-md-3 reverse-form"
         onSubmit={handleSubmit}
       >
         <ImageUpload

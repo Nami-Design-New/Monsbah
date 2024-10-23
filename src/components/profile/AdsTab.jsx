@@ -37,7 +37,6 @@ function AdsTab({ user }) {
 
   return (
     <section className="products_section" ref={sectionRef}>
-      <div className="container">
         <div className="row">
           {products?.map((product, index) => (
             <div className="col-lg-6 col-12 p-2" key={index}>
@@ -59,7 +58,6 @@ function AdsTab({ user }) {
             </>
           )}
         </div>
-      </div>
     </section>
   );
 }

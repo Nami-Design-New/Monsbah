@@ -76,6 +76,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
       svg,
       i {
         stroke: $dark;
@@ -88,6 +89,7 @@
       span {
         font-size: 12px;
         color: $inputHint;
+        width: 100%;
       }
     }
     input,
@@ -660,6 +662,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
   .label-content {
     height: unset !important;
     padding: 8px 0 !important;
@@ -667,9 +670,9 @@
     gap: 8px;
   }
   label {
-    width: 100%;
+    flex: 1;
     span {
-      height: 56px;
+      min-height: 56px;
       width: 100%;
       background: $white;
       color: $dark !important;
@@ -679,6 +682,8 @@
       @include centerFlex();
       border-radius: 12px;
       transition: $transition;
+      padding: 12px;
+      white-space: nowrap;
     }
     input {
       display: none;
