@@ -120,7 +120,7 @@ footer {
   flex-direction: column;
   gap: 20px;
   @media (max-width: 576px) {
-    flex-direction: row;
+    flex-direction: row !important;
   }
   li {
     width: 150px;

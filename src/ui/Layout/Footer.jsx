@@ -28,7 +28,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-lg-3 col-md-6 col-12 p-2">
+          <div className="col-lg-3 col-md-6 col-6 p-2">
             <div className="col">
               <h3>{t("importantLinks")}</h3>
               <ul>
@@ -75,7 +75,7 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div className="col-lg-3 col-md-6 col-12 p-2">
+          <div className="col-lg-3 col-md-6 col-6 p-2">
             <div className="col">
               <h3>{t("popularCategories")}</h3>
               <ul>

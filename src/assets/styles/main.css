@@ -941,7 +941,7 @@ body .download-app {
 }
 @media (max-width: 576px) {
   body .download-app {
-    flex-direction: row;
+    flex-direction: row !important;
   }
 }
 body .download-app li {
