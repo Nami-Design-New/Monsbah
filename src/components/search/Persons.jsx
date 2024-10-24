@@ -31,7 +31,23 @@ export default function Persons({ sectionRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
-  
+  useEffect(() => {
+    if (!data?.pages) return;
+    setPersons((prevPersons = []) => {
+      const prevPersonsMap = new Map(prevPersons.map((p) => [p.id, p]));
+      const newPersons = data.pages.flatMap((page) => page.data);
+      
+      newPersons.forEach((newPerson) => {
+        const existingPerson = prevPersonsMap.get(newPerson.id);
+        if (existingPerson) {
+          prevPersonsMap.set(newPerson.id, { ...newPerson, ...existingPerson });
+        } else {
+          prevPersonsMap.set(newPerson.id, newPerson);
+        }
+      });
+      return Array.from(prevPersonsMap.values());
+    });
+  }, [data?.pages]);
 
   return (
     <>
@@ -42,7 +58,7 @@ export default function Persons({ sectionRef }) {
 
       {persons?.map((person, index) => (
         <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-          <PersonCard person={person} />
+          <PersonCard person={person} setPersons={setPersons} />
         </div>
       ))}
 

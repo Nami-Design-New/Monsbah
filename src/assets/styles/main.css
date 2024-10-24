@@ -2804,12 +2804,10 @@ body .actions-wrapper .action-btn {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  color: #1abc9c;
+  border-radius: 28px;
+  font-size: 14px;
+  background-color: #1abc9c;
+  color: #ffffff;
   min-width: 120px;
   cursor: pointer;
 }
@@ -4064,12 +4062,10 @@ body main .actions-wrapper .action-btn {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  color: #1abc9c;
+  border-radius: 28px;
+  font-size: 14px;
+  background-color: #1abc9c;
+  color: #ffffff;
   min-width: 120px;
   cursor: pointer;
 }

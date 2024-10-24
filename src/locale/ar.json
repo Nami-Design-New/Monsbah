@@ -91,7 +91,9 @@
     "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح",
     "rates": "التقييمات",
     "passwordSuccessfullyUpdated": "تم تغيير كلمة المرور بنجاح",
-    "aboutMe": "عني"
+    "aboutMe": "عني",
+    "myAds": "إعلاناتى",
+    "myAsks": "أسألتى"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",

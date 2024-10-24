@@ -91,7 +91,9 @@
     "phoneSuccessfullyChanged": "Phone number changed successfully",
     "rates": "Ratings",
     "passwordSuccessfullyUpdated": "Password updated successfully",
-    "aboutMe": "About Me"
+    "aboutMe": "About Me",
+    "myAds": "My Ads",
+    "myAsks": "My Asks"
   },
   "contact": {
     "title": "Need more information? Contact us",
