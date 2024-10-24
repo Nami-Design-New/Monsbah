@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
@@ -6,13 +6,9 @@ import useGetPersons from "../../hooks/search/useGetPersons";
 
 export default function Persons({ sectionRef }) {
   const { t } = useTranslation();
-  const {
-    data: persons,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetPersons();
+  const [persons, setPersons] = useState([]);
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetPersons();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,13 +31,12 @@ export default function Persons({ sectionRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
-
   useEffect(() => {
     if (!data?.pages) return;
     setPersons((prevPersons = []) => {
       const prevPersonsMap = new Map(prevPersons.map((p) => [p.id, p]));
       const newPersons = data.pages.flatMap((page) => page.data);
-      
+
       newPersons.forEach((newPerson) => {
         const existingPerson = prevPersonsMap.get(newPerson.id);
         if (existingPerson) {
