@@ -49,7 +49,7 @@ function useGetPersons() {
 
   return {
     isLoading,
-    data: data?.pages.flatMap((page) => page.data) || [],
+    data,
     error,
     hasNextPage,
     fetchNextPage,

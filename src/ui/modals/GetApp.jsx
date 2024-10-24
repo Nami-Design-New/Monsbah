@@ -19,14 +19,14 @@ export default function GetApp({ show, setShow }) {
         <img className="qrcode" src="/images/icons/qr.svg" alt="" />
         <div className="btns">
           <Link
-            to="https://apps.apple.com/kw/app/%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9/id1589937521?l=ar"
+            to="https://apps.apple.com/eg/app/%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9/id1589937521"
             target="_blank"
           >
             <img src="/images/icons/appStore.svg" alt="" />
           </Link>
           <Link
-            target="_blank"
             to="https://play.google.com/store/apps/details?id=com.app.monasba&pcampaignid=web_share"
+            target="_blank"
           >
             <img src="/images/icons/playStore.svg" alt="" />
           </Link>

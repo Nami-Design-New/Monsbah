@@ -1,20 +1,25 @@
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
-import { useSelector } from "react-redux";
 
-function PersonCard({ person }) {
+function PersonCard({ person, setPersons }) {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
-
   const client = useSelector((state) => state.clientData.client);
 
   const handleFollow = async (type) => {
-    setLoading(true);
+    setPersons((prevPersons) => {
+      return prevPersons.map((p) => {
+        if (p.id === person.id) {
+          return { ...p, is_follow: type === "follow" ? 1 : 0 };
+        }
+        return p;
+      });
+    });
+
     try {
       const res = await axiosInstance.post(
         type === "follow"
@@ -25,7 +30,6 @@ function PersonCard({ person }) {
         }
       );
       if (res.status === 200) {
-        setLoading(false);
         queryClient.invalidateQueries({
           queryKey: ["persons"],
         });
@@ -33,8 +37,6 @@ function PersonCard({ person }) {
     } catch (error) {
       toast.error(error.response.data.message);
       throw new Error(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -59,20 +61,12 @@ function PersonCard({ person }) {
         </div>
       </Link>
       {person?.is_follow ? (
-        <button
-          className="follow_btn"
-          onClick={() => handleFollow("unfollow")}
-          disabled={loading}
-        >
+        <button className="follow_btn" onClick={() => handleFollow("unfollow")}>
           <i className="fa-light fa-user-minus"></i>{" "}
           <span>{t("unfollow")}</span>
         </button>
       ) : (
-        <button
-          className="follow_btn"
-          onClick={() => handleFollow("follow")}
-          disabled={loading}
-        >
+        <button className="follow_btn" onClick={() => handleFollow("follow")}>
           <i className="fa-regular fa-user-plus"></i> <span>{t("follow")}</span>
         </button>
       )}
