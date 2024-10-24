@@ -109,6 +109,27 @@ function UserProfile() {
                               />
                             )}
                           </div>
+                          <div className="actions-wrapper d-flex justify-content-end mb-auto w-100">
+                            {user?.is_follow ? (
+                              <div
+                                className="action-btn follow_btn"
+                                onClick={() => handleFollow("unfollow")}
+                                disabled={loading}
+                              >
+                                <i className="fa-light fa-user-minus"></i>{" "}
+                                <span>{t("unfollow")}</span>
+                              </div>
+                            ) : (
+                              <div
+                                className="action-btn follow_btn"
+                                onClick={() => handleFollow("follow")}
+                                disabled={loading}
+                              >
+                                <i className="fa-regular fa-user-plus"></i>{" "}
+                                <span>{t("follow")}</span>
+                              </div>
+                            )}
+                          </div>
                           <div className="Profile_info w-100 flex-wrap">
                             <div className="logo-wrapper">
                               <img
@@ -135,30 +156,6 @@ function UserProfile() {
                                 </h1>
                               ) : null}
                               {user?.email ? <p>{user?.email}</p> : null}
-                            </div>
-                            <div
-                              className="actions-wrapper d-flex justify-content-end"
-                              style={{ flex: 1 }}
-                            >
-                              {user?.is_follow ? (
-                                <div
-                                  className="action-btn follow_btn"
-                                  onClick={() => handleFollow("unfollow")}
-                                  disabled={loading}
-                                >
-                                  <i className="fa-light fa-user-minus"></i>{" "}
-                                  <span>{t("unfollow")}</span>
-                                </div>
-                              ) : (
-                                <div
-                                  className="action-btn follow_btn"
-                                  onClick={() => handleFollow("follow")}
-                                  disabled={loading}
-                                >
-                                  <i className="fa-regular fa-user-plus"></i>{" "}
-                                  <span>{t("follow")}</span>
-                                </div>
-                              )}
                             </div>
                           </div>
                         </div>
@@ -205,7 +202,7 @@ function UserProfile() {
 
                         {user?.["following-count"] ||
                         +user?.["following-count"] === 0 ? (
-                          <div className="col-lg-3 col-md-6 col-12 p-2">
+                          <div className="col-lg-3 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["following-count"]}</h2>
 
@@ -218,7 +215,7 @@ function UserProfile() {
 
                         {user?.["followers-count"] ||
                         +user?.["followers-count"] === 0 ? (
-                          <div className="col-lg-3 col-md-6 col-12 p-2">
+                          <div className="col-lg-3 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["followers-count"]}</h2>
 
@@ -230,7 +227,7 @@ function UserProfile() {
                         ) : null}
 
                         {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
-                          <div className="col-lg-3 col-md-6 col-12 p-2">
+                          <div className="col-lg-3 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["rate-count"]}</h2>
 
@@ -242,7 +239,7 @@ function UserProfile() {
                         ) : null}
 
                         {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
-                          <div className="col-lg-3 col-md-6 col-12 p-2">
+                          <div className="col-lg-3 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["ads-count"]}</h2>
 

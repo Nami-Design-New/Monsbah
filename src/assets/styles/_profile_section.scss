@@ -448,8 +448,8 @@
   justify-content: space-between;
   position: relative;
   gap: 8px;
-  border: 1px dashed #333;
-  padding: 8px 16px;
+  border: 1px dashed #33333370;
+  padding: 16px;
   border-radius: 12px;
   .value {
     display: flex;
@@ -585,8 +585,8 @@
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    box-shadow: 0px 4px 12px 0px #0000001a;
-    padding: 8px 16px;
+    // box-shadow: 0px 4px 12px 0px #0000001a;
+    padding:  16px;
     border-radius: 12px;
     flex: 1;
     .icon_rate {

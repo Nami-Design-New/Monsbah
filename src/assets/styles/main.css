@@ -2753,8 +2753,8 @@ body .user-details-box {
   justify-content: space-between;
   position: relative;
   gap: 8px;
-  border: 1px dashed #333;
-  padding: 8px 16px;
+  border: 1px dashed rgba(51, 51, 51, 0.4392156863);
+  padding: 16px;
   border-radius: 12px;
 }
 body .user-details-box .value {
@@ -2899,8 +2899,7 @@ body .Dashpoard_section .Box_rate {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
-  padding: 8px 16px;
+  padding: 16px;
   border-radius: 12px;
   flex: 1;
 }
@@ -4005,8 +4004,8 @@ body main .user-details-box {
   justify-content: space-between;
   position: relative;
   gap: 8px;
-  border: 1px dashed #333;
-  padding: 8px 16px;
+  border: 1px dashed rgba(51, 51, 51, 0.4392156863);
+  padding: 16px;
   border-radius: 12px;
 }
 body main .user-details-box .value {
@@ -4151,8 +4150,7 @@ body main .Dashpoard_section .Box_rate {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1019607843);
-  padding: 8px 16px;
+  padding: 16px;
   border-radius: 12px;
   flex: 1;
 }
