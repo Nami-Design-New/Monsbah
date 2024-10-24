@@ -71,6 +71,8 @@
     "resendCode": "أعد ارسال الرمز مره اخري"
   },
   "profile": {
+    "followers": "المتابعون",
+    "followings": "تتابع",
     "mainInfo": "المعلومات الشخصية",
     "ads": "الاعلانات",
     "questions": "الأسئلة",

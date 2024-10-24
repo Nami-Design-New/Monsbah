@@ -9,6 +9,7 @@ import AskLoader from "../ui/loaders/AskLoader";
 import ViewAsk from "../ui/modals/ViewAsk";
 import CreateCountryAsk from "../ui/modals/CreateCountryAsk";
 import AuthModal from "../components/auth/AuthModal";
+import { useSelector } from "react-redux";
 
 function CountryAsks() {
   const { t } = useTranslation();
@@ -26,6 +27,8 @@ function CountryAsks() {
 
   const { isAuthed } = useAuth();
 
+  const user = useSelector((state) => state.clientData.client);
+
   const {
     data: aks,
     isLoading,
@@ -36,10 +39,17 @@ function CountryAsks() {
 
   useEffect(() => {
     if (!searchParams.get("country-id")) {
-      searchParams.set("country-id", 6);
+      searchParams.set("country-id", user?.country ? user?.country?.id : 6);
       setSearchParams(searchParams);
+    } else {
+      console.log(+searchParams.get("country-id") !== user?.country?.id);
+
+      if (+searchParams.get("country-id") !== user?.country?.id) {
+        searchParams.set("country-id", user?.country ? user?.country?.id : 6);
+        setSearchParams(searchParams);
+      }
     }
-  }, [searchParams, setSearchParams]);
+  }, [searchParams, setSearchParams, user?.country]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +89,7 @@ function CountryAsks() {
               <h6 className="title">{t("popularAsks")}</h6>
               <p className="desc">{t("popularAsksDesc")}</p>
             </div>
-            {country ? (
+            {country && selectedCountry ? (
               <span
                 className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
                 style={{ cursor: "pointer" }}

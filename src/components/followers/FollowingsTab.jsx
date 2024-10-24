@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
-import useGetPersons from "../../hooks/search/useGetPersons";
+import { useTranslation } from "react-i18next";
+import useGetFollowings from "../../hooks/follow/useGetFollowings";
 
-export default function Persons({ sectionRef }) {
+function FollowingsTab({ sectionRef }) {
   const { t } = useTranslation();
   const {
     data: persons,
@@ -12,7 +12,7 @@ export default function Persons({ sectionRef }) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetPersons();
+  } = useGetFollowings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,25 +35,6 @@ export default function Persons({ sectionRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
-
-  useEffect(() => {
-    if (!data?.pages) return;
-    setPersons((prevPersons = []) => {
-      const prevPersonsMap = new Map(prevPersons.map((p) => [p.id, p]));
-      const newPersons = data.pages.flatMap((page) => page.data);
-      
-      newPersons.forEach((newPerson) => {
-        const existingPerson = prevPersonsMap.get(newPerson.id);
-        if (existingPerson) {
-          prevPersonsMap.set(newPerson.id, { ...newPerson, ...existingPerson });
-        } else {
-          prevPersonsMap.set(newPerson.id, newPerson);
-        }
-      });
-      return Array.from(prevPersonsMap.values());
-    });
-  }, [data?.pages]);
-
   return (
     <>
       <div className="col-12 p-2">
@@ -63,7 +44,7 @@ export default function Persons({ sectionRef }) {
 
       {persons?.map((person, index) => (
         <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-          <PersonCard person={person} setPersons={setPersons} />
+          <PersonCard person={person} />
         </div>
       ))}
 
@@ -81,3 +62,5 @@ export default function Persons({ sectionRef }) {
     </>
   );
 }
+
+export default FollowingsTab;

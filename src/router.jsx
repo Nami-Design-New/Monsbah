@@ -14,6 +14,7 @@ import Verification from "./routes/Verification";
 import UserProfile from "./routes/UserProfile";
 import Categories from "./routes/Categories";
 import CountryAsks from "./routes/CountryAsks";
+import Followers from "./routes/Followers";
 
 const router = [
   {
@@ -45,6 +46,11 @@ const router = [
   {
     path: "search/*",
     element: <Search />,
+  },
+  {
+    path: "followers/*",
+    element: <Followers />,
+    protected: true,
   },
   {
     path: "contact-us",
