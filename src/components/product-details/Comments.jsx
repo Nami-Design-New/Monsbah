@@ -7,7 +7,7 @@ import AddCommentForm from "../AddCommentForm";
 import CommentCard from "../../ui/cards/CommentCard";
 import axiosInstance from "../../utils/axiosInstance";
 
-export default function Comments({ product }) {
+export default function Comments({ product, setProduct }) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { data: comments } = useGetComments();
@@ -17,6 +17,7 @@ export default function Comments({ product }) {
   const handleSubmit = async (e, comment, setValue) => {
     e.preventDefault();
     setLoading(true);
+
     const payLoad = {
       product_id: product?.id,
       comment: comment,
@@ -31,7 +32,12 @@ export default function Comments({ product }) {
       if (res.status === 200) {
         toast.success(res.data.message);
         setValue("");
+        setTargetComment(null);
         queryClient.invalidateQueries({ queryKey: ["comments"] });
+        setProduct((prev) => ({
+          ...prev,
+          count_comments: prev?.count_comments + 1,
+        }));
       }
     } catch (error) {
       toast.error(error.response.data.message);

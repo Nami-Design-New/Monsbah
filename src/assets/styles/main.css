@@ -3322,7 +3322,7 @@ body main .hero_section .hero_swiper {
   min-height: 182px;
 }
 body main .hero_section .hero_swiper .swiper-wrapper {
-  height: unset;
+  height: -webkit-fill-available;
 }
 body main .hero_section .hero_swiper a,
 body main .hero_section .hero_swiper .slider_loader {
@@ -3345,9 +3345,15 @@ body main .hero_section .hero_swiper .slider_loader img {
   }
 }
 body main .hero_section .hero_swiper .slider_loader {
+  z-index: 99999;
   border-radius: 12px;
   background: #e0e0e0;
   animation: pulse 1.5s ease-in-out infinite;
+}
+@media screen and (max-width: 576px) {
+  body main .hero_section .hero_swiper .slider_loader {
+    border-radius: 0;
+  }
 }
 body main .hero_section .hero_swiper .swiper-pagination-bullet {
   width: 24px;

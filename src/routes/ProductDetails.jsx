@@ -34,7 +34,7 @@ function ProductDetails() {
               <div className="col-lg-5 col-12 p-lg-3 p-2 ">
                 <div className="d-flex flex-column gap-4">
                   <UserCard product={product} setProduct={setProduct} />
-                  <Comments product={product} />
+                  <Comments product={product} setProduct={setProduct} />
                 </div>
               </div>
             </div>

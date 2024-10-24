@@ -7,9 +7,8 @@ export default function useGetProduct(product_id) {
   const { id } = useParams();
   const lang = useSelector((state) => state.language.lang);
 
-
   const { isLoading, data, error } = useQuery({
-    queryKey: ["product", lang, id, product_id],
+    queryKey: ["product", lang, product_id || id],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(`/client/product-details`, {
