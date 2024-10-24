@@ -6159,6 +6159,9 @@ body .CommentWrapper .replies .CommentWrapper:last-child::after {
   top: 12px;
   z-index: 2;
 }
+body .CommentWrapper .replies.fromComments .CommentWrapper:last-child::after {
+  background: #fff;
+}
 body .CommentWrapper:not(:has(.replies)) .CommentWrapper .CommentCard::after {
   display: none;
 }
@@ -6168,11 +6171,26 @@ body .CommentWrapper:not(:has(.replies .CommentWrapper)) .CommentCard::after {
 body .replyTo {
   font-size: 14px;
   color: #777777;
+  width: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: start;
+  display: flex;
+  align-items: center;
+}
+body .replyTo button {
+  margin-inline-end: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
 body .replyTo b {
   color: #1abc9c;

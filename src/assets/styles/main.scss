@@ -215,7 +215,7 @@ body {
     gap: 12px;
     display: flex;
     position: relative;
-    
+
     &.reverse {
       padding: 16px;
       border-radius: 12px;
@@ -340,6 +340,15 @@ body {
           }
         }
       }
+      &.fromComments {
+        .CommentWrapper {
+          &:last-child {
+            &::after {
+              background: $white;
+            }
+          }
+        }
+      }
     }
     &:not(:has(.replies)) {
       .CommentWrapper {
@@ -362,12 +371,24 @@ body {
   .replyTo {
     font-size: 14px;
     color: $gray;
+    width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    text-align: start;
+    display: flex;
+    align-items: center;
+    button {
+      margin-inline-end: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid $border;
+      @include centerFlex();
+      font-size: 14px;
+    }
     b {
       color: $main;
     }
@@ -569,7 +590,6 @@ body {
   position: relative;
 }
 
-
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;
@@ -636,6 +656,6 @@ body {
   justify-content: center;
 }
 
-.row{
+.row {
   margin: 0;
 }

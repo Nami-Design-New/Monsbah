@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -9,7 +10,6 @@ import CommentCard from "../cards/CommentCard";
 import AddCommentForm from "../../components/AddCommentForm";
 import axiosInstance from "../../utils/axiosInstance";
 import PageLoader from "./../loaders/PageLoader";
-import { useSelector } from "react-redux";
 
 function ViewAsk({ showModal, setShowModal, ask }) {
   const { t } = useTranslation();
@@ -55,6 +55,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
   };
 
   const deleteComment = async (id) => {
+    setTargetComment(null);
     try {
       const res = await axiosInstance.post("/client/delete-question-comment", {
         id: id,
@@ -123,6 +124,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
         <AddCommentForm
           loading={loading}
           handleSubmit={handleSubmit}
+          setTargetComment={setTargetComment}
           targetComment={targetComment}
         />
       </Modal.Body>

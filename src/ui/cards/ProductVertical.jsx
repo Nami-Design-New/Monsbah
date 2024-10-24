@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { isValidVideoExtension } from "../../utils/helpers";
-import ImageLoad from "../loaders/ImageLoad";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import ImageLoad from "../loaders/ImageLoad";
 import axiosInstance from "../../utils/axiosInstance";
-import { useSelector } from "react-redux";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
 function ProductVertical({ product, className, isShowAction = true }) {

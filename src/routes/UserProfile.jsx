@@ -1,17 +1,16 @@
 import { useTranslation } from "react-i18next";
-
-import useGetUserProfile from "../hooks/users/useGetUserProfile";
-import PageLoader from "../ui/loaders/PageLoader";
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import ProductVertical from "../ui/cards/ProductVertical";
-import ProductLoader from "../ui/loaders/ProductLoader";
 import { toast } from "react-toastify";
-import axiosInstance from "../utils/axiosInstance";
-import { useQueryClient } from "@tanstack/react-query";
-import useGetAllProducts from "../hooks/products/useGetAllProducts";
+import { useSelector } from "react-redux";
 import { Tab, Tabs } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import useGetUserProfile from "../hooks/users/useGetUserProfile";
+import PageLoader from "../ui/loaders/PageLoader";
+import ProductVertical from "../ui/cards/ProductVertical";
+import ProductLoader from "../ui/loaders/ProductLoader";
+import axiosInstance from "../utils/axiosInstance";
+import useGetAllProducts from "../hooks/products/useGetAllProducts";
 import RatesTab from "../components/profile/RatesTab";
 import EmptyData from "../ui/EmptyData";
 
