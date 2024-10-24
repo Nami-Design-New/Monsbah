@@ -45,7 +45,7 @@ export default function ProductsSection() {
       });
       return mergedProducts;
     });
-  }, [data?.pages]);
+  }, [data]);
 
   return (
     <section className="products_section" ref={sectionRef}>

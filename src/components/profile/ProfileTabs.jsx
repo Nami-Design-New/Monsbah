@@ -102,7 +102,7 @@ function ProfileTabs() {
           title={
             <>
               <i className="fa-regular fa-bullhorn"></i>
-              {t("profile.ads")}
+              {t("profile.myAds")}
             </>
           }
           className="tab_item"
@@ -135,7 +135,7 @@ function ProfileTabs() {
           title={
             <>
               <i className="fa-regular fa-message-question"></i>
-              {t("profile.questions")}
+              {t("profile.myAsks")}
             </>
           }
           className="tab_item"

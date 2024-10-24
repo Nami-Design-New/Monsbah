@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useGetAds from "../../hooks/search/useGetAds";
 import ProductVertical from "../../ui/cards/ProductVertical";
@@ -6,13 +6,9 @@ import ProductLoader from "../../ui/loaders/ProductLoader";
 
 export default function Ads({ sectionRef }) {
   const { t } = useTranslation();
-  const {
-    data: ads,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetAds();
+  const [products, setProducts] = useState();
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetAds();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +31,23 @@ export default function Ads({ sectionRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
+  useEffect(() => {
+    if (!data?.pages) return;
+    setProducts((prevProducts) => {
+      const newProducts = data.pages.flatMap((page) => page.data);
+
+      const mergedProducts = newProducts.map((newProduct) => {
+        const existingProduct = prevProducts?.find(
+          (p) => p.id === newProduct.id
+        );
+        return existingProduct
+          ? { ...newProduct, ...existingProduct }
+          : newProduct;
+      });
+      return mergedProducts;
+    });
+  }, [data]);
+
   return (
     <>
       <div className="col-12 p-2">
@@ -42,9 +55,13 @@ export default function Ads({ sectionRef }) {
         <p className="desc">{t("popularAdsDesc")}</p>
       </div>
 
-      {ads?.map((ad, index) => (
+      {products?.map((ad, index) => (
         <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-          <ProductVertical product={ad} isShowAction={false} />
+          <ProductVertical
+            product={ad}
+            isShowAction={false}
+            setProducts={setProducts}
+          />
         </div>
       ))}
 
