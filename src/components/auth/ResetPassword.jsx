@@ -8,7 +8,7 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 
 import axiosInstance from "../../utils/axiosInstance";
 
-function ResetPassword({ setFormType, setShow }) {
+function  ResetPassword({ setFormType, setShow }) {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();

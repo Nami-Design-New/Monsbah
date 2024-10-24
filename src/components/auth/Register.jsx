@@ -12,23 +12,10 @@ import useGetStates from "../../hooks/settings/useGetStates";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
-function Register({ setFormType }) {
+function Register({ setFormType, formData, setFormData }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    username: "",
-    country_code: "965",
-    phone: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-    country_id: "",
-    city_id: "",
-    state_id: "",
-    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
-    gender: "",
-  });
+
   const { data: countries } = useGetCountries();
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
@@ -55,20 +42,7 @@ function Register({ setFormType }) {
       const res = await axiosInstance.post("/client/auth/sign-up", formData);
       if (res.status === 200) {
         toast.success(res.data?.message);
-        setFormData({
-          name: "",
-          username: "",
-          country_code: "965",
-          phone: "",
-          email: "",
-          password: "",
-          password_confirmation: "",
-          country_id: "",
-          city_id: "",
-          state_id: "",
-          fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
-          gender: "",
-        });
+        setFormType("registerOtp");
       }
     } catch (error) {
       toast.error(error.response.data.message);

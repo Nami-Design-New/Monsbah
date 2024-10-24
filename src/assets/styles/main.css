@@ -1067,13 +1067,33 @@ body .form .resend-code {
   display: flex;
   padding: 10px 0 0;
   justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 body .form .resend-code .resend_link {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  color: #666b88;
+  gap: 6px;
+  cursor: pointer;
+}
+body .form .resend-code .resend_link span {
+  white-space: nowrap;
   color: #1abc9c;
   cursor: pointer;
 }
 body .form .resend-code .resend_link.disabled {
   pointer-events: none;
+}
+body .form .resend-code .resend_link.disabled span {
+  color: rgba(26, 188, 156, 0.6);
+  cursor: default;
+}
+body .form .resend-code .timer {
+  flex: 1 0;
+  display: flex;
+  justify-content: end !important;
 }
 body .form .resend-code .timer span {
   color: #666b88;

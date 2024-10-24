@@ -6,38 +6,40 @@ import { useSearchParams } from "react-router-dom";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 
 import OtpContainer from "../../ui/form-elements/OtpContainer";
+import axiosInstance from "../../utils/axiosInstance";
 
-function OTPConfirm({ setFormType, otpCode }) {
+function OTPConfirm({ formData, setFormType }) {
   const { t } = useTranslation();
   const [otpVerifyCode, setOtpVerifyCode] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    // const res = await axiosInstance.post("/client/auth/login", {
-    //   phone: formData.country_code + formData.phone,
-    //   country_code: formData.country_code,
-    //   fcm_token: formData.fcm_token,
-    // });
+    try {
+      const res = await axiosInstance.post("/client/auth/reset-password", {
+        phone: formData.country_code + formData.phone,
+        country_code: formData.country_code,
+        token: otpVerifyCode.code,
+      });
+      if (res.status === 200) {
+        toast.success(res.data?.message);
 
-    if (+otpCode === +otpVerifyCode.code) {
-      toast.success(t("auth.otpSuccessfullyVerified"));
+        setFormType("reset");
 
-      setFormType("reset");
-
-      const updatedParams = new URLSearchParams(searchParams);
-      updatedParams.delete("redirect");
-      setSearchParams(updatedParams);
-    } else {
-      toast.error(t("auth.otpFailedToVerify"));
+        const updatedParams = new URLSearchParams(searchParams);
+        updatedParams.delete("redirect");
+        setSearchParams(updatedParams);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error);
+    } finally {
       setLoading(false);
-      throw new Error("OTP verification failed");
     }
-    setLoading(false);
   };
 
   return (
