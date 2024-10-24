@@ -828,6 +828,9 @@ body footer .btns {
   gap: 8px;
   flex-wrap: wrap;
 }
+body footer .btns a {
+  flex: 1 0;
+}
 body footer .btns img {
   height: 42px;
 }
