@@ -75,13 +75,11 @@ export default function Asks({ sectionRef }) {
           <h6 className="title">{t("popularAsks")}</h6>
           <p className="desc">{t("popularAsksDesc")}</p>
         </div>
-        {country ? (
+        {country && selectedCountry ? (
           <span
             className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              console.log(isAuthed);
-
               isAuthed ? setShowCountryAskModal(true) : setShowAuthModal(true);
             }}
           >
