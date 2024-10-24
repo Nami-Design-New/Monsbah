@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
-import useGetPersons from "../../hooks/search/useGetPersons";
+import { useTranslation } from "react-i18next";
+import useGetFollowings from "../../hooks/follow/useGetFollowings";
 
-export default function Persons({ sectionRef }) {
+function FollowingsTab({ sectionRef }) {
   const { t } = useTranslation();
   const {
     data: persons,
@@ -12,7 +12,7 @@ export default function Persons({ sectionRef }) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetPersons();
+  } = useGetFollowings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,3 +62,5 @@ export default function Persons({ sectionRef }) {
     </>
   );
 }
+
+export default FollowingsTab;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import axiosInstance from "../../utils/axiosInstance";
@@ -125,7 +125,10 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-6 p-2">
+            <Link
+              to="/followers/followings"
+              className="col-lg-3 col-md-6 col-6 p-2"
+            >
               <div className="Box_rate">
                 <h2>{user?.["following-count"]}</h2>
 
@@ -133,11 +136,11 @@ function MainInfoTab({ user, lang }) {
                   <p>{t("Followings")}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-6 p-2">
+            <Link to="/followers" className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 
@@ -145,7 +148,7 @@ function MainInfoTab({ user, lang }) {
                   <p>{t("Followers")}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           ) : null}
 
           {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
