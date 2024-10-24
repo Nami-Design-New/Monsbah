@@ -104,14 +104,15 @@ function Categories() {
               <div className="img">
                 <i className="fa-regular fa-comment-plus"></i>
               </div>
-              <h6 className="selectedName">{`${t("ask")} ${selectedCountry?.name}`}</h6>
+              <h6 className="selectedName">{`${t("ask")} ${
+                selectedCountry?.name
+              }`}</h6>
 
               <div className="shapes">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-
+              </div>
             </div>
           ) : null}
           <Swiper slidesPerView="auto" className="categories_slider">
@@ -167,7 +168,7 @@ function Categories() {
                         key={city.id}
                       >
                         <Link
-                          to={`/search/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
+                          to={`/asks?country-id=${selectedCountry?.id}&city-id=${city?.id}`}
                           key={city.id}
                           onClick={() => handleSetParams(city.id, "city")}
                           className={`category sub d-flex align-items-center flex-column gap-4 ${

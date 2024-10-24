@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import ReportModal from "../../ui/modals/ReportModal";
+import useAuth from "../../hooks/useAuth";
+import AuthModal from "../auth/AuthModal";
 
 function ProductInfo({ product, setProduct }) {
   const { t } = useTranslation();
@@ -19,6 +21,10 @@ function ProductInfo({ product, setProduct }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const { isAuthed } = useAuth();
 
   const handleShare = () => {
     if (navigator.share) {
@@ -128,7 +134,9 @@ function ProductInfo({ product, setProduct }) {
           {client?.id !== product?.user?.id && (
             <span
               className="action-btn report"
-              onClick={() => setShowReportModal(true)}
+              onClick={() => {
+                isAuthed ? setShowReportModal(true) : setShowAuthModal(true);
+              }}
             >
               <i className="fa-regular fa-flag"></i> {t("report")}
             </span>
@@ -166,6 +174,11 @@ function ProductInfo({ product, setProduct }) {
         type="product"
         showModal={showReportModal}
         setShowModal={setShowReportModal}
+      />
+      <AuthModal
+        type={"login"}
+        show={showAuthModal}
+        setShow={setShowAuthModal}
       />
     </>
   );

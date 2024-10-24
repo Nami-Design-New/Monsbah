@@ -13,6 +13,7 @@ import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
 import UserProfile from "./routes/UserProfile";
 import Categories from "./routes/Categories";
+import CountryAsks from "./routes/CountryAsks";
 
 const router = [
   {
@@ -36,6 +37,10 @@ const router = [
     path: "chats",
     element: <Chats />,
     protected: true,
+  },
+  {
+    path: "asks",
+    element: <CountryAsks />,
   },
   {
     path: "search/*",
