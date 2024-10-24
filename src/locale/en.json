@@ -66,7 +66,9 @@
     "changePasswordTitle": "Change Password",
     "gender": "Gender",
     "male": "Male",
-    "female": "Female"
+    "female": "Female",
+    "didnotReceiveCode": "Didn't receive the code?",
+    "resendCode": "Resend the code"
   },
   "profile": {
     "mainInfo": "Personal Information",
@@ -88,7 +90,8 @@
     "profileSuccessfullyUpdated": "Profile updated successfully",
     "phoneSuccessfullyChanged": "Phone number changed successfully",
     "rates": "Ratings",
-    "passwordSuccessfullyUpdated": "Password updated successfully"
+    "passwordSuccessfullyUpdated": "Password updated successfully",
+    "aboutMe": "About Me"
   },
   "contact": {
     "title": "Need more information? Contact us",

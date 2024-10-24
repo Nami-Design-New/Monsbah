@@ -7,16 +7,13 @@ import PhoneInput from "../../ui/form-elements/PhoneInput";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import { handleChange } from "../../utils/helpers";
 
-function ForgetPassword({ setFormType, setOtpCode }) {
+function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    phone: "",
-    country_code: "965",
-  });
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

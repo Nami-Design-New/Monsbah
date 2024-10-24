@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 import ImageUpload from "../../ui/form-elements/ImageUpload";
 import ChangePhoneModal from "../../ui/modals/ChangePhoneModal";
+import TextField from "../../ui/form-elements/TextField";
 
 // profile/update => image - name - about(_ar, _en) - email - country_id - city_id - state_id - cover
 // updateStatus => is_active
@@ -44,6 +45,8 @@ function SettingsTab() {
     country_id: "",
     city_id: "",
     state_id: "",
+    about_ar: "",
+    about_en: "",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
@@ -70,6 +73,8 @@ function SettingsTab() {
       country_id: user?.country?.id || "",
       city_id: user?.city?.id || "",
       state_id: user?.state?.id || "",
+      about_ar: user?.about_ar || "",
+      about_en: user?.about_en || "",
       fcm_token: user?.fcm_token || "",
     }));
   }, [user]);
@@ -100,6 +105,8 @@ function SettingsTab() {
       country_id: user?.country?.id,
       city_id: user?.city?.id,
       state_id: user?.state?.id,
+      about_ar: formData.about_ar,
+      about_en: formData.about_en,
     };
 
     if (String(formData?.image?.type)?.startsWith("image")) {
@@ -147,7 +154,12 @@ function SettingsTab() {
         <div className="form_group">
           <InputField
             required
-            label={t("auth.userName")}
+            label={
+              <>
+                {t("auth.userName")}
+                <span style={{ color: "red", fontSize: "20px" }}> *</span>
+              </>
+            }
             placeholder={t("auth.userNamePlaceHolder")}
             id="username"
             name="username"
@@ -157,7 +169,12 @@ function SettingsTab() {
 
           <InputField
             required
-            label={t("auth.fullName")}
+            label={
+              <>
+                {t("auth.fullName")}
+                <span style={{ color: "red", fontSize: "20px" }}> *</span>
+              </>
+            }
             placeholder={t("auth.fullName")}
             id="name"
             name="name"
@@ -169,15 +186,10 @@ function SettingsTab() {
         <div className="form_group">
           <SelectField
             label={
-              <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
+              <>
                 {t("auth.country")}
-                <span
-                  style={{ cursor: "pointer", color: "#1abc9c" }}
-                  onClick={() => setShowCountryModal(true)}
-                >
-                  {t("auth.doYouWantToChangeCountry")}
-                </span>
-              </div>
+                <span style={{ color: "red", fontSize: "20px" }}> *</span>
+              </>
             }
             id="country_id"
             name="country_id"
@@ -233,7 +245,12 @@ function SettingsTab() {
         <div className="form_group">
           <InputField
             required
-            label={t("auth.email")}
+            label={
+              <>
+                {t("auth.email")}
+                <span style={{ color: "red", fontSize: "20px" }}> *</span>
+              </>
+            }
             placeholder={t("auth.email")}
             id="email"
             name="email"
@@ -243,7 +260,10 @@ function SettingsTab() {
           <PhoneInput
             label={
               <div className=" w-100 d-flex align-items-center justify-content-between gap-2">
-                {t("auth.phone")}
+                <div>
+                  {t("auth.phone")}
+                  <span style={{ color: "red", fontSize: "20px" }}> *</span>
+                </div>
                 <span
                   style={{ cursor: "pointer", color: "#1abc9c" }}
                   onClick={() => setShowPhoneModal(true)}
@@ -263,6 +283,23 @@ function SettingsTab() {
             onSelect={(code, setShow) => {
               setFormData((prev) => ({ ...prev, country_code: code }));
               setShow(false);
+            }}
+          />
+        </div>
+        <div className="form_group">
+          <TextField
+            required
+            label={t("profile.aboutMe")}
+            placeholder={t("writeHere")}
+            name="about_ar"
+            id="about_ar"
+            value={formData?.about_ar}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                about_ar: e.target.value,
+                about_en: e.target.value,
+              });
             }}
           />
         </div>

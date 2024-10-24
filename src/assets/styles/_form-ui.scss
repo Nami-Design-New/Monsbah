@@ -37,15 +37,38 @@
     display: flex;
     padding: 10px 0 0;
     justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
     .resend_link {
-      color: $main;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      color: $text;
+      gap: 6px;
       cursor: pointer;
+
+      span {
+        white-space: nowrap;
+        color: $main;
+        cursor: pointer;
+      }
+
       &.disabled {
         pointer-events: none;
+
+        span {
+          color: $main60;
+          cursor: default;
+        }
       }
     }
-    .timer span {
-      color: $text;
+    .timer {
+      flex: 1 0;
+      display: flex;
+      justify-content: end !important;
+      span {
+        color: $text;
+      }
     }
   }
 

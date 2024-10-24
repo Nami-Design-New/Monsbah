@@ -7,10 +7,29 @@ import useAuth from "../../hooks/useAuth";
 import ResetPassword from "./ResetPassword";
 import OTPConfirm from "./OTPConfirm";
 import ForgetPassword from "./ForgetPassword";
+import RegisterOTPConfirm from "./RegisterOTPConfirm";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const [formType, setFormType] = useState("login");
   const { isAuthed } = useAuth();
+  const [forgetFormData, setForgetFormData] = useState({
+    phone: "",
+    country_code: "965",
+  });
+  const [registerFormData, setRegisterFormData] = useState({
+    name: "",
+    username: "",
+    country_code: "965",
+    phone: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    country_id: "",
+    city_id: "",
+    state_id: "",
+    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
+    gender: "",
+  });
 
   const [otpCode, setOtpCode] = useState("");
 
@@ -55,13 +74,28 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               <Login setFormType={setFormType} setShow={setShow} />
             )}
             {formType === "register" && (
-              <Register setFormType={setFormType} setShow={setShow} />
+              <Register
+                setFormType={setFormType}
+                setShow={setShow}
+                formData={registerFormData}
+                setFormData={setRegisterFormData}
+              />
+            )}
+            {formType === "registerOtp" && (
+              <RegisterOTPConfirm
+                setFormType={setFormType}
+                setShow={setShow}
+                formData={registerFormData}
+                setFormData={setRegisterFormData}
+              />
             )}
             {formType === "forget" && (
               <ForgetPassword
                 setFormType={setFormType}
                 setShow={setShow}
                 setOtpCode={setOtpCode}
+                formData={forgetFormData}
+                setFormData={setForgetFormData}
               />
             )}
             {formType === "otp" && (
@@ -69,6 +103,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormType={setFormType}
                 setShow={setShow}
                 otpCode={otpCode}
+                formData={forgetFormData}
               />
             )}
             {formType === "reset" && (

@@ -129,38 +129,28 @@ export default function Footer() {
               <div className="social_media">
                 <ul>
                   <li>
-                    <Link
-                      to=""
-                      target="_blank"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fa-brands fa-facebook-f"></i>
+                    <Link to="" target="_blank">
+                      <i className="fa-brands fa-youtube"></i>
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to=""
+                      to="https://www.instagram.com/monsbah/profilecard/?igsh=eGhycjkydHBlcmky"
                       target="_blank"
-                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="fa-brands fa-instagram"></i>
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to=""
+                      to="https://www.tiktok.com/@monsbah?_t=8qmq24madhi&_r=1"
                       target="_blank"
-                      onClick={(e) => e.preventDefault()}
                     >
-                      <i className="fa-brands fa-linkedin-in"></i>
+                      <i className="fa-brands fa-tiktok"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to=""
-                      target="_blank"
-                      onClick={(e) => e.preventDefault()}
-                    >
+                    <Link to="https://x.com/monsbah?s=11" target="_blank">
                       <i className="fa-brands fa-twitter"></i>
                     </Link>
                   </li>

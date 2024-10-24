@@ -60,13 +60,15 @@
     "verify": "تحقق",
     "resetPasswordSubtitle": "ادخل الرقم المسجل به حسابك",
     "resetPasswordTitle": "هل نسيت كلمة المرور؟",
-    "confirmOTPSubtitle": "الرجاء فحص بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
-    "confirmOTPTitle": "الرمز مكونًا من 4 أرقام",
+    "confirmOTPSubtitle": "الرجاء التحقق من بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
+    "confirmOTPTitle": "التحقق من رقم الهاتف",
     "changePasswordSubtitle": "ادخل كلمة المرور الجديدة واحرص على اختيار كلمة مرور مناسبة",
     "changePasswordTitle": "تغيير كلمة المرور",
     "gender": "الجنس",
     "male": "ذكر",
-    "female": "أنثى"
+    "female": "أنثى",
+    "didnotReceiveCode": "لم تستلم الرمز؟",
+    "resendCode": "أعد ارسال الرمز مره اخري"
   },
   "profile": {
     "mainInfo": "المعلومات الشخصية",
@@ -88,7 +90,8 @@
     "profileSuccessfullyUpdated": "تم تحديث الملف الشخصي بنجاح",
     "phoneSuccessfullyChanged": "تم تغيير الرقم بنجاح",
     "rates": "التقييمات",
-    "passwordSuccessfullyUpdated": "تم تغيير كلمة المرور بنجاح"
+    "passwordSuccessfullyUpdated": "تم تغيير كلمة المرور بنجاح",
+    "aboutMe": "عني"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",
