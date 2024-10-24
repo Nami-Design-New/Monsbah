@@ -16,7 +16,7 @@ export default function Asks({ sectionRef }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCountryAskModal, setShowCountryAskModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const country = searchParams.get("country-id");
   const city = searchParams.get("city-id");
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -54,6 +54,13 @@ export default function Asks({ sectionRef }) {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
   useEffect(() => {
+    if (!searchParams.get("country-id")) {
+      searchParams.set("country-id", 6);
+      setSearchParams(searchParams);
+    }
+  }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
     if (countries?.length > 0 && searchParams.get("country-id")) {
       setSelectedCountry(
         countries?.filter((c) => c?.id === +searchParams.get("country-id"))[0]
@@ -68,7 +75,7 @@ export default function Asks({ sectionRef }) {
           <h6 className="title">{t("popularAsks")}</h6>
           <p className="desc">{t("popularAsksDesc")}</p>
         </div>
-        {country && city ? (
+        {country ? (
           <span
             className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
             style={{ cursor: "pointer" }}
