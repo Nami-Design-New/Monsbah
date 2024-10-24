@@ -119,7 +119,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     flex-direction: row !important;
   }
   li {

@@ -94,7 +94,7 @@ function Categories() {
                 handleSetParams(selectedCountry?.id, "country");
                 handleSetParams(selectedCountry?.id, "ask");
               }}
-              className={` askCustomCountry  ${
+              className={`askCustomCountry ${
                 selectedCountry?.id === Number(searchParams.get("country")) &&
                 Number(searchParams.get("ask"))
                   ? "active"
