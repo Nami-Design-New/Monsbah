@@ -3,17 +3,19 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import axiosInstance from "../../utils/axiosInstance";
 import { Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import ReportModal from "../../ui/modals/ReportModal";
 
-function ProductInfo({ product }) {
+function ProductInfo({ product, setProduct }) {
   const { t } = useTranslation();
   const { client } = useSelector((state) => state.clientData);
+
   const queryClient = useQueryClient();
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
@@ -34,19 +36,23 @@ function ProductInfo({ product }) {
   };
 
   const handleFavorite = async () => {
-    setLoading(true);
+    setProduct((prev) => ({
+      ...prev,
+      is_favorite: prev?.is_favorite === 1 ? 0 : 1,
+    }));
     try {
       const res = await axiosInstance.post("/client/store-favorite", {
         product_id: product?.id,
       });
       if (res.status === 200) {
         queryClient.invalidateQueries({ queryKey: ["product"] });
+        queryClient.invalidateQueries({ queryKey: ["products"] });
+        queryClient.invalidateQueries({ queryKey: ["allProducts"] });
+        queryClient.invalidateQueries({ queryKey: ["user-favorites"] });
       }
     } catch (error) {
       toast.error(error.response.data.message);
       throw new Error(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -66,7 +72,7 @@ function ProductInfo({ product }) {
         queryClient.invalidateQueries({
           queryKey: ["products"],
         });
-        queryClient.invalidateQueries({ queryKey: ["product"] });
+        navigate("/");
       }
       setShowDeleteModal(false);
     } catch (error) {
@@ -87,7 +93,6 @@ function ProductInfo({ product }) {
         {client?.id !== product?.user?.id ? (
           <button
             onClick={handleFavorite}
-            disabled={loading}
             className={`favorite ${product?.is_favorite ? "active" : ""}`}
           >
             <i className="fa-light fa-heart"></i>

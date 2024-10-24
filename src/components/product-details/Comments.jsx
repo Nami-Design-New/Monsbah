@@ -11,16 +11,23 @@ export default function Comments({ product }) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { data: comments } = useGetComments();
+  const [targetComment, setTargetComment] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e, comment, setValue) => {
     e.preventDefault();
     setLoading(true);
+    const payLoad = {
+      product_id: product?.id,
+      comment: comment,
+    };
+
+    if (targetComment) {
+      payLoad.parent_id = targetComment.id;
+    }
+
     try {
-      const res = await axiosInstance.post("/client/store-comment", {
-        product_id: product?.id,
-        comment: comment,
-      });
+      const res = await axiosInstance.post("/client/store-comment", payLoad);
       if (res.status === 200) {
         toast.success(res.data.message);
         setValue("");
@@ -35,6 +42,7 @@ export default function Comments({ product }) {
   };
 
   const deleteComment = async (id) => {
+    setTargetComment(null);
     try {
       const res = await axiosInstance.post("/client/delete-comment", {
         id: id,
@@ -53,7 +61,7 @@ export default function Comments({ product }) {
     <div className="comments_container">
       <div className="header">
         <h5>
-          {t("comments")} <span>( 0 )</span>
+          {t("comments")} <span>( {product?.count_comments} )</span>
         </h5>
       </div>
 
@@ -64,16 +72,23 @@ export default function Comments({ product }) {
           <>
             {comments?.data?.map((comment) => (
               <CommentCard
-                comment={comment}
                 key={comment?.id}
+                comment={comment}
                 deleteComment={deleteComment}
+                className="fromComments"
+                setTargetComment={setTargetComment}
               />
             ))}
           </>
         )}
       </div>
 
-      <AddCommentForm loading={loading} handleSubmit={handleSubmit} />
+      <AddCommentForm
+        loading={loading}
+        handleSubmit={handleSubmit}
+        targetComment={targetComment}
+        setTargetComment={setTargetComment}
+      />
     </div>
   );
 }

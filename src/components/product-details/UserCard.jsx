@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -6,11 +5,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
-function UserCard({ product }) {
+function UserCard({ product, setProduct }) {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { client } = useSelector((state) => state.clientData);
-  const [loading, setLoading] = useState(false);
 
   const whatsappMessage = `${t("whatsappMessage")} ${product?.name} ${t(
     "onMonsbah"
@@ -19,13 +17,19 @@ function UserCard({ product }) {
   const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
 
   const handleFollow = async () => {
-    setLoading(true);
+    setProduct((prev) => ({
+      ...prev,
+      user: {
+        ...prev?.user,
+        is_follow: prev?.user?.is_follow === 1 ? 0 : 1,
+        ["followers-count"]: prev?.user?.["followers-count"] + 1,
+      },
+    }));
     try {
       const res = await axiosInstance.post("/client/store-follower", {
         profile_id: product?.user?.id,
       });
       if (res.status === 200) {
-        setLoading(false);
         queryClient.invalidateQueries({
           queryKey: ["product"],
         });
@@ -33,8 +37,6 @@ function UserCard({ product }) {
     } catch (error) {
       toast.error(error.response.data.message);
       throw new Error(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -56,11 +58,7 @@ function UserCard({ product }) {
             alt=""
           />
           {!product?.user?.is_follow && product?.user?.id !== client?.id && (
-            <Link
-              className="follow_btn"
-              onClick={handleFollow}
-              disabled={loading}
-            >
+            <Link className="follow_btn" onClick={handleFollow}>
               <i className="fa-light fa-plus"></i>
             </Link>
           )}

@@ -2,18 +2,21 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function CommentCard({ comment, deleteComment, setTargetComment }) {
+function CommentCard({ comment, deleteComment, setTargetComment, className }) {
   const { t } = useTranslation();
   const authedUser = useSelector((state) => state.clientData.client);
 
   return (
     <div className="CommentWrapper">
       <div className="CommentCard">
-        <Link to={`${
+        <Link
+          to={`${
             +comment?.user_id === +authedUser?.id
               ? "/profile"
               : `/profile/${comment?.user_id}`
-          }`} className="img">
+          }`}
+          className="img"
+        >
           <img
             src={comment?.user_image}
             alt={comment?.user_name}
@@ -42,7 +45,7 @@ function CommentCard({ comment, deleteComment, setTargetComment }) {
       </div>
 
       {comment?.replies?.length > 0 && (
-        <div className="replies">
+        <div className={`replies ${className}`}>
           {comment.replies.map((reply) => (
             <CommentCard
               key={reply.id}
