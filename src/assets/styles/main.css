@@ -3301,6 +3301,9 @@ body main .hero_section .hero_swiper {
   aspect-ratio: 5/1;
   min-height: 182px;
 }
+body main .hero_section .hero_swiper .swiper-wrapper {
+  height: unset;
+}
 body main .hero_section .hero_swiper a,
 body main .hero_section .hero_swiper .slider_loader {
   display: block;
@@ -6089,6 +6092,7 @@ body .CommentCard .content {
   width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: start;
 }
 body .CommentCard .content h6 {
   color: #1abc9c;
