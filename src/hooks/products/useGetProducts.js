@@ -20,7 +20,7 @@ function useGetProducts() {
     error,
     hasNextPage,
     fetchNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [
       "products",
@@ -30,7 +30,7 @@ function useGetProducts() {
       city_id,
       category_id,
       sub_category_id,
-      lang
+      lang,
     ],
 
     queryFn: async ({ pageParam = 1 }) => {
@@ -42,14 +42,14 @@ function useGetProducts() {
           city_id: city_id,
           country_id: country_id,
           category_id: category_id,
-          sub_category_id: sub_category_id
-        }
+          sub_category_id: sub_category_id,
+        },
       });
       if (res.status === 200) {
         return {
           data: res.data?.data?.data,
           total: res.data?.data?.meta?.total,
-          per_page: res.data?.data?.meta?.per_page
+          per_page: res.data?.data?.meta?.per_page,
         };
       } else {
         throw new Error("Failed to fetch products");
@@ -64,16 +64,16 @@ function useGetProducts() {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    retry: false
+    retry: false,
   });
 
   return {
     isLoading,
-    data: data?.pages.flatMap((page) => page.data) || [],
+    data: data,
     error,
     hasNextPage,
     fetchNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
   };
 }
 

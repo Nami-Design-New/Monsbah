@@ -11,8 +11,8 @@
     width: 100%;
     aspect-ratio: 5 / 1;
     min-height: 182px;
-    .swiper-wrapper{
-      height: unset;
+    .swiper-wrapper {
+      height: -webkit-fill-available;
     }
     a,
     .slider_loader {
@@ -30,9 +30,13 @@
       }
     }
     .slider_loader {
+      z-index: 99999;
       border-radius: 12px;
       background: #e0e0e0;
       animation: pulse 1.5s ease-in-out infinite;
+      @media screen and (max-width: 576px) {
+        border-radius: 0;
+      }
     }
     .swiper-pagination-bullet {
       width: 24px;

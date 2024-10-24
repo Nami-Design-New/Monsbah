@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
@@ -6,13 +6,9 @@ import useGetPersons from "../../hooks/search/useGetPersons";
 
 export default function Persons({ sectionRef }) {
   const { t } = useTranslation();
-  const {
-    data: persons,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetPersons();
+  const [persons, setPersons] = useState();
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetPersons();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +30,8 @@ export default function Persons({ sectionRef }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
+
+  
 
   return (
     <>

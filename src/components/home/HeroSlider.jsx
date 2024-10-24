@@ -9,7 +9,7 @@ import "swiper/css/effect-fade";
 
 function HeroSlider() {
   const { data: sliders, isLoading } = useGetSliders();
-  
+
   const sliderData = sliders?.data?.data?.data || [];
   const slidesCount = sliderData.length;
 
@@ -17,7 +17,6 @@ function HeroSlider() {
     <section className="hero_section">
       <div className="container">
         <div className="swiper_wrapper">
-          {/* Conditionally hide navigation controls if there are fewer than 2 slides */}
           {slidesCount > 1 && (
             <div className="swiperControl d-none d-md-block">
               <div className="swiper-button-prev"></div>
@@ -47,7 +46,11 @@ function HeroSlider() {
             }
             spaceBetween={30}
             className="hero_swiper"
-            autoplay={slidesCount > 1 ? { delay: 3000, disableOnInteraction: false } : false}
+            autoplay={
+              slidesCount > 1
+                ? { delay: 3000, disableOnInteraction: false }
+                : false
+            }
           >
             {isLoading ? (
               <>
