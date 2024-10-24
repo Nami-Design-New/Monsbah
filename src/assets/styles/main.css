@@ -502,10 +502,11 @@ body header .mainLinks .moreActions .link {
 body header .mainLinks .moreActions .link.profile-link {
   padding: 0;
   overflow: hidden;
+  width: 40px !important;
 }
 body header .mainLinks .moreActions .link.profile-link img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   -o-object-fit: cover;
      object-fit: cover;
 }

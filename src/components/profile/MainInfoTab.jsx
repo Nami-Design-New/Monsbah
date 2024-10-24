@@ -125,7 +125,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-12 p-2">
+            <div className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["following-count"]}</h2>
 
@@ -137,7 +137,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-12 p-2">
+            <div className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 
@@ -149,7 +149,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-12 p-2">
+            <div className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["rate-count"]}</h2>
 
@@ -161,7 +161,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-12 p-2">
+            <div className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["ads-count"]}</h2>
 
