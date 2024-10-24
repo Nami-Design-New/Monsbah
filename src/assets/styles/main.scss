@@ -11,6 +11,7 @@ body {
   @import "./product";
   @import "./articles_section";
   @import "./profile_section";
+  @import "./about";
   main {
     min-height: calc(100vh - 100px);
     @import "./home";
@@ -572,6 +573,30 @@ body {
       .dropdown {
         left: unset !important;
         right: 16px !important;
+      }
+    }
+
+    .aboutus_section {
+      .container {
+        .how-it-works .steps-wrapper .step .step-header .header-line::before {
+          left: unset !important;
+          right: -5px !important;
+        }
+        .how-it-works .steps-wrapper .step .step-header .header-line::after {
+          left: unset !important;
+          right: -10px !important;
+        }
+        .heading-section {
+          .info-wrapper {
+            left: unset !important;
+            right: 50px;
+
+            @media screen and (max-width: 768px) {
+              left: unset !important;
+              right: 0;
+            }
+          }
+        }
       }
     }
 

@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 import { useQueryClient } from "@tanstack/react-query";
 import ReportModal from "../modals/ReportModal";
+import useAuth from "../../hooks/useAuth";
+import AuthModal from "../../components/auth/AuthModal";
 
 export default function AskCard({
   ask,
@@ -21,8 +23,11 @@ export default function AskCard({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const user = useSelector((state) => state.clientData.client);
+
+  const { isAuthed } = useAuth();
 
   const queryClient = useQueryClient();
 
@@ -103,7 +108,7 @@ export default function AskCard({
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setShowReportModal(true);
+                  isAuthed ? setShowReportModal(true) : setShowAuthModal(true);
                 }}
               >
                 <i className="fa-regular fa-flag"></i> {t("report")}
@@ -149,6 +154,12 @@ export default function AskCard({
         type="question"
         showModal={showReportModal}
         setShowModal={setShowReportModal}
+      />
+
+      <AuthModal
+        type={"login"}
+        show={showAuthModal}
+        setShow={setShowAuthModal}
       />
     </div>
   );

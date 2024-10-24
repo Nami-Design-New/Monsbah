@@ -1,13 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import useGetCategories from "../../hooks/settings/useGetCategories";
-import GetApp from "../modals/GetApp";
-import { useState } from "react";
 
 export default function Footer() {
   const { t } = useTranslation();
   const { data: categories } = useGetCategories();
-  const [showGetAppModal, setShowGetAppModal] = useState(false);
+
   return (
     <footer>
       <div className="container">
@@ -41,7 +39,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/search/asks">
+                  <Link to="/asks">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
@@ -62,14 +60,6 @@ export default function Footer() {
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
                     {t("tearmsAndConditions")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/privacy-policy">
-                    <span>
-                      <i className="fa-sharp fa-light fa-arrow-right"></i>
-                    </span>
-                    {t("privacyPolicy")}
                   </Link>
                 </li>
               </ul>
@@ -95,28 +85,20 @@ export default function Footer() {
           <div className="col-lg-2 col-12 p-2">
             <div className="col">
               <h3>{t("downloadApp")}</h3>
-              <ul className="download-app">
-                <li>
-                  <span onClick={() => setShowGetAppModal(true)}>
-                    <div className="icon">
-                      <i className="fa-brands fa-apple"></i>
-                    </div>
-                    <div className="text">
-                      <p>App Store</p>
-                    </div>
-                  </span>
-                </li>
-                <li>
-                  <span onClick={() => setShowGetAppModal(true)}>
-                    <div className="icon">
-                      <i className="fa-brands fa-google-play"></i>
-                    </div>
-                    <div className="text">
-                      <p>Google Play</p>
-                    </div>
-                  </span>
-                </li>
-              </ul>
+              <div className="btns">
+                <Link
+                  to="https://apps.apple.com/kw/app/%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9/id1589937521?l=ar"
+                  target="_blank"
+                >
+                  <img src="/images/icons/appStore.svg" alt="" />
+                </Link>
+                <Link
+                  target="_blank"
+                  to="https://play.google.com/store/apps/details?id=com.app.monasba&pcampaignid=web_share"
+                >
+                  <img src="/images/icons/playStore.svg" alt="" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="col-12 p-2">
@@ -160,7 +142,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <GetApp show={showGetAppModal} setShow={setShowGetAppModal} />
     </footer>
   );
 }

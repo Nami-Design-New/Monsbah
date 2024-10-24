@@ -1,6 +1,19 @@
 footer {
   border-top: 1px solid $inputStroke;
   padding: 40px 0 0;
+  .btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    a {
+      flex: 1 0;
+    }
+    img {
+      height: 42px;
+    }
+  }
   .about_company {
     display: flex;
     flex-direction: column;

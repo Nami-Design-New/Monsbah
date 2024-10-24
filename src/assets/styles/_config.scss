@@ -366,7 +366,7 @@ button {
   }
   &:checked {
     background-position: right center;
-    background-image: url("../../../public/images/icons/check-checked-icon.svg");
+    background-image: url("/images/icons/check-checked-icon.svg");
     border-color: $main;
   }
 }
