@@ -74,7 +74,10 @@ function ViewAsk({ showModal, setShowModal, ask }) {
     <Modal
       centered
       show={showModal}
-      onHide={() => setShowModal(false)}
+      onHide={() => {
+        setShowModal(false);
+        setTargetComment(null);
+      }}
       className="viewAskModal"
     >
       <Modal.Header className="pb-0" closeButton />

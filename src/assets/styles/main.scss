@@ -591,6 +591,12 @@ body {
 
   &.en {
     direction: ltr !important;
+
+    .back_btn {
+      i {
+        transform: rotate(180deg);
+      }
+    }
     input,
     select,
     textarea {
