@@ -67,7 +67,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/saudia-1.webp"}
+                    src={"../../images/countries/saudia-1.webp"}
                     alt={"Saudi"}
                   />
                 </div>
@@ -82,7 +82,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/kewit.webp"}
+                    src={"../../images/countries/kewit.webp"}
                     alt={"Kuwait"}
                   />
                 </div>
@@ -97,7 +97,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/uae-1.webp"}
+                    src={"../../images/countries/uae-1.webp"}
                     alt={"UAE"}
                   />
                 </div>
@@ -112,7 +112,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/behrin.webp"}
+                    src={"../../images/countries/behrin.webp"}
                     alt={"Bahrain"}
                   />
                 </div>
@@ -127,7 +127,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/oman.webp"}
+                    src={"../../images/countries/oman.webp"}
                     alt={"Oman"}
                   />
                 </div>
@@ -142,7 +142,7 @@ export default function About() {
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../public/images/countries/qatar-1.webp"}
+                    src={"../../images/countries/qatar-1.webp"}
                     alt={"Qatar"}
                   />
                 </div>

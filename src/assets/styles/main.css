@@ -2541,23 +2541,6 @@ body .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-w
     gap: 8px;
   }
 }
-body .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper .logo-wrapper {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  box-shadow: 0px 0 4px 0px rgba(0, 0, 0, 0.2509803922);
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  background-color: #fff;
-  z-index: 6;
-  align-items: flex-end;
-}
-body .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper .logo-wrapper img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 100%;
-}
 body .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper h3 {
   color: #fff;
 }
@@ -2833,7 +2816,6 @@ body .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  box-shadow: 0px 0 4px 0px #efefef;
   background: #fff;
   display: flex;
   position: relative;
@@ -4017,23 +3999,6 @@ body main .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-fol
     gap: 8px;
   }
 }
-body main .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper .logo-wrapper {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  box-shadow: 0px 0 4px 0px rgba(0, 0, 0, 0.2509803922);
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  background-color: #fff;
-  z-index: 6;
-  align-items: flex-end;
-}
-body main .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper .logo-wrapper img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 100%;
-}
 body main .profile-page .page-header .cover-wrapper .user .top-wrapper .logo-follow-wrapper h3 {
   color: #fff;
 }
@@ -4309,7 +4274,6 @@ body main .Dashpoard_section .Profile_info .logo-wrapper {
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  box-shadow: 0px 0 4px 0px #efefef;
   background: #fff;
   display: flex;
   position: relative;
@@ -5325,6 +5289,9 @@ body main .PersonCard.skeleton .skeleton-text.skeleton-title {
   height: 20px;
   animation: pulse 1.5s ease-in-out infinite;
 }
+body main .PersonCard button {
+  color: #0d0d0d;
+}
 body main .AskCard {
   background: #f8f8f8;
   padding: 16px;
@@ -5668,6 +5635,7 @@ body main .chats-section .chat_room .chat_header .actions_menu button {
   align-items: center;
   gap: 4px;
   font-size: 14px;
+  color: #0d0d0d;
   transition: 0.3s ease-in-out;
 }
 body main .chats-section .chat_room .chat_header .actions_menu button i {
@@ -5980,10 +5948,10 @@ body main .close_sidebar {
 }
 body main .priview_img {
   position: absolute;
-  top: -58.4vh;
+  top: -56.4vh;
   left: 0;
   width: 100%;
-  height: 71vh;
+  height: 68vh;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -6497,6 +6465,50 @@ body .askCustomCountry:hover .shapes span:nth-child(2) {
 }
 body .askCustomCountry:hover .shapes span:nth-child(3) {
   width: 35%;
+}
+body .loader {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+body .loader img {
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .loader span {
+  width: 100px;
+  height: 2px;
+  background: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+}
+body .loader span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  background: #1abc9c;
+  height: 100%;
+  animation: appLoading 0.5s linear infinite alternate;
+}
+@keyframes appLoading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
 }
 body.en {
   direction: ltr !important;

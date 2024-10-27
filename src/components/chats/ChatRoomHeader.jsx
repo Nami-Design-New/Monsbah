@@ -35,7 +35,7 @@ function ChatRoomHeader({ chat }) {
   return (
     <div className="chat_header">
       <div className="user">
-        <Link to="/profile" className="img">
+        <Link to={`/profile/${chat?.user_id}`} className="img">
           <img
             src={chat?.user_image || "/images/icons/user_default.png"}
             alt="avatar"

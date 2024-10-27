@@ -9,6 +9,7 @@ import router from "./router";
 import BackToTop from "./ui/Layout/BackToTop";
 import useAuth from "./hooks/useAuth";
 import ProtectionProvider from "./providers/ProtectionProvider";
+import AppLoader from "./ui/loaders/AppLoader";
 
 function App() {
   const { loading } = useAuth();
@@ -42,6 +43,15 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const isAppDownloaded = localStorage.getItem("appDownloaded");
+    if (isAppDownloaded) {
+      setShowDownloadApp(false);
+    } else {
+      detectMobileTypeAndAppLink();
+    }
+  }, []);
+
   const detectMobileTypeAndAppLink = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -56,21 +66,14 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    const isAppDownloaded = localStorage.getItem("appDownloaded");
-    if (isAppDownloaded) {
-      setShowDownloadApp(false);
-    } else {
-      detectMobileTypeAndAppLink();
-    }
-  }, []);
-
   const handleAppDownload = () => {
     localStorage.setItem("appDownloaded", "true");
     setShowDownloadApp(false);
   };
 
-  return loading ? null : (
+  return loading ? (
+    <AppLoader />
+  ) : (
     <>
       <Header />
       <main>

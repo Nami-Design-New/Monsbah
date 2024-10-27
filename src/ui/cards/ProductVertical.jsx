@@ -14,6 +14,7 @@ function ProductVertical({
   className,
   setProducts,
   isShowAction = true,
+  removeItem = false,
 }) {
   const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(true);
@@ -29,26 +30,30 @@ function ProductVertical({
     e.preventDefault();
     e.stopPropagation();
     setLoading(true);
-    setProducts((prev) =>
-      prev?.map((p) => {
-        if (p.id === product.id) {
-          return { ...p, is_favorite: !p.is_favorite };
-        }
-        return p;
-      })
-    );
+
+    if (removeItem) {
+      setProducts((prev) => prev?.filter((p) => p.id !== product.id));
+    } else {
+      setProducts((prev) =>
+        prev?.map((p) => {
+          if (p.id === product.id) {
+            return { ...p, is_favorite: !p.is_favorite };
+          }
+          return p;
+        })
+      );
+    }
+
     try {
       const res = await axiosInstance.post("/client/store-favorite", {
         product_id: product?.id,
       });
       if (res.status === 200) {
-        queryClient.invalidateQueries({
-          queryKey: ["products"],
-        });
         queryClient.invalidateQueries({ queryKey: ["product"] });
         queryClient.invalidateQueries({ queryKey: ["products"] });
         queryClient.invalidateQueries({ queryKey: ["allProducts"] });
         queryClient.invalidateQueries({ queryKey: ["user-products"] });
+        queryClient.invalidateQueries({ queryKey: ["user-favorites"] });
       }
     } catch (error) {
       toast.error(error.response.data.message);
