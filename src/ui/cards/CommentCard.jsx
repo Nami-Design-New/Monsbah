@@ -3,12 +3,36 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import axiosInstance from "../../utils/axiosInstance";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
-function CommentCard({ comment, deleteComment, setTargetComment, className }) {
+function CommentCard({ comment, targetComment, setTargetComment, className }) {
   const { t } = useTranslation();
   const authedUser = useSelector((state) => state.clientData.client);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const queryClient = useQueryClient();
+
+  const deleteComment = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/delete-comment", {
+        id: targetComment?.id,
+      });
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        queryClient.invalidateQueries({ queryKey: ["comments"] });
+        setTargetComment(null);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="CommentWrapper">
@@ -40,7 +64,12 @@ function CommentCard({ comment, deleteComment, setTargetComment, className }) {
             </button>
 
             {comment?.user_id === authedUser?.id && (
-              <button onClick={() => setShowDeleteModal(true)}>
+              <button
+                onClick={() => {
+                  setShowDeleteModal(true);
+                  setTargetComment(comment);
+                }}
+              >
                 {t("delete")}
               </button>
             )}
@@ -63,15 +92,11 @@ function CommentCard({ comment, deleteComment, setTargetComment, className }) {
       <ConfirmationModal
         showModal={showDeleteModal}
         setShowModal={setShowDeleteModal}
-        eventFun={() => {
-          setLoading(true);
-          deleteComment(comment?.id);
-          setLoading(false);
-        }}
+        eventFun={deleteComment}
         loading={loading}
         type="delete"
         buttonText={t("chat.delete")}
-        text={t("chat.areYouSureYouWantDeleteThisChat")}
+        text={t("areYouSureYouWantDeleteThisComment")}
       />
     </div>
   );

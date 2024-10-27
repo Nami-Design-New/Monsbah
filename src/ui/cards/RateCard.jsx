@@ -4,25 +4,32 @@ import { Link } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
-function RateCard({ rate, userId, className }) {
+function RateCard({ rate, className }) {
   const { t } = useTranslation();
   const authedUser = useSelector((state) => state.clientData.client);
+  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const queryClient = useQueryClient();
 
-  const deleteRate = async (id) => {
+  const deleteRate = async () => {
+    setLoading(true);
     try {
       const res = await axiosInstance.post("/client/delete-rate", {
-        id: id,
+        id: rate?.id,
       });
       if (res.status === 200) {
         toast.success(res.data.message);
-        queryClient.invalidateQueries({ queryKey: ["rates", userId] });
+        queryClient.invalidateQueries({ queryKey: ["allRates"] });
       }
     } catch (error) {
       toast.error(error.response.data.message);
       throw new Error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,13 +59,20 @@ function RateCard({ rate, userId, className }) {
             <span>{rate?.date}</span>
 
             {rate?.user_id === authedUser?.id && (
-              <button onClick={() => deleteRate(rate?.id)}>
-                {t("delete")}
-              </button>
+              <button onClick={() => setShowModal(true)}>{t("delete")}</button>
             )}
           </div>
         </div>
       </div>
+      <ConfirmationModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        eventFun={deleteRate}
+        loading={loading}
+        type="delete"
+        buttonText={t("chat.delete")}
+        text={t("areYouSureYouWantDeleteThisRate")}
+      />
     </div>
   );
 }

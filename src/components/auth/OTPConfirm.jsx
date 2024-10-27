@@ -51,7 +51,18 @@ function OTPConfirm({ formData, setFormType }) {
 
       <OtpContainer formData={otpVerifyCode} setFormData={setOtpVerifyCode} />
 
-      <SubmitButton name={t("auth.verify")} loading={loading} />
+      <div className="d-flex align-items-center gap-2">
+        <button
+          className="back_btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setFormType("forget");
+          }}
+        >
+          <i className="fa-regular fa-arrow-right"></i>
+        </button>
+        <SubmitButton name={t("auth.verify")} loading={loading} />
+      </div>
     </form>
   );
 }

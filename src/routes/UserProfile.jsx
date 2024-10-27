@@ -37,12 +37,6 @@ function UserProfile() {
     setSearchParams({ tab });
   }
 
-  // products?.data?.data?.data?.map((product) => {
-  //   console.log(product?.user?.id);
-  // });
-
-  // console.log(user)
-
   const handleFollow = async (type) => {
     setLoading(true);
     try {

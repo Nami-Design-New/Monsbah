@@ -47,22 +47,6 @@ export default function Comments({ product, setProduct }) {
     }
   };
 
-  const deleteComment = async (id) => {
-    setTargetComment(null);
-    try {
-      const res = await axiosInstance.post("/client/delete-comment", {
-        id: id,
-      });
-      if (res.status === 200) {
-        toast.success(res.data.message);
-        queryClient.invalidateQueries({ queryKey: ["comments"] });
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-      throw new Error(error?.response?.data?.message);
-    }
-  };
-
   return (
     <div className="comments_container">
       <div className="header">
@@ -80,9 +64,9 @@ export default function Comments({ product, setProduct }) {
               <CommentCard
                 key={comment?.id}
                 comment={comment}
-                deleteComment={deleteComment}
                 className="fromComments"
                 setTargetComment={setTargetComment}
+                targetComment={targetComment}
               />
             ))}
           </>

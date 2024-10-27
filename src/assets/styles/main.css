@@ -1126,6 +1126,9 @@ body .form .back_btn:hover {
   color: #fff;
   border: 1px solid #1abc9c;
 }
+body .form .back_btn i {
+  font-size: 32px;
+}
 body .form .input-field {
   display: flex;
   width: 100%;
@@ -6557,6 +6560,9 @@ body .categories_sidebar .category.active {
 }
 body.en {
   direction: ltr !important;
+}
+body.en .back_btn i {
+  transform: rotate(180deg);
 }
 body.en input,
 body.en select,

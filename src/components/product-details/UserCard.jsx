@@ -43,8 +43,6 @@ function UserCard({ product, setProduct }) {
     }
   };
 
-  console.log(product?.user?.["followers-count"]);
-
   return (
     <div className="advertiserDetails">
       <div className="advertiser">
