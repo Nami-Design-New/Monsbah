@@ -50,14 +50,14 @@ function PersonCard({ person, setPersons }) {
       >
         <div className="img">
           <img
-            src={person?.image}
+            src={person?.image || person?.user_image}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
             alt="person"
           />
         </div>
         <div className="info">
-          <h4>{person?.name}</h4>
-          <p>{person?.city?.name}</p>
+          <h4>{person?.name || person?.user_name}</h4>
+          <p>{person?.city?.name || person?.user_city?.name}</p>
         </div>
       </Link>
       {person?.is_follow ? (
