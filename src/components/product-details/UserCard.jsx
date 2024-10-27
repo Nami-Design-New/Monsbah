@@ -26,9 +26,12 @@ function UserCard({ product, setProduct }) {
       },
     }));
     try {
-      const res = await axiosInstance.post("/client/store-follower", {
-        profile_id: product?.user?.id,
-      });
+      const res = await axiosInstance.post(
+        `/client/${product?.user?.is_follow ? "delete" : "store"}-follower`,
+        {
+          profile_id: product?.user?.id,
+        }
+      );
       if (res.status === 200) {
         queryClient.invalidateQueries({
           queryKey: ["product"],
@@ -39,6 +42,8 @@ function UserCard({ product, setProduct }) {
       throw new Error(error?.response?.data?.message);
     }
   };
+
+  console.log(product?.user?.["followers-count"]);
 
   return (
     <div className="advertiserDetails">
@@ -57,9 +62,13 @@ function UserCard({ product, setProduct }) {
             loading="lazy"
             alt=""
           />
-          {!product?.user?.is_follow && product?.user?.id !== client?.id && (
+          {product?.user?.id !== client?.id && (
             <Link className="follow_btn" onClick={handleFollow}>
-              <i className="fa-light fa-plus"></i>
+              <i
+                className={`fa-light fa-${
+                  product?.user?.is_follow ? "check" : "plus"
+                }`}
+              ></i>
             </Link>
           )}
         </Link>
