@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { handleChange } from "../../utils/helpers";
+import { extractPhoneFromCode, handleChange } from "../../utils/helpers";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import SelectField from "../../ui/form-elements/SelectField";
@@ -17,13 +17,6 @@ import axiosInstance from "../../utils/axiosInstance";
 import ImageUpload from "../../ui/form-elements/ImageUpload";
 import ChangePhoneModal from "../../ui/modals/ChangePhoneModal";
 import TextField from "../../ui/form-elements/TextField";
-
-// profile/update => image - name - about(_ar, _en) - email - country_id - city_id - state_id - cover
-// updateStatus => is_active
-// change-password => password_confirmation - password
-// change-phone => phone - country_code
-// confirm-change-phone => phone - country_code
-// remove-image ??
 
 function SettingsTab() {
   const { t } = useTranslation();
@@ -67,8 +60,9 @@ function SettingsTab() {
       cover: user?.cover || "",
       name: user?.name || "",
       username: user?.username || "",
-      country_code: user?.country_code || user?.phone ? "" : "965",
-      phone: user?.phone || "",
+      country_code: user?.country?.country_code.toString() || "965",
+      phone:
+        extractPhoneFromCode(user?.phone, user?.country?.country_code) || "",
       email: user?.email || "",
       country_id: user?.country?.id || "",
       city_id: user?.city?.id || "",

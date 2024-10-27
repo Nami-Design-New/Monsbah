@@ -6,6 +6,17 @@ export const handleChange = (e, setFormData) => {
   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 };
 
+export function extractPhoneFromCode(phone, code) {
+  const fullNumber = phone?.toString();
+  const fullCode = code?.toString().slice(1);
+
+  if (fullNumber?.startsWith(fullCode)) {
+    return Number(fullNumber.slice(fullCode?.length));
+  } else {
+    return Number(fullNumber);
+  }
+}
+
 export function isValidVideoExtension(source) {
   const validExtensions = [
     "mp4",

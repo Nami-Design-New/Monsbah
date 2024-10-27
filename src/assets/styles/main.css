@@ -3675,6 +3675,13 @@ body main .explore_ads .filter .grid_view .dropdown .dropdown-item {
 body main .explore_ads .filter .css-1hf1o2u-container {
   min-width: 120px;
 }
+body main .column-direction .swiper-wrapper {
+  flex-direction: column !important;
+  gap: 4px;
+}
+body main .column-direction .swiper-wrapper .swiper-slide {
+  width: 100% !important;
+}
 body main .contact_section {
   padding: 24px 0;
 }
