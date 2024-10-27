@@ -78,8 +78,9 @@ function Categories() {
       );
     }
   }, [countries, searchParams]);
+
   return (
-    <div className="categories-page">
+    <div className="categories-page h-100">
       <section className="explore_ads">
         <div className="container d-flex flex-column gap-3">
           {categoriesLoading ||
@@ -89,31 +90,6 @@ function Categories() {
             <PageLoader />
           ) : (
             <>
-              {selectedCountry ? (
-                <Link
-                  to={`/asks?country-id=${selectedCountry?.id}`}
-                  className={`askCustomCountry ${
-                    selectedCountry?.id ===
-                      Number(searchParams.get("country")) &&
-                    Number(searchParams.get("ask"))
-                      ? "active"
-                      : ""
-                  }`}
-                >
-                  <div className="img">
-                    <i className="fa-regular fa-comment-plus"></i>
-                  </div>
-                  <h6 className="selectedName">{`${t("ask")} ${
-                    selectedCountry?.name
-                  }`}</h6>
-
-                  <div className="shapes">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </Link>
-              ) : null}
               <div className="d-flex" style={{ position: "relative" }}>
                 <div
                   className="col-lg-3 col-md-4 col-5 p-2"
@@ -121,6 +97,8 @@ function Categories() {
                     height: "fit-content",
                     position: "sticky",
                     top: "74px",
+                    backgroundColor: "rgba(26, 188, 156, 0.1019607843)",
+                    borderRadius: "12px",
                   }}
                 >
                   <Swiper

@@ -184,6 +184,18 @@
     gap: 4px;
     .swiper-slide {
       width: 100% !important;
+      .category {
+        background-color: transparent !important;
+        transition: $transition;
+        &:hover {
+          &:not(.active) {
+            border: 1px solid $main10;
+          }
+        }
+        &.active {
+          background-color: $main !important;
+        }
+      }
     }
   }
 }
