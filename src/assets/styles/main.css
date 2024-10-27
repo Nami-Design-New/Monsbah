@@ -3664,6 +3664,16 @@ body main .column-direction .swiper-wrapper {
 body main .column-direction .swiper-wrapper .swiper-slide {
   width: 100% !important;
 }
+body main .column-direction .swiper-wrapper .swiper-slide .category {
+  background-color: transparent !important;
+  transition: 0.3s ease-in-out;
+}
+body main .column-direction .swiper-wrapper .swiper-slide .category:hover:not(.active) {
+  border: 1px solid rgba(26, 188, 156, 0.1019607843);
+}
+body main .column-direction .swiper-wrapper .swiper-slide .category.active {
+  background-color: #1abc9c !important;
+}
 body main .contact_section {
   padding: 24px 0;
 }
