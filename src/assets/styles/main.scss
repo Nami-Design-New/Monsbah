@@ -589,6 +589,21 @@ body {
     }
   }
 
+  .categories_sidebar {
+    padding: 16px 8px;
+    gap: 8px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    background: #1abc9c1a;
+    .category {
+      background: $white !important;
+      &.active {
+        background: $main !important;
+      }
+    }
+  }
+
   &.en {
     direction: ltr !important;
     input,

@@ -26,11 +26,12 @@ function ChatForm({ chat, setMessages }) {
     e.preventDefault();
     setLoading(true);
 
-    const payload = new FormData();
-    payload.append("type", messageContent.type);
+    const payload = {
+      type: messageContent.type,
+    };
 
     if (chat?.id) {
-      payload.append("chat_id", chat?.id);
+      payload.chat_id = chat?.id;
     }
 
     if (messageContent.type === "voice") {
@@ -40,7 +41,7 @@ function ChatForm({ chat, setMessages }) {
         const file = new File([blob], "voice_message.wav", {
           type: "audio/wav",
         });
-        payload.append("voice", file);
+        payload.voice = file;
       } catch (error) {
         console.error("Error converting blob URL to file:", error);
         return;
@@ -48,20 +49,20 @@ function ChatForm({ chat, setMessages }) {
     }
 
     if (messageContent.message) {
-      payload.append("message", messageContent.message);
+      payload.message = messageContent.message;
     }
 
     if (messageContent.type === "image") {
-      payload.append("images", messageContent.image);
+      payload.images = [messageContent.image];
     }
 
     if (messageContent.type === "file") {
-      payload.append("file", messageContent.file);
+      payload.file = messageContent.file;
     }
 
     if (messageContent.type === "location") {
-      payload.append("lat", messageContent.lat);
-      payload.append("lng", messageContent.lng);
+      payload.lat = messageContent.lat;
+      payload.lng = messageContent.lng;
     }
 
     try {
