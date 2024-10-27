@@ -340,5 +340,6 @@
   "messageSentSuccessfully": "تم إرسال رسالتك بنجاح",
   "isLoading": "جاري التحميل ...",
   "sendOTP": "إرسال كود التحقق",
-  "verify": "تحقق"
+  "verify": "تحقق",
+  "viewAllNotifications": "عرض جميع الاشعارات"
 }

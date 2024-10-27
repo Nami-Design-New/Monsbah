@@ -333,5 +333,6 @@
   "messageSentSuccessfully": "Your message sent successfully",
   "isLoading": "Loading ...",
   "sendOTP": "Send OTP",
-  "verify": "Verify"
+  "verify": "Verify",
+  "viewAllNotifications": "View all notifications"
 }

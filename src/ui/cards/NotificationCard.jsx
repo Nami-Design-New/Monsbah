@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
-function NotificationCard({ item }) {
+function NotificationCard({ item, onClick }) {
   return (
     <Link
       to={item?.type === "product" ? `/product/${item?.product_id}` : `/chats`}
       className="notificationCard"
       key={item.id}
+      onClick={() => onClick?.()}
     >
       <div className="img">
         <img src={item?.image} alt={item?.name} />
