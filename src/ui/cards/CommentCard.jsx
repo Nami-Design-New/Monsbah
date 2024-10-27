@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 function CommentCard({ comment, deleteComment, setTargetComment, className }) {
   const { t } = useTranslation();
   const authedUser = useSelector((state) => state.clientData.client);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="CommentWrapper">
@@ -36,7 +40,7 @@ function CommentCard({ comment, deleteComment, setTargetComment, className }) {
             </button>
 
             {comment?.user_id === authedUser?.id && (
-              <button onClick={() => deleteComment(comment?.id)}>
+              <button onClick={() => setShowDeleteModal(true)}>
                 {t("delete")}
               </button>
             )}
@@ -56,6 +60,19 @@ function CommentCard({ comment, deleteComment, setTargetComment, className }) {
           ))}
         </div>
       )}
+      <ConfirmationModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        eventFun={() => {
+          setLoading(true);
+          deleteComment(comment?.id);
+          setLoading(false);
+        }}
+        loading={loading}
+        type="delete"
+        buttonText={t("chat.delete")}
+        text={t("chat.areYouSureYouWantDeleteThisChat")}
+      />
     </div>
   );
 }
