@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Select from "react-select";
 import CategoryLoader from "../../ui/loaders/CategoryLoader";
@@ -39,6 +39,8 @@ export default function ProductsSection() {
     selectedCategory,
     selectedCategory ? true : false
   );
+
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   useEffect(() => {
     if (searchParams.get("category")) {
@@ -129,11 +131,43 @@ export default function ProductsSection() {
     }
   };
 
+  useEffect(() => {
+    if (countries?.length > 0 && searchParams.get("country")) {
+      setSelectedCountry(
+        countries?.filter((c) => c?.id === +searchParams.get("country"))[0]
+      );
+    }
+  }, [countries, searchParams]);
+
   return (
     <>
       {/* filter */}
       <section className="explore_ads">
         <div className="container d-flex flex-column gap-3">
+          {selectedCountry ? (
+            <Link
+              to={`/asks?country-id=${selectedCountry?.id}`}
+              className={`askCustomCountry ${
+                selectedCountry?.id === Number(searchParams.get("country")) &&
+                Number(searchParams.get("ask"))
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="img">
+                <i className="fa-regular fa-comment-plus"></i>
+              </div>
+              <h6 className="selectedName">{`${t("ask")} ${
+                selectedCountry?.name
+              }`}</h6>
+
+              <div className="shapes">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </Link>
+          ) : null}
           {/* categories slider */}
           <Swiper slidesPerView="auto" className="categories_slider">
             {categoriesLoading ? (
