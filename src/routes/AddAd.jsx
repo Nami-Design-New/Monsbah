@@ -29,8 +29,6 @@ export default function AddAd() {
 
   const { data: product } = useGetProduct(+product_id);
 
-  console.log(product);
-
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -232,7 +230,10 @@ export default function AddAd() {
   };
 
   return (
-    <form className="form col-12 p-2 p-md-3 reverse-form" onSubmit={handleSubmit}>
+    <form
+      className="form col-12 p-2 p-md-3 reverse-form"
+      onSubmit={handleSubmit}
+    >
       {/* gallery */}
       <div className="form_group">
         <div className="input-field">
@@ -298,8 +299,6 @@ export default function AddAd() {
         </div>
       </div>
 
-    
-
       {/* name */}
       <div className="form_group">
         <InputField
@@ -354,8 +353,8 @@ export default function AddAd() {
         />
       </div>
 
-  {/*  price & type */}
-  <div className="form_group">
+      {/*  price & type */}
+      <div className="form_group">
         <InputField
           required
           label={t("ads.price")}
@@ -401,7 +400,7 @@ export default function AddAd() {
           </div>
         </div>
       </div>
-      
+
       {/* city, region */}
       <div className="form_group">
         <SelectField
