@@ -342,5 +342,6 @@
   "sendOTP": "إرسال كود التحقق",
   "verify": "تحقق",
   "viewAllNotifications": "عرض جميع الاشعارات",
-  "areYouSureYouWantDeleteThisComment": "هل أنت متاكد من حذف هذا التعليق؟"
+  "areYouSureYouWantDeleteThisComment": "هل أنت متاكد من حذف هذا التعليق؟",
+  "areYouSureYouWantDeleteThisRate": "هل أنت متاكد من حذف هذا التقييم؟"
 }
