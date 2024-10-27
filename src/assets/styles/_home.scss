@@ -53,6 +53,7 @@
 .explore_ads {
   .categories_slider {
     width: 100%;
+
     &.subcategories_slider {
       background-color: #f8f8f8;
       padding: 8px;
@@ -75,6 +76,7 @@
       white-space: nowrap;
     }
   }
+
   .category {
     cursor: pointer;
     display: flex;
@@ -173,6 +175,15 @@
     }
     .css-1hf1o2u-container {
       min-width: 120px;
+    }
+  }
+}
+.column-direction {
+  .swiper-wrapper {
+    flex-direction: column !important;
+    gap: 4px;
+    .swiper-slide {
+      width: 100% !important;
     }
   }
 }

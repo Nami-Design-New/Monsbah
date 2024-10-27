@@ -10,6 +10,7 @@ import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Login({ setFormType, setShow }) {
   const { t } = useTranslation();
@@ -27,6 +28,8 @@ function Login({ setFormType, setShow }) {
     country_code: "965",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
+
+  const queryClient = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +55,8 @@ function Login({ setFormType, setShow }) {
         });
 
         toast.success(res.data?.message);
+
+        queryClient.invalidateQueries();
 
         navigate("/profile");
 
