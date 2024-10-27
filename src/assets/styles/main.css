@@ -1951,6 +1951,13 @@ body .otp-container .otp-input::-webkit-inner-spin-button {
     height: 60px !important;
   }
 }
+body label {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+body label div {
+  white-space: nowrap !important;
+}
 body .auth_section {
   width: 100%;
   display: flex;

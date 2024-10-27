@@ -60,6 +60,7 @@
     "verify": "تحقق",
     "resetPasswordSubtitle": "ادخل الرقم المسجل به حسابك",
     "resetPasswordTitle": "هل نسيت كلمة المرور؟",
+    "confirmPhoneOTPSubtitle": "الرجاء التحقق من رقم هاتفك للحصول على كود التفعيل",
     "confirmOTPSubtitle": "الرجاء التحقق من بريدك الإلكتروني أو رقم هاتفك للحصول على كود التفعيل",
     "confirmOTPTitle": "التحقق من رقم الهاتف",
     "changePasswordSubtitle": "ادخل كلمة المرور الجديدة واحرص على اختيار كلمة مرور مناسبة",
@@ -337,5 +338,7 @@
   "successfullyReported": "تم الابلاغ بنجاح",
   "home": "الرئيسية",
   "messageSentSuccessfully": "تم إرسال رسالتك بنجاح",
-  "isLoading": "جاري التحميل ..."
+  "isLoading": "جاري التحميل ...",
+  "sendOTP": "إرسال كود التحقق",
+  "verify": "تحقق"
 }

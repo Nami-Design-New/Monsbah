@@ -265,6 +265,7 @@ function SettingsTab() {
                   <span style={{ color: "red", fontSize: "20px" }}> *</span>
                 </div>
                 <span
+                  className="d-flex align-items-center justify-content-end"
                   style={{ cursor: "pointer", color: "#1abc9c" }}
                   onClick={() => setShowPhoneModal(true)}
                 >
