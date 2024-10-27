@@ -20,6 +20,9 @@ export default function Header() {
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
   const { data: notifications, total } = useGetNotifications();
+  const [showNotificationDropdown, setShowNotificationDropdown] =
+    useState(false);
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const { isAuthed } = useAuth();
 
@@ -84,7 +87,12 @@ export default function Header() {
             </Link>
 
             {isAuthed ? (
-              <Dropdown>
+              <Dropdown
+                show={showNotificationDropdown}
+                onToggle={() =>
+                  setShowNotificationDropdown(!showNotificationDropdown)
+                }
+              >
                 <Dropdown.Toggle id="dropdown-basic" className="link">
                   <img src="/images/icons/bell.svg" alt="" />
                   {total ? (
@@ -97,30 +105,48 @@ export default function Header() {
                 <Dropdown.Menu className="drop_Message_Menu">
                   <div className="scroll_menu">
                     {notifications?.map((item) => (
-                      <NotificationCard key={item.id} item={item} />
+                      <NotificationCard
+                        key={item.id}
+                        item={item}
+                        onClick={() => setShowNotificationDropdown(false)}
+                      />
                     ))}
                   </div>
                   <Link
                     className="showall"
                     to="/notifcations"
                     style={{ textDecoration: "none" }}
+                    onClick={() => setShowNotificationDropdown(false)}
                   >
-                    عرض جميع الاشعارات
+                    {t("viewAllNotifications")}
                   </Link>
                 </Dropdown.Menu>
               </Dropdown>
             ) : null}
 
-            <Dropdown>
+            <Dropdown
+              show={showLangDropdown}
+              onToggle={() => setShowLangDropdown(!showLangDropdown)}
+            >
               <Dropdown.Toggle id="dropdown-basic" className="link">
                 <img src="/images/icons/lang.svg" alt="" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => handleLang("ar")}>
+                <Dropdown.Item
+                  onClick={() => {
+                    handleLang("ar");
+                    setShowLangDropdown(false);
+                  }}
+                >
                   العربية
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleLang("en")}>
+                <Dropdown.Item
+                  onClick={() => {
+                    handleLang("en");
+                    setShowLangDropdown(false);
+                  }}
+                >
                   English
                 </Dropdown.Item>
               </Dropdown.Menu>
