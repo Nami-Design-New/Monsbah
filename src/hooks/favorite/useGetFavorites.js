@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import axiosInstance from "../../utils/axiosInstance";
 import { useSelector } from "react-redux";
+import axiosInstance from "../../utils/axiosInstance";
 
 function useGetFavorites(enabled) {
   const lang = useSelector((state) => state.language.lang);
@@ -46,7 +46,7 @@ function useGetFavorites(enabled) {
 
   return {
     isLoading,
-    data: data?.pages.flatMap((page) => page.data) || [],
+    data,
     error,
     hasNextPage,
     fetchNextPage,

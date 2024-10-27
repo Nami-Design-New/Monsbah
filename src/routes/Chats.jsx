@@ -4,13 +4,16 @@ import ChatRoom from "../components/chats/ChatRoom";
 import SideBar from "../components/chats/SideBar";
 
 import useGetChats from "../hooks/chat/useGetChats";
+import PageLoader from "../ui/loaders/PageLoader";
 
 function Chats() {
   const { t } = useTranslation();
-  const { data: chats } = useGetChats();
-
+  const { data: chats, isLoading } = useGetChats();
   const [showChats, setShowChats] = useState(false);
-  return (
+
+  return isLoading ? (
+    <PageLoader />
+  ) : (
     <section className="chats-section">
       <div className="container h-100 p-0 ">
         <div

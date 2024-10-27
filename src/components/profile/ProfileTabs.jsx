@@ -1,19 +1,19 @@
+import { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useQueryClient } from "@tanstack/react-query";
+import { setClientData } from "../../redux/slices/clientData";
+import { toast } from "react-toastify";
 import MainInfoTab from "./MainInfoTab";
 import MyAds from "./MyAds";
 import QuestionsTab from "./QuestionsTab";
 import FavoritesTab from "./FavoritesTab";
 import SettingsTab from "./SettingsTab";
 import VerificationTab from "./VerificationTab";
-import { useEffect, useState } from "react";
 import axios from "../../utils/axiosInstance";
-import { useCookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
-import { useQueryClient } from "@tanstack/react-query";
-import { setClientData } from "../../redux/slices/clientData";
-import { toast } from "react-toastify";
 import AddAd from "../../routes/AddAd";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
@@ -213,6 +213,7 @@ function ProfileTabs() {
           className="tab_item"
         ></Tab>
       </Tabs>
+
       <ConfirmationModal
         showModal={showLogoutModal}
         setShowModal={setShowLogoutModal}

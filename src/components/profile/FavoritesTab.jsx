@@ -1,17 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 import useGetFavorites from "../../hooks/favorite/useGetFavorites";
 
 function FavoritesTab(isActive) {
   const sectionRef = useRef(null);
-  const {
-    data: products,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetFavorites(isActive);
+
+  const [products, setProducts] = useState([]);
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetFavorites(isActive);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,27 +31,49 @@ function FavoritesTab(isActive) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  useEffect(() => {
+    if (!data?.pages) return;
+    setProducts((prevProducts) => {
+      const newProducts = data.pages.flatMap((page) => page.data);
+
+      const mergedProducts = newProducts.map((newProduct) => {
+        const existingProduct = prevProducts?.find(
+          (p) => p.id === newProduct.id
+        );
+        return existingProduct
+          ? { ...newProduct, ...existingProduct }
+          : newProduct;
+      });
+      return mergedProducts;
+    });
+  }, [data]);
+
   return (
     <section className="products_section" ref={sectionRef}>
-        <div className="row">
-          {products?.map((product, index) => (
-            <div className="col-lg-6 col-12 p-2" key={index}>
-              <ProductVertical product={product} className="my-ad" />
-            </div>
-          ))}
+      <div className="row">
+        {products?.map((product, index) => (
+          <div className="col-lg-6 col-12 p-2" key={index}>
+            <ProductVertical
+              setProducts={setProducts}
+              product={product}
+              removeItem={true}
+              className="my-ad"
+            />
+          </div>
+        ))}
 
-          {(isLoading || isFetchingNextPage) && (
-            <>
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
-                  <div className="col-lg-6 col-12 p-2" key={`loader-${index}`}>
-                    <ProductLoader />
-                  </div>
-                ))}
-            </>
-          )}
-        </div>
+        {(isLoading || isFetchingNextPage) && (
+          <>
+            {Array(3)
+              .fill(0)
+              .map((_, index) => (
+                <div className="col-lg-6 col-12 p-2" key={`loader-${index}`}>
+                  <ProductLoader />
+                </div>
+              ))}
+          </>
+        )}
+      </div>
     </section>
   );
 }
