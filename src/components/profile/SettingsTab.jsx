@@ -267,6 +267,8 @@ function SettingsTab() {
                 </span>
               </div>
             }
+            disabled={true}
+            disableSelect={true}
             required
             type="number"
             id="phone"
