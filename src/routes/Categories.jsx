@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 import "swiper/css";
@@ -44,7 +44,7 @@ function Categories() {
     <section className="categories-page explore_ads">
       <div className="container">
         <div className="row">
-          <div className="col-lg-3 col-md-4 col-5 p-lg-2 p-1">
+          <div className="col-lg-2 col-md-3 col-4 p-lg-2 p-1">
             <div className="categories_sidebar">
               {categoriesLoading ? (
                 <>
@@ -80,12 +80,12 @@ function Categories() {
             </div>
           </div>
 
-          <div className="col-lg-9 col-md-8 col-7 p-lg-2 p-1">
+          <div className="col-lg-10 col-md-9 col-8 p-lg-2 p-1">
             <div className="categories_slider subcategories_slider">
               {subcategoriesLoading ? (
                 <>
                   {[...Array(3)].map((_, index) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-1" key={index}>
+                    <div className=" col-xl-3 col-md-4 col-6 p-1" key={index}>
                       <SubCategoriesLoader />
                     </div>
                   ))}
@@ -93,7 +93,7 @@ function Categories() {
               ) : (
                 <>
                   {subCategories?.map((sub) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-1" key={sub.id}>
+                    <div className=" col-xl-3 col-md-4 col-6 p-1" key={sub.id}>
                       <Link
                         to={`/?category=${selectedCategory}&sub_category=${sub.id}`}
                         onClick={() => handleSetParams(sub.id, "sub_category")}

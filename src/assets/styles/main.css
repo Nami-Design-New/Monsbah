@@ -6359,7 +6359,7 @@ body .download_app .text p {
 body .download_app .text p {
   color: #777777;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   body .download_app {
     display: flex;
     align-items: center;
@@ -6413,6 +6413,32 @@ body .addCommentForm button {
 }
 body .categories-page {
   padding: 24px 0;
+}
+@media screen and (max-width: 992px) {
+  body .categories-page {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+    background-color: white;
+    height: 100dvh;
+    width: 100dvw;
+    overflow-y: auto;
+  }
+  body .categories-page > .container {
+    padding: 0;
+  }
+  body .categories-page .sub {
+    padding: 8px;
+  }
+  body .categories-page .sub h6 {
+    font-weight: normal;
+    white-space: normal;
+    text-align: center;
+  }
+  body .categories-page .subcategories_slider {
+    padding: 4px !important;
+  }
 }
 body .shapes {
   position: absolute;
@@ -6545,7 +6571,7 @@ body .loader span::after {
   }
 }
 body .categories_sidebar {
-  padding: 16px 8px;
+  padding: 8px;
   gap: 8px;
   border-radius: 12px;
   display: flex;
@@ -6554,9 +6580,25 @@ body .categories_sidebar {
 }
 body .categories_sidebar .category {
   background: #fff !important;
+  flex-direction: column;
+  border-radius: 12px !important;
+  padding: 16px 8px !important;
+}
+body .categories_sidebar .category > .img {
+  width: 40px;
+  height: 40px;
+  border-radius: unset;
+  background-color: transparent !important;
+}
+body .categories_sidebar .category > .img img {
+  width: 32px !important;
+  height: 32px !important;
 }
 body .categories_sidebar .category.active {
   background: #1abc9c !important;
+}
+body .categories_sidebar .category.active > .img img {
+  filter: brightness(0) invert(1);
 }
 body.en {
   direction: ltr !important;
