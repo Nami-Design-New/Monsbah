@@ -25,11 +25,11 @@ function SmallMenu() {
         <i className="fa-solid fa-magnifying-glass"></i>
         <span>{t("search")}</span>
       </Link> */}
-      
-      <Link to="/search/asks" className="menu_item">
-      <i className="fa-solid fa-comments-question"></i>
+
+      <Link to="/asks" className="menu_item">
+        <i className="fa-solid fa-comments-question"></i>
         <span> {t("header.asks")}</span>
-      </Link> 
+      </Link>
 
       <Link to="/chats" className="menu_item">
         <i className="fa-solid fa-message"></i>
