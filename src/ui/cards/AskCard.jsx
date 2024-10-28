@@ -135,7 +135,6 @@ export default function AskCard({
         setShowModal={setShowEditModal}
         targetedAsk={ask}
         country_id={user?.country?.id}
-        city_id={user?.city?.id}
         title={`${t("editAsk")}`}
       />
 

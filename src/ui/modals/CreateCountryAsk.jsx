@@ -1,10 +1,10 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import SubmitButton from "../form-elements/SubmitButton";
-import { useTranslation } from "react-i18next";
 import TextField from "../form-elements/TextField";
 
 function CreateCountryAsk({
@@ -12,7 +12,6 @@ function CreateCountryAsk({
   setShowModal,
   targetedAsk,
   country_id,
-  city_id,
   title,
 }) {
   const { t } = useTranslation();
@@ -27,7 +26,6 @@ function CreateCountryAsk({
 
     const payLoad = {
       country_id: country_id,
-      city_id: city_id,
       description: value,
     };
 
