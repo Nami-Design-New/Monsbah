@@ -195,7 +195,7 @@ function UserProfile() {
 
                         {user?.["following-count"] ||
                         +user?.["following-count"] === 0 ? (
-                          <div className="col-lg-3 col-6 p-2">
+                          <div className="col-lg-4 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["following-count"]}</h2>
 
@@ -208,7 +208,7 @@ function UserProfile() {
 
                         {user?.["followers-count"] ||
                         +user?.["followers-count"] === 0 ? (
-                          <div className="col-lg-3 col-6 p-2">
+                          <div className="col-lg-4 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["followers-count"]}</h2>
 
@@ -219,20 +219,8 @@ function UserProfile() {
                           </div>
                         ) : null}
 
-                        {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
-                          <div className="col-lg-3 col-6 p-2">
-                            <div className="Box_rate">
-                              <h2>{user?.["rate-count"]}</h2>
-
-                              <div className="icon_rate">
-                                <p>{t("Rating")}</p>
-                              </div>
-                            </div>
-                          </div>
-                        ) : null}
-
                         {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
-                          <div className="col-lg-3 col-6 p-2">
+                          <div className="col-lg-4 col-6 p-2">
                             <div className="Box_rate">
                               <h2>{user?.["ads-count"]}</h2>
 
