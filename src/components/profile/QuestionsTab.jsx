@@ -13,7 +13,7 @@ function QuestionsTab(isActive) {
 
   const user = useSelector((state) => state.clientData.client);
 
-  const { data: asks, isLoading } = useGetAllAsks(isActive);
+  const { data: asks, isLoading } = useGetAllAsks(user?.id, isActive);
 
   return (
     <section className="search_section  w-100 p-0" ref={sectionRef}>
