@@ -88,6 +88,7 @@ export default function AddAd() {
       country_code: user?.country?.country_code,
       currency_id: user?.country?.currency?.id,
       category_id: 1,
+      sub_category_id: 10,
     }));
   }, [user]);
 
