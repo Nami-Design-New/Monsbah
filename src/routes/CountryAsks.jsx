@@ -42,7 +42,6 @@ function CountryAsks() {
       searchParams.set("country-id", user?.country ? user?.country?.id : 6);
       setSearchParams(searchParams);
     } else {
-      console.log(+searchParams.get("country-id") !== user?.country?.id);
 
       if (+searchParams.get("country-id") !== user?.country?.id) {
         searchParams.set("country-id", user?.country ? user?.country?.id : 6);
