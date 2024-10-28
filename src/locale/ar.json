@@ -343,5 +343,6 @@
   "verify": "تحقق",
   "viewAllNotifications": "عرض جميع الاشعارات",
   "areYouSureYouWantDeleteThisComment": "هل أنت متاكد من حذف هذا التعليق؟",
-  "areYouSureYouWantDeleteThisRate": "هل أنت متاكد من حذف هذا التقييم؟"
+  "areYouSureYouWantDeleteThisRate": "هل أنت متاكد من حذف هذا التقييم؟",
+  "addYouQuestionHere": "اضف سؤالك هنا"
 }

@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
 import useGetPersons from "../../hooks/search/useGetPersons";
 
 export default function Persons({ sectionRef }) {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const currentSearch = searchParams.get("search");
+  const lastSearchRef = useRef(currentSearch);
+
   const [persons, setPersons] = useState([]);
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGetPersons();
@@ -48,6 +53,13 @@ export default function Persons({ sectionRef }) {
       return Array.from(prevPersonsMap.values());
     });
   }, [data?.pages]);
+
+  useEffect(() => {
+    if (lastSearchRef.current !== currentSearch) {
+      setPersons([]);
+      lastSearchRef.current = currentSearch;
+    }
+  }, [currentSearch]);
 
   return (
     <>

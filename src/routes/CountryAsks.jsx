@@ -2,32 +2,35 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import useGetAsks from "../hooks/search/useGetAsks";
 import useAuth from "../hooks/useAuth";
 import useGetCountries from "../hooks/settings/useGetCountries";
 import AskCard from "../ui/cards/AskCard";
 import AskLoader from "../ui/loaders/AskLoader";
 import ViewAsk from "../ui/modals/ViewAsk";
-import CreateCountryAsk from "../ui/modals/CreateCountryAsk";
 import AuthModal from "../components/auth/AuthModal";
+import InputField from "../ui/form-elements/InputField";
+import SubmitButton from "../ui/form-elements/SubmitButton";
+import axiosInstance from "../utils/axiosInstance";
 
 function CountryAsks() {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showCountryAskModal, setShowCountryAskModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const country = searchParams.get("country-id");
-  const city = searchParams.get("city-id");
+  const [loading, setLoading] = useState(false);
+  const [ask, setAsk] = useState("");
+
   const { data: countries } = useGetCountries();
-
-  const sectionRef = useRef(null);
-
   const { isAuthed } = useAuth();
-
+  const sectionRef = useRef(null);
+  const queryClient = useQueryClient();
   const user = useSelector((state) => state.clientData.client);
+  const country = searchParams.get("country-id");
 
   const {
     data: aks,
@@ -35,17 +38,12 @@ function CountryAsks() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetAsks();
+  } = useGetAsks(selectedCountry?.id || 6);
 
   useEffect(() => {
     if (!searchParams.get("country-id")) {
       searchParams.set("country-id", user?.country ? user?.country?.id : 6);
       setSearchParams(searchParams);
-    } else {
-      if (+searchParams.get("country-id") !== user?.country?.id) {
-        searchParams.set("country-id", user?.country ? user?.country?.id : 6);
-        setSearchParams(searchParams);
-      }
     }
   }, [searchParams, setSearchParams, user?.country]);
 
@@ -78,31 +76,67 @@ function CountryAsks() {
     }
   }, [countries, searchParams]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (!isAuthed) {
+      setShowAuthModal(true);
+      return;
+    }
+
+    const payLoad = {
+      country_id: selectedCountry?.id,
+      description: ask,
+    };
+
+    try {
+      const res = await axiosInstance.post("/client/store-question", payLoad);
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        setAsk("");
+        queryClient.invalidateQueries({
+          queryKey: ["asks"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["allQuestions"],
+        });
+      }
+      setShowModal(false);
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="search_section" ref={sectionRef}>
       <div className="container">
         <div className="row">
-          <div className="col-12 p-2 d-flex justify-content-between align-items-center">
-            <div className="div">
-              <h6 className="title">{t("popularAsks")}</h6>
-              <p className="desc">{t("popularAsksDesc")}</p>
-            </div>
+          <div className="col-12 p-2">
             {country && selectedCountry ? (
-              <span
-                className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  isAuthed
-                    ? setShowCountryAskModal(true)
-                    : setShowAuthModal(true);
+              <form
+                onSubmit={handleSubmit}
+                className="form"
+                style={{
+                  flexDirection: "row",
+                  alignItems: "flex-end",
                 }}
               >
-                <i className="fa-regular fa-comment-plus"></i>
-
-                <h6 className="m-0" style={{ lineHeight: 1 }}>{`${t("ask")} ${
-                  selectedCountry?.name
-                }`}</h6>
-              </span>
+                <InputField
+                  label={t("ask") + " " + selectedCountry?.name}
+                  placeholder={t("addYouQuestionHere")}
+                  value={ask}
+                  onChange={(e) => setAsk(e.target.value)}
+                />
+                <SubmitButton
+                  name={t("send")}
+                  className="fit_content"
+                  loading={loading}
+                />
+              </form>
             ) : null}
           </div>
 
@@ -132,14 +166,6 @@ function CountryAsks() {
             showModal={showModal}
             setShowModal={setShowModal}
             ask={targetAsk}
-          />
-
-          <CreateCountryAsk
-            showModal={showCountryAskModal}
-            setShowModal={setShowCountryAskModal}
-            country_id={country}
-            city_id={city}
-            title={`${t("ask")} ${selectedCountry?.name}`}
           />
 
           <AuthModal

@@ -1,28 +1,25 @@
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import AskCard from "../../ui/cards/AskCard";
 import useGetAsks from "../../hooks/search/useGetAsks";
 import AskLoader from "../../ui/loaders/AskLoader";
 import ViewAsk from "../../ui/modals/ViewAsk";
-import useGetCountries from "../../hooks/settings/useGetCountries";
-import CreateCountryAsk from "../../ui/modals/CreateCountryAsk";
 import AuthModal from "../auth/AuthModal";
 import useAuth from "../../hooks/useAuth";
+import CreateCountryAsk from "../../ui/modals/CreateCountryAsk";
+import useGetCountries from "../../hooks/settings/useGetCountries";
 
 export default function Asks({ sectionRef }) {
   const { t } = useTranslation();
-  const [showModal, setShowModal] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showCountryAskModal, setShowCountryAskModal] = useState(false);
-  const [targetAsk, setTargetAsk] = useState({});
-  const [searchParams, setSearchParams] = useSearchParams();
-  const country = searchParams.get("country-id");
-  const city = searchParams.get("city-id");
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const { data: countries } = useGetCountries();
-
   const { isAuthed } = useAuth();
+  const { client } = useSelector((state) => state.clientData);
+  const { data: countries } = useGetCountries();
+  const [showModal, setShowModal] = useState(false);
+  const [targetAsk, setTargetAsk] = useState({});
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [showCountryAskModal, setShowCountryAskModal] = useState(false);
 
   const {
     data: aks,
@@ -30,7 +27,7 @@ export default function Asks({ sectionRef }) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetAsks();
+  } = useGetAsks(client?.country?.id || 6);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,19 +51,10 @@ export default function Asks({ sectionRef }) {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage, sectionRef]);
 
   useEffect(() => {
-    if (!searchParams.get("country-id")) {
-      searchParams.set("country-id", 6);
-      setSearchParams(searchParams);
+    if (client?.country) {
+      setSelectedCountry(client?.country) || countries?.find((c) => c.id === 6);
     }
-  }, [searchParams, setSearchParams]);
-
-  useEffect(() => {
-    if (countries?.length > 0 && searchParams.get("country-id")) {
-      setSelectedCountry(
-        countries?.filter((c) => c?.id === +searchParams.get("country-id"))[0]
-      );
-    }
-  }, [countries, searchParams]);
+  }, [client?.country, countries]);
 
   return (
     <>
@@ -75,7 +63,7 @@ export default function Asks({ sectionRef }) {
           <h6 className="title">{t("popularAsks")}</h6>
           <p className="desc">{t("popularAsksDesc")}</p>
         </div>
-        {country && selectedCountry ? (
+        {selectedCountry ? (
           <span
             className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
             style={{ cursor: "pointer" }}
@@ -123,8 +111,7 @@ export default function Asks({ sectionRef }) {
       <CreateCountryAsk
         showModal={showCountryAskModal}
         setShowModal={setShowCountryAskModal}
-        country_id={country}
-        city_id={city}
+        country_id={selectedCountry?.id}
         title={`${t("ask")} ${selectedCountry?.name}`}
       />
 
