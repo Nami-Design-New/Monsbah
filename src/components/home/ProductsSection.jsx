@@ -167,7 +167,19 @@ export default function ProductsSection() {
                 <span></span>
               </div>
             </Link>
-          ) : null}
+          ) : (
+            <button
+              className={`category skeleton`}
+              style={{ height: "100px", borderRadius: "16px" }}
+            >
+              <h6></h6>
+              <div className="shapes">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </button>
+          )}
           {/* categories slider */}
           <Swiper slidesPerView="auto" className="categories_slider">
             {categoriesLoading ? (
