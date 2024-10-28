@@ -1744,7 +1744,7 @@ body .wizard_tabs .wizard_tab.active h6 {
 body .radios {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 body .radios .label-content {

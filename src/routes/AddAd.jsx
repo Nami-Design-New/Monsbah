@@ -21,16 +21,17 @@ import useGetProduct from "../hooks/products/useGetProduct";
 export default function AddAd() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.clientData.client);
   const queryClient = useQueryClient();
-
   const [searchParams] = useSearchParams();
   const product_id = searchParams.get("product_id");
-
+  const user = useSelector((state) => state.clientData.client);
+  const { lang } = useSelector((state) => state.language);
+  const { data: categories } = useGetCategories();
   const { data: product, isLoading: productLoading } = useGetProduct(
     +product_id
   );
 
+  const [productImages, setProductImages] = useState([]);
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -50,10 +51,6 @@ export default function AddAd() {
     active_call: "inactive",
   });
 
-  const [productImages, setProductImages] = useState([]);
-
-  const { lang } = useSelector((state) => state.language);
-  const { data: categories } = useGetCategories();
   const showAdTypeOptionsId = categories?.find(
     (category) => category?.name === "فساتين"
   )?.id;
@@ -62,11 +59,16 @@ export default function AddAd() {
     user?.country?.id,
     Boolean(user?.country?.id)
   );
+
   const { data: subcategories, isLoading: subcategoriesLoading } =
-    useGetSubCategories(formData?.category_id, Boolean(formData?.category_id));
+    useGetSubCategories(
+      formData?.category_id || 1,
+      Boolean(formData?.category_id)
+    );
+
   const { data: areas, isLoading: areasLoading } = useGetStates(
-    formData?.city_id,
-    Boolean(formData?.city_id)
+    user?.city?.id,
+    Boolean(user?.city?.id)
   );
 
   useEffect(() => {
@@ -77,15 +79,16 @@ export default function AddAd() {
   }, [formData?.images]);
 
   useEffect(() => {
-    if (user) {
-      setFormData((prevState) => ({
-        ...prevState,
-        country_id: user?.country?.id,
-        country_code: user?.country?.country_code,
-        phone: user?.phone,
-        currency_id: user?.country?.currency?.id,
-      }));
-    }
+    setFormData((prevState) => ({
+      ...prevState,
+      country_id: user?.country?.id,
+      city_id: user?.city?.id,
+      state_id: user?.state?.id,
+      phone: user?.phone,
+      country_code: user?.country?.country_code,
+      currency_id: user?.country?.currency?.id,
+      category_id: 1,
+    }));
   }, [user]);
 
   useEffect(() => {
@@ -114,24 +117,6 @@ export default function AddAd() {
       if (srcs) {
         setProductImages([product?.image, ...srcs]);
       }
-    } else {
-      setProductImages([]);
-      setFormData(() => ({
-        images: [],
-        image: "",
-        name_ar: "",
-        name_en: "",
-        category_id: "",
-        sub_category_id: "",
-        city_id: "",
-        state_id: "",
-        description_ar: "",
-        description_en: "",
-        type: "sale",
-        active_chat: "inactive",
-        active_whatsapp: "inactive",
-        active_call: "inactive",
-      }));
     }
   }, [product, product_id]);
 
