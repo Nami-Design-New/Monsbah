@@ -73,6 +73,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
             {formType === "login" && (
               <Login setFormType={setFormType} setShow={setShow} />
             )}
+
             {formType === "register" && (
               <Register
                 setFormType={setFormType}
@@ -81,6 +82,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormData={setRegisterFormData}
               />
             )}
+
             {formType === "registerOtp" && (
               <RegisterOTPConfirm
                 setFormType={setFormType}
@@ -89,6 +91,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormData={setRegisterFormData}
               />
             )}
+
             {formType === "forget" && (
               <ForgetPassword
                 setFormType={setFormType}
@@ -98,6 +101,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormData={setForgetFormData}
               />
             )}
+
             {formType === "otp" && (
               <OTPConfirm
                 setFormType={setFormType}
@@ -106,6 +110,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 formData={forgetFormData}
               />
             )}
+
             {formType === "reset" && (
               <ResetPassword setFormType={setFormType} setShow={setShow} />
             )}

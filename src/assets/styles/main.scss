@@ -14,7 +14,7 @@ body {
   @import "./about";
   main {
     min-height: calc(100vh - 426px);
-    @media screen and (max-width:992px) {
+    @media screen and (max-width: 992px) {
       min-height: calc(100vh - 100px);
     }
     @import "./home";
@@ -369,8 +369,15 @@ body {
     width: 100%;
     direction: ltr;
     display: none;
-    background: $white;
-    z-index: 99;
+    z-index: 9999;
+    .inner {
+      background: $white;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+    }
     .icon {
       width: 62px;
       height: 62px;
@@ -390,16 +397,23 @@ body {
       }
     }
     @media screen and (max-width: 992px) {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px;
+      display: block;
     }
     .get_app {
       padding: 8px 24px;
       background: $main;
       color: $white;
       border-radius: 80px;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.22);
+      z-index: -1;
     }
   }
   .replyTo {
@@ -440,15 +454,6 @@ body {
   .categories-page {
     padding: 16px 0;
     @media screen and (max-width: 992px) {
-      // position: fixed;
-      // top: 0;
-      // right: 0;
-      // z-index: 99999;
-      // background-color: white;
-      // height: 100dvh;
-      // width: 100dvw;
-      // overflow-y: auto;
-      
       > .container {
         padding: 0;
       }
@@ -552,6 +557,14 @@ body {
         &:nth-child(3) {
           width: 35%;
         }
+      }
+    }
+    &.skeleton {
+      height: 108.8px;
+      background: #e0e0e0;
+      animation: pulse 1.5s ease-in-out infinite;
+      .shapes {
+        display: none;
       }
     }
   }

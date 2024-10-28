@@ -52,6 +52,7 @@ export default function AddAd() {
 
   const [productImages, setProductImages] = useState([]);
 
+  const { lang } = useSelector((state) => state.language);
   const { data: categories } = useGetCategories();
   const showAdTypeOptionsId = categories?.find(
     (category) => category?.name === "فساتين"
@@ -238,7 +239,6 @@ export default function AddAd() {
       );
       if (res.status === 200) {
         toast.success(res.data.message);
-        queryClient.invalidateQueries({ queryKey: ["user-products"] });
         navigate("/profile?tab=ads");
         setFormData({
           images: [],
@@ -256,6 +256,13 @@ export default function AddAd() {
           active_whatsapp: "inactive",
           active_call: "inactive",
         });
+        if (product_id) {
+          queryClient.invalidateQueries(["product", lang, product_id]);
+        }
+        queryClient.invalidateQueries({ queryKey: ["products"] });
+        queryClient.invalidateQueries({ queryKey: ["allProducts"] });
+        queryClient.invalidateQueries({ queryKey: ["user-products"] });
+        queryClient.invalidateQueries({ queryKey: ["user-favorites"] });
       }
     } catch (error) {
       setLoading(false);

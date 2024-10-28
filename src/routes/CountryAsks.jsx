@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import useGetAsks from "../hooks/search/useGetAsks";
 import useAuth from "../hooks/useAuth";
-import { useSearchParams } from "react-router-dom";
 import useGetCountries from "../hooks/settings/useGetCountries";
-import { useTranslation } from "react-i18next";
 import AskCard from "../ui/cards/AskCard";
 import AskLoader from "../ui/loaders/AskLoader";
 import ViewAsk from "../ui/modals/ViewAsk";
 import CreateCountryAsk from "../ui/modals/CreateCountryAsk";
 import AuthModal from "../components/auth/AuthModal";
-import { useSelector } from "react-redux";
 
 function CountryAsks() {
   const { t } = useTranslation();
@@ -18,9 +18,9 @@ function CountryAsks() {
   const [showCountryAskModal, setShowCountryAskModal] = useState(false);
   const [targetAsk, setTargetAsk] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedCountry, setSelectedCountry] = useState(null);
   const country = searchParams.get("country-id");
   const city = searchParams.get("city-id");
-  const [selectedCountry, setSelectedCountry] = useState(null);
   const { data: countries } = useGetCountries();
 
   const sectionRef = useRef(null);
@@ -42,7 +42,6 @@ function CountryAsks() {
       searchParams.set("country-id", user?.country ? user?.country?.id : 6);
       setSearchParams(searchParams);
     } else {
-
       if (+searchParams.get("country-id") !== user?.country?.id) {
         searchParams.set("country-id", user?.country ? user?.country?.id : 6);
         setSearchParams(searchParams);

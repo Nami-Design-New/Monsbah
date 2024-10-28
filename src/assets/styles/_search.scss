@@ -137,9 +137,6 @@
   height: 100%;
   gap: 12px;
 
-  &.my-ask {
-    background-color: $white !important;
-  }
   .title {
     flex: 1;
     @include space-between();
@@ -261,5 +258,9 @@
     .info .skeleton-text {
       width: calc(50% - 4px);
     }
+  }
+  
+  &.my-ask {
+    background-color: $white !important;
   }
 }

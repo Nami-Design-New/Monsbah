@@ -340,6 +340,10 @@ button {
   display: none;
 }
 
+.css-mohuvp-dummyInput-DummyInput {
+  left: 0 !important;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -2024,9 +2028,6 @@ body .product_vertical {
   border-radius: 8px;
   display: flex;
 }
-body .product_vertical.my-ad {
-  background-color: #fff !important;
-}
 body .product_vertical .img {
   min-width: 140px;
   max-width: 140px;
@@ -2192,6 +2193,10 @@ body .product_vertical.skeleton .skeleton-btn {
   background: #e0e0e0;
   border-radius: 50%;
   animation: pulse 1.5s ease-in-out infinite;
+}
+body .product_vertical.my-ad {
+  width: 100%;
+  background-color: #fff !important;
 }
 @keyframes pulse {
   0% {
@@ -3660,11 +3665,11 @@ body main .explore_ads .filter {
 }
 body main .explore_ads .filter .selects {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
 }
 body main .explore_ads .filter .grid_view {
-  gap: 12px;
+  gap: 8px;
   display: flex;
   align-items: center;
 }
@@ -5082,6 +5087,7 @@ body main .product_details .advertiserDetails .advertiser .content ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-inline-end: 16px;
 }
 body main .product_details .advertiserDetails .advertiser .content ul li h6,
 body main .product_details .advertiserDetails .advertiser .content ul li span {
@@ -5341,9 +5347,6 @@ body main .AskCard {
   height: 100%;
   gap: 12px;
 }
-body main .AskCard.my-ask {
-  background-color: #fff !important;
-}
 body main .AskCard .title {
   flex: 1;
   display: flex;
@@ -5465,6 +5468,9 @@ body main .AskCard.skeleton .skeleton-description {
 }
 body main .AskCard.skeleton .info .skeleton-text {
   width: calc(50% - 4px);
+}
+body main .AskCard.my-ask {
+  background-color: #fff !important;
 }
 body main .chats-section {
   padding: 24px 0;
@@ -5987,10 +5993,10 @@ body main .close_sidebar {
 }
 body main .priview_img {
   position: absolute;
-  top: -51.4vh;
+  top: -437.56px;
   left: 0;
   width: 100%;
-  height: 64vh;
+  height: 525.56px;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -6344,8 +6350,15 @@ body .download_app {
   width: 100%;
   direction: ltr;
   display: none;
+  z-index: 9999;
+}
+body .download_app .inner {
   background: #fff;
-  z-index: 99;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
 }
 body .download_app .icon {
   width: 62px;
@@ -6366,10 +6379,7 @@ body .download_app .text p {
 }
 @media screen and (max-width: 992px) {
   body .download_app {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
+    display: block;
   }
 }
 body .download_app .get_app {
@@ -6377,6 +6387,16 @@ body .download_app .get_app {
   background: #1abc9c;
   color: #fff;
   border-radius: 80px;
+}
+body .download_app::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.22);
+  z-index: -1;
 }
 body .replyTo {
   font-size: 14px;
@@ -6520,6 +6540,14 @@ body .askCustomCountry:hover .shapes span:nth-child(2) {
 }
 body .askCustomCountry:hover .shapes span:nth-child(3) {
   width: 35%;
+}
+body .askCustomCountry.skeleton {
+  height: 108.8px;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .askCustomCountry.skeleton .shapes {
+  display: none;
 }
 body .loader {
   width: 100%;

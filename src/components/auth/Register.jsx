@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
@@ -9,22 +11,24 @@ import SelectField from "../../ui/form-elements/SelectField";
 import useGetCountries from "./../../hooks/settings/useGetCountries";
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetStates from "../../hooks/settings/useGetStates";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
-function Register({ setFormType, formData, setFormData }) {
+
+function Register({ setFormType, formData, setFormData, setShow }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const { data: countries } = useGetCountries();
+
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
     formData?.country_id ? true : false
   );
+
   const { data: states, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     formData?.city_id ? true : false
   );
+
   const handleChangeUserName = (e) => {
     const { value } = e.target;
     const validInput = /^[a-zA-Z0-9]*$/;
@@ -35,6 +39,7 @@ function Register({ setFormType, formData, setFormData }) {
       }));
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -45,12 +50,26 @@ function Register({ setFormType, formData, setFormData }) {
         setFormType("registerOtp");
       }
     } catch (error) {
-      toast.error(error.response.data.message);
-      throw new Error(error);
+      console.log(error.response?.data?.data);
+      if (error.response?.data?.data) {
+        const message = error.response?.data?.data
+          ?.map((item) => `${item}<br />`)
+          .join(" ");
+        toast.error(
+          <div
+            style={{ textAlign: "start !important" }}
+            dangerouslySetInnerHTML={{ __html: message }}
+          />
+        );
+      } else {
+        toast.error(error.response.data.message);
+      }
+      // throw new Error(error);
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
@@ -211,7 +230,9 @@ function Register({ setFormType, formData, setFormData }) {
       </div>
       <span className="noAccount mt-2">
         {t("auth.byContinueYouAccept")}{" "}
-        <Link to="/terms-of-use">{t("auth.termsOfUse")}</Link>
+        <Link to="/terms-and-conditions" onClick={() => setShow(false)}>
+          {t("tearmsAndConditions")}
+        </Link>
       </span>
       <SubmitButton name={t("auth.register")} loading={loading} />
       <span className="noAccount">

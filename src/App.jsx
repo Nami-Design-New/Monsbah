@@ -99,24 +99,26 @@ function App() {
 
       {showDownloadApp && (
         <div className="download_app">
-          <div className="d-flex align-items-center gap-2">
-            <button
-              className="d-flex"
-              onClick={() => setShowDownloadApp(false)}
-            >
-              <i className="fa-solid fa-times"></i>
-            </button>
-            <div className="icon">
-              <img src="/images/branding/storeicon.svg" alt="store" />
+          <div className="inner">
+            <div className="d-flex align-items-center gap-2">
+              <button
+                className="d-flex"
+                onClick={() => setShowDownloadApp(false)}
+              >
+                <i className="fa-solid fa-times"></i>
+              </button>
+              <div className="icon">
+                <img src="/images/branding/storeicon.svg" alt="store" />
+              </div>
+              <div className="text">
+                <h6>Monasbah.com App</h6>
+                <p>Get it on</p>
+              </div>
             </div>
-            <div className="text">
-              <h6>Monasbah.com App</h6>
-              <p>Get it on</p>
-            </div>
+            <a href={appLink} className="get_app" onClick={handleAppDownload}>
+              Get
+            </a>
           </div>
-          <a href={appLink} className="get_app" onClick={handleAppDownload}>
-            Get
-          </a>
         </div>
       )}
     </>

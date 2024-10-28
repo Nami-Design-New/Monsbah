@@ -7,10 +7,6 @@
   background: $inputBg;
   border-radius: 8px;
   display: flex;
-
-  &.my-ad {
-    background-color: $white !important;
-  }
   .img {
     min-width: 140px;
     max-width: 140px;
@@ -178,6 +174,10 @@
       border-radius: 50%;
       animation: pulse 1.5s ease-in-out infinite;
     }
+  }
+  &.my-ad {
+    width: 100%;
+    background-color: $white !important;
   }
 }
 

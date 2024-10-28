@@ -171,11 +171,11 @@
     @include space-between();
     .selects {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       align-items: center;
     }
     .grid_view {
-      gap: 12px;
+      gap: 8px;
       display: flex;
       align-items: center;
       .dropdown {

@@ -83,8 +83,8 @@ function ProductVertical({
           queryKey: ["products"],
         });
         queryClient.invalidateQueries({ queryKey: ["product"] });
-        queryClient.invalidateQueries({ queryKey: ["user-products"] });
         queryClient.invalidateQueries({ queryKey: ["allProducts"] });
+        queryClient.invalidateQueries({ queryKey: ["user-products"] });
       }
       setShowDeleteModal(false);
     } catch (error) {

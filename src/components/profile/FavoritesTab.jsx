@@ -49,7 +49,7 @@ function FavoritesTab(isActive) {
   }, [data]);
 
   return (
-    <section className="products_section" ref={sectionRef}>
+    <section className="products_section w-100" ref={sectionRef}>
       <div className="row">
         {products?.map((product, index) => (
           <div className="col-lg-6 col-12 p-2" key={index}>
@@ -64,11 +64,11 @@ function FavoritesTab(isActive) {
 
         {(isLoading || isFetchingNextPage) && (
           <>
-            {Array(3)
+            {Array(2)
               .fill(0)
               .map((_, index) => (
                 <div className="col-lg-6 col-12 p-2" key={`loader-${index}`}>
-                  <ProductLoader />
+                  <ProductLoader className="my-ad" />
                 </div>
               ))}
           </>
