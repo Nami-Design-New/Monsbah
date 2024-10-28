@@ -1,6 +1,6 @@
-function ProductLoader() {
+function ProductLoader({ className }) {
   return (
-    <div className="product_vertical skeleton my-ad">
+    <div className={`product_vertical skeleton ${className}`}>
       <div className="img skeleton-img"></div>
       <div className="content">
         <div className="title">
