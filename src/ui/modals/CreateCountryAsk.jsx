@@ -39,6 +39,9 @@ function CreateCountryAsk({
         queryClient.invalidateQueries({
           queryKey: ["asks"],
         });
+        queryClient.invalidateQueries({
+          queryKey: ["allQuestions"],
+        });
       }
       setShowModal(false);
     } catch (error) {

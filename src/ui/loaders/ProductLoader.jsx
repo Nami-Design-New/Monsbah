@@ -1,6 +1,6 @@
 function ProductLoader() {
   return (
-    <div className="product_vertical skeleton">
+    <div className="product_vertical skeleton my-ad">
       <div className="img skeleton-img"></div>
       <div className="content">
         <div className="title">

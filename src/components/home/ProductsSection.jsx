@@ -144,6 +144,7 @@ export default function ProductsSection() {
       {/* filter */}
       <section className="explore_ads">
         <div className="container d-flex flex-column gap-3">
+          {/* ask button */}
           {selectedCountry ? (
             <Link
               to={`/asks?country-id=${selectedCountry?.id}`}
@@ -168,10 +169,7 @@ export default function ProductsSection() {
               </div>
             </Link>
           ) : (
-            <button
-              className={`category skeleton`}
-              style={{ height: "100px", borderRadius: "16px" }}
-            >
+            <button className={`askCustomCountry skeleton`}>
               <h6></h6>
               <div className="shapes">
                 <span></span>
@@ -180,6 +178,7 @@ export default function ProductsSection() {
               </div>
             </button>
           )}
+
           {/* categories slider */}
           <Swiper slidesPerView="auto" className="categories_slider">
             {categoriesLoading ? (
@@ -285,7 +284,7 @@ export default function ProductsSection() {
                 classNamePrefix="select"
                 isLoading={countriesLoading}
                 isRtl={lang === "ar"}
-                isSearchable={true}
+                isSearchable={false}
                 placeholder={t("selectCountry")}
                 value={
                   country
@@ -306,6 +305,7 @@ export default function ProductsSection() {
                 <Select
                   className="basic-single"
                   classNamePrefix="select"
+                  isSearchable={false}
                   isRtl={lang === "ar"}
                   placeholder={t("productType")}
                   onChange={(e) => handleSetParams(e?.value, "type")}

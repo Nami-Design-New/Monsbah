@@ -1,6 +1,6 @@
 function AskLoader() {
   return (
-    <div className="AskCard skeleton">
+    <div className="AskCard skeleton my-ask">
       <div className="user_info ">
         <div className="img skeleton-img"></div>
         <div className="info">

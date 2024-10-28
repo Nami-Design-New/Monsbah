@@ -93,10 +93,6 @@ function UserCard({ product, setProduct }) {
               <h6>{product?.user?.["following-count"]}</h6>
               <span>{t("following")}</span>
             </li>
-            <li>
-              <h6>{product?.user?.["rate-count"]}</h6>
-              <span>{t("rate")}</span>
-            </li>
           </ul>
         </div>
       </div>
