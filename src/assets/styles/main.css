@@ -3467,7 +3467,12 @@ body .aboutus_section .container .countries-section .country-box .info-wrapper s
   position: relative;
 }
 body main {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 426px);
+}
+@media screen and (max-width: 992px) {
+  body main {
+    min-height: calc(100vh - 100px);
+  }
 }
 body main .hero_section {
   padding: 24px 0 16px;
@@ -6412,19 +6417,9 @@ body .addCommentForm button {
   height: 56px !important;
 }
 body .categories-page {
-  padding: 24px 0;
+  padding: 16px 0;
 }
 @media screen and (max-width: 992px) {
-  body .categories-page {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 99999;
-    background-color: white;
-    height: 100dvh;
-    width: 100dvw;
-    overflow-y: auto;
-  }
   body .categories-page > .container {
     padding: 0;
   }

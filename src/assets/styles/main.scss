@@ -13,7 +13,10 @@ body {
   @import "./profile_section";
   @import "./about";
   main {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 426px);
+    @media screen and (max-width:992px) {
+      min-height: calc(100vh - 100px);
+    }
     @import "./home";
     @import "./contact";
     @import "./profile_section";
@@ -435,16 +438,16 @@ body {
     }
   }
   .categories-page {
-    padding: 24px 0;
+    padding: 16px 0;
     @media screen and (max-width: 992px) {
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 99999;
-      background-color: white;
-      height: 100dvh;
-      width: 100dvw;
-      overflow-y: auto;
+      // position: fixed;
+      // top: 0;
+      // right: 0;
+      // z-index: 99999;
+      // background-color: white;
+      // height: 100dvh;
+      // width: 100dvw;
+      // overflow-y: auto;
       
       > .container {
         padding: 0;

@@ -97,7 +97,7 @@ function Categories() {
                       <Link
                         to={`/?category=${selectedCategory}&sub_category=${sub.id}`}
                         onClick={() => handleSetParams(sub.id, "sub_category")}
-                        className={`category sub d-flex align-items-center flex-column gap-4 ${
+                        className={`category sub d-flex align-items-center flex-column gap-2 ${
                           sub?.id === Number(selectedSubCategory)
                             ? "active"
                             : ""
