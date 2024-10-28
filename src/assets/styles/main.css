@@ -3470,12 +3470,12 @@ body main {
   min-height: calc(100vh - 100px);
 }
 body main .hero_section {
-  padding: 24px 0;
+  padding: 24px 0 16px;
 }
 @media screen and (max-width: 576px) {
   body main .hero_section {
     padding: 0;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
   }
   body main .hero_section .container {
     padding: 0;
