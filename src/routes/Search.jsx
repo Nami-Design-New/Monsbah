@@ -37,12 +37,17 @@ export default function Search() {
             </button>
           </form>
           <nav className="search_nav">
-            <NavLink end to="">
+            <NavLink end to={search ? `/search?search=${search}` : ""}>
               {t("advertisements")}
             </NavLink>
-            <NavLink to="persons">{t("persons")}</NavLink>
-            <NavLink to="asks">{t("asks")}</NavLink>
+            <NavLink to={search ? `persons?search=${search}` : "persons"}>
+              {t("persons")}
+            </NavLink>
+            <NavLink to={search ? `asks?search=${search}` : "asks"}>
+              {t("asks")}
+            </NavLink>
           </nav>
+
           <div className="row">
             <Routes>
               <Route path="" element={<Ads sectionRef={sectionRef} />} />
