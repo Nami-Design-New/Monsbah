@@ -8,6 +8,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import ImageLoad from "../loaders/ImageLoad";
 import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import useAuth from "../../hooks/useAuth";
 
 function ProductVertical({
   product,
@@ -25,6 +26,8 @@ function ProductVertical({
   const client = useSelector((state) => state.clientData.client);
 
   const queryClient = useQueryClient();
+
+  const { isAuthed } = useAuth();
 
   const handleFavorite = async (e) => {
     e.preventDefault();
@@ -97,7 +100,10 @@ function ProductVertical({
   };
 
   return (
-    <div className={`product_vertical ${className}`}>
+    <Link
+      to={`/product/${product.id}`}
+      className={`product_vertical ${className}`}
+    >
       <Link to={`/product/${product.id}`} className="img">
         {isValidVideoExtension(product?.image) ? (
           <video
@@ -118,33 +124,34 @@ function ProductVertical({
       <div className="content">
         <Link to={`/product/${product.id}`} className="title">
           <h3>{product.name}</h3>
-          {client?.id !== product?.user?.id ? (
-            <span
-              disabled={loading}
-              onClick={handleFavorite}
-              className={`favourite_btn dark ${
-                product?.is_favorite ? "active" : ""
-              }`}
-            >
-              <i className="fa-light fa-heart"></i>
-            </span>
-          ) : isShowAction ? (
-            <div className="d-flex align-items-center gap-2">
-              <Link
-                to={`/profile?tab=addAd&product_id=${product?.id}`}
-                className={`favourite_btn dark`}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <i className="fa-light fa-pen-to-square"></i>
-              </Link>
+          {isAuthed &&
+            (client?.id !== product?.user?.id ? (
               <span
-                onClick={handleOpenDeleteModal}
-                className={`favourite_btn dark`}
+                disabled={loading}
+                onClick={handleFavorite}
+                className={`favourite_btn dark ${
+                  product?.is_favorite ? "active" : ""
+                }`}
               >
-                <i className="fa-light fa-trash"></i>
+                <i className="fa-light fa-heart"></i>
               </span>
-            </div>
-          ) : null}
+            ) : isShowAction ? (
+              <div className="d-flex align-items-center gap-2">
+                <Link
+                  to={`/profile?tab=addAd&product_id=${product?.id}`}
+                  className={`favourite_btn dark`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <i className="fa-light fa-pen-to-square"></i>
+                </Link>
+                <span
+                  onClick={handleOpenDeleteModal}
+                  className={`favourite_btn dark`}
+                >
+                  <i className="fa-light fa-trash"></i>
+                </span>
+              </div>
+            ) : null)}
         </Link>
 
         <h3 className="price">
@@ -183,7 +190,7 @@ function ProductVertical({
         buttonText={t("confirm")}
         text={t("ads.areYouSureYouWantToDelete")}
       />
-    </div>
+    </Link>
   );
 }
 
