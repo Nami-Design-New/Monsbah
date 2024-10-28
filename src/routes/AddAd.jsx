@@ -27,7 +27,9 @@ export default function AddAd() {
   const [searchParams] = useSearchParams();
   const product_id = searchParams.get("product_id");
 
-  const { data: product } = useGetProduct(+product_id);
+  const { data: product, isLoading: productLoading } = useGetProduct(
+    +product_id
+  );
 
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,6 +49,8 @@ export default function AddAd() {
     active_whatsapp: "inactive",
     active_call: "inactive",
   });
+
+  const [productImages, setProductImages] = useState([]);
 
   const { data: categories } = useGetCategories();
   const showAdTypeOptionsId = categories?.find(
@@ -84,7 +88,7 @@ export default function AddAd() {
   }, [user]);
 
   useEffect(() => {
-    if (product) {
+    if (product && product_id) {
       setFormData((prevState) => ({
         ...prevState,
         name_ar: product?.name,
@@ -100,20 +104,46 @@ export default function AddAd() {
         active_chat: product?.active_chat,
         active_whatsapp: product?.active_whatsapp,
         active_call: product?.active_call,
+        image: product?.image,
         images: product?.images?.map((image) =>
           image?.image ? image?.image : null
         ),
       }));
+      const srcs = product?.images?.map((image) => image?.image);
+      if (srcs) {
+        setProductImages([product?.image, ...srcs]);
+      }
+    } else {
+      setProductImages([]);
+      setFormData(() => ({
+        images: [],
+        image: "",
+        name_ar: "",
+        name_en: "",
+        category_id: "",
+        sub_category_id: "",
+        city_id: "",
+        state_id: "",
+        description_ar: "",
+        description_en: "",
+        type: "sale",
+        active_chat: "inactive",
+        active_whatsapp: "inactive",
+        active_call: "inactive",
+      }));
     }
-  }, [product]);
+  }, [product, product_id]);
 
   const handleImagesChange = (e) => {
     e.preventDefault();
+
     const newImages = Array.from(e.target.files);
     if (newImages.length > 6) {
       toast.warning(t("ads.maxImages"));
       return;
     }
+    setProductImages((prevState) => [...prevState, ...newImages]);
+
     setFormData((prevState) => ({
       ...prevState,
       images: [...prevState.images, ...newImages],
@@ -134,6 +164,7 @@ export default function AddAd() {
         images: prevState.images.filter((_, i) => i !== index),
       }));
     }
+    setProductImages((prevState) => prevState.filter((_, i) => i !== index));
   };
 
   const handleNameChange = (e) => {
@@ -166,23 +197,29 @@ export default function AddAd() {
       active_whatsapp: formData?.active_whatsapp,
       active_call: formData?.active_call,
       delete_images: formData?.delete_images,
-      country_id: formData?.country_id,
+      country_id: user?.country?.id,
       country_code: formData?.country_code,
       phone: formData?.phone,
       currency_id: formData?.currency_id,
     };
 
-    if (formData?.images?.length < 1) {
+    if (productImages?.length < 1) {
       toast.error(t("ads.imagesRequired"));
       setLoading(false);
       return;
     } else {
-      formData?.images.forEach((image) => {
+      if (productImages[0]?.type?.startsWith("image/")) {
+        requestBody.image = productImages[0];
+      }
+      productImages?.slice(1).forEach((image) => {
         if (image?.type?.startsWith("image/")) {
-          requestBody?.images?.push(image);
+          if (requestBody?.images) {
+            requestBody.images = [...requestBody.images, image];
+          } else {
+            requestBody.images = [image];
+          }
         }
       });
-      requestBody.image = formData?.images?.[0];
     }
 
     if (product_id) {
@@ -254,6 +291,7 @@ export default function AddAd() {
                     name="images"
                     multiple
                     onChange={handleImagesChange}
+                    disabled={productLoading}
                   />
                   <img src="/images/icons/gallery.svg" alt="upload" />
                 </label>
@@ -261,40 +299,41 @@ export default function AddAd() {
             )}
 
             {/* uploaded images */}
-            {formData?.images?.map((image, index) => (
-              <div className="uploaded_file" key={index}>
-                {image?.type?.startsWith("video/") ? (
-                  <video
-                    src={
-                      image?.type?.startsWith("video/")
-                        ? URL.createObjectURL(image)
-                        : image?.image
-                    }
-                    alt="file"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                ) : (
-                  <img
-                    src={
-                      image?.type?.startsWith("image/")
-                        ? URL.createObjectURL(image)
-                        : image
-                    }
-                    alt="file"
-                  />
-                )}
+            {productImages &&
+              productImages?.map((image, index) => (
+                <div className="uploaded_file" key={index}>
+                  {image?.type?.startsWith("video/") ? (
+                    <video
+                      src={
+                        image?.type?.startsWith("video/")
+                          ? URL.createObjectURL(image)
+                          : image?.image
+                      }
+                      alt="file"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={
+                        image?.type?.startsWith("image/")
+                          ? URL.createObjectURL(image)
+                          : image
+                      }
+                      alt="file"
+                    />
+                  )}
 
-                <button onClick={(e) => handleRemoveImage(e, index, image)}>
-                  <i className="fa-light fa-xmark"></i>
-                </button>
-                {index === 0 && (
-                  <span className="mainImg">{t("ads.mainImage")}</span>
-                )}
-              </div>
-            ))}
+                  <button onClick={(e) => handleRemoveImage(e, index, image)}>
+                    <i className="fa-light fa-xmark"></i>
+                  </button>
+                  {index === 0 && (
+                    <span className="mainImg">{t("ads.mainImage")}</span>
+                  )}
+                </div>
+              ))}
           </div>
         </div>
       </div>
@@ -309,6 +348,7 @@ export default function AddAd() {
           name="name_ar"
           value={formData.name_ar}
           onChange={handleNameChange}
+          disabled={productLoading}
         />
       </div>
 
@@ -331,6 +371,7 @@ export default function AddAd() {
             name: category?.name,
             value: category?.id,
           }))}
+          disabled={productLoading}
         />
 
         <SelectField
@@ -350,6 +391,7 @@ export default function AddAd() {
             name: subcategory?.name,
             value: subcategory?.id,
           }))}
+          disabled={productLoading}
         />
       </div>
 
@@ -366,6 +408,7 @@ export default function AddAd() {
           onChange={(e) => {
             handleChange(e, setFormData);
           }}
+          disabled={productLoading}
         />
         <div className="input-field">
           <label htmlFor="type">{t("ads.type")}</label>
@@ -381,6 +424,7 @@ export default function AddAd() {
                   +showAdTypeOptionsId === +formData?.category_id
                 }
                 onChange={(e) => handleChange(e, setFormData)}
+                disabled={productLoading}
               />
               <span>{t("ads.sell")}</span>
             </label>
@@ -393,6 +437,7 @@ export default function AddAd() {
                   value="rent"
                   checked={formData?.type === "rent"}
                   onChange={(e) => handleChange(e, setFormData)}
+                  disabled={productLoading}
                 />
                 <span>{t("ads.tajeer")}</span>
               </label>
@@ -419,6 +464,7 @@ export default function AddAd() {
             name: city?.name,
             value: city?.id,
           }))}
+          disabled={productLoading}
         />
         <SelectField
           label={`${t("ads.area")} *`}
@@ -437,6 +483,7 @@ export default function AddAd() {
             name: area?.name,
             value: area?.id,
           }))}
+          disabled={productLoading}
         />
       </div>
 
@@ -456,6 +503,7 @@ export default function AddAd() {
               description_en: e.target.value,
             });
           }}
+          disabled={productLoading}
         />
       </div>
 
@@ -479,6 +527,7 @@ export default function AddAd() {
                       formData.active_call === "active" ? "inactive" : "active",
                   })
                 }
+                disabled={productLoading}
               />
               <span>{t("ads.call")}</span>
             </label>
@@ -497,6 +546,7 @@ export default function AddAd() {
                         : "active",
                   })
                 }
+                disabled={productLoading}
               />
               <span>{t("ads.whatsapp")}</span>
             </label>
@@ -513,6 +563,7 @@ export default function AddAd() {
                       formData.active_chat === "active" ? "inactive" : "active",
                   })
                 }
+                disabled={productLoading}
               />
               <span>{t("ads.chat")}</span>
             </label>
@@ -534,6 +585,7 @@ export default function AddAd() {
               setNewPhoneNumber(!newPhoneNumber);
               setFormData({ ...formData, phone: "" });
             }}
+            disabled={productLoading}
           />
         </div>
       </div>
@@ -551,6 +603,7 @@ export default function AddAd() {
             value={formData.phone}
             countryCode={formData?.country_code}
             onChange={(e) => handleChange(e, setFormData)}
+            disabled={productLoading}
           />
         </div>
       )}
@@ -559,6 +612,7 @@ export default function AddAd() {
         <SubmitButton
           loading={loading}
           name={t(`${product_id ? "save" : "add"}`)}
+          disabled={productLoading}
         />
       </div>
     </form>
