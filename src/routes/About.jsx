@@ -63,11 +63,11 @@ export default function About() {
 
           <div className="countries-section">
             {/* Saudia */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/saudia-1.webp"}
+                    src={"/images/countries/saudia-1.webp"}
                     alt={"Saudi"}
                   />
                 </div>
@@ -78,11 +78,11 @@ export default function About() {
               </div>
             </Link>
             {/* Kuwait */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/kewit.webp"}
+                    src={"/images/countries/kewit.webp"}
                     alt={"Kuwait"}
                   />
                 </div>
@@ -93,11 +93,11 @@ export default function About() {
               </div>
             </Link>
             {/* UAE */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/uae-1.webp"}
+                    src={"/images/countries/uae-1.webp"}
                     alt={"UAE"}
                   />
                 </div>
@@ -108,11 +108,11 @@ export default function About() {
               </div>
             </Link>
             {/* Bahrain */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/behrin.webp"}
+                    src={"/images/countries/behrin.webp"}
                     alt={"Bahrain"}
                   />
                 </div>
@@ -123,11 +123,11 @@ export default function About() {
               </div>
             </Link>
             {/* Oman */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/oman.webp"}
+                    src={"/images/countries/oman.webp"}
                     alt={"Oman"}
                   />
                 </div>
@@ -138,11 +138,11 @@ export default function About() {
               </div>
             </Link>
             {/* Qatar */}
-            <Link to={"/search/asks"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
               <div className="country-box">
                 <div className="image-wrapper">
                   <img
-                    src={"../../images/countries/qatar-1.webp"}
+                    src={"/images/countries/qatar-1.webp"}
                     alt={"Qatar"}
                   />
                 </div>
