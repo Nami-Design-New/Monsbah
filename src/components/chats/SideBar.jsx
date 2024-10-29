@@ -80,9 +80,9 @@ export default function SideBar({ setShowChats }) {
 
   return (
     <aside ref={sideRef}>
-      <button onClick={() => setShowChats(false)} className="close_sidebar">
+      {/* <button onClick={() => setShowChats(false)} className="close_sidebar">
         <i className="fa-regular fa-x" aria-hidden="true"></i>
-      </button>
+      </button> */}
       <div className="checkAll_field">
         <Form.Check
           type="checkbox"

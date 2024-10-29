@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import ChatRoom from "../components/chats/ChatRoom";
 import SideBar from "../components/chats/SideBar";
 
@@ -7,7 +6,6 @@ import useGetChats from "../hooks/chat/useGetChats";
 import PageLoader from "../ui/loaders/PageLoader";
 
 function Chats() {
-  const { t } = useTranslation();
   const { data: chats, isLoading } = useGetChats();
   const [showChats, setShowChats] = useState(false);
 
@@ -23,14 +21,14 @@ function Chats() {
           {chats?.length > 0 && (
             <>
               <div
-                className={`col-lg-4 col-12 p-2 h-100 sidebar_col ${
+                className={`col-lg-4 col-12 p-2 h-lg-100 sidebar_col ${
                   showChats ? "active" : ""
                 }`}
               >
                 <SideBar setShowChats={setShowChats} />
               </div>
 
-              <div className="col-12 p-2 d-lg-none d-block">
+              {/* <div className="col-12 p-2 d-lg-none d-block">
                 <button
                   className="open_chats"
                   onClick={() => setShowChats(!showChats)}
@@ -38,11 +36,11 @@ function Chats() {
                   <i className="fa-regular fa-message"></i>
                   {t("chats")}
                 </button>
-              </div>
+              </div> */}
             </>
           )}
 
-          <div className="col-lg-8 col-12 p-2 h-100">
+          <div className="chat-room-wrapper col-lg-8 col-12 p-2 h-100 ">
             <ChatRoom />
           </div>
         </div>
