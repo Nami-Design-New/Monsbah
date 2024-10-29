@@ -23,14 +23,22 @@ export default function Search() {
             className="search_header"
             onSubmit={(e) => {
               e.preventDefault();
-              setSearchParams({ search: search });
+              if (search) {
+                setSearchParams({ search: search });
+              }
             }}
           >
             <input
               type="search"
               value={search}
               placeholder={t("searchPlaceholder")}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                if (!e.target.value) {
+                  searchParams.delete("search");
+                  setSearchParams(searchParams);
+                }
+              }}
             />
             <button>
               <i className="fa-regular fa-magnifying-glass"></i>

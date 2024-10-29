@@ -1,11 +1,6 @@
 .section-head {
-  padding: 16px 0;
-  background-image: linear-gradient(to right, #d3f2ec, #1abc9c1a);
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-
+  position: relative;
+  padding: 0 16px !important;
   .small_nav {
     display: flex;
     align-items: center;
@@ -13,7 +8,7 @@
   }
 
   .arrow_icon {
-    border: 1px solid #231f20;
+    border: 1px solid $main;
     border-radius: 50%;
     width: 40px;
     cursor: pointer;
@@ -22,6 +17,13 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
+    background-color: $white;
+
+    i {
+      color: $main;
+      font-size: 18px;
+      font-weight: 800;
+    }
   }
   .text {
     display: flex;

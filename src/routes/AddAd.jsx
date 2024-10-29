@@ -139,6 +139,9 @@ export default function AddAd() {
 
   const handleRemoveImage = (e, index, image) => {
     e.preventDefault();
+    console.log("index", index);
+    console.log("image", image);
+
     if (image.id) {
       setFormData((prevState) => ({
         ...prevState,
@@ -146,10 +149,19 @@ export default function AddAd() {
         delete_images: [...prevState.delete_images, image.id],
       }));
     } else {
-      setFormData((prevState) => ({
-        ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
-      }));
+      if (formData?.delete_images) {
+        setFormData((prevState) => ({
+          ...prevState,
+          images: prevState.images.filter((img) => img !== image),
+          delete_images: [...prevState.delete_images, image],
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          images: prevState.images.filter((img) => img !== image),
+          delete_images: [image],
+        }));
+      }
     }
     setProductImages((prevState) => prevState.filter((_, i) => i !== index));
   };
@@ -207,6 +219,10 @@ export default function AddAd() {
           }
         }
       });
+    }
+
+    if (formData?.delete_images) {
+      requestBody.delete_images = formData?.delete_images;
     }
 
     if (product_id) {
