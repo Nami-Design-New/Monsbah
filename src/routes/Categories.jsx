@@ -8,14 +8,16 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import CategoryLoader from "./../ui/loaders/CategoryLoader";
 import SubCategoriesLoader from "./../ui/loaders/SubCategoriesLoader";
+import { useTranslation } from "react-i18next";
 
 function Categories() {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: subCategories, isLoading: subcategoriesLoading } =
-    useGetSubCategories(selectedCategory, selectedCategory ? true : false);
+    useGetSubCategories(selectedCategory);
 
   useEffect(() => {
     if (searchParams.get("category")) {
@@ -33,13 +35,6 @@ function Categories() {
     }
   };
 
-  useEffect(() => {
-    if (!searchParams.get("category") && categories?.length > 0) {
-      searchParams.set("category", categories?.[0]?.id);
-      setSearchParams(searchParams);
-    }
-  });
-
   return (
     <section className="categories-page explore_ads">
       <div className="container">
@@ -54,6 +49,24 @@ function Categories() {
                 </>
               ) : (
                 <>
+                  <button
+                    className={`category ${
+                      selectedCategory === null ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      searchParams.delete("category");
+                      searchParams.delete("sub_category");
+                      setSearchParams(searchParams);
+                      setSelectedCategory(null);
+                      setSelectedSubCategory(null);
+                    }}
+                  >
+                    <div className="img">
+                      <img src="/images/icons/all.svg" alt="" />
+                    </div>
+                    <h6>{t("all")}</h6>
+                  </button>
+
                   {categories?.map((category) => (
                     <buttton
                       key={category.id}
