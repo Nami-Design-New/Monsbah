@@ -54,22 +54,6 @@ function ViewAsk({ showModal, setShowModal, ask }) {
     }
   };
 
-  const deleteComment = async (id) => {
-    setTargetComment(null);
-    try {
-      const res = await axiosInstance.post("/client/delete-question-comment", {
-        id: id,
-      });
-      if (res.status === 200) {
-        toast.success(res.data.message);
-        queryClient.invalidateQueries({ queryKey: ["ask-comments"] });
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-      throw new Error(error?.response?.data?.message);
-    }
-  };
-
   return (
     <Modal
       centered
@@ -117,7 +101,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
                     comment={comment}
                     key={comment?.id}
                     setTargetComment={setTargetComment}
-                    deleteComment={deleteComment}
+                    type="question"
                   />
                 ))}
               </>

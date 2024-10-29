@@ -7,7 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
-function CommentCard({ comment, targetComment, setTargetComment, className }) {
+function CommentCard({ comment, setTargetComment, className, type }) {
   const { t } = useTranslation();
   const authedUser = useSelector((state) => state.clientData.client);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -17,14 +17,23 @@ function CommentCard({ comment, targetComment, setTargetComment, className }) {
 
   const deleteComment = async () => {
     setLoading(true);
+    const requestBody = {
+      id: comment?.id,
+    };
+    if (comment?.parent_id) {
+      requestBody.parent_id = comment?.parent_id;
+    }
     try {
-      const res = await axiosInstance.post("/client/delete-comment", {
-        id: targetComment?.id,
-      });
+      const res = await axiosInstance.post(
+        `/client/${
+          type === "question" ? "delete-question-comment" : "delete-comment"
+        }`,
+        requestBody
+      );
       if (res.status === 200) {
         toast.success(res.data.message);
         queryClient.invalidateQueries({ queryKey: ["comments"] });
-        setTargetComment(null);
+        queryClient.invalidateQueries({ queryKey: ["ask-comments"] });
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -66,8 +75,7 @@ function CommentCard({ comment, targetComment, setTargetComment, className }) {
             {comment?.user_id === authedUser?.id && (
               <button
                 onClick={() => {
-                  setShowDeleteModal(true);
-                  setTargetComment(comment);
+                  deleteComment();
                 }}
               >
                 {t("delete")}
@@ -83,8 +91,9 @@ function CommentCard({ comment, targetComment, setTargetComment, className }) {
             <CommentCard
               key={reply.id}
               comment={reply}
-              setTargetComment={setTargetComment}
               deleteComment={deleteComment}
+              setTargetComment={setTargetComment}
+              type={type}
             />
           ))}
         </div>

@@ -204,6 +204,16 @@
     "asks": "Questions",
     "ads": "Ads"
   },
+  "services": {
+    "share": "Share",
+    "orCopyLink": "Or Copy Link",
+    "linkCopied": "Link Copied",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "snapchat": "Snapchat",
+    "whatsapp": "Whatsapp"
+  },
   "replyTo": "Reply To Comment",
   "sendVideo": "Send Video",
   "sendImage": "Send Image",

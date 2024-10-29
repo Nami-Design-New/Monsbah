@@ -13,6 +13,7 @@ import axiosInstance from "../utils/axiosInstance";
 import useGetAllProducts from "../hooks/products/useGetAllProducts";
 import RatesTab from "../components/profile/RatesTab";
 import EmptyData from "../ui/EmptyData";
+import ShareBox from "../ui/ShareBox";
 
 function UserProfile() {
   const { t } = useTranslation();
@@ -122,6 +123,7 @@ function UserProfile() {
                                 <span>{t("follow")}</span>
                               </div>
                             )}
+                            <ShareBox />
                           </div>
                           <div className="Profile_info w-100 flex-wrap">
                             <div className="logo-wrapper">

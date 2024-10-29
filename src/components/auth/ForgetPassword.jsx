@@ -13,7 +13,6 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [loading, setLoading] = useState(false);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +64,18 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
         }}
       />
 
-      <SubmitButton name={t("send")} loading={loading} />
+      <div className="d-flex align-items-center gap-2">
+        <button
+          className="back_btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setFormType("login");
+          }}
+        >
+          <i className="fa-regular fa-arrow-right"></i>
+        </button>
+        <SubmitButton name={t("send")} loading={loading} />
+      </div>
     </form>
   );
 }

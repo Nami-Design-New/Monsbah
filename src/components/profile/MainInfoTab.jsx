@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
+import ShareBox from "../../ui/ShareBox";
+
 function MainInfoTab({ user, lang }) {
   const { t } = useTranslation();
   const { id } = useParams();
@@ -62,6 +64,9 @@ function MainInfoTab({ user, lang }) {
                   onError={() => setCoverError(true)}
                 />
               )}
+            </div>
+            <div className="actions-wrapper d-flex justify-content-end mb-auto w-100">
+              <ShareBox />
             </div>
             <div className="Profile_info">
               <div className="logo-wrapper">
