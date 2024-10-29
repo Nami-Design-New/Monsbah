@@ -29,7 +29,7 @@ function ShareBox() {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="share-dropdown">
       <Dropdown.Toggle className="butn" id="dropdown-basic">
         <i className="fa-regular fa-share-nodes"></i>
       </Dropdown.Toggle>
