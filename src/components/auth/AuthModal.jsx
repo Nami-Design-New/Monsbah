@@ -46,6 +46,24 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
       setShow(false);
     }
     setFormType("login");
+    setForgetFormData({
+      name: "",
+      username: "",
+      country_code: "965",
+      phone: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      country_id: "",
+      city_id: "",
+      state_id: "",
+      fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
+      gender: "",
+    });
+    setForgetFormData({
+      phone: "",
+      country_code: "965",
+    });
   };
 
   return (

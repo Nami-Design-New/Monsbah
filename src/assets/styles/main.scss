@@ -26,6 +26,7 @@ body {
     @import "./ads";
     @import "./search";
     @import "./chat";
+
     .error-section {
       padding: 60px 16px;
       @include centerFlex();

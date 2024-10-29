@@ -206,6 +206,16 @@
     "asks": "اسئلة",
     "ads": "اعلانات"
   },
+  "services": {
+    "share": "مشاركة",
+    "orCopyLink": "او نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط",
+    "facebook": "فيس بوك",
+    "instagram": "انستغرام",
+    "twitter": "تويتر",
+    "snapchat": "سناب شات",
+    "whatsapp": "واتساب"
+  },
   "replyTo": "الرد على تعليق",
   "sendVideo": "ارسال فيديو",
   "sendImage": "ارسال صورة",

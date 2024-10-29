@@ -75,7 +75,7 @@ function SettingsTab() {
 
   const handleChangeUserName = (e) => {
     const { value } = e.target;
-    const validInput = /^[a-zA-Z0-9]*$/;
+    const validInput = /^[a-zA-Z]*$/;
 
     if (validInput.test(value)) {
       setFormData((prev) => ({
