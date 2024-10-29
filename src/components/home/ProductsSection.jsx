@@ -244,7 +244,7 @@ export default function ProductsSection() {
           </Swiper>
 
           {/* sub categories */}
-          {subCategories?.length > 0 && (
+          {selectedCategory && subCategories?.length > 0 && (
             <Swiper slidesPerView="auto" className="categories_slider">
               <SwiperSlide className="p-1">
                 <button
