@@ -10,7 +10,7 @@ function useGetSubCategories(category, enabled) {
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(
-          `client/sub-categories?category_id=${category}`
+          `client/sub-categories${category ? `?category_id=${category}` : ""}`
         );
         if (res.status === 200) {
           return res.data?.data?.data;
