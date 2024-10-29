@@ -6,6 +6,7 @@ import ProductInfo from "../components/product-details/ProductInfo";
 import Comments from "../components/product-details/Comments";
 import PageLoader from "../ui/loaders/PageLoader";
 import ErrorPage from "./ErrorPage";
+import SectionHeader from "../components/layout/SectionHeader";
 
 function ProductDetails() {
   const { data, isLoading } = useGetProduct();
@@ -25,6 +26,7 @@ function ProductDetails() {
         <ErrorPage />
       ) : (
         <section className="product_details">
+          <SectionHeader />
           <div className="container p-0">
             <div className="row m-0">
               <div className="col-lg-7 col-12 p-lg-3 p-2">

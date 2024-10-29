@@ -2221,13 +2221,8 @@ body .product_vertical.my-ad {
   }
 }
 body .section-head {
-  padding: 16px 0;
-  background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
-}
-@media screen and (max-width: 768px) {
-  body .section-head {
-    display: none;
-  }
+  position: relative;
+  padding: 0 16px !important;
 }
 body .section-head .small_nav {
   display: flex;
@@ -2235,7 +2230,7 @@ body .section-head .small_nav {
   gap: 20px;
 }
 body .section-head .arrow_icon {
-  border: 1px solid #231f20;
+  border: 1px solid #1abc9c;
   border-radius: 50%;
   width: 40px;
   cursor: pointer;
@@ -2244,6 +2239,12 @@ body .section-head .arrow_icon {
   align-items: center;
   justify-content: center;
   padding: 5px;
+  background-color: #fff;
+}
+body .section-head .arrow_icon i {
+  color: #1abc9c;
+  font-size: 18px;
+  font-weight: 800;
 }
 body .section-head .text {
   display: flex;
@@ -4761,13 +4762,8 @@ body main .delete-account {
   border-radius: 12px;
 }
 body main .section-head {
-  padding: 16px 0;
-  background-image: linear-gradient(to right, #d3f2ec, rgba(26, 188, 156, 0.1019607843));
-}
-@media screen and (max-width: 768px) {
-  body main .section-head {
-    display: none;
-  }
+  position: relative;
+  padding: 0 16px !important;
 }
 body main .section-head .small_nav {
   display: flex;
@@ -4775,7 +4771,7 @@ body main .section-head .small_nav {
   gap: 20px;
 }
 body main .section-head .arrow_icon {
-  border: 1px solid #231f20;
+  border: 1px solid #1abc9c;
   border-radius: 50%;
   width: 40px;
   cursor: pointer;
@@ -4784,6 +4780,12 @@ body main .section-head .arrow_icon {
   align-items: center;
   justify-content: center;
   padding: 5px;
+  background-color: #fff;
+}
+body main .section-head .arrow_icon i {
+  color: #1abc9c;
+  font-size: 18px;
+  font-weight: 800;
 }
 body main .section-head .text {
   display: flex;
@@ -6752,6 +6754,13 @@ body .categories_sidebar .category.active > .img img {
 }
 body.en {
   direction: ltr !important;
+}
+body.en .section-head .arrow_icon {
+  transform: rotate(180deg);
+}
+body.en .back-to-top {
+  right: unset;
+  left: 8px;
 }
 body.en .back_btn i {
   transform: rotate(180deg);

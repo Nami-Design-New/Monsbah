@@ -646,6 +646,16 @@ body {
   }
   &.en {
     direction: ltr !important;
+
+    .section-head {
+      .arrow_icon {
+        transform: rotate(180deg);
+      }
+    }
+    .back-to-top {
+      right: unset;
+      left: 8px;
+    }
     .back_btn {
       i {
         transform: rotate(180deg);
