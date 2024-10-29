@@ -5609,6 +5609,12 @@ body main .chats-section {
   flex-direction: column;
   position: relative;
 }
+@media screen and (max-width: 991px) {
+  body main .chats-section {
+    margin-bottom: 160px;
+    margin-top: 20px;
+  }
+}
 body main .chats-section aside {
   width: 100%;
   height: 100%;
@@ -5619,11 +5625,33 @@ body main .chats-section aside {
   flex-direction: column;
   gap: 12px;
 }
+@media screen and (max-width: 991px) {
+  body main .chats-section aside {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding: 4px;
+    gap: 4px !important;
+  }
+  body main .chats-section aside::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
 body main .chats-section aside .checkAll_field {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+@media screen and (max-width: 991px) {
+  body main .chats-section aside .checkAll_field {
+    position: absolute;
+    width: 100%;
+    top: -20px;
+    left: 0;
+    padding: 16px;
+  }
 }
 body main .chats-section aside .checkAll_field .form-check {
   display: flex;
@@ -5653,6 +5681,7 @@ body main .chats-section aside .checkAll_field button i {
   color: red;
 }
 body main .chats-section aside .chat_card {
+  position: relative;
   cursor: pointer;
   width: 100%;
   padding: 12px;
@@ -5661,6 +5690,18 @@ body main .chats-section aside .chat_card {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+@media screen and (max-width: 991px) {
+  body main .chats-section aside .chat_card {
+    background-color: transparent !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+  }
+}
+body main .chats-section aside .chat_card .select-chat {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
 }
 body main .chats-section aside .chat_card .img {
   min-width: 64px;
@@ -6087,18 +6128,12 @@ body main .chats-section .chat_room .chat_form .dropdown-menu label span i {
   justify-content: center;
 }
 @media screen and (max-width: 991px) {
-  body main .sidebar_col {
-    position: absolute;
-    transition: 0.3s ease-in-out;
-    z-index: 99;
-    background: #fff;
-    right: -100%;
+  body main .sidebar_col .content {
+    display: none !important;
   }
-  body main .sidebar_col.active {
-    width: 100%;
-    right: 0;
-    top: 0;
-  }
+}
+body main .sidebar_col .chat-room-wrapper {
+  height: calc(100% - 200px) !important;
 }
 body main .open_chats {
   width: 100%;

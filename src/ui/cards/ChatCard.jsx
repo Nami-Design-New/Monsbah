@@ -41,6 +41,7 @@ export default function ChatCard({
     <div className="chat_card" onClick={handleOpenChat}>
       {checkedState && (
         <Form.Check
+          className="select-chat"
           type="checkbox"
           checked={selectedChats.includes(chat?.id)}
           onChange={() =>
