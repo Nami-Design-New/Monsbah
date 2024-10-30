@@ -21,9 +21,10 @@ function Chats() {
           {chats?.length > 0 && (
             <>
               <div
-                className={`col-lg-4 col-12 p-2 h-lg-100 sidebar_col ${
+                className={`chatssidebar col-lg-4 col-12 p-2 h-100 sidebar_col ${
                   showChats ? "active" : ""
                 }`}
+                
               >
                 <SideBar setShowChats={setShowChats} />
               </div>
