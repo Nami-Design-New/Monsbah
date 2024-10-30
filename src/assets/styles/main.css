@@ -1137,7 +1137,7 @@ body .form .back_btn:hover {
   border: 1px solid #1abc9c;
 }
 body .form .back_btn i {
-  font-size: 32px;
+  font-size: 28px;
 }
 body .form .input-field {
   display: flex;
@@ -6195,6 +6195,11 @@ body main .lottie_player_holder {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media screen and (max-width: 991px) {
+  body main .chatssidebar {
+    height: unset !important;
+  }
 }
 body main .error-section {
   padding: 60px 16px;

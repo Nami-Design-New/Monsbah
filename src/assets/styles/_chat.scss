@@ -589,3 +589,8 @@
   align-items: center;
   justify-content: center;
 }
+.chatssidebar {
+  @media screen and (max-width: 991px) {
+    height: unset !important;
+  }
+}
