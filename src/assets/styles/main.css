@@ -1999,8 +1999,8 @@ body .auth_section .form_wrapper {
   }
 }
 body .auth_section .img_wrapper {
-  aspect-ratio: 1/1;
-  width: 50%;
+  height: 100%;
+  flex: 1 0;
 }
 @media screen and (max-width: 992px) {
   body .auth_section .img_wrapper {

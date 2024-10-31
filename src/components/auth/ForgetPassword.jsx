@@ -44,7 +44,7 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="mb-4">
-        <h2 className="head">{t("auth.resetPasswordSubtitle")} </h2>
+        <h2 className="head">{t("auth.resetPasswordTitle")} </h2>
         <p className="sub-head">{t("auth.resetPasswordSubtitle")}</p>
       </div>
 
