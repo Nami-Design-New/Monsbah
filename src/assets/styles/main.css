@@ -5609,6 +5609,10 @@ body main .chats-section {
   flex-direction: column;
   position: relative;
 }
+body main .chats-section .form-check-input:checked {
+  border: none !important;
+  background-image: var(--bs-form-check-bg-image) !important;
+}
 @media screen and (max-width: 991px) {
   body main .chats-section {
     margin-bottom: 160px;
@@ -5698,16 +5702,45 @@ body main .chats-section aside .chat_card {
     width: fit-content !important;
   }
 }
+@media screen and (max-width: 576px) {
+  body main .chats-section aside .chat_card {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 4px;
+  }
+}
 body main .chats-section aside .chat_card .select-chat {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body main .chats-section aside .chat_card .name_span {
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  body main .chats-section aside .chat_card .name_span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    width: 64px;
+  }
 }
 body main .chats-section aside .chat_card .img {
   min-width: 64px;
   max-width: 64px;
   height: 64px;
   position: relative;
+}
+@media screen and (max-width: 576px) {
+  body main .chats-section aside .chat_card .img {
+    min-width: 48px;
+    max-width: 48px;
+    height: 48px;
+  }
 }
 body main .chats-section aside .chat_card .img img {
   width: 100%;

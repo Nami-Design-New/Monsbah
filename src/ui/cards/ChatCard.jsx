@@ -32,7 +32,7 @@ export default function ChatCard({
 
   const handleOpenChat = () => {
     if (!checkedState) {
-      setSearchParams({ user_id: chat?.user_id, product_id: chat?.product_id });
+      setSearchParams({ user_id: chat?.user_id });
       setShowChats(false);
     }
   };
@@ -62,6 +62,7 @@ export default function ChatCard({
         />
         <span className={chat?.is_active === 0 ? "status" : " status online"} />
       </div>
+      <span className="name_span">{chat?.user_name}</span>
       <div className="content">
         <h6>{chat?.user_name}</h6>
         <p>{lastMessage}</p>
