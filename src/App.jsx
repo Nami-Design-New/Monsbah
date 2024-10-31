@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import i18n from "./utils/i18n";
 import Footer from "./ui/Layout/Footer";
 import Header from "./ui/Layout/Header";
@@ -13,7 +13,6 @@ import AppLoader from "./ui/loaders/AppLoader";
 
 function App() {
   const { loading } = useAuth();
-  const location = useLocation();
   const lang = useSelector((state) => state.language.lang);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showDownloadApp, setShowDownloadApp] = useState(true);
@@ -25,10 +24,6 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
     i18n.changeLanguage(lang);
   }, [lang]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,14 +94,11 @@ function App() {
 
       {showDownloadApp && (
         <div className="download_app">
+          <button className="d-flex closeDownload" onClick={handleAppDownload}>
+            <i className="fa-solid fa-times"></i>
+          </button>
           <div className="inner">
             <div className="d-flex align-items-center gap-2">
-              <button
-                className="d-flex"
-                onClick={() => setShowDownloadApp(false)}
-              >
-                <i className="fa-solid fa-times"></i>
-              </button>
               <div className="icon">
                 <img src="/images/branding/storeicon.svg" alt="store" />
               </div>
