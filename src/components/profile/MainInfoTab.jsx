@@ -2,15 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-
-import axiosInstance from "../../utils/axiosInstance";
 import { useDispatch } from "react-redux";
-import { setClientData, logout } from "../../redux/slices/clientData";
 import { useNavigate } from "react-router-dom";
-
+import { setClientData, logout } from "../../redux/slices/clientData";
+import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
-
-import ShareBox from "../../ui/ShareBox";
 
 function MainInfoTab({ user, lang }) {
   const { t } = useTranslation();
@@ -47,6 +43,20 @@ function MainInfoTab({ user, lang }) {
     }
   };
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: user?.name,
+          url: window.location.href,
+        })
+        .then(() => t("Shared successfully"))
+        .catch((error) => t("Error sharing:", error));
+    } else {
+      alert(t("share_not_supported"));
+    }
+  };
+
   return (
     <>
       <div className="Dashpoard_section w-100">
@@ -66,7 +76,9 @@ function MainInfoTab({ user, lang }) {
               )}
             </div>
             <div className="actions-wrapper d-flex justify-content-end mb-auto w-100">
-              <ShareBox />
+              <div className="share_btn" onClick={handleShare}>
+                <i className="fa-regular fa-share-nodes"></i>
+              </div>
             </div>
             <div className="Profile_info">
               <div className="logo-wrapper">
@@ -132,7 +144,7 @@ function MainInfoTab({ user, lang }) {
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
             <Link
               to="/followers/followings"
-              className="col-lg-3 col-md-6 col-6 p-2"
+              className="col-lg-4 col-md-6 col-6 p-2"
             >
               <div className="Box_rate">
                 <h2>{user?.["following-count"]}</h2>
@@ -145,7 +157,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <Link to="/followers" className="col-lg-3 col-md-6 col-6 p-2">
+            <Link to="/followers" className="col-lg-4 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 
@@ -156,20 +168,8 @@ function MainInfoTab({ user, lang }) {
             </Link>
           ) : null}
 
-          {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-6 p-2">
-              <div className="Box_rate">
-                <h2>{user?.["rate-count"]}</h2>
-
-                <div className="icon_rate">
-                  <p>{t("Rating")}</p>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
           {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
-            <div className="col-lg-3 col-md-6 col-6 p-2">
+            <div className="col-lg-4 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["ads-count"]}</h2>
 

@@ -14,7 +14,7 @@ function Chats() {
   ) : (
     <section className="chats-section">
       <div className="container h-100 p-0 ">
-        <div className="row m-0 h-100" style={{ paddingBottom: "50px" }}>
+        <div className="row m-0 h-100">
           {chats?.length > 0 && (
             <>
               <div

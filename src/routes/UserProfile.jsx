@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { Tab, Tabs } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import useGetUserProfile from "../hooks/users/useGetUserProfile";
 import PageLoader from "../ui/loaders/PageLoader";
@@ -13,7 +13,6 @@ import axiosInstance from "../utils/axiosInstance";
 import useGetAllProducts from "../hooks/products/useGetAllProducts";
 import RatesTab from "../components/profile/RatesTab";
 import EmptyData from "../ui/EmptyData";
-import ShareBox from "../ui/ShareBox";
 
 function UserProfile() {
   const { t } = useTranslation();
@@ -58,6 +57,20 @@ function UserProfile() {
       throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: user?.name,
+          url: window.location.href,
+        })
+        .then(() => t("Shared successfully"))
+        .catch((error) => t("Error sharing:", error));
+    } else {
+      alert(t("share_not_supported"));
     }
   };
 
@@ -123,7 +136,16 @@ function UserProfile() {
                                 <span>{t("follow")}</span>
                               </div>
                             )}
-                            <ShareBox />
+                            <Link
+                              to={`/chats?user_id=${user?.id}`}
+                              className="action-btn follow_btn"
+                            >
+                              <i className="fa-solid fa-comment-dots"></i>{" "}
+                              {t("ads.chat")}
+                            </Link>
+                            <div className="share_btn" onClick={handleShare}>
+                              <i className="fa-regular fa-share-nodes"></i>
+                            </div>
                           </div>
                           <div className="Profile_info w-100 flex-wrap">
                             <div className="logo-wrapper">

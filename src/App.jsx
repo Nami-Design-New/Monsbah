@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import i18n from "./utils/i18n";
 import Footer from "./ui/Layout/Footer";
 import Header from "./ui/Layout/Header";
@@ -17,6 +17,7 @@ function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showDownloadApp, setShowDownloadApp] = useState(true);
   const [appLink, setAppLink] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     sessionStorage.setItem("lang", lang);
@@ -46,6 +47,10 @@ function App() {
       detectMobileTypeAndAppLink();
     }
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const detectMobileTypeAndAppLink = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;

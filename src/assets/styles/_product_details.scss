@@ -289,15 +289,14 @@
     }
     .contact {
       display: flex;
-      align-items: center;
+
       gap: 8px;
       padding: 8px;
       a,
       button {
-        flex: 1;
         border: none;
         outline: none;
-        padding: 12px 16px;
+        padding: 8px 16px;
         border-radius: 12px;
         gap: 8px;
         border: 1px solid $lightGray;
@@ -308,20 +307,16 @@
         justify-content: center;
         align-items: center;
         gap: 6px;
+        &.call {
+          width: 100%;
+          background-color: $main !important;
+          color: $white;
+        }
         img {
-          width: 20px;
-          height: 20px;
+          width: 32px;
+          height: 32px;
           transition: $transition;
           object-fit: contain;
-          filter: brightness(0);
-        }
-        &:hover {
-          color: $white;
-          border-color: $main;
-          background: $main;
-          img {
-            filter: brightness(1);
-          }
         }
       }
     }

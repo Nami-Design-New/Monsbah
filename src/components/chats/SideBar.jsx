@@ -101,21 +101,22 @@ export default function SideBar({ setShowChats }) {
           </div>
         )}
       </div>
-      {chats?.map((chat) => (
-        <ChatCard
-          key={chat.id}
-          chat={chat}
-          checkedState={checkedState}
-          setSelectedChats={setSelectedChats}
-          selectedChats={selectedChats}
-          setShowChats={setShowChats}
-        />
-      ))}
-
-      {(isLoading || isFetchingNextPage) &&
-        Array(3)
-          .fill(0)
-          .map((_, index) => <ChatItemLoader key={index} />)}
+      <div className="cards">
+        {chats?.map((chat) => (
+          <ChatCard
+            key={chat.id}
+            chat={chat}
+            checkedState={checkedState}
+            setSelectedChats={setSelectedChats}
+            selectedChats={selectedChats}
+            setShowChats={setShowChats}
+          />
+        ))}
+        {(isLoading || isFetchingNextPage) &&
+          Array(3)
+            .fill(0)
+            .map((_, index) => <ChatItemLoader key={index} />)}
+      </div>
 
       <ConfirmationModal
         showModal={showModal}

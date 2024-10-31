@@ -25,30 +25,15 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     @media screen and (max-width: 991px) {
-      flex-direction: row !important;
-      overflow-x: auto;
-      padding: 4px;
-      gap: 4px !important;
-
-      &::-webkit-scrollbar {
-        display: none;
-        width: 0;
-        height: 0;
-      }
+      padding: 8px;
     }
 
     .checkAll_field {
       @include space-between();
       width: 100%;
-
       @media screen and (max-width: 991px) {
-        position: absolute;
-        width: 100%;
-        top: -20px;
-        left: 0;
-        padding: 16px;
+        padding: 0 12px;
       }
       .form-check {
         display: flex;
@@ -78,6 +63,21 @@
         }
       }
     }
+    .cards {
+      height: 100%;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+      @media screen and (max-width: 991px) {
+        overflow-y: unset;
+        overflow-x: scroll;
+        margin: 0;
+        flex-direction: row;
+      }
+    }
     .chat_card {
       position: relative;
       cursor: pointer;
@@ -102,6 +102,18 @@
         left: 16px;
         top: 50%;
         transform: translateY(-50%);
+        @media screen and (max-width: 576px) {
+          left: inherit;
+          right: 12px;
+          top: 4px;
+          transform: unset;
+          z-index: 2;
+          input {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+          }
+        }
       }
       .name_span {
         display: none;
@@ -142,6 +154,9 @@
           background: $gray;
           &.online {
             background: $main;
+          }
+          @media screen and (max-width: 576px) {
+            bottom: -2px;
           }
         }
       }
