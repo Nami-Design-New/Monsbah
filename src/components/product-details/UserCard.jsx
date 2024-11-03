@@ -98,21 +98,23 @@ function UserCard({ product, setProduct }) {
       </div>
       {product?.user?.id !== client?.id && (
         <div className="contact">
-          {product?.active_chat && (
-            <Link to={`/chats?user_id=${product?.user?.id}`}>
-              <img src="/images/icons/chat.svg" alt="chat" />
-              <span> {t("chating")} </span>
-            </Link>
-          )}
-
           {product?.active_call && (
             <Link
               target="_blank"
               to={`tel:${product?.user?.phone}`}
               className="call"
             >
-              <img src="/images/icons/phone.svg" alt="call" />
               <span> {t("calling")} </span>
+            </Link>
+          )}
+
+          {product?.active_chat && (
+            <Link to={`/chats?user_id=${product?.user?.id}`}>
+              <img
+                src="/images/icons/chat.svg"
+                alt="chat"
+                style={{ width: "24px", height: "32px" }}
+              />
             </Link>
           )}
 
@@ -121,8 +123,7 @@ function UserCard({ product, setProduct }) {
               target="_blank"
               to={`https://wa.me/${product?.user?.phone}?text=${encodedWhatsappMessage}`}
             >
-              <img src="/images/icons/whatsapp.svg" alt="whatsapp" />
-              <span> {t("whatsapp")} </span>
+              <img src="/images/icons/whats.svg" alt="whatsapp" />
             </Link>
           )}
         </div>

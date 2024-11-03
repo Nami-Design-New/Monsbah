@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-// import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslation } from "react-i18next";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetSubCategories from "../hooks/settings/useGetSubCategories";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import CategoryLoader from "./../ui/loaders/CategoryLoader";
 import SubCategoriesLoader from "./../ui/loaders/SubCategoriesLoader";
-import { useTranslation } from "react-i18next";
 
 function Categories() {
   const { t } = useTranslation();
@@ -34,6 +30,8 @@ function Categories() {
       setSearchParams(searchParams);
     }
   };
+
+  console.log(selectedCategory);
 
   return (
     <section className="categories-page explore_ads">

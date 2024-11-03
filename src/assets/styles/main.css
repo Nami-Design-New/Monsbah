@@ -344,6 +344,10 @@ button {
   left: 0 !important;
 }
 
+.css-1hac4vs-dummyInput {
+  width: 0 !important;
+}
+
 .fit_content {
   width: -moz-fit-content !important;
   width: fit-content !important;
@@ -2780,6 +2784,17 @@ body .actions-wrapper .action-btn {
   min-width: 120px;
   cursor: pointer;
 }
+body .actions-wrapper .share_btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1abc9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
 body .Dashpoard_section {
   padding: 8px;
 }
@@ -4274,6 +4289,17 @@ body main .actions-wrapper .action-btn {
   min-width: 120px;
   cursor: pointer;
 }
+body main .actions-wrapper .share_btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1abc9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
 body main .Dashpoard_section {
   padding: 8px;
 }
@@ -5114,16 +5140,14 @@ body main .product_details .advertiserDetails .advertiser .content h3 {
 }
 body main .product_details .advertiserDetails .contact {
   display: flex;
-  align-items: center;
   gap: 8px;
   padding: 8px;
 }
 body main .product_details .advertiserDetails .contact a,
 body main .product_details .advertiserDetails .contact button {
-  flex: 1;
   border: none;
   outline: none;
-  padding: 12px 16px;
+  padding: 8px 16px;
   border-radius: 12px;
   gap: 8px;
   border: 1px solid #eeeeee;
@@ -5135,24 +5159,19 @@ body main .product_details .advertiserDetails .contact button {
   align-items: center;
   gap: 6px;
 }
+body main .product_details .advertiserDetails .contact a.call,
+body main .product_details .advertiserDetails .contact button.call {
+  width: 100%;
+  background-color: #1abc9c !important;
+  color: #fff;
+}
 body main .product_details .advertiserDetails .contact a img,
 body main .product_details .advertiserDetails .contact button img {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   transition: 0.3s ease-in-out;
   -o-object-fit: contain;
      object-fit: contain;
-  filter: brightness(0);
-}
-body main .product_details .advertiserDetails .contact a:hover,
-body main .product_details .advertiserDetails .contact button:hover {
-  color: #fff;
-  border-color: #1abc9c;
-  background: #1abc9c;
-}
-body main .product_details .advertiserDetails .contact a:hover img,
-body main .product_details .advertiserDetails .contact button:hover img {
-  filter: brightness(1);
 }
 body main .product_details .comments_container {
   display: flex;
@@ -5631,15 +5650,7 @@ body main .chats-section aside {
 }
 @media screen and (max-width: 991px) {
   body main .chats-section aside {
-    flex-direction: row !important;
-    overflow-x: auto;
-    padding: 4px;
-    gap: 4px !important;
-  }
-  body main .chats-section aside::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+    padding: 8px;
   }
 }
 body main .chats-section aside .checkAll_field {
@@ -5650,11 +5661,7 @@ body main .chats-section aside .checkAll_field {
 }
 @media screen and (max-width: 991px) {
   body main .chats-section aside .checkAll_field {
-    position: absolute;
-    width: 100%;
-    top: -20px;
-    left: 0;
-    padding: 16px;
+    padding: 0 12px;
   }
 }
 body main .chats-section aside .checkAll_field .form-check {
@@ -5683,6 +5690,23 @@ body main .chats-section aside .checkAll_field button {
 }
 body main .chats-section aside .checkAll_field button i {
   color: red;
+}
+body main .chats-section aside .cards {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+@media screen and (max-width: 991px) {
+  body main .chats-section aside .cards {
+    overflow-y: unset;
+    overflow-x: scroll;
+    margin: 0;
+    flex-direction: row;
+  }
 }
 body main .chats-section aside .chat_card {
   position: relative;
@@ -5714,6 +5738,20 @@ body main .chats-section aside .chat_card .select-chat {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
+}
+@media screen and (max-width: 576px) {
+  body main .chats-section aside .chat_card .select-chat {
+    left: inherit;
+    right: 12px;
+    top: 4px;
+    transform: unset;
+    z-index: 2;
+  }
+  body main .chats-section aside .chat_card .select-chat input {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  }
 }
 body main .chats-section aside .chat_card .name_span {
   display: none;
@@ -5761,6 +5799,11 @@ body main .chats-section aside .chat_card .img .status {
 }
 body main .chats-section aside .chat_card .img .status.online {
   background: #1abc9c;
+}
+@media screen and (max-width: 576px) {
+  body main .chats-section aside .chat_card .img .status {
+    bottom: -2px;
+  }
 }
 body main .chats-section aside .chat_card .content {
   display: flex;

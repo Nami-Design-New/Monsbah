@@ -467,6 +467,15 @@
     min-width: 120px;
     cursor: pointer;
   }
+  .share_btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $main;
+    @include centerFlex();
+    color: $white;
+    cursor: pointer;
+  }
 }
 //Dashpoard Page
 .Dashpoard_section {
