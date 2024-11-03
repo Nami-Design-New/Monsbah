@@ -19,7 +19,6 @@ export default function ProductsSection() {
   const { t } = useTranslation();
 
   const lang = useSelector((state) => state.language.lang);
-  const userCity = useSelector((state) => state.clientData.client.city);
   const userCountry = useSelector((state) => state.clientData.client.country);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,6 +57,8 @@ export default function ProductsSection() {
     if (!searchParams.get("country")) {
       sessionStorage.getItem("country")
         ? handleSetParams(sessionStorage.getItem("country"), "country")
+        : userCountry
+        ? handleSetParams(userCountry.id, "country")
         : handleSetParams(6, "country");
     }
 
@@ -70,18 +71,6 @@ export default function ProductsSection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries, searchParams, t]);
-
-  useEffect(() => {
-    if (userCity) {
-      handleSetParams(userCity?.id, "city");
-    }
-    if (sessionStorage.getItem("country")) {
-      handleSetParams(sessionStorage.getItem("country"), "country");
-    } else {
-      handleSetParams(userCountry, "country");
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userCity, userCountry]);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -15,7 +15,7 @@ function SmallMenu() {
         <span>{t("header.categories")}</span>
       </Link>
 
-      <div className="menu_item">
+      <div className="menu_item" style={{ paddingTop: "4px" }}>
         <Link className="center" to="/profile?tab=addAd">
           <i className="fa-regular fa-plus"></i>
         </Link>
