@@ -1,13 +1,11 @@
 import About from "./routes/About";
 import AddAd from "./routes/AddAd";
-import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
 import Contact from "./routes/Contact";
 import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
 import ProductDetails from "./routes/ProductDetails";
 import Profile from "./routes/Profile";
-
 import Search from "./routes/Search";
 import Terms from "./routes/Terms";
 import Verification from "./routes/Verification";
@@ -28,11 +26,6 @@ const router = [
   {
     path: "about-us",
     element: <About />,
-  },
-  {
-    path: "notifcations",
-    element: <Notifcations />,
-    protected: true,
   },
   {
     path: "chats",

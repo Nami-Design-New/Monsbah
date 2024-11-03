@@ -16,6 +16,7 @@ import VerificationTab from "./VerificationTab";
 import axios from "../../utils/axiosInstance";
 import AddAd from "../../routes/AddAd";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
+import Notifcations from "./../../routes/Notifcations";
 
 function ProfileTabs() {
   const { t } = useTranslation();
@@ -145,6 +146,19 @@ function ProfileTabs() {
             lang={lang}
             isActive={activeTab === "questions"}
           />
+        </Tab>
+
+        <Tab
+          eventKey="notifications"
+          title={
+            <>
+              <i className="fa-regular fa-bell"></i>
+              {t("notifications")}
+            </>
+          }
+          className="tab_item"
+        >
+          <Notifcations bgColor="bg-white" />
         </Tab>
 
         {/* favorites */}
