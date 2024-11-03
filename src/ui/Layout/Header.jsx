@@ -10,6 +10,7 @@ import AuthModal from "../../components/auth/AuthModal";
 import useGetNotifications from "../../hooks/notifications/useGetNotifications";
 import NotificationCard from "../cards/NotificationCard";
 import useAuth from "../../hooks/useAuth";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -26,6 +27,8 @@ export default function Header() {
 
   const { isAuthed } = useAuth();
 
+  const queryClient = useQueryClient();
+
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
@@ -33,6 +36,7 @@ export default function Header() {
     if (bodyElement) {
       bodyElement.classList.toggle("en", newLang === "en");
     }
+    queryClient.invalidateQueries();
   };
 
   return (
