@@ -37,26 +37,24 @@ const Notifcations = ({ bgColor }) => {
   return (
     <>
       <div className="notifications_section" ref={sectionRef}>
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 d-flex flex-column gap-3">
-              {notifications?.map((notification) => (
-                <NotificationCard
-                  key={notification.id}
-                  item={notification}
-                  bgColor={bgColor}
-                />
-              ))}
-              {(isLoading || isFetchingNextPage) && (
-                <>
-                  {Array(3)
-                    .fill(0)
-                    .map((_, index) => (
-                      <NotificationLoader key={index} />
-                    ))}
-                </>
-              )}
-            </div>
+        <div className="row justify-content-center">
+          <div className="col-12 d-flex flex-column gap-3 p-2">
+            {notifications?.map((notification) => (
+              <NotificationCard
+                key={notification.id}
+                item={notification}
+                bgColor={bgColor}
+              />
+            ))}
+            {(isLoading || isFetchingNextPage) && (
+              <>
+                {Array(3)
+                  .fill(0)
+                  .map((_, index) => (
+                    <NotificationLoader key={index} />
+                  ))}
+              </>
+            )}
           </div>
         </div>
       </div>

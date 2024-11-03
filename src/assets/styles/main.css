@@ -5652,7 +5652,6 @@ body main .chats-section .form-check-input:checked {
 @media screen and (max-width: 991px) {
   body main .chats-section {
     margin-bottom: 160px;
-    margin-top: 20px;
   }
 }
 body main .chats-section aside {
@@ -6441,7 +6440,6 @@ body .confirm-delete.other .delete-btn {
   background: #1abc9c;
 }
 body .notifications_section {
-  padding: 40px 0;
   width: 100%;
 }
 body .notificationCard {
