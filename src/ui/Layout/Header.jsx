@@ -114,7 +114,7 @@ export default function Header() {
                   </div>
                   <Link
                     className="showall"
-                    to="/notifcations"
+                    to="/profile?tab=notifications"
                     style={{ textDecoration: "none" }}
                     onClick={() => setShowNotificationDropdown(false)}
                   >
