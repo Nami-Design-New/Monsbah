@@ -58,7 +58,7 @@ function UserCard({ product, setProduct }) {
             src={product?.user?.image}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
             loading="lazy"
-            alt=""
+            alt="user"
           />
           {product?.user?.id !== client?.id && (
             <Link className="follow_btn" onClick={handleFollow}>
