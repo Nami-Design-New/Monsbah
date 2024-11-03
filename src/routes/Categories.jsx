@@ -106,7 +106,7 @@ function Categories() {
                   {subCategories?.map((sub) => (
                     <div className=" col-xl-3 col-md-4 col-6 p-1" key={sub.id}>
                       <Link
-                        to={`/?category=${selectedCategory}&sub_category=${sub.id}`}
+                        to={`/?category=${sub?.category_id}&sub_category=${sub?.id}`}
                         onClick={() => handleSetParams(sub.id, "sub_category")}
                         className={`category sub d-flex align-items-center flex-column gap-2 ${
                           sub?.id === Number(selectedSubCategory)
