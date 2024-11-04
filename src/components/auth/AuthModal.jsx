@@ -89,7 +89,11 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
           </div>
           <div className="form_wrapper">
             {formType === "login" && (
-              <Login setFormType={setFormType} setShow={setShow} />
+              <Login
+                setFormType={setFormType}
+                setShow={setShow}
+                setRegisterFormData={setRegisterFormData}
+              />
             )}
 
             {formType === "register" && (
