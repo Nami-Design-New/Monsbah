@@ -1129,7 +1129,7 @@ body .form .back_btn {
   height: 52px;
   border-radius: 12px;
   border: 1px solid #0d0d0d;
-  width: 120px;
+  width: 90px;
   color: #0d0d0d;
   cursor: pointer;
   background: none;
@@ -1141,7 +1141,7 @@ body .form .back_btn:hover {
   border: 1px solid #1abc9c;
 }
 body .form .back_btn i {
-  font-size: 28px;
+  font-size: 18px;
 }
 body .form .input-field {
   display: flex;
@@ -2799,11 +2799,11 @@ body .actions-wrapper .action-btn {
   font-size: 14px;
   background-color: #1abc9c;
   color: #ffffff;
-  min-width: 120px;
+  min-width: 100px;
   cursor: pointer;
 }
 body .actions-wrapper .share_btn {
-  width: 36px;
+  min-width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #1abc9c;
@@ -4304,11 +4304,11 @@ body main .actions-wrapper .action-btn {
   font-size: 14px;
   background-color: #1abc9c;
   color: #ffffff;
-  min-width: 120px;
+  min-width: 100px;
   cursor: pointer;
 }
 body main .actions-wrapper .share_btn {
-  width: 36px;
+  min-width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #1abc9c;
