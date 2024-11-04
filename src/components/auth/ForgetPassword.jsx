@@ -72,7 +72,7 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
             setFormType("login");
           }}
         >
-          <i className="fa-regular fa-arrow-right"></i>
+          <i className="fal fa-arrow-right"></i>
         </button>
         <SubmitButton name={t("send")} loading={loading} />
       </div>

@@ -11,16 +11,12 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
 import { useQueryClient } from "@tanstack/react-query";
-
 function Login({ setFormType, setShow }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const [, setCookie] = useCookies(["token", "id"]);
-
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     phone: "",
@@ -28,9 +24,7 @@ function Login({ setFormType, setShow }) {
     country_code: "965",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
-
   const queryClient = useQueryClient();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -53,13 +47,9 @@ function Login({ setFormType, setShow }) {
           secure: true,
           sameSite: "Strict",
         });
-
         toast.success(res.data?.message);
-
         queryClient.invalidateQueries();
-
         navigate("/profile");
-
         const updatedParams = new URLSearchParams(searchParams);
         updatedParams.delete("redirect");
         setSearchParams(updatedParams);
@@ -72,9 +62,8 @@ function Login({ setFormType, setShow }) {
       setLoading(false);
     }
   };
-
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <>
       <div className="mb-4">
         <h2 className="head">
           {t("auth.loginTitle")}{" "}
@@ -82,51 +71,47 @@ function Login({ setFormType, setShow }) {
         </h2>
         <p className="sub-head">{t("auth.loginSubtitle")}</p>
       </div>
-
-      <PhoneInput
-        label={t("auth.phone")}
-        required
-        type="number"
-        id="phone"
-        name="phone"
-        placeholder={t("auth.phone")}
-        value={formData.mobile_number}
-        countryCode={formData.country_code}
-        onChange={(e) => handleChange(e, setFormData)}
-        onSelect={(code, setShow) => {
-          setFormData((prev) => ({ ...prev, country_code: code }));
-          setShow(false);
-        }}
-      />
-
-      <PasswordField
-        label={t("auth.password")}
-        placeholder={t("auth.password")}
-        required
-        id="password"
-        name="password"
-        value={formData.password}
-        onChange={(e) => handleChange(e, setFormData)}
-      />
-
-      <span
-        className="forgetpass"
-        style={{ cursor: "pointer" }}
-        onClick={() => setFormType("forget")}
-      >
-        {t("auth.forgetPassword")}
-      </span>
-
-      <SubmitButton name={t("auth.login")} loading={loading} />
-
-      <span className="noAccount">
-        {t("auth.noAccount")}{" "}
-        <span onClick={() => setFormType("register")}>
-          {t("auth.register")}
+      <form className="form" onSubmit={handleSubmit}>
+        <PhoneInput
+          label={t("auth.phone")}
+          required
+          type="number"
+          id="phone"
+          name="phone"
+          placeholder={t("auth.phone")}
+          value={formData.mobile_number}
+          countryCode={formData.country_code}
+          onChange={(e) => handleChange(e, setFormData)}
+          onSelect={(code, setShow) => {
+            setFormData((prev) => ({ ...prev, country_code: code }));
+            setShow(false);
+          }}
+        />
+        <PasswordField
+          label={t("auth.password")}
+          placeholder={t("auth.password")}
+          required
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={(e) => handleChange(e, setFormData)}
+        />
+        <span
+          className="forgetpass"
+          style={{ cursor: "pointer" }}
+          onClick={() => setFormType("forget")}
+        >
+          {t("auth.forgetPassword")}
         </span>
-      </span>
-    </form>
+        <SubmitButton name={t("auth.login")} loading={loading} />
+        <span className="noAccount">
+          {t("auth.noAccount")}{" "}
+          <span onClick={() => setFormType("register")}>
+            {t("auth.register")}
+          </span>
+        </span>
+      </form>
+    </>
   );
 }
-
 export default Login;

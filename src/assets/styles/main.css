@@ -1986,7 +1986,7 @@ body .auth_section {
   }
 }
 body .auth_section .form_wrapper {
-  padding: 24px 24px 0;
+  padding: 32px 24px 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
