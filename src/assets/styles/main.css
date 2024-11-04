@@ -2048,8 +2048,11 @@ body .product_vertical .img {
 }
 body .product_vertical .img .thums_pro {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 0px;
+  right: 0px;
+  padding: 8px;
+  width: 100%;
+  flex-wrap: wrap;
   gap: 4px;
   display: flex;
   align-items: center;
@@ -2087,8 +2090,6 @@ body .product_vertical .img video {
 }
 @media screen and (max-width: 576px) {
   body .product_vertical .img {
-    min-width: 120px;
-    max-width: 120px;
     min-height: 160px;
   }
 }

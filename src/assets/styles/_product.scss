@@ -17,8 +17,11 @@
     max-height: 180px;
     .thums_pro {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 0px;
+      right: 0px;
+      padding: 8px;
+      width: 100%;
+      flex-wrap: wrap;
       gap: 4px;
       display: flex;
       align-items: center;
@@ -53,8 +56,6 @@
       border-radius: 8px;
     }
     @media screen and (max-width: 576px) {
-      min-width: 120px;
-      max-width: 120px;
       min-height: 160px;
     }
     &::after {
