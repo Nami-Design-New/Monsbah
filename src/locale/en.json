@@ -17,7 +17,7 @@
   "routes": {
     "home": "Home",
     "add-ad": "Add Ad",
-    "verification": "Account Verification",
+    "verification": "Verification",
     "profile": "Profile",
     "search": "Search",
     "about-us": "About Us",
@@ -78,7 +78,7 @@
     "ads": "Ads",
     "questions": "Questions",
     "favorites": "Favorites",
-    "verification": "Account Verification",
+    "verification": "Verification",
     "settings": "Edit Account",
     "logout": "Logout",
     "deleteProfile": "Delete Account",
