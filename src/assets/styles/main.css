@@ -2047,15 +2047,33 @@ body .product_vertical .img {
   position: relative;
   max-height: 180px;
 }
-body .product_vertical .img .type {
+body .product_vertical .img .thums_pro {
   position: absolute;
   top: 8px;
   right: 8px;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+body .product_vertical .img .type {
   background: #1abc9c;
   color: #fff;
   border-radius: 4px;
   padding: 4px 12px;
   font-size: 14px;
+}
+body .product_vertical .img .popular {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #0d0d0d;
+}
+body .product_vertical .img .popular img {
+  height: 16px;
 }
 body .product_vertical .img img,
 body .product_vertical .img video {
@@ -5080,7 +5098,7 @@ body main .product_details .priceInfo .share a.share {
 body main .product_details .priceInfo .share a.share img {
   filter: brightness(0) invert(1);
 }
-body main .product_details .advertiserDetails {
+body main .product_details .mulen_user {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5091,25 +5109,26 @@ body main .product_details .advertiserDetails {
   background-color: #fff;
   position: relative;
 }
-body main .product_details .advertiserDetails .advertiser {
+body main .product_details .mulen_user .mulen_user_info {
   display: flex;
   align-items: end;
   position: relative;
   gap: 24px;
   padding: 8px;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper {
   position: relative;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper img {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper img {
   width: 90px;
   height: 90px;
+  min-width: 90px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 100px;
   transition: 0.3s ease-in-out;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper .follow_btn {
   position: absolute;
   bottom: -4px;
   left: -4px;
@@ -5124,30 +5143,30 @@ body main .product_details .advertiserDetails .advertiser .image_wrapper .follow
   color: #fff;
   font-size: 14px;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn i {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper .follow_btn i {
   font-size: 13px;
 }
-body main .product_details .advertiserDetails .advertiser .content {
+body main .product_details .mulen_user .mulen_user_info .content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
 }
-body main .product_details .advertiserDetails .advertiser .content ul {
+body main .product_details .mulen_user .mulen_user_info .content ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline-end: 16px;
 }
-body main .product_details .advertiserDetails .advertiser .content ul li h6,
-body main .product_details .advertiserDetails .advertiser .content ul li span {
+body main .product_details .mulen_user .mulen_user_info .content ul li h6,
+body main .product_details .mulen_user .mulen_user_info .content ul li span {
   margin: 0;
   color: #0d0d0d;
   font-weight: 600;
   font-size: 14px;
 }
-body main .product_details .advertiserDetails .advertiser .content h3 {
+body main .product_details .mulen_user .mulen_user_info .content h3 {
   font-size: 20px;
   color: #0d0d0d;
   text-align: start;
@@ -5155,16 +5174,17 @@ body main .product_details .advertiserDetails .advertiser .content h3 {
   color: #1abc9c;
   text-transform: capitalize;
 }
-body main .product_details .advertiserDetails .contact {
+body main .product_details .mulen_user .contact {
   display: flex;
   gap: 8px;
   padding: 8px;
 }
-body main .product_details .advertiserDetails .contact a,
-body main .product_details .advertiserDetails .contact button {
+body main .product_details .mulen_user .contact a,
+body main .product_details .mulen_user .contact button {
   border: none;
   outline: none;
   padding: 8px 16px;
+  flex: 1;
   border-radius: 12px;
   gap: 8px;
   border: 1px solid #eeeeee;
@@ -5176,14 +5196,15 @@ body main .product_details .advertiserDetails .contact button {
   align-items: center;
   gap: 6px;
 }
-body main .product_details .advertiserDetails .contact a.call,
-body main .product_details .advertiserDetails .contact button.call {
+body main .product_details .mulen_user .contact a.call,
+body main .product_details .mulen_user .contact button.call {
   width: 100%;
   background-color: #1abc9c !important;
   color: #fff;
+  flex: 4;
 }
-body main .product_details .advertiserDetails .contact a img,
-body main .product_details .advertiserDetails .contact button img {
+body main .product_details .mulen_user .contact a img,
+body main .product_details .mulen_user .contact button img {
   width: 32px;
   height: 32px;
   transition: 0.3s ease-in-out;
@@ -7098,4 +7119,16 @@ body.en .Arrow_icon {
 
 .bg-white {
   background-color: #fff !important;
+}
+
+.closeDownload {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
 }/*# sourceMappingURL=main.css.map */

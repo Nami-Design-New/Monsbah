@@ -15,15 +15,33 @@
     overflow: hidden;
     position: relative;
     max-height: 180px;
-    .type {
+    .thums_pro {
       position: absolute;
       top: 8px;
       right: 8px;
+      gap: 4px;
+      display: flex;
+      align-items: center;
+    }
+    .type {
       background: $main;
       color: $white;
       border-radius: 4px;
       padding: 4px 12px;
       font-size: 14px;
+    }
+    .popular {
+      background: $white;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: $dark;
+      img {
+        height: 16px;
+      }
     }
     img,
     video {
