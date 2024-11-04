@@ -48,7 +48,7 @@ function MainInfoTab({ user, lang }) {
       navigator
         .share({
           title: user?.name,
-          url: window.location.href,
+          url: window.location.href + "/" + user?.id,
         })
         .then(() => t("Shared successfully"))
         .catch((error) => t("Error sharing:", error));
