@@ -213,7 +213,7 @@ body {
     &.skeleton {
       background: $white;
       width: 100%;
-      .notify{
+      .notify {
         width: 100%;
       }
       .skeleton-img {
@@ -858,4 +858,14 @@ body {
 
 .bg-white {
   background-color: $white !important;
+}
+
+.closeDownload {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: $white;
+  @include centerFlex();
+  margin: 4px;
 }

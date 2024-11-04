@@ -44,8 +44,8 @@ function UserCard({ product, setProduct }) {
   };
 
   return (
-    <div className="advertiserDetails">
-      <div className="advertiser">
+    <div className="mulen_user">
+      <div className="mulen_user_info">
         <Link
           to={`${
             +product?.user?.id === +client?.id

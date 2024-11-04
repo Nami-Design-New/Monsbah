@@ -110,7 +110,14 @@ function ProductVertical({
             <img src={product.image} onLoad={handleImageLoad} alt="" />
           )}
           <ImageLoad isImageLoaded={isImageLoaded} />
-          <span className="type">{t(`${product?.type}`)}</span>
+          <div className="thums_pro">
+            <span className="type">{t(`${product?.type}`)}</span>
+            {product?.is_popular ? (
+              <span className="popular">
+                <img src="/images/icons/crown.svg" alt="" /> {t("popular")}
+              </span>
+            ) : null}
+          </div>
         </Link>
 
         <div className="content">
