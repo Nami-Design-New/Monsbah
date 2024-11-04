@@ -1986,11 +1986,11 @@ body .auth_section {
   }
 }
 body .auth_section .form_wrapper {
-  width: 50%;
   padding: 24px 24px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 0;
 }
 @media screen and (max-width: 992px) {
   body .auth_section .form_wrapper {
@@ -2003,7 +2003,6 @@ body .auth_section .form_wrapper {
   }
 }
 body .auth_section .img_wrapper {
-  height: 100%;
   flex: 1 0;
 }
 @media screen and (max-width: 992px) {
