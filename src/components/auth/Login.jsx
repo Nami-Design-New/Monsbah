@@ -11,7 +11,8 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
 import { useQueryClient } from "@tanstack/react-query";
-function Login({ setFormType, setShow }) {
+
+function Login({ setFormType, setShow, setRegisterFormData }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,7 +57,17 @@ function Login({ setFormType, setShow }) {
         setShow(false);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      if (error.response.status == 403) {
+        setFormType("registerOtp");
+        setRegisterFormData((prev) => ({
+          ...prev,
+          country_code: formData.country_code,
+          phone: formData.phone,
+        }));
+      } else {
+        toast.error(error.response.data.message);
+      }
+
       throw new Error(error);
     } finally {
       setLoading(false);

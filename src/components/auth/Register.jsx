@@ -37,8 +37,11 @@ function Register({ setFormType, formData, setFormData, setShow }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const payload = { ...formData };
+    payload.phone = formData.country_code + formData.phone;
+
     try {
-      const res = await axiosInstance.post("/client/auth/sign-up", formData);
+      const res = await axiosInstance.post("/client/auth/sign-up", payload);
       if (res.status === 200) {
         toast.success(res.data?.message);
         setFormType("registerOtp");

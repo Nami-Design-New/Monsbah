@@ -14,7 +14,7 @@ const OtpContainer = ({ formData, setFormData }) => {
     const currentInput = event.target;
     const maxLength = parseInt(currentInput.getAttribute("maxlength"), 10);
 
-    if (otpValue.length >= 6) {
+    if (otpValue.length >= 4) {
       return;
     }
 
