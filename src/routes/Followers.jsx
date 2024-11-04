@@ -15,7 +15,6 @@ function Followers() {
           <NavLink end to="">
             {t("profile.followers")}
           </NavLink>
-
           <NavLink to="followings">{t("profile.followings")}</NavLink>
         </nav>
         <div className="row">

@@ -761,6 +761,15 @@ body {
     .Arrow_icon {
       transform: scale(-1);
     }
+    .form .phone_field {
+      direction: ltr !important;
+    }
+    .form .phone_field .dropdown button {
+      border-radius: 0 12px 12px 0;
+    }
+    .form .phone_field input {
+      border-radius: 12px 0 0 12px;
+    }
   }
 }
 .empty-section {

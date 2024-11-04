@@ -333,6 +333,14 @@ export default function ProductsSection() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      searchParams.delete("city");
+                      setSearchParams(searchParams);
+                    }}
+                  >
+                    {t("all")}
+                  </Dropdown.Item>
                   {cities?.map(({ id, name }) => (
                     <Dropdown.Item
                       key={id}

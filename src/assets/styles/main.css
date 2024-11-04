@@ -7006,6 +7006,15 @@ body.en .closeModal {
 body.en .Arrow_icon {
   transform: scale(-1);
 }
+body.en .form .phone_field {
+  direction: ltr !important;
+}
+body.en .form .phone_field .dropdown button {
+  border-radius: 0 12px 12px 0;
+}
+body.en .form .phone_field input {
+  border-radius: 12px 0 0 12px;
+}
 
 .empty-section {
   flex: 1 0 0;
