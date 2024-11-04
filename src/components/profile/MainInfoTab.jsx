@@ -186,7 +186,7 @@ function MainInfoTab({ user, lang }) {
                 <h2>{user?.["rate-count"]}</h2>
 
                 <div className="icon_rate">
-                  <p>{t("Ad")}</p>
+                  <p>{t("rates")}</p>
                 </div>
               </div>
             </div>
