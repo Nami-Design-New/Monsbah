@@ -220,7 +220,7 @@ function ProfileTabs() {
           eventKey="logout"
           title={
             <>
-              <i className="fal fa-arrow-righ-from-bracket"></i>
+              <i className="fal fa-arrow-right-from-bracket"></i>
               {t("profile.logout")}
             </>
           }

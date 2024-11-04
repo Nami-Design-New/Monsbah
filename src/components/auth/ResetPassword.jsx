@@ -82,7 +82,7 @@ function ResetPassword({ setFormType, setShow }) {
             setFormType("forget");
           }}
         >
-          <i className="fal fa-arrow-righ"></i>
+          <i className="fal fa-arrow-right"></i>
         </button>
 
         <SubmitButton name={t("save")} loading={loading} />

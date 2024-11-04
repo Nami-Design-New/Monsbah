@@ -137,7 +137,7 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType }) {
             setFormType("register");
           }}
         >
-          <i className="fal fa-arrow-righ"></i>
+          <i className="fal fa-arrow-right"></i>
         </button>
         <SubmitButton name={t("auth.verify")} loading={loading} />
       </div>
