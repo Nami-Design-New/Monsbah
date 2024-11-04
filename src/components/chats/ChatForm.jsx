@@ -8,7 +8,15 @@ import axiosInstance from "../../utils/axiosInstance";
 
 function ChatForm({ chat, setMessages }) {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
-    useReactMediaRecorder({ audio: true });
+    useReactMediaRecorder({
+      audio: true,
+      mediaRecorderOptions: {
+        mimeType: 'audio/wav',
+      },
+      blobPropertyBag: {
+        type: 'audio/wav'
+      }
+    });
 
   const GOOGLE_KEY = import.meta.env.VITE_GOOGLE_KEY;
 
@@ -38,12 +46,21 @@ function ChatForm({ chat, setMessages }) {
       try {
         const response = await fetch(mediaBlobUrl);
         const blob = await response.blob();
+        
+        if (blob.size === 0) {
+          toast.error("Failed to record audio. Please try again.");
+          setLoading(false);
+          return;
+        }
+
         const file = new File([blob], "voice_message.wav", {
           type: "audio/wav",
         });
         payload.voice = file;
       } catch (error) {
         console.error("Error converting blob URL to file:", error);
+        toast.error("Failed to process audio recording");
+        setLoading(false);
         return;
       }
     }
