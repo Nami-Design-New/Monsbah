@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
 import { isValidVideoExtension } from "../../utils/helpers";
 import { Fancybox } from "@fancyapps/ui";
+import { useNavigate } from "react-router-dom";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,6 +13,7 @@ export default function ProductSlider({ product }) {
   const [images, setImages] = useState([]);
   const [autoplayDelay, setAutoplayDelay] = useState(3000);
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const srcs = product?.images?.map((image) => image?.image);
@@ -38,7 +40,6 @@ export default function ProductSlider({ product }) {
 
   return (
     <div className="swiper_wrapper">
-      {/* Conditionally show navigation controls if there are more than 1 slide */}
       {slidesCount > 1 && (
         <div className="swiperControl d-none d-md-block">
           <div className="swiper-button-prev"></div>
@@ -106,6 +107,9 @@ export default function ProductSlider({ product }) {
             </a>
           </SwiperSlide>
         ))}
+        <div className="arrow_icon" onClick={() => navigate(-1)}>
+          <i className="fa-solid fa-arrow-right-long"></i>
+        </div>
       </Swiper>
     </div>
   );

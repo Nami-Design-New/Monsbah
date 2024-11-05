@@ -1,11 +1,9 @@
-import { useTranslation } from "react-i18next";
 import PersonCard from "../../ui/cards/PersonCard";
 import PersonLoader from "../../ui/loaders/PersonLoader";
 import { useEffect } from "react";
 import useGetFollowers from "../../hooks/follow/useGetFollowers";
 
 function FollowersTab({ sectionRef }) {
-  const { t } = useTranslation();
   const {
     data: persons,
     isLoading,
@@ -37,11 +35,6 @@ function FollowersTab({ sectionRef }) {
 
   return (
     <>
-      <div className="col-12 p-2">
-        <h6 className="title">{t("popularPersons")}</h6>
-        <p className="desc">{t("popularPersonsDesc")}</p>
-      </div>
-
       {persons?.map((person, index) => (
         <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
           <PersonCard person={person} />

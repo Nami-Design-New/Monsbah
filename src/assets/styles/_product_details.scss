@@ -43,6 +43,20 @@
         width: 48px;
       }
     }
+    .arrow_icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: $white;
+      z-index: 9;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      background-color: #0000003b;
+      backdrop-filter: blur(12px);
+      border-radius: 50%;
+      @include centerFlex();
+    }
   }
 
   .itemInfo {
@@ -214,7 +228,7 @@
     }
   }
 
-  .advertiserDetails {
+  .mulen_user {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -224,7 +238,7 @@
     text-align: center;
     background-color: $white;
     position: relative;
-    .advertiser {
+    .mulen_user_info {
       display: flex;
       align-items: end;
       position: relative;
@@ -235,6 +249,7 @@
         img {
           width: 90px;
           height: 90px;
+          min-width: 90px;
           object-fit: cover;
           border-radius: 100px;
           transition: $transition;
@@ -297,6 +312,7 @@
         border: none;
         outline: none;
         padding: 8px 16px;
+        flex: 1;
         border-radius: 12px;
         gap: 8px;
         border: 1px solid $lightGray;
@@ -311,6 +327,7 @@
           width: 100%;
           background-color: $main !important;
           color: $white;
+          flex: 4;
         }
         img {
           width: 32px;

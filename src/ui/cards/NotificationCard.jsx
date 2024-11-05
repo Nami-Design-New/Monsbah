@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-function NotificationCard({ item, onClick }) {
+function NotificationCard({ item, onClick, bgColor }) {
   return (
     <Link
       to={item?.type === "product" ? `/product/${item?.product_id}` : `/chats`}
-      className="notificationCard"
+      className={`notificationCard ${bgColor}`}
       key={item.id}
       onClick={() => onClick?.()}
     >

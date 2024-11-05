@@ -44,8 +44,8 @@ function UserCard({ product, setProduct }) {
   };
 
   return (
-    <div className="advertiserDetails">
-      <div className="advertiser">
+    <div className="mulen_user">
+      <div className="mulen_user_info">
         <Link
           to={`${
             +product?.user?.id === +client?.id
@@ -58,7 +58,7 @@ function UserCard({ product, setProduct }) {
             src={product?.user?.image}
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
             loading="lazy"
-            alt=""
+            alt="user"
           />
           {product?.user?.id !== client?.id && (
             <Link className="follow_btn" onClick={handleFollow}>
@@ -96,34 +96,37 @@ function UserCard({ product, setProduct }) {
           </ul>
         </div>
       </div>
+
       {product?.user?.id !== client?.id && (
         <div className="contact">
-          {product?.active_call && (
-            <Link
-              target="_blank"
-              to={`tel:${product?.user?.phone}`}
-              className="call"
-            >
+          {product?.active_call === "active" && (
+            <Link target="_blank" to={`tel:${product?.phone}`} className="call">
               <span> {t("calling")} </span>
             </Link>
           )}
 
-          {product?.active_chat && (
+          {product?.active_chat === "active" && (
             <Link to={`/chats?user_id=${product?.user?.id}`}>
               <img
                 src="/images/icons/chat.svg"
                 alt="chat"
                 style={{ width: "24px", height: "32px" }}
               />
+              {product?.active_call === "inactive" && (
+                <span> {t("chating")} </span>
+              )}
             </Link>
           )}
 
-          {product?.active_whatsapp && (
+          {product?.active_whatsapp === "active" && (
             <Link
               target="_blank"
               to={`https://wa.me/${product?.user?.phone}?text=${encodedWhatsappMessage}`}
             >
               <img src="/images/icons/whats.svg" alt="whatsapp" />
+              {product?.active_call === "inactive" && (
+                <span> {t("whatsapp")} </span>
+              )}
             </Link>
           )}
         </div>

@@ -19,19 +19,23 @@ export default function ProductsSection() {
   const { t } = useTranslation();
 
   const lang = useSelector((state) => state.language.lang);
-  const userCity = useSelector((state) => state.clientData.client.city);
   const userCountry = useSelector((state) => state.clientData.client.country);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [products, setProducts] = useState();
   const [country, setCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [productType, setProductType] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGetProducts();
+  const {
+    data: products,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetProducts();
   const { data: countries, countriesLoading } = useGetCountries();
   const { data: cities } = useGetCities(country, country ? true : false);
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
@@ -39,8 +43,6 @@ export default function ProductsSection() {
     selectedCategory,
     selectedCategory ? true : false
   );
-
-  const [selectedCountry, setSelectedCountry] = useState("");
 
   useEffect(() => {
     if (searchParams.get("category")) {
@@ -53,7 +55,11 @@ export default function ProductsSection() {
       setCountry(searchParams.get("country"));
     }
     if (!searchParams.get("country")) {
-      handleSetParams(6, "country");
+      sessionStorage.getItem("country")
+        ? handleSetParams(sessionStorage.getItem("country"), "country")
+        : userCountry
+        ? handleSetParams(userCountry.id, "country")
+        : handleSetParams(6, "country");
     }
 
     if (searchParams.get("type") === "sale") {
@@ -65,16 +71,6 @@ export default function ProductsSection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries, searchParams, t]);
-
-  useEffect(() => {
-    if (userCity) {
-      handleSetParams(userCity?.id, "city");
-    }
-    if (userCountry) {
-      handleSetParams(userCountry?.id, "country");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userCity, userCountry]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,23 +93,6 @@ export default function ProductsSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  useEffect(() => {
-    if (!data?.pages) return;
-    setProducts((prevProducts) => {
-      const newProducts = data.pages.flatMap((page) => page.data);
-
-      const mergedProducts = newProducts.map((newProduct) => {
-        const existingProduct = prevProducts?.find(
-          (p) => p.id === newProduct.id
-        );
-        return existingProduct
-          ? { ...newProduct, ...existingProduct }
-          : newProduct;
-      });
-      return mergedProducts;
-    });
-  }, [data]);
-
   const handleSetParams = (value, type) => {
     if (value) {
       if (value === "") {
@@ -127,7 +106,6 @@ export default function ProductsSection() {
       }
       searchParams.set(type, value);
       setSearchParams(searchParams);
-      setProducts([]);
     }
   };
 
@@ -295,7 +273,10 @@ export default function ProductsSection() {
                       }
                     : null
                 }
-                onChange={(e) => handleSetParams(e?.value, "country")}
+                onChange={(e) => {
+                  handleSetParams(e?.value, "country");
+                  sessionStorage.setItem("country", e?.value);
+                }}
                 options={countries?.map(({ id, name }) => ({
                   value: id,
                   label: name,
@@ -352,6 +333,14 @@ export default function ProductsSection() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      searchParams.delete("city");
+                      setSearchParams(searchParams);
+                    }}
+                  >
+                    {t("all")}
+                  </Dropdown.Item>
                   {cities?.map(({ id, name }) => (
                     <Dropdown.Item
                       key={id}
@@ -373,11 +362,7 @@ export default function ProductsSection() {
           <div className="row">
             {products?.map((product, index) => (
               <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-                <ProductVertical
-                  product={product}
-                  isShowAction={false}
-                  setProducts={setProducts}
-                />
+                <ProductVertical product={product} isShowAction={false} />
               </div>
             ))}
 

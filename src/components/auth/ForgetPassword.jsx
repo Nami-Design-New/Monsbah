@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
+import { handleChange } from "../../utils/helpers";
 import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosInstance";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
-import { handleChange } from "../../utils/helpers";
 
 function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
             setFormType("login");
           }}
         >
-          <i className="fa-regular fa-arrow-right"></i>
+          <i className="fal fa-arrow-right"></i>
         </button>
         <SubmitButton name={t("send")} loading={loading} />
       </div>

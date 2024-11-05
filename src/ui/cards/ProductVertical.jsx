@@ -38,15 +38,6 @@ function ProductVertical({
 
     if (removeItem) {
       setProducts((prev) => prev?.filter((p) => p.id !== product.id));
-    } else {
-      setProducts((prev) =>
-        prev?.map((p) => {
-          if (p.id === product.id) {
-            return { ...p, is_favorite: !p.is_favorite };
-          }
-          return p;
-        })
-      );
     }
 
     try {
@@ -121,7 +112,14 @@ function ProductVertical({
             <img src={product.image} onLoad={handleImageLoad} alt="" />
           )}
           <ImageLoad isImageLoaded={isImageLoaded} />
-          <span className="type">{t(`${product?.type}`)}</span>
+          <div className="thums_pro">
+            <span className="type">{t(`${product?.type}`)}</span>
+            {product?.is_popular ? (
+              <span className="popular">
+                <img src="/images/icons/crown.svg" alt="" /> {t("popular")}
+              </span>
+            ) : null}
+          </div>
         </Link>
 
         <div className="content">
@@ -132,7 +130,7 @@ function ProductVertical({
           >
             <h3>{product.name}</h3>
             {isAuthed &&
-              (client?.id !== product?.user?.id ? (
+              (client?.id !== product?.user?.id && removeItem ? (
                 <span
                   disabled={loading}
                   onClick={handleFavorite}

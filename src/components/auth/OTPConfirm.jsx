@@ -59,7 +59,7 @@ function OTPConfirm({ formData, setFormType }) {
             setFormType("forget");
           }}
         >
-          <i className="fa-regular fa-arrow-right"></i>
+          <i className="fal fa-arrow-right"></i>
         </button>
         <SubmitButton name={t("auth.verify")} loading={loading} />
       </div>

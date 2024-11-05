@@ -69,7 +69,7 @@ function useGetProducts() {
 
   return {
     isLoading,
-    data: data,
+    data: data?.pages.flatMap((page) => page.data),
     error,
     hasNextPage,
     fetchNextPage,

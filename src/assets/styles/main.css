@@ -1126,10 +1126,10 @@ body .form .resend-code .timer span {
   color: #666b88;
 }
 body .form .back_btn {
-  height: 56px;
+  height: 52px;
   border-radius: 12px;
   border: 1px solid #0d0d0d;
-  width: 120px;
+  width: 90px;
   color: #0d0d0d;
   cursor: pointer;
   background: none;
@@ -1141,7 +1141,7 @@ body .form .back_btn:hover {
   border: 1px solid #1abc9c;
 }
 body .form .back_btn i {
-  font-size: 28px;
+  font-size: 18px;
 }
 body .form .input-field {
   display: flex;
@@ -1176,7 +1176,7 @@ body .form .input-field textarea,
 body .form .input-field select {
   color: #0d0d0d;
   direction: rtl;
-  height: 56px;
+  height: 52px;
   width: 100%;
   border: none;
   outline: none;
@@ -1226,7 +1226,7 @@ body .form p a {
 }
 body .form button {
   width: 100%;
-  height: 56px;
+  height: 52px;
   gap: 6px;
   border-radius: 12px;
   display: flex;
@@ -1455,7 +1455,7 @@ body .form .pass-group .show-pass {
   align-items: center;
   justify-content: center;
   width: 60px;
-  height: 56px;
+  height: 52px;
   border: 1px solid #f2f2f2;
   background: #f8f8f8;
   border-right: 0;
@@ -1761,7 +1761,7 @@ body .radios label {
   flex: 1;
 }
 body .radios label span {
-  min-height: 56px;
+  min-height: 52px;
   width: 100%;
   background: #fff;
   color: #0d0d0d !important;
@@ -1986,11 +1986,11 @@ body .auth_section {
   }
 }
 body .auth_section .form_wrapper {
-  width: 50%;
-  padding: 24px;
+  padding: 32px 24px 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 0;
 }
 @media screen and (max-width: 992px) {
   body .auth_section .form_wrapper {
@@ -2003,7 +2003,6 @@ body .auth_section .form_wrapper {
   }
 }
 body .auth_section .img_wrapper {
-  height: 100%;
   flex: 1 0;
 }
 @media screen and (max-width: 992px) {
@@ -2047,15 +2046,36 @@ body .product_vertical .img {
   position: relative;
   max-height: 180px;
 }
-body .product_vertical .img .type {
+body .product_vertical .img .thums_pro {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 0px;
+  right: 0px;
+  padding: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+body .product_vertical .img .type {
   background: #1abc9c;
   color: #fff;
   border-radius: 4px;
   padding: 4px 12px;
   font-size: 14px;
+}
+body .product_vertical .img .popular {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #0d0d0d;
+}
+body .product_vertical .img .popular img {
+  height: 16px;
 }
 body .product_vertical .img img,
 body .product_vertical .img video {
@@ -2070,8 +2090,6 @@ body .product_vertical .img video {
 }
 @media screen and (max-width: 576px) {
   body .product_vertical .img {
-    min-width: 120px;
-    max-width: 120px;
     min-height: 160px;
   }
 }
@@ -2781,11 +2799,11 @@ body .actions-wrapper .action-btn {
   font-size: 14px;
   background-color: #1abc9c;
   color: #ffffff;
-  min-width: 120px;
+  min-width: 100px;
   cursor: pointer;
 }
 body .actions-wrapper .share_btn {
-  width: 36px;
+  min-width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #1abc9c;
@@ -4286,11 +4304,11 @@ body main .actions-wrapper .action-btn {
   font-size: 14px;
   background-color: #1abc9c;
   color: #ffffff;
-  min-width: 120px;
+  min-width: 100px;
   cursor: pointer;
 }
 body main .actions-wrapper .share_btn {
-  width: 36px;
+  min-width: 36px;
   height: 36px;
   border-radius: 50%;
   background: #1abc9c;
@@ -4905,6 +4923,23 @@ body main .product_details .product_swiper .swiper-pagination-bullet {
 body main .product_details .product_swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
   width: 48px;
 }
+body main .product_details .product_swiper .arrow_icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.231372549);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 body main .product_details .itemInfo {
   display: flex;
   flex-direction: column;
@@ -5063,7 +5098,7 @@ body main .product_details .priceInfo .share a.share {
 body main .product_details .priceInfo .share a.share img {
   filter: brightness(0) invert(1);
 }
-body main .product_details .advertiserDetails {
+body main .product_details .mulen_user {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5074,25 +5109,26 @@ body main .product_details .advertiserDetails {
   background-color: #fff;
   position: relative;
 }
-body main .product_details .advertiserDetails .advertiser {
+body main .product_details .mulen_user .mulen_user_info {
   display: flex;
   align-items: end;
   position: relative;
   gap: 24px;
   padding: 8px;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper {
   position: relative;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper img {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper img {
   width: 90px;
   height: 90px;
+  min-width: 90px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 100px;
   transition: 0.3s ease-in-out;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper .follow_btn {
   position: absolute;
   bottom: -4px;
   left: -4px;
@@ -5107,30 +5143,30 @@ body main .product_details .advertiserDetails .advertiser .image_wrapper .follow
   color: #fff;
   font-size: 14px;
 }
-body main .product_details .advertiserDetails .advertiser .image_wrapper .follow_btn i {
+body main .product_details .mulen_user .mulen_user_info .image_wrapper .follow_btn i {
   font-size: 13px;
 }
-body main .product_details .advertiserDetails .advertiser .content {
+body main .product_details .mulen_user .mulen_user_info .content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
 }
-body main .product_details .advertiserDetails .advertiser .content ul {
+body main .product_details .mulen_user .mulen_user_info .content ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline-end: 16px;
 }
-body main .product_details .advertiserDetails .advertiser .content ul li h6,
-body main .product_details .advertiserDetails .advertiser .content ul li span {
+body main .product_details .mulen_user .mulen_user_info .content ul li h6,
+body main .product_details .mulen_user .mulen_user_info .content ul li span {
   margin: 0;
   color: #0d0d0d;
   font-weight: 600;
   font-size: 14px;
 }
-body main .product_details .advertiserDetails .advertiser .content h3 {
+body main .product_details .mulen_user .mulen_user_info .content h3 {
   font-size: 20px;
   color: #0d0d0d;
   text-align: start;
@@ -5138,16 +5174,17 @@ body main .product_details .advertiserDetails .advertiser .content h3 {
   color: #1abc9c;
   text-transform: capitalize;
 }
-body main .product_details .advertiserDetails .contact {
+body main .product_details .mulen_user .contact {
   display: flex;
   gap: 8px;
   padding: 8px;
 }
-body main .product_details .advertiserDetails .contact a,
-body main .product_details .advertiserDetails .contact button {
+body main .product_details .mulen_user .contact a,
+body main .product_details .mulen_user .contact button {
   border: none;
   outline: none;
   padding: 8px 16px;
+  flex: 1;
   border-radius: 12px;
   gap: 8px;
   border: 1px solid #eeeeee;
@@ -5159,14 +5196,15 @@ body main .product_details .advertiserDetails .contact button {
   align-items: center;
   gap: 6px;
 }
-body main .product_details .advertiserDetails .contact a.call,
-body main .product_details .advertiserDetails .contact button.call {
+body main .product_details .mulen_user .contact a.call,
+body main .product_details .mulen_user .contact button.call {
   width: 100%;
   background-color: #1abc9c !important;
   color: #fff;
+  flex: 4;
 }
-body main .product_details .advertiserDetails .contact a img,
-body main .product_details .advertiserDetails .contact button img {
+body main .product_details .mulen_user .contact a img,
+body main .product_details .mulen_user .contact button img {
   width: 32px;
   height: 32px;
   transition: 0.3s ease-in-out;
@@ -5635,7 +5673,6 @@ body main .chats-section .form-check-input:checked {
 @media screen and (max-width: 991px) {
   body main .chats-section {
     margin-bottom: 160px;
-    margin-top: 20px;
   }
 }
 body main .chats-section aside {
@@ -6233,10 +6270,10 @@ body main .close_sidebar {
 }
 body main .priview_img {
   position: absolute;
-  top: -437.56px;
+  top: -408.56px;
   left: 0;
   width: 100%;
-  height: 525.56px;
+  height: 497.56px;
   background: rgba(0, 0, 0, 0.3333333333);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -6424,7 +6461,7 @@ body .confirm-delete.other .delete-btn {
   background: #1abc9c;
 }
 body .notifications_section {
-  padding: 40px 0;
+  width: 100%;
 }
 body .notificationCard {
   padding: 12px;
@@ -6459,6 +6496,30 @@ body .notificationCard .notify p {
   text-align: start;
   color: #666b88;
   margin: 0;
+}
+body .notificationCard.skeleton {
+  background: #fff;
+  width: 100%;
+}
+body .notificationCard.skeleton .notify {
+  width: 100%;
+}
+body .notificationCard.skeleton .skeleton-img {
+  border-radius: 50%;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .notificationCard.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  width: 25%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body .notificationCard.skeleton .skeleton-title {
+  width: 75%;
+  height: 24px;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 body .CommentCard {
   gap: 12px;
@@ -6945,6 +7006,15 @@ body.en .closeModal {
 body.en .Arrow_icon {
   transform: scale(-1);
 }
+body.en .form .phone_field {
+  direction: ltr !important;
+}
+body.en .form .phone_field .dropdown button {
+  border-radius: 0 12px 12px 0;
+}
+body.en .form .phone_field input {
+  border-radius: 12px 0 0 12px;
+}
 
 .empty-section {
   flex: 1 0 0;
@@ -7054,4 +7124,20 @@ body.en .Arrow_icon {
 
 .row {
   margin: 0;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.closeDownload {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
 }/*# sourceMappingURL=main.css.map */

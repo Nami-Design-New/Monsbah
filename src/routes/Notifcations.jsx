@@ -1,23 +1,59 @@
+import { useEffect, useRef } from "react";
 import useGetNotifications from "../hooks/notifications/useGetNotifications";
 import NotificationCard from "../ui/cards/NotificationCard";
-import PageLoader from "../ui/loaders/PageLoader";
+import NotificationLoader from "../ui/loaders/NotificationLoader";
 
-const Notifcations = () => {
-  const { isLoading, data: notifications } = useGetNotifications();
+const Notifcations = ({ bgColor }) => {
+  const {
+    isLoading,
+    data: notifications,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetNotifications();
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionBottom = section.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+
+      if (
+        sectionBottom <= viewportHeight + 200 &&
+        hasNextPage &&
+        !isFetchingNextPage
+      ) {
+        fetchNextPage();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
     <>
-      <div className="notifications_section">
-        <div className="container">
-          <div className="row justify-content-center">
-            {isLoading ? (
-              <PageLoader />
-            ) : (
-              <div className="col-12 d-flex flex-column gap-3">
-                {notifications?.map((notification) => (
-                  <NotificationCard key={notification.id} item={notification} />
-                ))}
-              </div>
+      <div className="notifications_section" ref={sectionRef}>
+        <div className="row justify-content-center">
+          <div className="col-12 d-flex flex-column gap-3 p-2">
+            {notifications?.map((notification) => (
+              <NotificationCard
+                key={notification.id}
+                item={notification}
+                bgColor={bgColor}
+              />
+            ))}
+            {(isLoading || isFetchingNextPage) && (
+              <>
+                {Array(3)
+                  .fill(0)
+                  .map((_, index) => (
+                    <NotificationLoader key={index} />
+                  ))}
+              </>
             )}
           </div>
         </div>

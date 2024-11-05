@@ -48,7 +48,7 @@ function MainInfoTab({ user, lang }) {
       navigator
         .share({
           title: user?.name,
-          url: window.location.href,
+          url: window.location.href + "/" + user?.id,
         })
         .then(() => t("Shared successfully"))
         .catch((error) => t("Error sharing:", error));
@@ -144,7 +144,7 @@ function MainInfoTab({ user, lang }) {
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
             <Link
               to="/followers/followings"
-              className="col-lg-4 col-md-6 col-6 p-2"
+              className="col-lg-3 col-md-6 col-6 p-2"
             >
               <div className="Box_rate">
                 <h2>{user?.["following-count"]}</h2>
@@ -157,7 +157,7 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <Link to="/followers" className="col-lg-4 col-md-6 col-6 p-2">
+            <Link to="/followers" className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 
@@ -169,12 +169,24 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
-            <div className="col-lg-4 col-md-6 col-6 p-2">
+            <div className="col-lg-3 col-md-6 col-6 p-2">
               <div className="Box_rate">
                 <h2>{user?.["ads-count"]}</h2>
 
                 <div className="icon_rate">
                   <p>{t("Ad")}</p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {user?.["rate-count"] || +user?.["rate-count"] === 0 ? (
+            <div className="col-lg-3 col-md-6 col-6 p-2">
+              <div className="Box_rate">
+                <h2>{user?.["rate-count"]}</h2>
+
+                <div className="icon_rate">
+                  <p>{t("rates")}</p>
                 </div>
               </div>
             </div>

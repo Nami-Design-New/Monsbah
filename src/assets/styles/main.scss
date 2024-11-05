@@ -174,7 +174,7 @@ body {
     }
   }
   .notifications_section {
-    padding: 40px 0;
+    width: 100%;
   }
   .notificationCard {
     padding: 12px;
@@ -208,6 +208,30 @@ body {
         text-align: start;
         color: $text;
         margin: 0;
+      }
+    }
+    &.skeleton {
+      background: $white;
+      width: 100%;
+      .notify {
+        width: 100%;
+      }
+      .skeleton-img {
+        border-radius: 50%;
+        background: #e0e0e0;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      .skeleton-text {
+        background: #e0e0e0;
+        height: 16px;
+        border-radius: 4px;
+        width: 25%;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      .skeleton-title {
+        width: 75%;
+        height: 24px;
+        animation: pulse 1.5s ease-in-out infinite;
       }
     }
   }
@@ -737,6 +761,15 @@ body {
     .Arrow_icon {
       transform: scale(-1);
     }
+    .form .phone_field {
+      direction: ltr !important;
+    }
+    .form .phone_field .dropdown button {
+      border-radius: 0 12px 12px 0;
+    }
+    .form .phone_field input {
+      border-radius: 12px 0 0 12px;
+    }
   }
 }
 .empty-section {
@@ -830,4 +863,18 @@ body {
 }
 .row {
   margin: 0;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+.closeDownload {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: $white;
+  @include centerFlex();
+  margin: 4px;
 }
