@@ -185,7 +185,10 @@
     "deleteChat": "حذف المحادثة",
     "report": "الإبلاغ عن إساءة",
     "block": "حظر",
-    "call": "اتصال"
+    "call": "اتصال",
+    "areYouSureYouWantblockThisChat": "هل أنت متاكد من حظر",
+    "userBlocked": "لا يمكنك إرسال رسائل لهذه المحادثة ولن تستقبل رسائلها",
+    "unblock": "الغاء الحظر"
   },
   "about": {
     "title": "حول",

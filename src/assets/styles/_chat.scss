@@ -443,6 +443,30 @@
         }
       }
     }
+    .chat_blocked {
+      width: 100%;
+      position: relative;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: $white;
+      p {
+        font-size: 14px;
+        color: $text;
+        margin: 0;
+        white-space: nowrap;
+      }
+      span {
+        font-size: 14px;
+        font-weight: 600;
+        color: $main;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+    }
     .chat_form {
       width: 100%;
       position: relative;

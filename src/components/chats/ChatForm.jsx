@@ -6,16 +6,16 @@ import { toast } from "react-toastify";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import axiosInstance from "../../utils/axiosInstance";
 
-function ChatForm({ chat, setMessages }) {
+function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({
       audio: true,
       mediaRecorderOptions: {
-        mimeType: 'audio/wav',
+        mimeType: "audio/wav",
       },
       blobPropertyBag: {
-        type: 'audio/wav'
-      }
+        type: "audio/wav",
+      },
     });
 
   const GOOGLE_KEY = import.meta.env.VITE_GOOGLE_KEY;
@@ -46,7 +46,7 @@ function ChatForm({ chat, setMessages }) {
       try {
         const response = await fetch(mediaBlobUrl);
         const blob = await response.blob();
-        
+
         if (blob.size === 0) {
           toast.error("Failed to record audio. Please try again.");
           setLoading(false);
@@ -147,7 +147,12 @@ function ChatForm({ chat, setMessages }) {
     });
   };
 
-  return (
+  return isBlocked ? (
+    <div className="chat_blocked">
+      <p>{t("chat.userBlocked")}</p>
+      <span onClick={() => setIsBlocked(false)}>{t("chat.unblock")}</span>
+    </div>
+  ) : (
     <form className="chat_form" onSubmit={handleSendMessage} ref={formRef}>
       {(messageContent?.image ||
         messageContent.file ||

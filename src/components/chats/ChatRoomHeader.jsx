@@ -6,12 +6,18 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
+import ReportChatModal from "../../ui/modals/ReportChatModal";
 
-function ChatRoomHeader({ chat }) {
+function ChatRoomHeader({ chat, isBlocked, setIsBlocked }) {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [showBlockModal, setShowBlockModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [blockLoading, setBlockLoading] = useState(false);
   const queryClient = useQueryClient();
+
+  console.log(`chat?.is_block for ${chat?.user_name}`, chat?.is_block);
 
   const handleDelete = async () => {
     setLoading(true);
@@ -19,6 +25,7 @@ function ChatRoomHeader({ chat }) {
       const res = await axiosInstance.post("/client/chat/delete", {
         ids: [chat?.id],
       });
+
       if (res.status === 200) {
         toast.success(res.data.message);
         queryClient.invalidateQueries({ queryKey: ["chats"] });
@@ -29,6 +36,26 @@ function ChatRoomHeader({ chat }) {
       throw new Error(error?.response?.data?.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleBlock = async () => {
+    setBlockLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/chat/block", {
+        chat_id: +chat?.id,
+      });
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        queryClient.invalidateQueries({ queryKey: ["chats"] });
+        setShowBlockModal(false);
+        setIsBlocked(true);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    } finally {
+      setBlockLoading(false);
     }
   };
 
@@ -43,12 +70,12 @@ function ChatRoomHeader({ chat }) {
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
           />
         </Link>
-        <div className="content">
+        <Link to={`/profile/${chat?.user_id}`} className="content">
           <h6>{chat?.user_name}</h6>
           <span className={chat?.is_active ? "online" : "offline"}>
             {chat?.is_active ? t("chat.online") : t("chat.offline")}
           </span>
-        </div>
+        </Link>
       </div>
 
       <Dropdown>
@@ -61,12 +88,14 @@ function ChatRoomHeader({ chat }) {
             <button onClick={() => setShowModal(true)}>
               <i className="fa-regular fa-trash"></i> {t("chat.deleteChat")}
             </button>
-            <button>
+            <button onClick={() => setShowReportModal(true)}>
               <i className="fa-regular fa-flag"></i> {t("chat.report")}
             </button>
-            <button>
-              <i className="fa-regular fa-ban"></i> {t("chat.block")}
-            </button>
+            {isBlocked ? null : (
+              <button onClick={() => setShowBlockModal(true)}>
+                <i className="fa-regular fa-ban"></i> {t("chat.block")}
+              </button>
+            )}
           </div>
         </Dropdown.Menu>
       </Dropdown>
@@ -78,6 +107,21 @@ function ChatRoomHeader({ chat }) {
         type="delete"
         buttonText={t("chat.delete")}
         text={t("chat.areYouSureYouWantDeleteThisChat")}
+      />
+      <ConfirmationModal
+        showModal={showBlockModal}
+        setShowModal={setShowBlockModal}
+        eventFun={handleBlock}
+        loading={blockLoading}
+        type="delete"
+        buttonText={t("chat.block")}
+        text={`${t("chat.areYouSureYouWantblockThisChat")} ${chat?.user_name}`}
+      />
+
+      <ReportChatModal
+        id={chat?.id}
+        showModal={showReportModal}
+        setShowModal={setShowReportModal}
       />
     </div>
   );
