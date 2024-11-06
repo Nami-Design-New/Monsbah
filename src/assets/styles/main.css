@@ -2417,10 +2417,23 @@ body .profile-page .vertical-tabs li button:hover, body .profile-page .vertical-
 body .profile-page .vertical-tabs li button:hover::after, body .profile-page .vertical-tabs li button.active::after {
   width: 100%;
 }
-body .profile-page .arrow_icon {
-  position: relative !important;
+body .profile-page .header-back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
   top: 0;
-  right: 8px;
+  right: 0;
+  position: relative;
+}
+body .profile-page .header-back span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #666b88;
+}
+body .profile-page .header-back .arrow_icon {
+  position: relative !important;
   color: #fff;
   z-index: 9;
   cursor: pointer;
@@ -3991,10 +4004,23 @@ body main .profile-page .vertical-tabs li button:hover, body main .profile-page 
 body main .profile-page .vertical-tabs li button:hover::after, body main .profile-page .vertical-tabs li button.active::after {
   width: 100%;
 }
-body main .profile-page .arrow_icon {
-  position: relative !important;
+body main .profile-page .header-back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
   top: 0;
-  right: 8px;
+  right: 0;
+  position: relative;
+}
+body main .profile-page .header-back span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #666b88;
+}
+body main .profile-page .header-back .arrow_icon {
+  position: relative !important;
   color: #fff;
   z-index: 9;
   cursor: pointer;

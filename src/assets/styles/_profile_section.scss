@@ -100,19 +100,34 @@
       }
     }
   }
-  .arrow_icon {
-    position: relative !important;
+  .header-back {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
     top: 0;
-    right: 8px;
-    color: $white;
-    z-index: 9;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    background-color: #0000003b;
-    backdrop-filter: blur(12px);
-    border-radius: 50%;
-    @include centerFlex();
+    right: 0;
+    position: relative;
+
+    span {
+      font-weight: 600;
+      font-size: 16px;
+      color: $text;
+    }
+
+    .arrow_icon {
+      position: relative !important;
+      color: $white;
+      z-index: 9;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      background-color: #0000003b;
+      backdrop-filter: blur(12px);
+      border-radius: 50%;
+      @include centerFlex();
+    }
   }
   .tabs-section {
     display: flex;

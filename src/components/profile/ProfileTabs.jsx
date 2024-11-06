@@ -82,9 +82,12 @@ function ProfileTabs() {
 
   return (
     <>
-      {(window.innerWidth < 768 && searchParams.get("tab")) && (
-        <div className="arrow_icon" onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-right-long"></i>
+      {window.innerWidth < 768 && searchParams.get("tab") && (
+        <div className="header-back">
+          <div className="arrow_icon" onClick={() => navigate(-1)}>
+            <i className="fa-solid fa-arrow-right-long"></i>
+          </div>
+          <span>{t(`tabs.${activeTab}`)}</span>
         </div>
       )}
       <div className="tabs-section">
@@ -153,7 +156,7 @@ function ProfileTabs() {
                 {t("profile.verification")}
               </button>
             </div>
-            <div className="nav-item" onClick={() => handleChangeTab("logout")}>
+            <div className="nav-item" onClick={() => setShowLogoutModal(true)}>
               <button>
                 <i className="fa-regular fa-arrow-right-from-bracket"></i>
                 {t("profile.logout")}
@@ -179,7 +182,11 @@ function ProfileTabs() {
               }
               className="tab_item"
             >
-              <MainInfoTab user={user} lang={lang} />
+              <MainInfoTab
+                user={user}
+                lang={lang}
+                handleChangeTab={handleChangeTab}
+              />
             </Tab>
 
             {/* ads */}
