@@ -82,7 +82,7 @@ function ProfileTabs() {
 
   return (
     <>
-      {window.innerWidth < 768 && searchParams.get("tab") && (
+      {(window.innerWidth < 768 && searchParams.get("tab")) && (
         <div className="arrow_icon" onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-right-long"></i>
         </div>
