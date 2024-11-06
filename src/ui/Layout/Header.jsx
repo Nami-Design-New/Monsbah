@@ -56,13 +56,13 @@ export default function Header() {
     <header>
       <div className="container">
         <div className="mainLinks">
-          <Link to="/" className="navbar-brand">
+          <Link aria-label="Home" to="/" className="navbar-brand">
             <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
 
           <nav className="navbar navbar-expand-lg">
-            <ul className="navbar-nav">
-              <Link className="logo" to="/">
+            <div className="navbar-nav">
+              <Link aria-label="Home" className="logo" to="/">
                 <img src="/images/branding/logo.svg" loading="lazy" alt="" />
               </Link>
 
@@ -84,11 +84,12 @@ export default function Header() {
               <NavLink className="navLink" to="/contact-us">
                 {t("header.contact")}
               </NavLink>
-            </ul>
+            </div>
           </nav>
 
           <div className="moreActions">
             <button
+              aria-label="Get App"
               className="customBtn"
               onClick={() => setShowGetAppModal(true)}
             >
@@ -96,6 +97,7 @@ export default function Header() {
             </button>
 
             <Link
+              aria-label="Add AD"
               to="/profile?tab=addAd"
               className="link text d-lg-flex d-none"
             >
@@ -111,7 +113,11 @@ export default function Header() {
                   setUnreadNotificationsLength(0);
                 }}
               >
-                <Dropdown.Toggle id="dropdown-basic" className="link">
+                <Dropdown.Toggle
+                  aria-label="Notifications"
+                  id="dropdown-basic"
+                  className="link"
+                >
                   <img src="/images/icons/bell.svg" alt="" />
                   {unreadNotificationsLength ? (
                     <span className="count">
@@ -132,6 +138,7 @@ export default function Header() {
                     ))}
                   </div>
                   <Link
+                    aria-label="Show All"
                     className="showall"
                     to="/profile?tab=notifications"
                     style={{ textDecoration: "none" }}
@@ -147,7 +154,11 @@ export default function Header() {
               show={showLangDropdown}
               onToggle={() => setShowLangDropdown(!showLangDropdown)}
             >
-              <Dropdown.Toggle id="dropdown-basic" className="link">
+              <Dropdown.Toggle
+                aria-label="Language"
+                id="dropdown-basic"
+                className="link"
+              >
                 <img src="/images/icons/lang.svg" alt="" />
               </Dropdown.Toggle>
 
@@ -171,12 +182,16 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="/search" className="link">
+            <Link aria-label="Search" to="/search" className="link">
               <img src="/images/icons/search.svg" alt="" />
             </Link>
 
             {user?.id ? (
-              <Link to="/profile" className="link profile-link">
+              <Link
+                aria-label="Profile"
+                to="/profile"
+                className="link profile-link"
+              >
                 <img
                   src={avatarError ? "/images/icons/user.svg" : user?.image}
                   alt="user"
@@ -185,6 +200,7 @@ export default function Header() {
               </Link>
             ) : (
               <button
+                aria-label="Login"
                 className="link"
                 onClick={() => {
                   setShowAuthModal(true);

@@ -143,6 +143,7 @@ function MainInfoTab({ user, lang, handleChangeTab }) {
 
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
             <Link
+              aria-label="Followings"
               to="/followers/followings"
               className="col-lg-3 col-md-6 col-6 p-2"
             >
@@ -157,7 +158,11 @@ function MainInfoTab({ user, lang, handleChangeTab }) {
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <Link to="/followers" className="col-lg-3 col-md-6 col-6 p-2">
+            <Link
+              aria-label="Followers"
+              to="/followers"
+              className="col-lg-3 col-md-6 col-6 p-2"
+            >
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 

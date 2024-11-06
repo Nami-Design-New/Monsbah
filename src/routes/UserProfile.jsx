@@ -105,7 +105,7 @@ function UserProfile() {
                         className="nav-item"
                         onClick={() => handleChangeTab("main")}
                       >
-                        <button>
+                        <button aria-label={t("profile.mainInfo")}>
                           <i className="fa-regular fa-user" />
                           {t("profile.mainInfo")}
                         </button>
@@ -114,7 +114,7 @@ function UserProfile() {
                         className="nav-item"
                         onClick={() => handleChangeTab("ads")}
                       >
-                        <button>
+                        <button aria-label={t("profile.ads")}>
                           <i className="fa-regular fa-bullhorn"></i>
                           {t("profile.ads")}
                         </button>
@@ -123,7 +123,7 @@ function UserProfile() {
                         className="nav-item"
                         onClick={() => handleChangeTab("rates")}
                       >
-                        <button>
+                        <button aria-label={t("profile.rates")}>
                           <i className="fa-regular fa-stars"></i>
                           {t("profile.rates")}
                         </button>
@@ -185,6 +185,7 @@ function UserProfile() {
                                   </div>
                                 )}
                                 <Link
+                                  aria-label="Profile"
                                   to={`/chats?user_id=${user?.id}`}
                                   className="action-btn follow_btn"
                                 >

@@ -67,6 +67,7 @@ function ViewAsk({ showModal, setShowModal, ask }) {
       <Modal.Header className="pb-0" closeButton />
       <Modal.Body>
         <Link
+          aria-label="Profile"
           to={`${
             +ask?.user?.id === +client?.id
               ? "/profile"

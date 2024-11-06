@@ -43,6 +43,7 @@ function PersonCard({ person, setPersons }) {
   return (
     <div className="PersonCard">
       <Link
+        aria-label="Profile"
         to={`${
           +person?.id === +client?.id ? "/profile" : `/profile/${person?.id}`
         }`}
@@ -61,12 +62,20 @@ function PersonCard({ person, setPersons }) {
         </div>
       </Link>
       {person?.is_follow ? (
-        <button className="follow_btn" onClick={() => handleFollow("unfollow")}>
+        <button
+          aria-label="Unfollow"
+          className="follow_btn"
+          onClick={() => handleFollow("unfollow")}
+        >
           <i className="fa-light fa-user-minus"></i>{" "}
           <span>{t("unfollow")}</span>
         </button>
       ) : (
-        <button className="follow_btn" onClick={() => handleFollow("follow")}>
+        <button
+          aria-label="Follow"
+          className="follow_btn"
+          onClick={() => handleFollow("follow")}
+        >
           <i className="fa-regular fa-user-plus"></i> <span>{t("follow")}</span>
         </button>
       )}

@@ -26,6 +26,7 @@ const ConfirmationModal = ({
         </p>
         <div className="d-flex justify-content-end gap-3">
           <button
+            aria-label="Cancel"
             onClick={(e) => {
               e.stopPropagation();
               setShowModal(false);

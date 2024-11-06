@@ -60,7 +60,9 @@ function Contact() {
                     </div>
                     <div className="content">
                       <h6>{t("contact.support")}</h6>
-                      <Link to="tel:+919999999999">919999999999</Link>
+                      <Link aria-label="Call" to="tel:+919999999999">
+                        919999999999
+                      </Link>
                     </div>
                   </li>
 
@@ -70,7 +72,9 @@ function Contact() {
                     </div>
                     <div className="content">
                       <h6>{t("contact.email")}</h6>
-                      <Link to="mailto:info@Monsbah.com">info@Monsbah.com</Link>
+                      <Link aria-label="Mail" to="mailto:info@Monsbah.com">
+                        info@Monsbah.com
+                      </Link>
                     </div>
                   </li>
 

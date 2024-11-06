@@ -98,6 +98,7 @@ function ProductInfo({ product, setProduct }) {
 
         {client?.id !== product?.user?.id ? (
           <button
+            aria-label="Toggle Favorite"
             onClick={handleFavorite}
             className={`favorite ${product?.is_favorite ? "active" : ""}`}
           >
@@ -108,7 +109,11 @@ function ProductInfo({ product, setProduct }) {
             onClick={(e) => e.stopPropagation()}
             className="favorite dropdown-icon"
           >
-            <Dropdown.Toggle id="dropdown-basic" className="upload-btn">
+            <Dropdown.Toggle
+              aria-label="Product Actions"
+              id="dropdown-basic"
+              className="upload-btn"
+            >
               <i className="fa-regular fa-ellipsis-vertical"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>

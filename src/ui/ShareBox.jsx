@@ -30,7 +30,7 @@ function ShareBox() {
 
   return (
     <Dropdown className="share-dropdown">
-      <Dropdown.Toggle className="butn" id="dropdown-basic">
+      <Dropdown.Toggle aria-label="Share" className="butn" id="dropdown-basic">
         <i className="fa-regular fa-share-nodes"></i>
       </Dropdown.Toggle>
       <Dropdown.Menu>
@@ -89,7 +89,7 @@ function ShareBox() {
         </ul>
 
         <div className="link mt-4">
-          <button onClick={handleCopy}>
+          <button aria-label="Copy" onClick={handleCopy}>
             <i className="fa-sharp fa-regular fa-copy"></i>
           </button>
           <span onClick={handleCopy} id="url">

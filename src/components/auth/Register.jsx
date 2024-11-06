@@ -231,7 +231,11 @@ function Register({ setFormType, formData, setFormData, setShow }) {
         </div>
         <span className="noAccount mt-2">
           {t("auth.byContinueYouAccept")}{" "}
-          <Link to="/terms-and-conditions" onClick={() => setShow(false)}>
+          <Link
+            aria-label="Terms and Conditions"
+            to="/terms-and-conditions"
+            onClick={() => setShow(false)}
+          >
             {t("tearmsAndConditions")}
           </Link>
         </span>

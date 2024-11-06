@@ -37,6 +37,7 @@ function RateCard({ rate, className }) {
     <div className="CommentWrapper">
       <div className={`CommentCard ${className}`}>
         <Link
+          aria-label="Profile"
           to={`${
             +rate?.user_id === +authedUser?.id
               ? "/profile"
@@ -59,7 +60,9 @@ function RateCard({ rate, className }) {
             <span>{rate?.date}</span>
 
             {rate?.user_id === authedUser?.id && (
-              <button onClick={() => setShowModal(true)}>{t("delete")}</button>
+              <button aria-label="Delete" onClick={() => setShowModal(true)}>
+                {t("delete")}
+              </button>
             )}
           </div>
         </div>

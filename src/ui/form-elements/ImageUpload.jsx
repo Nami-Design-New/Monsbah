@@ -58,7 +58,11 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
           />
         </div>
         <Dropdown onClick={(e) => e.stopPropagation()}>
-          <Dropdown.Toggle id="dropdown-basic" className="upload-btn">
+          <Dropdown.Toggle
+            aria-label="Avatar Actions"
+            id="dropdown-basic"
+            className="upload-btn"
+          >
             <i className="fa-regular fa-ellipsis-vertical"></i>
           </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -105,7 +109,11 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
           }}
         />
         <Dropdown onClick={(e) => e.stopPropagation()}>
-          <Dropdown.Toggle id="dropdown-basic" className="upload-btn">
+          <Dropdown.Toggle
+            aria-label="Cover Actions"
+            id="dropdown-basic"
+            className="upload-btn"
+          >
             <i className="fa-regular fa-ellipsis-vertical"></i>
           </Dropdown.Toggle>
           <Dropdown.Menu>

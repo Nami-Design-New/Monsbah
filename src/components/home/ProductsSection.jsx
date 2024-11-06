@@ -125,6 +125,7 @@ export default function ProductsSection() {
           {/* ask button */}
           {selectedCountry ? (
             <Link
+              aria-label="Country asks"
               to={`/asks?country-id=${selectedCountry?.id}`}
               className={`askCustomCountry ${
                 selectedCountry?.id === Number(searchParams.get("country")) &&
@@ -147,7 +148,10 @@ export default function ProductsSection() {
               </div>
             </Link>
           ) : (
-            <button className={`askCustomCountry skeleton`}>
+            <button
+              aria-label="Ask a question"
+              className={`askCustomCountry skeleton`}
+            >
               <h6></h6>
               <div className="shapes">
                 <span></span>
@@ -173,6 +177,7 @@ export default function ProductsSection() {
               <>
                 <SwiperSlide className="p-1">
                   <button
+                    aria-label="Category"
                     className={`category ${
                       selectedCategory === null ? "active" : ""
                     }`}
@@ -226,6 +231,7 @@ export default function ProductsSection() {
             <Swiper slidesPerView="auto" className="categories_slider">
               <SwiperSlide className="p-1">
                 <button
+                  aria-label="Subcategory"
                   className={`category sub ${
                     selectedSubCategory === null ? "active" : ""
                   }`}
@@ -258,6 +264,7 @@ export default function ProductsSection() {
           <div className="filter">
             <div className="selects">
               <Select
+                aria-label="Country"
                 className="basic-single"
                 classNamePrefix="select"
                 isLoading={countriesLoading}
@@ -284,6 +291,7 @@ export default function ProductsSection() {
               />
               {selectedCategory === "1" && (
                 <Select
+                  aria-label="Product Type"
                   className="basic-single"
                   classNamePrefix="select"
                   isSearchable={false}
@@ -302,7 +310,7 @@ export default function ProductsSection() {
 
             <div className="grid_view">
               <Dropdown>
-                <Dropdown.Toggle>
+                <Dropdown.Toggle aria-label="Filter">
                   <i className="fa-regular fa-arrow-up-wide-short"></i>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -328,7 +336,7 @@ export default function ProductsSection() {
               </Dropdown>
 
               <Dropdown>
-                <Dropdown.Toggle>
+                <Dropdown.Toggle aria-label="Filter Country">
                   <i className="fa-sharp fa-light fa-filter"></i>
                 </Dropdown.Toggle>
 

@@ -8,6 +8,7 @@ export default function SubmitButton({
 }) {
   return (
     <button
+      aria-label="Submit"
       onClick={event ? event : undefined}
       style={{ ...style, opacity: loading || fileLoading ? 0.7 : 1 }}
       disabled={loading || fileLoading}

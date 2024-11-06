@@ -43,6 +43,7 @@ export default function PhoneInput({
 
       <div className="dropdown">
         <button
+          aria-label="Country code"
           type="button"
           disabled={disableSelect}
           onClick={(e) => {

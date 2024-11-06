@@ -90,10 +90,16 @@ export default function SideBar({ setShowChats }) {
         {checkedState && (
           <div className="d-flex align-items-center gap-3">
             {!areArraysEqual() && (
-              <button onClick={selectAll}>{t("chat.selectAll")}</button>
+              <button aria-label="Select All" onClick={selectAll}>
+                {t("chat.selectAll")}
+              </button>
             )}
             {selectedChats?.length > 0 && (
-              <button className="delete_all" onClick={() => setShowModal(true)}>
+              <button
+                aria-label="Delete All"
+                className="delete_all"
+                onClick={() => setShowModal(true)}
+              >
                 <i className="fa-regular fa-trash" aria-hidden="true"></i>
                 {t("chat.delete")}
               </button>

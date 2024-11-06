@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="col-lg-4 col-12 p-2">
             <div className="about_company">
               <div className="logo">
-                <Link to="/">
+                <Link aria-label="Home" to="/">
                   <img
                     loading="lazy"
                     alt="logo"
@@ -31,7 +31,7 @@ export default function Footer() {
               <h3>{t("importantLinks")}</h3>
               <ul>
                 <li>
-                  <Link to="/about-us">
+                  <Link aria-label="About" to="/about-us">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
@@ -39,7 +39,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/asks">
+                  <Link aria-label="Asks" to="/asks">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
@@ -47,7 +47,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact-us">
+                  <Link aria-label="Contact Us" to="/contact-us">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
@@ -55,7 +55,10 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms-and-conditions">
+                  <Link
+                    aria-label="Terms and Conditions"
+                    to="/terms-and-conditions"
+                  >
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>
                     </span>
@@ -71,7 +74,10 @@ export default function Footer() {
               <ul>
                 {categories?.map((category) => (
                   <li key={category.id}>
-                    <Link to={`/?category=${category.id}`}>
+                    <Link
+                      aria-label="Category"
+                      to={`/?category=${category.id}`}
+                    >
                       <span>
                         <i className="fa-sharp fa-light fa-arrow-right"></i>
                       </span>
@@ -87,12 +93,14 @@ export default function Footer() {
               <h3>{t("downloadApp")}</h3>
               <div className="btns">
                 <Link
+                  aria-label="Apple App"
                   to="https://apps.apple.com/kw/app/%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9/id1589937521?l=ar"
                   target="_blank"
                 >
                   <img src="/images/icons/appStore.svg" alt="" />
                 </Link>
                 <Link
+                  aria-label="Android App"
                   target="_blank"
                   to="https://play.google.com/store/apps/details?id=com.app.monasba&pcampaignid=web_share"
                 >
@@ -106,17 +114,24 @@ export default function Footer() {
               <p>
                 {t("copyRights")} &copy;
                 {new Date().getFullYear()}. {t("allRights")}{" "}
-                <Link to="/">{t("appName")}</Link>
+                <Link aria-label="Home" to="/">
+                  {t("appName")}
+                </Link>
               </p>
               <div className="social_media">
                 <ul>
                   <li>
-                    <Link to="" target="_blank">
+                    <Link
+                      aria-label="You Tube"
+                      to="https://youtube.com/@monsbah?si=GoCRIgXYQgJqiGRl"
+                      target="_blank"
+                    >
                       <i className="fa-brands fa-youtube"></i>
                     </Link>
                   </li>
                   <li>
                     <Link
+                      aria-label="Instagram"
                       to="https://www.instagram.com/monsbah/profilecard/?igsh=eGhycjkydHBlcmky"
                       target="_blank"
                     >
@@ -125,6 +140,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
+                      aria-label="Tiktok"
                       to="https://www.tiktok.com/@monsbah?_t=8qmq24madhi&_r=1"
                       target="_blank"
                     >
@@ -132,7 +148,11 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="https://x.com/monsbah?s=11" target="_blank">
+                    <Link
+                      aria-label="Twitter"
+                      to="https://x.com/monsbah?s=11"
+                      target="_blank"
+                    >
                       <i className="fa-brands fa-twitter"></i>
                     </Link>
                   </li>

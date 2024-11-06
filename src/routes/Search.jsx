@@ -40,7 +40,7 @@ export default function Search() {
                 }
               }}
             />
-            <button>
+            <button aria-label="Search">
               <i className="fa-regular fa-magnifying-glass"></i>
             </button>
           </form>

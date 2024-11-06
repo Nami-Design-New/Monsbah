@@ -159,6 +159,7 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
         messageContent?.type === "location") && (
         <div className="priview_img">
           <button
+            aria-label="Preview image"
             disabled={loading}
             onClick={() => {
               setMessageContent({
@@ -220,7 +221,7 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
         {mediaBlobUrl ? (
           <div className="audio_player">
             <audio src={mediaBlobUrl} controls />
-            <button onClick={clearBlobUrl}>
+            <button aria-label="Clear audio" onClick={clearBlobUrl}>
               <i className="fa-regular fa-xmark"></i>
             </button>
           </div>
@@ -255,7 +256,11 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
           </span>
         )}
         <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="link">
+          <Dropdown.Toggle
+            id="dropdown-basic"
+            className="link"
+            aria-label="Upload media"
+          >
             <img src="/images/icons/paperclip.svg" alt="" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -314,7 +319,11 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      <button type="submit" style={{ opacity: loading ? 0.7 : 1, zIndex: 2 }}>
+      <button
+        aria-label="Submit"
+        type="submit"
+        style={{ opacity: loading ? 0.7 : 1, zIndex: 2 }}
+      >
         {loading ? (
           <i className="fa-solid fa-spinner fa-pulse fa-spin"></i>
         ) : (

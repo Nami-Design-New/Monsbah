@@ -63,6 +63,7 @@ export default function AskCard({
   return (
     <div className={`AskCard ${className}`}>
       <Link
+        aria-label="Profile"
         to={`${
           +ask?.user_id === +user?.id ? "/profile" : `/profile/${ask?.user_id}`
         }`}
@@ -120,6 +121,7 @@ export default function AskCard({
       <div className="content">
         <p>{ask?.description}</p>
         <button
+          aria-label="View Comments"
           onClick={() => {
             setShowModal(true);
             setTargetAsk(ask);
