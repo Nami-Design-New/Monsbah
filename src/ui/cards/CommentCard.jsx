@@ -47,6 +47,7 @@ function CommentCard({ comment, setTargetComment, className, type }) {
     <div className="CommentWrapper">
       <div className="CommentCard">
         <Link
+          aria-label="Profile"
           to={`${
             +comment?.user_id === +authedUser?.id
               ? "/profile"
@@ -68,12 +69,16 @@ function CommentCard({ comment, setTargetComment, className, type }) {
           <div className="actions">
             <span>{comment?.date}</span>
 
-            <button onClick={() => setTargetComment(comment)}>
+            <button
+              aria-label="Reply"
+              onClick={() => setTargetComment(comment)}
+            >
               {t("reply")}
             </button>
 
             {comment?.user_id === authedUser?.id && (
               <button
+                aria-label="Delete"
                 onClick={() => {
                   deleteComment();
                 }}

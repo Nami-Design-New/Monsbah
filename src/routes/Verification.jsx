@@ -228,6 +228,7 @@ function Verification() {
                             alt="upload"
                           />
                           <button
+                            aria-label="Remove"
                             onClick={(e) => {
                               e.preventDefault();
                               setFormData({

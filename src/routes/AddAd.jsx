@@ -335,7 +335,10 @@ export default function AddAd() {
                     />
                   )}
 
-                  <button onClick={(e) => handleRemoveImage(e, index, image)}>
+                  <button
+                    aria-label="Remove"
+                    onClick={(e) => handleRemoveImage(e, index, image)}
+                  >
                     <i className="fa-light fa-xmark"></i>
                   </button>
                   {index === 0 && (

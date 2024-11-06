@@ -87,6 +87,7 @@ function ChatContainer({ messages }) {
               )}
               {message?.type === "location" && (
                 <Link
+                 aria-label="Map message"
                   className="map_message"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -118,6 +119,7 @@ function ChatContainer({ messages }) {
                     </div>
                   </div>
                   <Link
+                    aria-label="Call"
                     className="call"
                     to={`tel:${message?.message?.split("%%")[1]}`}
                   >

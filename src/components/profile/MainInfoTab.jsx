@@ -8,7 +8,7 @@ import { setClientData, logout } from "../../redux/slices/clientData";
 import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
-function MainInfoTab({ user, lang }) {
+function MainInfoTab({ user, lang, handleChangeTab }) {
   const { t } = useTranslation();
   const { id } = useParams();
   const [coverError, setCoverError] = useState("");
@@ -143,6 +143,7 @@ function MainInfoTab({ user, lang }) {
 
           {user?.["following-count"] || +user?.["following-count"] === 0 ? (
             <Link
+              aria-label="Followings"
               to="/followers/followings"
               className="col-lg-3 col-md-6 col-6 p-2"
             >
@@ -157,7 +158,11 @@ function MainInfoTab({ user, lang }) {
           ) : null}
 
           {user?.["followers-count"] || +user?.["followers-count"] === 0 ? (
-            <Link to="/followers" className="col-lg-3 col-md-6 col-6 p-2">
+            <Link
+              aria-label="Followers"
+              to="/followers"
+              className="col-lg-3 col-md-6 col-6 p-2"
+            >
               <div className="Box_rate">
                 <h2>{user?.["followers-count"]}</h2>
 
@@ -170,7 +175,11 @@ function MainInfoTab({ user, lang }) {
 
           {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
             <div className="col-lg-3 col-md-6 col-6 p-2">
-              <div className="Box_rate">
+              <div
+                className="Box_rate"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleChangeTab("ads")}
+              >
                 <h2>{user?.["ads-count"]}</h2>
 
                 <div className="icon_rate">

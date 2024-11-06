@@ -10,7 +10,7 @@ function AskLoader({ className }) {
       </div>
       <div className="content">
         <p className="skeleton-text skeleton-description"></p>
-        <button className="skeleton-text"></button>
+        <button aria-label="text" className="skeleton-text"></button>
       </div>
     </div>
   );

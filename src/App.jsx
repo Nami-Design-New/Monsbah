@@ -99,7 +99,11 @@ function App() {
 
       {showDownloadApp && (
         <div className="download_app">
-          <button className="d-flex closeDownload" onClick={handleAppDownload}>
+          <button
+            aria-label="Close download"
+            className="d-flex closeDownload"
+            onClick={handleAppDownload}
+          >
             <i className="fa-solid fa-times"></i>
           </button>
           <div className="inner">

@@ -95,10 +95,15 @@ function ProductVertical({
   return (
     <>
       <Link
+        aria-label="Product"
         to={`/product/${product.id}`}
         className={`product_vertical ${className}`}
       >
-        <Link to={`/product/${product.id}`} className="img">
+        <Link
+          aria-label="Product"
+          to={`/product/${product.id}`}
+          className="img"
+        >
           {isValidVideoExtension(product?.image) ? (
             <video
               src={product.image}
@@ -124,6 +129,7 @@ function ProductVertical({
 
         <div className="content">
           <Link
+            aria-label="Product"
             to={`/product/${product.id}`}
             className="title"
             onClick={(e) => e.stopPropagation()}
@@ -143,6 +149,7 @@ function ProductVertical({
               ) : isShowAction ? (
                 <div className="d-flex align-items-center gap-2">
                   <Link
+                    aria-label="Profile"
                     to={`/profile?tab=addAd&product_id=${product?.id}`}
                     className={`favourite_btn dark`}
                     onClick={(e) => e.stopPropagation()}
@@ -172,6 +179,7 @@ function ProductVertical({
 
             <li style={{ flex: 1 }}>
               <Link
+                aria-label="Profile"
                 to={`${
                   +product?.user?.id === +client?.id
                     ? "/profile"

@@ -47,6 +47,7 @@ function UserCard({ product, setProduct }) {
     <div className="mulen_user">
       <div className="mulen_user_info">
         <Link
+          aria-label="Profile"
           to={`${
             +product?.user?.id === +client?.id
               ? "/profile"
@@ -61,7 +62,11 @@ function UserCard({ product, setProduct }) {
             alt="user"
           />
           {product?.user?.id !== client?.id && (
-            <Link className="follow_btn" onClick={handleFollow}>
+            <Link
+              aria-label="Toggle following"
+              className="follow_btn"
+              onClick={handleFollow}
+            >
               <i
                 className={`fa-light fa-${
                   product?.user?.is_follow ? "check" : "plus"
@@ -72,6 +77,7 @@ function UserCard({ product, setProduct }) {
         </Link>
         <div className="content">
           <Link
+            aria-label="Profile"
             to={`${
               +product?.user?.id === +client?.id
                 ? "/profile"
@@ -100,13 +106,18 @@ function UserCard({ product, setProduct }) {
       {product?.user?.id !== client?.id && (
         <div className="contact">
           {product?.active_call === "active" && (
-            <Link target="_blank" to={`tel:${product?.phone}`} className="call">
+            <Link
+              aria-label="Call"
+              target="_blank"
+              to={`tel:${product?.phone}`}
+              className="call"
+            >
               <span> {t("calling")} </span>
             </Link>
           )}
 
           {product?.active_chat === "active" && (
-            <Link to={`/chats?user_id=${product?.user?.id}`}>
+            <Link aria-label="Chat" to={`/chats?user_id=${product?.user?.id}`}>
               <img
                 src="/images/icons/chat.svg"
                 alt="chat"
@@ -120,6 +131,7 @@ function UserCard({ product, setProduct }) {
 
           {product?.active_whatsapp === "active" && (
             <Link
+              aria-label="Whatsapp"
               target="_blank"
               to={`https://wa.me/${product?.user?.phone}?text=${encodedWhatsappMessage}`}
             >

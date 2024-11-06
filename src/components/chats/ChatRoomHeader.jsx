@@ -17,8 +17,6 @@ function ChatRoomHeader({ chat, isBlocked, setIsBlocked }) {
   const [blockLoading, setBlockLoading] = useState(false);
   const queryClient = useQueryClient();
 
-  console.log(`chat?.is_block for ${chat?.user_name}`, chat?.is_block);
-
   const handleDelete = async () => {
     setLoading(true);
     try {
@@ -62,7 +60,11 @@ function ChatRoomHeader({ chat, isBlocked, setIsBlocked }) {
   return (
     <div className="chat_header">
       <div className="user">
-        <Link to={`/profile/${chat?.user_id}`} className="img">
+        <Link
+          aria-label="Profile"
+          to={`/profile/${chat?.user_id}`}
+          className="img"
+        >
           <img
             src={chat?.user_image}
             alt="avatar"
@@ -70,7 +72,11 @@ function ChatRoomHeader({ chat, isBlocked, setIsBlocked }) {
             onError={(e) => (e.target.src = "/images/icons/user_default.png")}
           />
         </Link>
-        <Link to={`/profile/${chat?.user_id}`} className="content">
+        <Link
+          aria-label="Profile"
+          to={`/profile/${chat?.user_id}`}
+          className="content"
+        >
           <h6>{chat?.user_name}</h6>
           <span className={chat?.is_active ? "online" : "offline"}>
             {chat?.is_active ? t("chat.online") : t("chat.offline")}
@@ -79,20 +85,29 @@ function ChatRoomHeader({ chat, isBlocked, setIsBlocked }) {
       </div>
 
       <Dropdown>
-        <Dropdown.Toggle>
+        <Dropdown.Toggle aria-label="Chat Actions">
           <i className="fa-solid fa-ellipsis-vertical"></i>
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
           <div className="actions_menu">
-            <button onClick={() => setShowModal(true)}>
+            <button
+              onClick={() => setShowModal(true)}
+              aria-label={t("chat.delete")}
+            >
               <i className="fa-regular fa-trash"></i> {t("chat.deleteChat")}
             </button>
-            <button onClick={() => setShowReportModal(true)}>
+            <button
+              onClick={() => setShowReportModal(true)}
+              aria-label={t("chat.report")}
+            >
               <i className="fa-regular fa-flag"></i> {t("chat.report")}
             </button>
             {isBlocked ? null : (
-              <button onClick={() => setShowBlockModal(true)}>
+              <button
+                onClick={() => setShowBlockModal(true)}
+                aria-label={t("chat.block")}
+              >
                 <i className="fa-regular fa-ban"></i> {t("chat.block")}
               </button>
             )}

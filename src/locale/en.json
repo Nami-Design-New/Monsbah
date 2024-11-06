@@ -166,7 +166,8 @@
     "descriptionEn": "Description in English",
     "maxImages": "Maximum 6 images and videos",
     "nameEn": "Name in English",
-    "userNoAds": "No ads for this user",
+    "userNoAds": "There is no ads for this user",
+    "noAdsForMe": "There is no ads, yet.",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this ad?"
   },
   "chat": {
@@ -219,6 +220,18 @@
     "snapchat": "Snapchat",
     "whatsapp": "WhatsApp"
   },
+  "tabs": {
+    "main": "Personal Information",
+    "ads": "Ads",
+    "rates": "Rates",
+    "addAd": "Add Ad",
+    "questions": "Questions",
+    "notifications": "Notifications",
+    "favorites": "Favorites",
+    "settings": "Edit Account",
+    "verification": "Verification"
+  },
+  "rates": "Rates",
   "replyTo": "Reply to comment",
   "sendVideo": "Send video",
   "sendImage": "Send image",

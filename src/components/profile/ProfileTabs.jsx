@@ -82,28 +82,31 @@ function ProfileTabs() {
 
   return (
     <>
-      {(window.innerWidth < 768 && searchParams.get("tab")) && (
-        <div className="arrow_icon" onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-right-long"></i>
+      {window.innerWidth < 768 && searchParams.get("tab") && (
+        <div className="header-back">
+          <div className="arrow_icon" onClick={() => navigate(-1)}>
+            <i className="fa-solid fa-arrow-right-long"></i>
+          </div>
+          <span>{t(`tabs.${activeTab}`)}</span>
         </div>
       )}
       <div className="tabs-section">
         {!searchParams.get("tab") && (
           <div className="profileResponsiveNav">
             <div className="nav-item" onClick={() => handleChangeTab("main")}>
-              <button>
+              <button aria-label={t("profile.mainInfo")}>
                 <i className="fa-regular fa-user" />
                 {t("profile.mainInfo")}
               </button>
             </div>
             <div className="nav-item" onClick={() => handleChangeTab("ads")}>
-              <button>
+              <button aria-label={t("profile.myAds")}>
                 <i className="fa-regular fa-bullhorn"></i>
                 {t("profile.myAds")}
               </button>
             </div>
             <div className="nav-item" onClick={() => handleChangeTab("addAd")}>
-              <button>
+              <button aria-label={t("profile.addAd")}>
                 <i className="fa-regular fa-plus"></i>
                 {t("profile.addAd")}
               </button>
@@ -112,7 +115,7 @@ function ProfileTabs() {
               className="nav-item"
               onClick={() => handleChangeTab("questions")}
             >
-              <button>
+              <button aria-label={t("profile.myAsks")}>
                 <i className="fa-regular fa-message-question"></i>
                 {t("profile.myAsks")}
               </button>
@@ -121,7 +124,7 @@ function ProfileTabs() {
               className="nav-item"
               onClick={() => handleChangeTab("notifications")}
             >
-              <button>
+              <button aria-label={t("notifications")}>
                 <i className="fa-regular fa-bell"></i>
                 {t("notifications")}
               </button>
@@ -130,7 +133,7 @@ function ProfileTabs() {
               className="nav-item"
               onClick={() => handleChangeTab("favorites")}
             >
-              <button>
+              <button aria-label={t("profile.favorites")}>
                 <i className="fa-regular fa-heart" />
                 {t("profile.favorites")}
               </button>
@@ -139,7 +142,7 @@ function ProfileTabs() {
               className="nav-item"
               onClick={() => handleChangeTab("settings")}
             >
-              <button>
+              <button aria-label={t("profile.settings")}>
                 <i className="fa-regular fa-gear" />
                 {t("profile.settings")}
               </button>
@@ -148,13 +151,13 @@ function ProfileTabs() {
               className="nav-item"
               onClick={() => handleChangeTab("verification")}
             >
-              <button>
+              <button aria-label={t("profile.verification")}>
                 <i className="fa-regular fa-badge-check" />
                 {t("profile.verification")}
               </button>
             </div>
-            <div className="nav-item" onClick={() => handleChangeTab("logout")}>
-              <button>
+            <div className="nav-item" onClick={() => setShowLogoutModal(true)}>
+              <button aria-label={t("profile.logout")}>
                 <i className="fa-regular fa-arrow-right-from-bracket"></i>
                 {t("profile.logout")}
               </button>
@@ -179,7 +182,11 @@ function ProfileTabs() {
               }
               className="tab_item"
             >
-              <MainInfoTab user={user} lang={lang} />
+              <MainInfoTab
+                user={user}
+                lang={lang}
+                handleChangeTab={handleChangeTab}
+              />
             </Tab>
 
             {/* ads */}

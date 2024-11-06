@@ -61,8 +61,15 @@ function HeroSection() {
               <>
                 {sliderData.map((slider) => (
                   <SwiperSlide key={slider?.id}>
-                    <Link>
-                      <img src={slider?.image} alt="" />
+                    <Link
+                      aria-label="Slide"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <img
+                        src={slider?.image}
+                        alt="Monsbah slide"
+                        loading="lazy"
+                      />
                     </Link>
                   </SwiperSlide>
                 ))}

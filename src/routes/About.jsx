@@ -63,13 +63,14 @@ export default function About() {
 
           <div className="countries-section">
             {/* Saudia */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/saudia-1.webp"}
-                    alt={"Saudi"}
-                  />
+                  <img src={"/images/countries/saudia-1.webp"} alt={"Saudi"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.saudi")}</h5>
@@ -78,13 +79,14 @@ export default function About() {
               </div>
             </Link>
             {/* Kuwait */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/kewit.webp"}
-                    alt={"Kuwait"}
-                  />
+                  <img src={"/images/countries/kewit.webp"} alt={"Kuwait"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.kuwait")}</h5>
@@ -93,13 +95,14 @@ export default function About() {
               </div>
             </Link>
             {/* UAE */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/uae-1.webp"}
-                    alt={"UAE"}
-                  />
+                  <img src={"/images/countries/uae-1.webp"} alt={"UAE"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.uae")}</h5>
@@ -108,13 +111,14 @@ export default function About() {
               </div>
             </Link>
             {/* Bahrain */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/behrin.webp"}
-                    alt={"Bahrain"}
-                  />
+                  <img src={"/images/countries/behrin.webp"} alt={"Bahrain"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.bahrain")}</h5>
@@ -123,13 +127,14 @@ export default function About() {
               </div>
             </Link>
             {/* Oman */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/oman.webp"}
-                    alt={"Oman"}
-                  />
+                  <img src={"/images/countries/oman.webp"} alt={"Oman"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.oman")}</h5>
@@ -138,13 +143,14 @@ export default function About() {
               </div>
             </Link>
             {/* Qatar */}
-            <Link to={"/"} className="col-lg-4 col-md-6 col-12 p-3">
+            <Link
+              aria-label="Country products"
+              to={"/"}
+              className="col-lg-4 col-md-6 col-12 p-3"
+            >
               <div className="country-box">
                 <div className="image-wrapper">
-                  <img
-                    src={"/images/countries/qatar-1.webp"}
-                    alt={"Qatar"}
-                  />
+                  <img src={"/images/countries/qatar-1.webp"} alt={"Qatar"} />
                 </div>
                 <div className="info-wrapper">
                   <h5>{t("about.qatar")}</h5>

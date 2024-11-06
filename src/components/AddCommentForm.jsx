@@ -15,7 +15,7 @@ function AddCommentForm({
     <div>
       {targetComment && (
         <span className="replyTo">
-          <button onClick={() => setTargetComment(null)}>
+          <button aria-label="Reply to" onClick={() => setTargetComment(null)}>
             <i className="fas fa-times"></i>
           </button>
           {t("replyTo")} <b>{targetComment?.user_name}</b>:{" "}

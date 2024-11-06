@@ -76,6 +76,7 @@ function ResetPassword({ setFormType, setShow }) {
 
       <div className="d-flex align-items-center gap-2">
         <button
+          aria-label="Back"
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();

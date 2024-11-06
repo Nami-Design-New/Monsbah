@@ -75,7 +75,11 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
       size="xl"
     >
       <Modal.Body>
-        <button className="closeModal" onClick={handleClose}>
+        <button
+          aria-label="Close modal"
+          className="closeModal"
+          onClick={handleClose}
+        >
           <i className="fa-regular fa-x"></i>
         </button>
         <section className="auth_section">
