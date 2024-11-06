@@ -2368,6 +2368,12 @@ body .Profile_section .content .Payments_content .Box h2 {
 }
 body .profile-page {
   padding: 40px 0;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  body .profile-page {
+    padding: 20px 0 !important;
+  }
 }
 body .profile-page .vertical-tabs {
   margin: 24px 0;
@@ -2402,6 +2408,23 @@ body .profile-page .vertical-tabs li button:hover, body .profile-page .vertical-
 }
 body .profile-page .vertical-tabs li button:hover::after, body .profile-page .vertical-tabs li button.active::after {
   width: 100%;
+}
+body .profile-page .arrow_icon {
+  position: relative !important;
+  top: 0;
+  right: 8px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.231372549);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body .profile-page .tabs-section {
   display: flex;
@@ -2466,6 +2489,51 @@ body .profile-page .tab-content .tab-pane.active {
   display: flex !important;
   flex-wrap: wrap;
 }
+body .profile-page .profileResponsiveNav {
+  background-color: transparent !important;
+  padding: 12px;
+  border-radius: 16px;
+}
+@media screen and (min-width: 769px) {
+  body .profile-page .profileResponsiveNav {
+    display: none !important;
+  }
+}
+body .profile-page .profileResponsiveNav .nav-item {
+  display: flex;
+  color: #231f20;
+  width: 100%;
+}
+body .profile-page .profileResponsiveNav .nav-item:not(:last-of-type) {
+  margin-bottom: 4px !important;
+}
+body .profile-page .profileResponsiveNav .nav-item button {
+  flex: 1;
+  color: #0d0d0d;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #eee !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  white-space: nowrap;
+}
+body .profile-page .profileResponsiveNav .nav-item button i {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+body .profile-page .profileResponsiveNav .nav-item button:hover {
+  background-color: rgba(26, 188, 156, 0.1019607843);
+  color: #1abc9c;
+}
+body .profile-page .profileResponsiveNav .nav-item button.active {
+  background-color: #1abc9c;
+  color: #fff;
+}
 body .profile-page .profileNavCol {
   border-radius: 16px;
   margin-bottom: 50px;
@@ -2481,6 +2549,7 @@ body .profile-page .profileNavCol {
 }
 @media screen and (max-width: 768px) {
   body .profile-page .profileNavCol {
+    display: none;
     position: relative;
     top: 0;
   }
@@ -3873,6 +3942,12 @@ body main .Profile_section .content .Payments_content .Box h2 {
 }
 body main .profile-page {
   padding: 40px 0;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  body main .profile-page {
+    padding: 20px 0 !important;
+  }
 }
 body main .profile-page .vertical-tabs {
   margin: 24px 0;
@@ -3907,6 +3982,23 @@ body main .profile-page .vertical-tabs li button:hover, body main .profile-page 
 }
 body main .profile-page .vertical-tabs li button:hover::after, body main .profile-page .vertical-tabs li button.active::after {
   width: 100%;
+}
+body main .profile-page .arrow_icon {
+  position: relative !important;
+  top: 0;
+  right: 8px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.231372549);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body main .profile-page .tabs-section {
   display: flex;
@@ -3971,6 +4063,51 @@ body main .profile-page .tab-content .tab-pane.active {
   display: flex !important;
   flex-wrap: wrap;
 }
+body main .profile-page .profileResponsiveNav {
+  background-color: transparent !important;
+  padding: 12px;
+  border-radius: 16px;
+}
+@media screen and (min-width: 769px) {
+  body main .profile-page .profileResponsiveNav {
+    display: none !important;
+  }
+}
+body main .profile-page .profileResponsiveNav .nav-item {
+  display: flex;
+  color: #231f20;
+  width: 100%;
+}
+body main .profile-page .profileResponsiveNav .nav-item:not(:last-of-type) {
+  margin-bottom: 4px !important;
+}
+body main .profile-page .profileResponsiveNav .nav-item button {
+  flex: 1;
+  color: #0d0d0d;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #eee !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  white-space: nowrap;
+}
+body main .profile-page .profileResponsiveNav .nav-item button i {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+body main .profile-page .profileResponsiveNav .nav-item button:hover {
+  background-color: rgba(26, 188, 156, 0.1019607843);
+  color: #1abc9c;
+}
+body main .profile-page .profileResponsiveNav .nav-item button.active {
+  background-color: #1abc9c;
+  color: #fff;
+}
 body main .profile-page .profileNavCol {
   border-radius: 16px;
   margin-bottom: 50px;
@@ -3986,6 +4123,7 @@ body main .profile-page .profileNavCol {
 }
 @media screen and (max-width: 768px) {
   body main .profile-page .profileNavCol {
+    display: none;
     position: relative;
     top: 0;
   }

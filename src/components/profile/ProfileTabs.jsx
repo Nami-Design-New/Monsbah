@@ -67,6 +67,11 @@ function ProfileTabs() {
     }
   };
 
+  const handleChangeTab = (tab) => {
+    searchParams.set("tab", tab);
+    setSearchParams(searchParams);
+  };
+
   useEffect(() => {
     if (activeTab === "logout") {
       setShowLogoutModal(true);
@@ -76,168 +81,250 @@ function ProfileTabs() {
   }, [activeTab, searchParams, setSearchParams]);
 
   return (
-    <div className="tabs-section">
-      <Tabs
-        className="profileNavCol col-md-4 col-xl-3 p-2"
-        activeKey={activeTab}
-        onSelect={(tab) => handleTabChange(tab)}
-        id="uncontrolled-tab-example"
-      >
-        {/* main info */}
-        <Tab
-          eventKey="main"
-          title={
-            <>
-              <i className="fa-regular fa-user" />
-              {t("profile.mainInfo")}
-            </>
-          }
-          className="tab_item"
-        >
-          <MainInfoTab user={user} lang={lang} />
-        </Tab>
+    <>
+      {window.innerWidth < 768 && searchParams.get("tab") && (
+        <div className="arrow_icon" onClick={() => navigate(-1)}>
+          <i className="fa-solid fa-arrow-right-long"></i>
+        </div>
+      )}
+      <div className="tabs-section">
+        {!searchParams.get("tab") && (
+          <div className="profileResponsiveNav">
+            <div className="nav-item" onClick={() => handleChangeTab("main")}>
+              <button>
+                <i className="fa-regular fa-user" />
+                {t("profile.mainInfo")}
+              </button>
+            </div>
+            <div className="nav-item" onClick={() => handleChangeTab("ads")}>
+              <button>
+                <i className="fa-regular fa-bullhorn"></i>
+                {t("profile.myAds")}
+              </button>
+            </div>
+            <div className="nav-item" onClick={() => handleChangeTab("addAd")}>
+              <button>
+                <i className="fa-regular fa-plus"></i>
+                {t("profile.addAd")}
+              </button>
+            </div>
+            <div
+              className="nav-item"
+              onClick={() => handleChangeTab("questions")}
+            >
+              <button>
+                <i className="fa-regular fa-message-question"></i>
+                {t("profile.myAsks")}
+              </button>
+            </div>
+            <div
+              className="nav-item"
+              onClick={() => handleChangeTab("notifications")}
+            >
+              <button>
+                <i className="fa-regular fa-bell"></i>
+                {t("notifications")}
+              </button>
+            </div>
+            <div
+              className="nav-item"
+              onClick={() => handleChangeTab("favorites")}
+            >
+              <button>
+                <i className="fa-regular fa-heart" />
+                {t("profile.favorites")}
+              </button>
+            </div>
+            <div
+              className="nav-item"
+              onClick={() => handleChangeTab("settings")}
+            >
+              <button>
+                <i className="fa-regular fa-gear" />
+                {t("profile.settings")}
+              </button>
+            </div>
+            <div
+              className="nav-item"
+              onClick={() => handleChangeTab("verification")}
+            >
+              <button>
+                <i className="fa-regular fa-badge-check" />
+                {t("profile.verification")}
+              </button>
+            </div>
+            <div className="nav-item" onClick={() => handleChangeTab("logout")}>
+              <button>
+                <i className="fa-regular fa-arrow-right-from-bracket"></i>
+                {t("profile.logout")}
+              </button>
+            </div>
+          </div>
+        )}
+        {window.innerWidth > 768 || searchParams.get("tab") ? (
+          <Tabs
+            className="profileNavCol col-md-4 col-xl-3 p-2"
+            activeKey={activeTab}
+            onSelect={(tab) => handleTabChange(tab)}
+            id="uncontrolled-tab-example"
+          >
+            {/* main info */}
+            <Tab
+              eventKey="main"
+              title={
+                <>
+                  <i className="fa-regular fa-user" />
+                  {t("profile.mainInfo")}
+                </>
+              }
+              className="tab_item"
+            >
+              <MainInfoTab user={user} lang={lang} />
+            </Tab>
 
-        {/* ads */}
-        <Tab
-          eventKey="ads"
-          title={
-            <>
-              <i className="fa-regular fa-bullhorn"></i>
-              {t("profile.myAds")}
-            </>
-          }
-          className="tab_item"
-        >
-          <MyAds
-            user={user}
-            lang={lang}
-            className="my-ad"
-            isActive={activeTab === "ads"}
-          />
-        </Tab>
+            {/* ads */}
+            <Tab
+              eventKey="ads"
+              title={
+                <>
+                  <i className="fa-regular fa-bullhorn"></i>
+                  {t("profile.myAds")}
+                </>
+              }
+              className="tab_item"
+            >
+              <MyAds
+                user={user}
+                lang={lang}
+                className="my-ad"
+                isActive={activeTab === "ads"}
+              />
+            </Tab>
 
-        {/* addAd */}
-        <Tab
-          eventKey="addAd"
-          title={
-            <>
-              <i className="fa-regular fa-plus"></i>
-              {t("profile.addAd")}
-            </>
-          }
-          className="tab_item"
-        >
-          <AddAd user={user} lang={lang} isActive={activeTab === "addAd"} />
-        </Tab>
+            {/* addAd */}
+            <Tab
+              eventKey="addAd"
+              title={
+                <>
+                  <i className="fa-regular fa-plus"></i>
+                  {t("profile.addAd")}
+                </>
+              }
+              className="tab_item"
+            >
+              <AddAd user={user} lang={lang} isActive={activeTab === "addAd"} />
+            </Tab>
 
-        {/* questions */}
-        <Tab
-          eventKey="questions"
-          title={
-            <>
-              <i className="fa-regular fa-message-question"></i>
-              {t("profile.myAsks")}
-            </>
-          }
-          className="tab_item"
-        >
-          <QuestionsTab
-            user={user}
-            lang={lang}
-            isActive={activeTab === "questions"}
-          />
-        </Tab>
+            {/* questions */}
+            <Tab
+              eventKey="questions"
+              title={
+                <>
+                  <i className="fa-regular fa-message-question"></i>
+                  {t("profile.myAsks")}
+                </>
+              }
+              className="tab_item"
+            >
+              <QuestionsTab
+                user={user}
+                lang={lang}
+                isActive={activeTab === "questions"}
+              />
+            </Tab>
 
-        <Tab
-          eventKey="notifications"
-          title={
-            <>
-              <i className="fa-regular fa-bell"></i>
-              {t("notifications")}
-            </>
-          }
-          className="tab_item"
-        >
-          <Notifcations bgColor="bg-white" />
-        </Tab>
+            <Tab
+              eventKey="notifications"
+              title={
+                <>
+                  <i className="fa-regular fa-bell"></i>
+                  {t("notifications")}
+                </>
+              }
+              className="tab_item"
+            >
+              <Notifcations bgColor="bg-white" />
+            </Tab>
 
-        {/* favorites */}
-        <Tab
-          eventKey="favorites"
-          title={
-            <>
-              <i className="fa-regular fa-heart" />
-              {t("profile.favorites")}
-            </>
-          }
-          className="tab_item"
-        >
-          <FavoritesTab
-            user={user}
-            lang={lang}
-            isActive={activeTab === "favorites"}
-          />
-        </Tab>
+            {/* favorites */}
+            <Tab
+              eventKey="favorites"
+              title={
+                <>
+                  <i className="fa-regular fa-heart" />
+                  {t("profile.favorites")}
+                </>
+              }
+              className="tab_item"
+            >
+              <FavoritesTab
+                user={user}
+                lang={lang}
+                isActive={activeTab === "favorites"}
+              />
+            </Tab>
 
-        {/* settings */}
-        <Tab
-          eventKey="settings"
-          title={
-            <>
-              <i className="fa-regular fa-gear" />
-              {t("profile.settings")}
-            </>
-          }
-          className="tab_item"
-        >
-          <SettingsTab
-            user={user}
-            lang={lang}
-            isActive={activeTab === "settings"}
-          />
-        </Tab>
+            {/* settings */}
+            <Tab
+              eventKey="settings"
+              title={
+                <>
+                  <i className="fa-regular fa-gear" />
+                  {t("profile.settings")}
+                </>
+              }
+              className="tab_item"
+            >
+              <SettingsTab
+                user={user}
+                lang={lang}
+                isActive={activeTab === "settings"}
+              />
+            </Tab>
 
-        {/* verification */}
-        <Tab
-          eventKey="verification"
-          title={
-            <>
-              <i className="fa-regular fa-badge-check" />
-              {t("profile.verification")}
-            </>
-          }
-          className="tab_item"
-        >
-          <VerificationTab
-            user={user}
-            lang={lang}
-            isActive={activeTab === "verification"}
-          />
-        </Tab>
+            {/* verification */}
+            <Tab
+              eventKey="verification"
+              title={
+                <>
+                  <i className="fa-regular fa-badge-check" />
+                  {t("profile.verification")}
+                </>
+              }
+              className="tab_item"
+            >
+              <VerificationTab
+                user={user}
+                lang={lang}
+                isActive={activeTab === "verification"}
+              />
+            </Tab>
 
-        {/* logout */}
-        <Tab
-          eventKey="logout"
-          title={
-            <>
-              <i className="fa-regular fa-arrow-right-from-bracket"></i>
-              {t("profile.logout")}
-            </>
-          }
-          className="tab_item"
-        ></Tab>
-      </Tabs>
+            {/* logout */}
+            <Tab
+              eventKey="logout"
+              title={
+                <>
+                  <i className="fa-regular fa-arrow-right-from-bracket"></i>
+                  {t("profile.logout")}
+                </>
+              }
+              className="tab_item"
+            ></Tab>
+          </Tabs>
+        ) : null}
 
-      <ConfirmationModal
-        showModal={showLogoutModal}
-        setShowModal={setShowLogoutModal}
-        type="logout"
-        eventFun={performLogout}
-        loading={logoutLoading}
-        buttonText={t("profile.logout")}
-        text={t("auth.areYouSureYouWantToLogout")}
-      />
-    </div>
+        <ConfirmationModal
+          showModal={showLogoutModal}
+          setShowModal={setShowLogoutModal}
+          type="logout"
+          eventFun={performLogout}
+          loading={logoutLoading}
+          buttonText={t("profile.logout")}
+          text={t("auth.areYouSureYouWantToLogout")}
+        />
+      </div>
+    </>
   );
 }
 
