@@ -31,8 +31,6 @@ function Categories() {
     }
   };
 
-  console.log(selectedCategory);
-
   return (
     <section className="categories-page explore_ads">
       <div className="container">

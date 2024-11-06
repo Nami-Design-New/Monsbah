@@ -6132,6 +6132,30 @@ body main .chats-section .chat_room .chat_wrapper .message span.sen {
 body main .chats-section .chat_room .chat_wrapper .message span.rec {
   text-align: end;
 }
+body main .chats-section .chat_room .chat_blocked {
+  width: 100%;
+  position: relative;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #fff;
+}
+body main .chats-section .chat_room .chat_blocked p {
+  font-size: 14px;
+  color: #666b88;
+  margin: 0;
+  white-space: nowrap;
+}
+body main .chats-section .chat_room .chat_blocked span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1abc9c;
+  cursor: pointer;
+  white-space: nowrap;
+}
 body main .chats-section .chat_room .chat_form {
   width: 100%;
   position: relative;
@@ -7140,4 +7164,26 @@ body.en .form .phone_field input {
   align-items: center;
   justify-content: center;
   margin: 4px;
+}
+
+.report-reason-card {
+  width: 100%;
+}
+.report-reason-card input {
+  display: none;
+}
+.report-reason-card input:checked + label {
+  border-color: #1abc9c !important;
+}
+.report-reason-card label {
+  background-color: #f8f8f8;
+  border: 2px solid #f2f2f2;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 }/*# sourceMappingURL=main.css.map */

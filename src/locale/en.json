@@ -3,7 +3,7 @@
   "appName": "Monasba",
   "header": {
     "home": "Home",
-    "categories": "Categories", 
+    "categories": "Categories",
     "listing": "Real Estate List",
     "chats": "Chats",
     "contact": "Contact Us",
@@ -185,7 +185,10 @@
     "deleteChat": "Delete Chat",
     "report": "Report Abuse",
     "block": "Block",
-    "call": "Call"
+    "call": "Call",
+    "areYouSureYouWantblockThisChat": "Are you sure you want to block",
+    "userBlocked": "You can't message them in this chat, and you won't receive their messages",
+    "unblock": "Unblock"
   },
   "about": {
     "title": "About",

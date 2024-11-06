@@ -25,6 +25,8 @@ function ProductVertical({
 
   const client = useSelector((state) => state.clientData.client);
 
+  const lang = useSelector((state) => state.language.lang);
+
   const queryClient = useQueryClient();
 
   const { isAuthed } = useAuth();
@@ -164,7 +166,8 @@ function ProductVertical({
           <ul>
             <li className="w-100">
               <i className="fa-light fa-location-dot"> </i>{" "}
-              {product.country?.name}, {product.city?.name}
+              {product.country?.name}
+              {lang === "ar" ? "،" : ","} {product.city?.name}
             </li>
 
             <li style={{ flex: 1 }}>

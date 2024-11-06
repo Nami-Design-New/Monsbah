@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
@@ -10,6 +10,7 @@ import AuthModal from "../../components/auth/AuthModal";
 import useGetNotifications from "../../hooks/notifications/useGetNotifications";
 import NotificationCard from "../cards/NotificationCard";
 import useAuth from "../../hooks/useAuth";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -19,14 +20,30 @@ export default function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
-  const { data: notifications, total } = useGetNotifications();
+  const { data: notifications, isLoading: notififcationsLoading } =
+    useGetNotifications();
+
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
 
+  const [unreadNotificationsLength, setUnreadNotificationsLength] = useState(0);
+
   const { isAuthed } = useAuth();
 
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (notifications && !notififcationsLoading) {
+      const unreadNotifications = notifications?.filter(
+        (notification) => +notification.is_read === 0
+      );
+      setUnreadNotificationsLength(unreadNotifications.length);
+    }
+  }, [notififcationsLoading]);
+
   const handleLang = (newLang) => {
+    queryClient.invalidateQueries();
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
     const bodyElement = document.querySelector("body");
@@ -89,16 +106,18 @@ export default function Header() {
             {isAuthed ? (
               <Dropdown
                 show={showNotificationDropdown}
-                onToggle={() =>
-                  setShowNotificationDropdown(!showNotificationDropdown)
-                }
+                onToggle={() => {
+                  setShowNotificationDropdown(!showNotificationDropdown);
+                  setUnreadNotificationsLength(0);
+                }}
               >
                 <Dropdown.Toggle id="dropdown-basic" className="link">
                   <img src="/images/icons/bell.svg" alt="" />
-                  {total ? (
+                  {unreadNotificationsLength ? (
                     <span className="count">
-                      {" "}
-                      {total < 100 ? total : "99+"}{" "}
+                      {unreadNotificationsLength < 100
+                        ? unreadNotificationsLength
+                        : "99+"}{" "}
                     </span>
                   ) : null}
                 </Dropdown.Toggle>

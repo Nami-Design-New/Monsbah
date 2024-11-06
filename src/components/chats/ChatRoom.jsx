@@ -23,6 +23,17 @@ export default function ChatRoom() {
   const { client } = useSelector((state) => state.clientData);
   const [messages, setMessages] = useState([]);
 
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  useEffect(() => {
+    if (+chat?.chat?.is_block === 1) {
+      setIsBlocked(true);
+    }
+    return () => {
+      setIsBlocked(false);
+    };
+  }, [chat]);
+
   useEffect(() => {
     setMessages(chat?.message?.reverse());
   }, [chat?.message]);
@@ -62,9 +73,18 @@ export default function ChatRoom() {
         <>
           {chat ? (
             <div className="chat_room">
-              <ChatRoomHeader chat={chat?.chat} />
+              <ChatRoomHeader
+                isBlocked={isBlocked}
+                setIsBlocked={setIsBlocked}
+                chat={chat?.chat}
+              />
               <ChatContainer messages={messages} />
-              <ChatForm chat={chat?.chat} setMessages={setMessages} />
+              <ChatForm
+                isBlocked={isBlocked}
+                setIsBlocked={setIsBlocked}
+                chat={chat?.chat}
+                setMessages={setMessages}
+              />
             </div>
           ) : (
             <div className="lottie_player_holder">
