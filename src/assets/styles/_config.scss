@@ -386,3 +386,9 @@ button {
   width: fit-content !important;
   padding: 0 48px;
 }
+
+.noComments {
+  margin: auto 0;
+  @include centerFlex();
+  color: $inputHint;
+}

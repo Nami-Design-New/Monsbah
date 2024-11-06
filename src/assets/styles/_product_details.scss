@@ -369,12 +369,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      .noComments {
-        width: 100%;
-        height: 100%;
-        @include centerFlex();
-        color: $inputHint;
-      }
     }
     .form {
       display: flex !important;

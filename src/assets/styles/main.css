@@ -354,6 +354,14 @@ button {
   padding: 0 48px;
 }
 
+.noComments {
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -5381,14 +5389,6 @@ body main .product_details .comments_container .comments_wrapper {
   flex-direction: column;
   gap: 12px;
 }
-body main .product_details .comments_container .comments_wrapper .noComments {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaaaaa;
-}
 body main .product_details .comments_container .form {
   display: flex !important;
   align-items: end !important;
@@ -6577,6 +6577,7 @@ body .viewAskModal .modal-body p {
 }
 body .viewAskModal .modal-body .wrapper {
   max-height: 50vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 24px;

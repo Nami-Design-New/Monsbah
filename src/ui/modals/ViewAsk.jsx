@@ -96,14 +96,20 @@ function ViewAsk({ showModal, setShowModal, ask }) {
               <PageLoader minHeight={"50vh"} />
             ) : (
               <>
-                {comments?.map((comment) => (
-                  <CommentCard
-                    comment={comment}
-                    key={comment?.id}
-                    setTargetComment={setTargetComment}
-                    type="question"
-                  />
-                ))}
+                {comments?.length === 0 ? (
+                  <h6 className="noComments">{t("noComments")}</h6>
+                ) : (
+                  <>
+                    {comments?.map((comment) => (
+                      <CommentCard
+                        comment={comment}
+                        key={comment?.id}
+                        setTargetComment={setTargetComment}
+                        type="question"
+                      />
+                    ))}
+                  </>
+                )}
               </>
             )}
           </div>
