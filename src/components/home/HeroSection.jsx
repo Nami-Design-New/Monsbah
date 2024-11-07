@@ -65,11 +65,7 @@ function HeroSection() {
                       aria-label="Slide"
                       onClick={(e) => e.preventDefault()}
                     >
-                      <img
-                        src={slider?.image}
-                        alt="Monsbah slide"
-                        loading="lazy"
-                      />
+                      <img src={slider?.image} alt="Monsbah slide" />
                     </Link>
                   </SwiperSlide>
                 ))}

@@ -96,7 +96,11 @@
     "passwordSuccessfullyUpdated": "تم تغيير كلمة المرور بنجاح",
     "aboutMe": "عني",
     "myAds": "إعلاناتى",
-    "myAsks": "أسئلتي"
+    "myAsks": "أسئلتي",
+    "noQuestionsForMe": "لم تقم بإضافة أسئلة حتى الآن",
+    "noFavoritesYet": "ليس لديك اعلانات مفضلة حتى الان",
+    "noNotificationsYet": "ليس لديك اشعارات حتى الان",
+    "noRatesYet": "لا توجد تقييمات حتى الان"
   },
   "contact": {
     "title": "هل تحتاج إلى مزيد من المعلومات؟ تواصل معنا",

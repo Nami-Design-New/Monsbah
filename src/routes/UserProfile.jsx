@@ -363,11 +363,12 @@ function UserProfile() {
                                 </EmptyData>
                               )}
                             </div>
+                            {!isLoading && products?.length === 0 && (
+                              <EmptyData minHeight="200px">
+                                <p>{t("ads.noAdsForMe")}</p>
+                              </EmptyData>
+                            )}
                           </>
-
-                          {/* <EmptyData minHeight="200px">
-                          <p>{t("ads.userNoAds")}</p>
-                        </EmptyData> */}
                         </section>
                       </Tab>
 

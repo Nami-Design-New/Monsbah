@@ -1157,6 +1157,7 @@ body .form .input-field {
   flex-direction: column;
   position: relative;
   gap: 8px;
+  flex-wrap: wrap !important;
 }
 body .form .input-field label {
   color: #0d0d0d;
@@ -1978,7 +1979,7 @@ body .otp-container .otp-input::-webkit-inner-spin-button {
 }
 body label {
   white-space: nowrap !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: nowrap;
 }
 body label div {
   white-space: nowrap !important;

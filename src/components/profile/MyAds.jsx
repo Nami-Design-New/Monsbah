@@ -5,7 +5,7 @@ import ProductLoader from "../../ui/loaders/ProductLoader";
 import EmptyData from "../../ui/EmptyData";
 import { useTranslation } from "react-i18next";
 
-export default function MyAds({ isActive }) {
+export default function MyAds({ handleChangeTab, isActive }) {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const {
@@ -39,15 +39,19 @@ export default function MyAds({ isActive }) {
 
   return (
     <section className="products_section w-100" ref={sectionRef}>
-      {!isLoading &&
-        !isFetchingNextPage &&
-        products?.length === 0 &&
-        !hasNextPage && (
-          <EmptyData minHeight="200px">
-            <p>{t("ads.noAdsForMe")}</p>
-          </EmptyData>
-        )}
       <div className="row">
+        <div className="col-12 p-2 d-flex justify-content-end">
+          <span
+            className="customBtn d-flex align-items-center gap-2 justify-content-center m-0"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleChangeTab("addAd")}
+          >
+            <i className="fa-regular fa-circle-plus"></i>
+            <h6 className="m-0" style={{ lineHeight: 1 }}>
+              {t("header.addPost")}
+            </h6>
+          </span>
+        </div>
         {products?.map((product, index) => (
           <div className="col-lg-6 col-12 p-2" key={index}>
             <ProductVertical product={product} className="my-ad" />
@@ -66,6 +70,14 @@ export default function MyAds({ isActive }) {
           </>
         )}
       </div>
+      {!isLoading &&
+        !isFetchingNextPage &&
+        products?.length === 0 &&
+        !hasNextPage && (
+          <EmptyData minHeight="200px">
+            <p>{t("ads.noAdsForMe")}</p>
+          </EmptyData>
+        )}
     </section>
   );
 }
