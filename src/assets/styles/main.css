@@ -2505,6 +2505,7 @@ body .profile-page .tab-content .tab-pane {
   padding: 8px !important;
   background: #f9f9f9;
   border-radius: 12px;
+  height: 100% !important;
 }
 body .profile-page .tab-content .tab-pane.active {
   display: flex !important;
@@ -2557,7 +2558,6 @@ body .profile-page .profileResponsiveNav .nav-item button.active {
 }
 body .profile-page .profileNavCol {
   border-radius: 16px;
-  margin-bottom: 50px;
   position: sticky;
   top: 84px;
   height: -moz-fit-content;
@@ -4092,6 +4092,7 @@ body main .profile-page .tab-content .tab-pane {
   padding: 8px !important;
   background: #f9f9f9;
   border-radius: 12px;
+  height: 100% !important;
 }
 body main .profile-page .tab-content .tab-pane.active {
   display: flex !important;
@@ -4144,7 +4145,6 @@ body main .profile-page .profileResponsiveNav .nav-item button.active {
 }
 body main .profile-page .profileNavCol {
   border-radius: 16px;
-  margin-bottom: 50px;
   position: sticky;
   top: 84px;
   height: -moz-fit-content;

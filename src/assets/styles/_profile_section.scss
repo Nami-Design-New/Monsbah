@@ -183,6 +183,7 @@
       padding: 8px !important;
       background: #f9f9f9;
       border-radius: 12px;
+      height: 100% !important;
       &.active {
         display: flex !important;
         flex-wrap: wrap;
@@ -234,7 +235,6 @@
   }
   .profileNavCol {
     border-radius: 16px;
-    margin-bottom: 50px;
     position: sticky;
     top: 84px;
     height: fit-content;
