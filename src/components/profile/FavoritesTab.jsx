@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 import useGetFavorites from "../../hooks/favorite/useGetFavorites";
+import EmptyData from "../../ui/EmptyData";
+import { useTranslation } from "react-i18next";
 
 function FavoritesTab(isActive) {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
 
   const [products, setProducts] = useState([]);
@@ -74,6 +77,15 @@ function FavoritesTab(isActive) {
           </>
         )}
       </div>
+
+      {!isLoading &&
+        !isFetchingNextPage &&
+        products?.length === 0 &&
+        !hasNextPage && (
+          <EmptyData minHeight="200px">
+            <p>{t("profile.noFavoritesYet")}</p>
+          </EmptyData>
+        )}
     </section>
   );
 }

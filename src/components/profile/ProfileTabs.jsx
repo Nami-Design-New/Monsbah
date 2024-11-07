@@ -205,6 +205,7 @@ function ProfileTabs() {
                 lang={lang}
                 className="my-ad"
                 isActive={activeTab === "ads"}
+                handleChangeTab={handleChangeTab}
               />
             </Tab>
 

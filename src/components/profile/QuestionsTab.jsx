@@ -6,6 +6,7 @@ import AskLoader from "../../ui/loaders/AskLoader";
 import ViewAsk from "../../ui/modals/ViewAsk";
 import useGetAllAsks from "../../hooks/search/useGetAllAsks";
 import CreateCountryAsk from "../../ui/modals/CreateCountryAsk";
+import EmptyData from "../../ui/EmptyData";
 
 function QuestionsTab(isActive) {
   const [showModal, setShowModal] = useState(false);
@@ -62,6 +63,12 @@ function QuestionsTab(isActive) {
           </>
         )}
       </div>
+
+      {!isLoading && asks?.data?.data?.data?.length === 0 && (
+        <EmptyData minHeight="200px">
+          <p>{t("profile.noQuestionsForMe")}</p>
+        </EmptyData>
+      )}
 
       <ViewAsk
         showModal={showModal}

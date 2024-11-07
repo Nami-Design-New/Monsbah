@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import useGetAllRates from "../../hooks/rates/useGetAllRates";
 import { useState } from "react";
 import CreateRateModal from "../../ui/modals/CreateRateModal";
+import EmptyData from "../../ui/EmptyData";
 
 function RatesTab({ user, isActive }) {
   const { t } = useTranslation();
@@ -46,6 +47,11 @@ function RatesTab({ user, isActive }) {
           </>
         )}
       </div>
+      {!isLoading && rates?.data?.data?.data?.length === 0 && (
+        <EmptyData minHeight="200px">
+          <p>{t("profile.noRatesYet")}</p>
+        </EmptyData>
+      )}
       <CreateRateModal
         id={user?.id}
         showModal={showModal}

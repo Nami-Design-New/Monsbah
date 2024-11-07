@@ -98,6 +98,7 @@
     flex-direction: column;
     position: relative;
     gap: 8px;
+    flex-wrap: wrap !important;
     label {
       color: $dark;
       display: flex;
@@ -898,7 +899,7 @@
 }
 label {
   white-space: nowrap !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: nowrap;
   div {
     white-space: nowrap !important;
   }

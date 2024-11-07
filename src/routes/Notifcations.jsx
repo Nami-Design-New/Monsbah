@@ -2,8 +2,11 @@ import { useEffect, useRef } from "react";
 import useGetNotifications from "../hooks/notifications/useGetNotifications";
 import NotificationCard from "../ui/cards/NotificationCard";
 import NotificationLoader from "../ui/loaders/NotificationLoader";
+import EmptyData from "../ui/EmptyData";
+import { useTranslation } from "react-i18next";
 
 const Notifcations = ({ bgColor }) => {
+  const { t } = useTranslation();
   const {
     isLoading,
     data: notifications,
@@ -57,6 +60,15 @@ const Notifcations = ({ bgColor }) => {
             )}
           </div>
         </div>
+
+        {!isLoading &&
+          !isFetchingNextPage &&
+          notifications?.length === 0 &&
+          !hasNextPage && (
+            <EmptyData minHeight="200px">
+              <p>{t("profile.noNotificationsYet")}</p>
+            </EmptyData>
+          )}
       </div>
     </>
   );
