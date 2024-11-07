@@ -62,6 +62,7 @@ function HeroSection() {
                 {sliderData.map((slider) => (
                   <SwiperSlide key={slider?.id}>
                     <Link
+                      rel="preload"
                       aria-label="Slide"
                       onClick={(e) => e.preventDefault()}
                     >

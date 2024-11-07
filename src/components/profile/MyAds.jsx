@@ -16,6 +16,8 @@ export default function MyAds({ handleChangeTab, isActive }) {
     isFetchingNextPage,
   } = useGetUserProducts(isActive);
 
+  console.log(products?.length);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;

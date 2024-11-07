@@ -67,7 +67,7 @@ function MainInfoTab({ user, lang, handleChangeTab }) {
                 <img
                   src={
                     coverError || !user?.cover
-                      ? "/images/banner.png"
+                      ? "/images/banner.webp"
                       : user?.cover
                   }
                   alt="user cover image"
