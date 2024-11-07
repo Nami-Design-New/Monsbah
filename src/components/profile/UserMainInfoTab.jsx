@@ -43,7 +43,7 @@ function UserMainInfoTab({ user, lang }) {
           {coverError ? null : (
             <img
               src={
-                coverError || !user?.cover ? "/images/banner.png" : user?.cover
+                coverError || !user?.cover ? "/images/banner.webp" : user?.cover
               }
               alt="user cover image"
               onError={() => setCoverError(true)}

@@ -101,11 +101,11 @@ const ImageUpload = ({ formData, setFormData, image, cover }) => {
       >
         <img
           ref={coverView}
-          src={coverError ? "/images/banner.png" : "/images/banner.png"}
+          src={coverError ? "/images/banner.webp" : "/images/banner.webp"}
           alt="cover"
           onError={() => {
             setCoverError(true);
-            coverView.current.src = "/images/banner.png";
+            coverView.current.src = "/images/banner.webp";
           }}
         />
         <Dropdown onClick={(e) => e.stopPropagation()}>

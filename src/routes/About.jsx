@@ -10,7 +10,7 @@ export default function About() {
         <>
           <div className="heading-section">
             <div className="image-wrapper">
-              <img src="/images/auth-benner.png" alt="Monsbah" />
+              <img src="/images/auth-banner.webp" alt="Monsbah" />
             </div>
             <div className="info-wrapper">
               <h3>

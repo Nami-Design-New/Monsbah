@@ -13,7 +13,7 @@ export default function SelectField({
 
   return (
     <div className="input-field">
-      <label htmlFor={props?.id}>
+      <label htmlFor={props?.id} style={{ flexWrap: "nowrap" }}>
         {label} {hint && <span className="hint">{hint}</span>}
       </label>
       <Form.Select {...props} disabled={loading}>
