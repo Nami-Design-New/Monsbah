@@ -1,8 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import useGetCountries from "../hooks/settings/useGetCountries.js";
 
 export default function About() {
   const { t } = useTranslation();
+  const { data: countries } = useGetCountries();
+
+  console.log(countries);
 
   return (
     <section className="aboutus_section">
@@ -10,7 +14,7 @@ export default function About() {
         <>
           <div className="heading-section">
             <div className="image-wrapper">
-              <img src="/images/auth-banner.webp" alt="Monsbah" />
+              <img src="images/auth-benner.webp" alt="Monsbah" />
             </div>
             <div className="info-wrapper">
               <h3>
@@ -62,102 +66,28 @@ export default function About() {
           </div>
 
           <div className="countries-section">
-            {/* Saudia */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/saudia-1.webp"} alt={"Saudi"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.saudi")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
-            {/* Kuwait */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/kewit.webp"} alt={"Kuwait"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.kuwait")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
-            {/* UAE */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/uae-1.webp"} alt={"UAE"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.uae")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
-            {/* Bahrain */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/behrin.webp"} alt={"Bahrain"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.bahrain")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
-            {/* Oman */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/oman.webp"} alt={"Oman"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.oman")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
-            {/* Qatar */}
-            <Link
-              aria-label="Country products"
-              to={"/"}
-              className="col-lg-4 col-md-6 col-12 p-3"
-            >
-              <div className="country-box">
-                <div className="image-wrapper">
-                  <img src={"/images/countries/qatar-1.webp"} alt={"Qatar"} />
-                </div>
-                <div className="info-wrapper">
-                  <h5>{t("about.qatar")}</h5>
-                  <span>5 {t("about.ads")}</span>
-                </div>
-              </div>
-            </Link>
+            {countries &&
+              countries?.length > 0 &&
+              countries.map((country) => (
+                <Link
+                  aria-label="Country products"
+                  to={`/?country=${country?.id}`}
+                  className="col-lg-4 col-md-6 col-12 p-3"
+                  key={country?.id}
+                >
+                  <div className="country-box">
+                    <div className="image-wrapper">
+                      <img src={country?.cover} alt={"Saudi"} />
+                    </div>
+                    <div className="info-wrapper">
+                      <h5>{country?.name}</h5>
+                      <span>
+                        {country?.products_count} {t("about.ads")}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </>
       </div>

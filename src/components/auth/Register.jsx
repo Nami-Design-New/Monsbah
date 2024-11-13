@@ -37,7 +37,7 @@ function Register({ setFormType, formData, setFormData, setShow }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const payload = { ...formData };
+    const payload = { ...formData, new_version: 1 };
     payload.phone = formData.country_code + formData.phone;
 
     try {
