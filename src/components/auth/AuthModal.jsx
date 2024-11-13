@@ -88,7 +88,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               loading="lazy"
               className="bg-img"
               alt="auth-banner"
-              src="/images/auth-banner.webp"
+              src="/images/auth-benner.webp"
             />
           </div>
           <div className="form_wrapper">

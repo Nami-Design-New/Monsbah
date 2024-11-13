@@ -5,6 +5,7 @@ import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import axiosInstance from "../../utils/axiosInstance";
+import { useQueryClient } from "@tanstack/react-query";
 
 function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
@@ -29,6 +30,9 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
     message: "",
     type: "",
   });
+  const [unblockLoading, setUnblockLoading] = useState(false);
+
+  const queryClient = useQueryClient();
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -147,10 +151,31 @@ function ChatForm({ chat, setMessages, isBlocked, setIsBlocked }) {
     });
   };
 
+  const handleUnBlock = async () => {
+    setUnblockLoading(true);
+    try {
+      const res = await axiosInstance.post("/client/chat/Unblack", {
+        chat_id: +chat?.id,
+      });
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        queryClient.invalidateQueries({ queryKey: ["chats"] });
+        setIsBlocked(false);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    } finally {
+      setUnblockLoading(false);
+    }
+  };
+
   return isBlocked ? (
     <div className="chat_blocked">
       <p>{t("chat.userBlocked")}</p>
-      <span onClick={() => setIsBlocked(false)}>{t("chat.unblock")}</span>
+      <span onClick={handleUnBlock} disabled={unblockLoading}>
+        {t("chat.unblock")}
+      </span>
     </div>
   ) : (
     <form className="chat_form" onSubmit={handleSendMessage} ref={formRef}>

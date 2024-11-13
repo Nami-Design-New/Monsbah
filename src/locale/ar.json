@@ -212,7 +212,7 @@
     "qatar": "قطر",
     "oman": "عمان",
     "asks": "اسئلة",
-    "ads": "اعلانات"
+    "ads": "إعلان"
   },
   "services": {
     "share": "مشاركة",
@@ -375,5 +375,7 @@
   "areYouSureYouWantDeleteThisComment": "هل أنت متاكد من حذف هذا التعليق؟",
   "areYouSureYouWantDeleteThisRate": "هل أنت متاكد من حذف هذا التقييم؟",
   "addYouQuestionHere": "اضف سؤالك هنا",
-  "popular": "مميز"
+  "popular": "مميز",
+  "otpResendSuccess": "تم إعادة ارسال كود التحقق بنجاح",
+  "otpResendFail": "عذرًا، حدث خطأ ما أثناء إعادة إدارةارسال كود التحقق"
 }

@@ -29,21 +29,17 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType }) {
     e.preventDefault();
     setResendDisabled(true);
     setLoading(true);
+    const payload = { ...formData, new_version: 1 };
+    payload.phone = formData.country_code + formData.phone;
 
     try {
-      const res = await axiosInstance.post(
-        "/client/auth/sign-up/resend-verify-phone",
-        {
-          phone: formData.phone,
-          country_code: formData.country_code,
-        }
-      );
+      const res = await axiosInstance.post("/client/auth/sign-up", payload);
 
       if (res.status === 200) {
-        toast.success(res.data?.message);
+        toast.success(t("otpResendSuccess"));
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(t("otpResendFail"));
       throw new Error(error);
     } finally {
       setLoading(false);
@@ -59,9 +55,10 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType }) {
       const res = await axiosInstance.post(
         "/client/auth/sign-up/verify-phone",
         {
+          ...formData,
           phone: formData.country_code + formData.phone,
-          country_code: formData.country_code,
-          otp: otpVerifyCode.code,
+          new_version: 1,
+          otp: +otpVerifyCode.code,
         }
       );
       if (res.status === 200) {
