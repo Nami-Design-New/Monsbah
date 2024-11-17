@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { Tab, Tabs } from "react-bootstrap";
@@ -16,24 +16,49 @@ import EmptyData from "../ui/EmptyData";
 
 function UserProfile() {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const [coverError, setCoverError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeTab = searchParams.get("tab") || "main";
   const { isLoading: userLoading, data: user } = useGetUserProfile();
+  const activeTab = searchParams.get("tab") || "main";
 
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const sectionRef = useRef(null);
   const lang = useSelector((state) => state.language.lang);
 
-  const navigate = useNavigate();
-
-  const sectionRef = useRef(null);
-  const { data: products, isLoading } = useGetAllProducts({
+  const {
+    data: products,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetAllProducts({
     id: user?.id,
     enabled: activeTab === "ads",
   });
 
-  const [loading, setLoading] = useState(false);
-  const queryClient = useQueryClient();
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionBottom = section.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+
+      if (
+        sectionBottom <= viewportHeight + 200 &&
+        hasNextPage &&
+        !isFetchingNextPage
+      ) {
+        fetchNextPage();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   function handleTabChange(tab) {
     setSearchParams({ tab });
@@ -332,7 +357,20 @@ function UserProfile() {
                         >
                           <>
                             <div className="row">
-                              {isLoading ? (
+                              {products?.map((product) => (
+                                <div
+                                  className="col-lg-6 col-12 p-2"
+                                  key={product?.id}
+                                >
+                                  <ProductVertical
+                                    isShowAction={false}
+                                    product={product}
+                                    className="my-ad"
+                                  />
+                                </div>
+                              ))}
+
+                              {(isLoading || isFetchingNextPage) && (
                                 <>
                                   {Array(3)
                                     .fill(0)
@@ -341,33 +379,18 @@ function UserProfile() {
                                         className="col-lg-6 col-12 p-2"
                                         key={`loader-${index}`}
                                       >
-                                        <ProductLoader />
+                                        <ProductLoader className={"my-ad"} />
                                       </div>
                                     ))}
                                 </>
-                              ) : products?.data?.data?.data?.length > 0 ? (
-                                products?.data?.data?.data?.map((product) => (
-                                  <div
-                                    className="col-lg-6 col-12 p-2"
-                                    key={product?.id}
-                                  >
-                                    <ProductVertical
-                                      product={product}
-                                      className="my-ad"
-                                    />
-                                  </div>
-                                ))
-                              ) : (
+                              )}
+
+                              {!isLoading && products?.length === 0 && (
                                 <EmptyData minHeight="200px">
-                                  <p>{t("ads.userNoAds")}</p>
+                                  <p>{t("ads.noAdsForMe")}</p>
                                 </EmptyData>
                               )}
                             </div>
-                            {!isLoading && products?.length === 0 && (
-                              <EmptyData minHeight="200px">
-                                <p>{t("ads.noAdsForMe")}</p>
-                              </EmptyData>
-                            )}
                           </>
                         </section>
                       </Tab>

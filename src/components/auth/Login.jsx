@@ -6,11 +6,11 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setClientData } from "../../redux/slices/clientData";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
-import { useQueryClient } from "@tanstack/react-query";
 
 function Login({ setFormType, setShow, setRegisterFormData }) {
   const { t } = useTranslation();

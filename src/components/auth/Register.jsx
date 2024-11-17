@@ -12,6 +12,7 @@ import useGetCountries from "./../../hooks/settings/useGetCountries";
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetStates from "../../hooks/settings/useGetStates";
 import axiosInstance from "../../utils/axiosInstance";
+
 function Register({ setFormType, formData, setFormData, setShow }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ function Register({ setFormType, formData, setFormData, setShow }) {
     formData?.city_id,
     formData?.city_id ? true : false
   );
+
   const handleChangeUserName = (e) => {
     const { value } = e.target;
     const validInput = /^[a-zA-Z]*$/;
@@ -34,6 +36,7 @@ function Register({ setFormType, formData, setFormData, setShow }) {
       }));
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -66,6 +69,7 @@ function Register({ setFormType, formData, setFormData, setShow }) {
       setLoading(false);
     }
   };
+
   return (
     <>
       <div className="mb-4">

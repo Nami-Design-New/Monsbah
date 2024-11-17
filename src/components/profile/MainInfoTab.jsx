@@ -5,12 +5,15 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setClientData, logout } from "../../redux/slices/clientData";
+import { useCookies } from "react-cookie";
+import { useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
 function MainInfoTab({ user, lang, handleChangeTab }) {
   const { t } = useTranslation();
   const { id } = useParams();
+  const [, , deleteCookie] = useCookies();
   const [coverError, setCoverError] = useState("");
   const [avatarError, setAvatarError] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -18,19 +21,24 @@ function MainInfoTab({ user, lang, handleChangeTab }) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const isMyAccount = !id || Number(id) === Number(user?.id);
 
   const handleDeleteAccount = async () => {
     try {
       setDeleteLoading(true);
       const res = await axiosInstance.post("/client/auth/delete-account");
-      if (res.data.code === 200) {
+      if (res.data.status === 200) {
+        deleteCookie("token");
+        deleteCookie("id");
         delete axiosInstance.defaults.headers.common["Authorization"];
-        toast.success(t("cart.orderSuccess"));
+        toast.success(res?.data?.message);
         dispatch(setClientData({}));
         dispatch(logout());
-        navigate("/");
+        navigate("/", { replace: true });
+        queryClient.clear();
+        queryClient.invalidateQueries();
+        queryClient.removeQueries();
       } else {
         toast.error(res.message);
         console.error(res.message);

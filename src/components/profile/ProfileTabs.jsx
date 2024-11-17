@@ -13,10 +13,10 @@ import QuestionsTab from "./QuestionsTab";
 import FavoritesTab from "./FavoritesTab";
 import SettingsTab from "./SettingsTab";
 import VerificationTab from "./VerificationTab";
-import axios from "../../utils/axiosInstance";
 import AddAd from "../../routes/AddAd";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import Notifcations from "./../../routes/Notifcations";
+import axiosInstance from "../../utils/axiosInstance";
 
 function ProfileTabs() {
   const { t } = useTranslation();
@@ -44,14 +44,14 @@ function ProfileTabs() {
   const performLogout = async () => {
     setLogoutLoading(true);
     try {
-      const deleteToken = await axios.get("/client/auth/logout", {
+      const deleteToken = await axiosInstance.get("/client/auth/logout", {
         token: token,
       });
 
       if (deleteToken.data.status === 200) {
         deleteCookie("token");
         deleteCookie("id");
-        delete axios.defaults.headers.common["Authorization"];
+        delete axiosInstance.defaults.headers.common["Authorization"];
         dispatch(setClientData({}));
         navigate("/", { replace: true });
         queryClient.clear();
@@ -90,6 +90,7 @@ function ProfileTabs() {
           <span>{t(`tabs.${activeTab}`)}</span>
         </div>
       )}
+
       <div className="tabs-section">
         {!searchParams.get("tab") && (
           <div className="profileResponsiveNav">
@@ -164,6 +165,7 @@ function ProfileTabs() {
             </div>
           </div>
         )}
+
         {window.innerWidth > 768 || searchParams.get("tab") ? (
           <Tabs
             className="profileNavCol col-md-4 col-xl-3 p-2"

@@ -1,18 +1,26 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { setClientData } from "../../redux/slices/clientData";
+import { useQueryClient } from "@tanstack/react-query";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-function RegisterOTPConfirm({ formData, setFormData, setFormType }) {
+function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow }) {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [, setCookie] = useCookies(["token", "id"]);
+
   const [otpVerifyCode, setOtpVerifyCode] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [loading, setLoading] = useState(false);
-
   const [timer, setTimer] = useState(60);
   const [resendDisabled, setResendDisabled] = useState(true);
 
@@ -62,28 +70,46 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType }) {
         }
       );
       if (res.status === 200) {
-        toast.success(res.data?.message);
-
-        setFormType("login");
-
-        setFormData({
-          name: "",
-          username: "",
-          country_code: "965",
-          phone: "",
-          email: "",
-          password: "",
-          password_confirmation: "",
-          country_id: "",
-          city_id: "",
-          state_id: "",
-          fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
-          gender: "",
+        const loginRes = await axiosInstance.post("/client/auth/login", {
+          phone: formData.country_code + formData.phone,
+          password: formData.password,
+          country_code: formData.country_code,
+          fcm_token: formData.fcm_token,
         });
-
-        const updatedParams = new URLSearchParams(searchParams);
-        updatedParams.delete("redirect");
-        setSearchParams(updatedParams);
+        if (loginRes.status === 200) {
+          dispatch(setClientData(res.data?.data.client_data));
+          setCookie("token", res.data?.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict",
+          });
+          setCookie("id", res.data?.data.client_data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict",
+          });
+          toast.success(res.data?.message);
+          queryClient.invalidateQueries();
+          navigate("/");
+          const updatedParams = new URLSearchParams(searchParams);
+          updatedParams.delete("redirect");
+          setSearchParams(updatedParams);
+          setShow(false);
+          setFormData({
+            name: "",
+            username: "",
+            country_code: "965",
+            phone: "",
+            email: "",
+            password: "",
+            password_confirmation: "",
+            country_id: "",
+            city_id: "",
+            state_id: "",
+            fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
+            gender: "",
+          });
+        }
       }
     } catch (error) {
       toast.error(error.response.data.message);
