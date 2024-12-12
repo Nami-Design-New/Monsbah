@@ -39,6 +39,14 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link aria-label="Blogs" to="/blogs">
+                    <span>
+                      <i className="fa-sharp fa-light fa-arrow-right"></i>
+                    </span>
+                    {t("header.blogs")}
+                  </Link>
+                </li>
+                <li>
                   <Link aria-label="Asks" to="/asks">
                     <span>
                       <i className="fa-sharp fa-light fa-arrow-right"></i>

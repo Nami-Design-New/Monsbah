@@ -3222,6 +3222,9 @@ body .Dashpoard_section .Box_rate {
   border-radius: 12px;
   flex: 1;
 }
+body .Dashpoard_section .Box_rate.bg-gray {
+  background-color: #f8f8f8;
+}
 body .Dashpoard_section .Box_rate .icon_rate p {
   margin: 0;
   color: #777777;
@@ -4808,6 +4811,9 @@ body main .Dashpoard_section .Box_rate {
   padding: 16px;
   border-radius: 12px;
   flex: 1;
+}
+body main .Dashpoard_section .Box_rate.bg-gray {
+  background-color: #f8f8f8;
 }
 body main .Dashpoard_section .Box_rate .icon_rate p {
   margin: 0;
