@@ -21,7 +21,7 @@ function UserProfile() {
   const [avatarError, setAvatarError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { isLoading: userLoading, data: user } = useGetUserProfile();
-  const activeTab = searchParams.get("tab") || "main";
+  const activeTab = searchParams.get("tab") || "ads";
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -159,10 +159,7 @@ function UserProfile() {
                           <i className="fa-solid fa-comment-dots"></i>{" "}
                           {t("ads.chat")}
                         </Link>
-                        <div
-                          className="share_btn"
-                          onClick={handleShare}
-                        >
+                        <div className="share_btn" onClick={handleShare}>
                           <i className="fa-regular fa-share-nodes"></i>
                         </div>
                       </div>
@@ -198,11 +195,7 @@ function UserProfile() {
 
                     {user?.about_en || user?.about_ar ? (
                       <div className="col-12 p-2">
-                        <p>
-                          {lang === "en"
-                            ? user?.about_en
-                            : user?.about_ar}
-                        </p>
+                        <p>{lang === "en" ? user?.about_en : user?.about_ar}</p>
                       </div>
                     ) : null}
 
@@ -266,8 +259,7 @@ function UserProfile() {
                       </div>
                     ) : null}
 
-                    {user?.["ads-count"] ||
-                    +user?.["ads-count"] === 0 ? (
+                    {user?.["ads-count"] || +user?.["ads-count"] === 0 ? (
                       <div className="col-lg-4 col-6 p-2">
                         <div className="Box_rate bg-gray">
                           <h2>{user?.["ads-count"]}</h2>
@@ -322,7 +314,6 @@ function UserProfile() {
                       onSelect={(tab) => handleTabChange(tab)}
                       id="uncontrolled-tab-example"
                     >
-                      {/* Remove the main info tab and only keep ads and rates */}
                       <Tab
                         eventKey="ads"
                         title={
