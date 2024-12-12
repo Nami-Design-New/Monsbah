@@ -40,6 +40,7 @@ export default function Header() {
       );
       setUnreadNotificationsLength(unreadNotifications.length);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notififcationsLoading]);
 
   const handleLang = (newLang) => {
@@ -77,6 +78,9 @@ export default function Header() {
               </NavLink>
               <NavLink className="navLink" to="/about-us">
                 {t("aboutUs")}
+              </NavLink>
+              <NavLink className="navLink" to="/blogs">
+                {t("header.blogs")}
               </NavLink>
               <NavLink className="navLink" to="/chats">
                 {t("header.chats")}

@@ -12,6 +12,7 @@
     "login": "Login",
     "register": "Register",
     "asks": "Questions",
+    "blogs": "Blogs",
     "logout": "Logout"
   },
   "routes": {
@@ -70,6 +71,10 @@
     "female": "Female",
     "didnotReceiveCode": "Didn't receive code?",
     "resendCode": "Resend code"
+  },
+  "blogs": {
+    "title": "Blogs and News",
+    "subtitle": "Discover the latest articles and news in the world of fashion and style"
   },
   "profile": {
     "followers": "Followers",

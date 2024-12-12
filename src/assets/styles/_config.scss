@@ -392,3 +392,181 @@ button {
   @include centerFlex();
   color: $inputHint;
 }
+
+.empty-section {
+  flex: 1 0 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  h2 {
+    margin: 0;
+    text-align: center;
+    text-wrap: balance;
+    font-size: 36px;
+    font-weight: 800;
+    color: #cecece;
+    line-height: 1.6;
+  }
+}
+.container {
+  max-width: unset;
+  width: min(100%, 1320px);
+}
+.swiper_wrapper {
+  position: relative;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid $border;
+  border-radius: 100%;
+  transition: $transition;
+  opacity: 0.8;
+  background: #ffffff94;
+  backdrop-filter: blur(12px);
+  @media screen and (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+  }
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-image: url("../../../images/icons/arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: $transition;
+    filter: brightness(0);
+    @media screen and (max-width: 768px) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  &:hover {
+    opacity: 1;
+    background-color: $main;
+    color: $main;
+    border-color: $main;
+    &::after {
+      filter: brightness(0) invert(1);
+    }
+  }
+  &.swiper-button-disabled {
+    opacity: 0.2;
+  }
+}
+.swiper-button-next {
+  right: 12px;
+  left: unset;
+  &::after {
+    transform: scaleX(-1);
+  }
+}
+.modal .modal-xl {
+  max-width: unset;
+  width: min(100% - 24px, 1140px);
+  margin: 20px auto;
+  justify-content: center;
+}
+.row {
+  margin: 0;
+}
+.bg-white {
+  background-color: $white !important;
+}
+.closeDownload {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: $white;
+  @include centerFlex();
+  margin: 4px;
+}
+.report-reason-card {
+  width: 100%;
+  input {
+    display: none;
+    &:checked + label {
+      border-color: $main !important;
+    }
+  }
+  label {
+    background-color: $inputBg;
+    border: 2px solid $inputStroke;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    gap: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: $transition;
+  }
+}
+
+.error-section {
+  padding: 60px 16px;
+  @include centerFlex();
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  img {
+    height: 300px;
+    margin-bottom: 24px;
+    @media screen and (max-width: 576px) {
+      height: 230px;
+    }
+  }
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    color: $dark;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+    @media screen and (max-width: 576px) {
+      font-size: 20px;
+    }
+  }
+  a {
+    color: $main;
+    border: 1px solid $main;
+    position: relative;
+    transition: $transition;
+    @include centerFlex();
+    padding: 8px 24px;
+    transition: $transition;
+    border-radius: 12px;
+    gap: 8px;
+    background: none;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    position: relative;
+    transition: $transition;
+    i {
+      font-size: 16px;
+    }
+    &:hover {
+      color: $white;
+      border-color: $main;
+      background-color: $main;
+    }
+  }
+}

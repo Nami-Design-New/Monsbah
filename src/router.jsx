@@ -13,6 +13,8 @@ import UserProfile from "./routes/UserProfile";
 import Categories from "./routes/Categories";
 import CountryAsks from "./routes/CountryAsks";
 import Followers from "./routes/Followers";
+import BLogs from "./routes/BLogs";
+import BlogDetails from "./routes/BlogDetails";
 
 const router = [
   {
@@ -31,6 +33,14 @@ const router = [
     path: "chats",
     element: <Chats />,
     protected: true,
+  },
+  {
+    path: "blogs",
+    element: <BLogs />,
+  },
+  {
+    path: "blogs/:id",
+    element: <BlogDetails />,
   },
   {
     path: "asks",
