@@ -117,7 +117,7 @@ function UserProfile() {
               <>
                 <div className="Dashpoard_section w-100">
                   <div className="row m-0">
-                    <div className="cover-logo-wrapper col-12 p-2 mb-4 d-flex flex-column justify-content-end align-items-start">
+                    <div className="cover-logo-wrapper col-12 p-2 mb-2 d-flex flex-column justify-content-end align-items-start">
                       <div className="cover-wrapper">
                         {coverError ? null : (
                           <img
