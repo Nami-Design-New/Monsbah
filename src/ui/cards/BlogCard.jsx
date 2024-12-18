@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-export default function BlogCard() {
+export default function BlogCard({ blog }) {
+  const { t } = useTranslation();
+
   return (
     <div className="blog_card">
       <div className="blog_image">
-        <img src="/images/blog.jpg" alt="فساتين زفاف" />
+        <img src={blog?.image} alt="فساتين زفاف" />
       </div>
       <div className="blog_content">
         <span className="date">
-          <i className="fa-light fa-calendar-days"></i> 15 مارس 2024
+          <i className="fa-light fa-calendar-days"></i> {blog?.date}
         </span>
-        <h3>أحدث صيحات فساتين الزفاف لعام 2024</h3>
-        <Link to="/blogs/1" className="read_more">
-          اقــرأ المزيــد <i className="fa-solid fa-arrow-up-left"></i>
+        <h3>{blog?.title}</h3>
+        <Link to={`/blogs/${blog?.id}`} className="read_more">
+          {t("readMore")} <i className="fa-solid fa-arrow-up-left"></i>
         </Link>
       </div>
     </div>
