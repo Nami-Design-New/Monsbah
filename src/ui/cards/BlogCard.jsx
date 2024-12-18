@@ -5,7 +5,7 @@ export default function BlogCard({ blog }) {
   const { t } = useTranslation();
 
   return (
-    <div className="blog_card">
+    <Link to={`/blogs/${blog?.id}`} className="blog_card">
       <div className="blog_image">
         <img src={blog?.image} alt="فساتين زفاف" />
       </div>
@@ -18,6 +18,6 @@ export default function BlogCard({ blog }) {
           {t("readMore")} <i className="fa-solid fa-arrow-up-left"></i>
         </Link>
       </div>
-    </div>
+    </Link>
   );
 }
