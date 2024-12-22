@@ -196,6 +196,7 @@ function ProductVertical({
           </ul>
         </div>
       </Link>
+
       <ConfirmationModal
         showModal={showDeleteModal}
         setShowModal={setShowDeleteModal}

@@ -746,6 +746,30 @@ button {
   background: #1abc9c;
 }
 
+.stars_rate {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stars_rate .stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stars_rate .stars span {
+  color: #777777;
+  font-size: 16px;
+  margin: 0;
+}
+.stars_rate .stars img {
+  height: 16px;
+}
+@media (max-width: 576px) {
+  .stars_rate .stars img {
+    height: 14px;
+  }
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -5844,6 +5868,128 @@ body main .contact_section .contact_form .contact_btn {
 }
 body main .companies_section {
   padding: 40px 0;
+}
+body main .companies_section .campany_card {
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
+  background: #f8f8f8;
+}
+body main .companies_section .campany_card .img {
+  width: 180px;
+  aspect-ratio: 1/1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+body main .companies_section .campany_card .img img {
+  transition: 0.3s ease-in-out;
+  width: 85%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+@media screen and (max-width: 576px) {
+  body main .companies_section .campany_card .img {
+    min-height: 160px;
+  }
+}
+body main .companies_section .campany_card .img::after {
+  position: absolute;
+  top: 0;
+  left: -80%;
+  z-index: 2;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-25deg);
+  z-index: 1;
+}
+body main .companies_section .campany_card .content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  padding: 16px;
+}
+body main .companies_section .campany_card .content .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+body main .companies_section .campany_card .content .title h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: #0d0d0d;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+body main .companies_section .campany_card .content ul {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body main .companies_section .campany_card .content ul li {
+  font-size: 14px;
+  color: #666b88;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+body main .companies_section .campany_card .content ul li i {
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+body main .companies_section .campany_card:hover .img img {
+  transform: scale(1.1);
+}
+body main .companies_section .campany_card:hover .img::after {
+  animation: shine 1s;
+}
+body main .companies_section .campany_card.skeleton {
+  height: 100%;
+}
+body main .companies_section .campany_card.skeleton .skeleton-img {
+  width: 140px;
+  border-radius: 8px;
+  background: #e0e0e0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .companies_section .campany_card.skeleton .skeleton-text {
+  background: #e0e0e0;
+  height: 16px;
+  border-radius: 4px;
+  width: calc(50% - 4px);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .companies_section .campany_card.skeleton .skeleton-text:first-child {
+  width: 100%;
+}
+body main .companies_section .campany_card.skeleton .skeleton-title {
+  width: 60%;
+  height: 24px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+body main .companies_section .campany_card.skeleton .skeleton-price {
+  width: 40%;
+  height: 20px;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 body main .categories-page {
   padding: 16px 0;

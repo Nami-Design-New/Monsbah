@@ -387,5 +387,6 @@
   "otpResendFail": "Sorry, something went wrong while resending OTP",
   "readMore": "Read more",
   "noMoreNotifications": "No more notifications",
-  "recentArticles": "Recent Articles"
+  "recentArticles": "Recent Articles",
+  "review": "Review"
 }

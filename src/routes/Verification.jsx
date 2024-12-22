@@ -241,7 +241,7 @@ function Verification() {
                           </button>
                         </>
                       ) : (
-                        <img src="/images/gallery.svg" alt="upload" />
+                        <img src="/images/icons/gallery.svg" alt="upload" />
                       )}
                     </label>
                   </div>
