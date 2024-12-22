@@ -1,12 +1,12 @@
 .companies_section {
-  padding: 40px 0;
+  padding: 16px 0;
   .campany_card {
     width: 100%;
     display: flex;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: $shadow;
     background: $inputBg;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     .img {
       width: 180px;
       aspect-ratio: 1 / 1;
@@ -118,6 +118,141 @@
         width: 40%;
         height: 20px;
         animation: pulse 1.5s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+.company_profile_section {
+  .banner {
+    height: 25vh;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .company_header {
+    display: flex;
+    gap: 42px;
+    align-items: center;
+    @media screen and (max-width: 576px) {
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .img {
+      width: 130px;
+      aspect-ratio: 1/1;
+      background: $white;
+      @include centerFlex();
+      border: 2px solid $main;
+      border-radius: 50%;
+      img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+    .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      @media screen and (max-width: 576px) {
+        gap: 20px;
+      }
+      .title {
+        @include space-between();
+        h3 {
+          color: $dark;
+          margin: 0;
+          font-size: 24px;
+        }
+        .actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .share_btn,
+        .follow_btn {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          color: $main;
+          @include centerFlex();
+          border-radius: 50%;
+          border: 1px solid $main;
+        }
+      }
+      .stats {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        @media screen and (max-width: 576px) {
+          gap: 8px;
+        }
+        .f_badge {
+          gap: 4px;
+          display: flex;
+          align-items: center;
+          i {
+            width: 24px;
+            @include centerFlex();
+            aspect-ratio: 1/1;
+            color: $main;
+          }
+          span {
+            font-size: 16px;
+            color: $dark;
+          }
+        }
+      }
+      p {
+        color: $gray;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin: 0;
+        i {
+          width: 24px;
+          @include centerFlex();
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+  }
+  .about_company {
+    padding: 24px 0 0;
+    p {
+      margin: 0;
+    }
+  }
+  .categories {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+    .swiper-slide {
+      width: fit-content !important;
+      white-space: nowrap;
+    }
+    button {
+      padding: 8px 16px;
+      margin-inline-end: 8px;
+      border-radius: 8px;
+      background: $inputBg;
+      color: $text;
+      font-size: 14px;
+      cursor: pointer;
+      transition: $transition;
+      &:hover,
+      &.active {
+        background: $main;
+        color: $white;
       }
     }
   }

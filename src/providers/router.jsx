@@ -19,6 +19,7 @@ import Verification from "../routes/Verification";
 import RootLayout from "./../ui/Layout/RootLayout";
 import ProductDetails from "../routes/ProductDetails";
 import ProtectionProvider from "./ProtectionProvider";
+import CompanyProfile from "../routes/CompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -92,16 +93,20 @@ export const router = createBrowserRouter([
 
       {
         path: "profile",
-        element: (
-          <ProtectionProvider>
-            <Profile />
-          </ProtectionProvider>
-        ),
-      },
-
-      {
-        path: "profile/:id",
-        element: <UserProfile />,
+        children: [
+          {
+            index: true,
+            element: (
+              <ProtectionProvider>
+                <Profile />
+              </ProtectionProvider>
+            ),
+          },
+          {
+            path: ":id",
+            element: <UserProfile />,
+          },
+        ],
       },
 
       {
@@ -129,7 +134,16 @@ export const router = createBrowserRouter([
 
       {
         path: "companies",
-        element: <Companies />,
+        children: [
+          {
+            index: true,
+            element: <Companies />,
+          },
+          {
+            path: ":id",
+            element: <CompanyProfile />,
+          },
+        ],
       },
     ],
   },

@@ -5867,15 +5867,15 @@ body main .contact_section .contact_form .contact_btn {
   border-radius: 50px;
 }
 body main .companies_section {
-  padding: 40px 0;
+  padding: 16px 0;
 }
 body main .companies_section .campany_card {
   width: 100%;
   display: flex;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
   background: #f8f8f8;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 body main .companies_section .campany_card .img {
   width: 180px;
@@ -5990,6 +5990,158 @@ body main .companies_section .campany_card.skeleton .skeleton-price {
   width: 40%;
   height: 20px;
   animation: pulse 1.5s ease-in-out infinite;
+}
+body main .company_profile_section .banner {
+  height: 25vh;
+}
+body main .company_profile_section .banner img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+body main .company_profile_section .company_header {
+  display: flex;
+  gap: 42px;
+  align-items: center;
+}
+@media screen and (max-width: 576px) {
+  body main .company_profile_section .company_header {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+}
+body main .company_profile_section .company_header .img {
+  width: 130px;
+  aspect-ratio: 1/1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1abc9c;
+  border-radius: 50%;
+}
+body main .company_profile_section .company_header .img img {
+  width: 80%;
+  height: 80%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+body main .company_profile_section .company_header .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media screen and (max-width: 576px) {
+  body main .company_profile_section .company_header .content {
+    gap: 20px;
+  }
+}
+body main .company_profile_section .company_header .content .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .company_profile_section .company_header .content .title h3 {
+  color: #0d0d0d;
+  margin: 0;
+  font-size: 24px;
+}
+body main .company_profile_section .company_header .content .title .actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body main .company_profile_section .company_header .content .title .share_btn,
+body main .company_profile_section .company_header .content .title .follow_btn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #1abc9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #1abc9c;
+}
+body main .company_profile_section .company_header .content .stats {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+@media screen and (max-width: 576px) {
+  body main .company_profile_section .company_header .content .stats {
+    gap: 8px;
+  }
+}
+body main .company_profile_section .company_header .content .stats .f_badge {
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+body main .company_profile_section .company_header .content .stats .f_badge i {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  color: #1abc9c;
+}
+body main .company_profile_section .company_header .content .stats .f_badge span {
+  font-size: 16px;
+  color: #0d0d0d;
+}
+body main .company_profile_section .company_header .content p {
+  color: #777777;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+body main .company_profile_section .company_header .content p i {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+body main .company_profile_section .about_company {
+  padding: 24px 0 0;
+}
+body main .company_profile_section .about_company p {
+  margin: 0;
+}
+body main .company_profile_section .categories {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+body main .company_profile_section .categories .swiper-slide {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  white-space: nowrap;
+}
+body main .company_profile_section .categories button {
+  padding: 8px 16px;
+  margin-inline-end: 8px;
+  border-radius: 8px;
+  background: #f8f8f8;
+  color: #666b88;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+body main .company_profile_section .categories button:hover, body main .company_profile_section .categories button.active {
+  background: #1abc9c;
+  color: #fff;
 }
 body main .categories-page {
   padding: 16px 0;
