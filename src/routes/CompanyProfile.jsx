@@ -5,6 +5,7 @@ import useGetProducts from "../hooks/products/useGetProducts";
 import ProductVertical from "../ui/cards/ProductVertical";
 import ProductLoader from "../ui/loaders/ProductLoader";
 import { Swiper, SwiperSlide } from "swiper/react";
+import StarsRate from './../ui/StarsRate';
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
@@ -97,6 +98,7 @@ export default function CompanyProfile() {
                     {t("posts")}
                   </div>
                 </div>
+                <StarsRate rate={4} reviewsCount={100}/>
               </div>
             </div>
             <div className="about_company">

@@ -6087,11 +6087,6 @@ body main .company_profile_section .company_header .content .stats .f_badge {
   align-items: center;
 }
 body main .company_profile_section .company_header .content .stats .f_badge i {
-  width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1/1;
   color: #1abc9c;
 }
 body main .company_profile_section .company_header .content .stats .f_badge span {
@@ -6131,7 +6126,6 @@ body main .company_profile_section .categories .swiper-slide {
 }
 body main .company_profile_section .categories button {
   padding: 8px 16px;
-  margin-inline-end: 8px;
   border-radius: 8px;
   background: #f8f8f8;
   color: #666b88;
