@@ -1,0 +1,52 @@
+.categories-page {
+  padding: 16px 0;
+  @media screen and (max-width: 992px) {
+    > .container {
+      padding: 0;
+    }
+    .sub {
+      padding: 8px;
+      h6 {
+        font-weight: normal;
+        white-space: normal;
+        text-align: center;
+      }
+    }
+    .subcategories_slider {
+      padding: 4px !important;
+    }
+  }
+}
+
+.categories_sidebar {
+  padding: 8px;
+  gap: 8px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background: #1abc9c1a;
+  .category {
+    background: $white !important;
+    flex-direction: column;
+    border-radius: 12px !important;
+    padding: 16px 8px !important;
+    > .img {
+      width: 40px;
+      height: 40px;
+      border-radius: unset;
+      background-color: transparent !important;
+      img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+    }
+    &.active {
+      background: $main !important;
+      > .img {
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+  }
+}

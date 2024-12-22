@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-function SmallMenu() {
+function ResponsiveNav() {
   const { t } = useTranslation();
   return (
     <div className="small_menu">
@@ -21,9 +21,9 @@ function SmallMenu() {
         </Link>
       </div>
 
-      <Link aria-label="Asks" to="/asks" className="menu_item">
-        <i className="fa-solid fa-comments-question"></i>
-        <span> {t("header.asks")}</span>
+      <Link aria-label="Asks" to="/companies" className="menu_item">
+        <i className="fa-solid fa-store"></i>
+        <span> {t("header.companies")}</span>
       </Link>
 
       <Link aria-label="Chats" to="/chats" className="menu_item">
@@ -34,4 +34,4 @@ function SmallMenu() {
   );
 }
 
-export default SmallMenu;
+export default ResponsiveNav;

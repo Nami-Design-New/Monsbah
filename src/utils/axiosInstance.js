@@ -8,7 +8,7 @@ const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const lang = sessionStorage.getItem("lang") || "ar";
+    const lang = localStorage.getItem("lang") || "ar";
     config.headers["lang"] = lang;
     return config;
   },

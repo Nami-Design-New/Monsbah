@@ -55,7 +55,7 @@ function ProfileTabs() {
         dispatch(setClientData({}));
         navigate("/", { replace: true });
         queryClient.clear();
-        sessionStorage.clear();
+        localStorage.clear();
         toast.success(deleteToken.data.message);
         setShowLogoutModal(false);
       }

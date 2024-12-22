@@ -13,7 +13,8 @@
     "register": "Register",
     "asks": "Questions",
     "blogs": "Blogs",
-    "logout": "Logout"
+    "logout": "Logout",
+    "companies": "Companies"
   },
   "routes": {
     "home": "Home",

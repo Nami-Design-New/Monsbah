@@ -4,30 +4,31 @@ import { Link, NavLink } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
+import { useQueryClient } from "@tanstack/react-query";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
 import AuthModal from "../../components/auth/AuthModal";
 import useGetNotifications from "../../hooks/notifications/useGetNotifications";
 import NotificationCard from "../cards/NotificationCard";
 import useAuth from "../../hooks/useAuth";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function Header() {
   const { t } = useTranslation();
-  const [avatarError, setAvatarError] = useState(false);
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.clientData.client);
+
+  const [avatarError, setAvatarError] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState("login");
   const [showGetAppModal, setShowGetAppModal] = useState(false);
-  const { data: notifications, isLoading: notififcationsLoading } =
-    useGetNotifications();
-
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const [unreadNotificationsLength, setUnreadNotificationsLength] = useState(0);
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState(false);
-  const [showLangDropdown, setShowLangDropdown] = useState(false);
 
-  const [unreadNotificationsLength, setUnreadNotificationsLength] = useState(0);
+  const { data: notifications, isLoading: notififcationsLoading } =
+    useGetNotifications();
 
   const { isAuthed } = useAuth();
 
@@ -61,7 +62,7 @@ export default function Header() {
             <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
 
-          <nav className="navbar navbar-expand-lg">
+          <nav className="navbar navbar-expand-lg d-none d-lg-flex">
             <div className="navbar-nav">
               <Link aria-label="Home" className="logo" to="/">
                 <img src="/images/branding/logo.svg" loading="lazy" alt="" />
@@ -72,6 +73,9 @@ export default function Header() {
               </NavLink>
               <NavLink className="navLink" to="/categories">
                 {t("header.categories")}
+              </NavLink>
+              <NavLink className="navLink" to="/companies">
+                {t("header.companies")}
               </NavLink>
               <NavLink className="navLink" to="/asks">
                 {t("header.asks")}

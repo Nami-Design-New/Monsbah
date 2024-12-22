@@ -15,7 +15,7 @@ export default function BlogCard({ blog }) {
         </span>
         <h3>{blog?.title}</h3>
         <Link to={`/blogs/${blog?.id}`} className="read_more">
-          {t("readMore")} <i className="fa-solid fa-arrow-up-left"></i>
+          {t("readMore")} <i className="fa-regular fa-arrow-up-left"></i>
         </Link>
       </div>
     </Link>
