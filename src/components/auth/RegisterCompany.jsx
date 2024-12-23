@@ -1,21 +1,26 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { handleChange } from "../../utils/helpers";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import PhoneInput from "../../ui/form-elements/PhoneInput";
+import { handleChange } from "../../utils/helpers";
+import { useTranslation } from "react-i18next";
+import InputField from "../../ui/form-elements/InputField";
+import SelectField from "../../ui/form-elements/SelectField";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
-import InputField from "./../../ui/form-elements/InputField";
-import SelectField from "../../ui/form-elements/SelectField";
-import useGetCountries from "./../../hooks/settings/useGetCountries";
+import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetStates from "../../hooks/settings/useGetStates";
-import axiosInstance from "../../utils/axiosInstance";
+import PhoneInput from "../../ui/form-elements/PhoneInput";
+import TextField from "./../../ui/form-elements/TextField";
+import ImageUpload from "../../ui/form-elements/ImageUpload";
 
-function Register({ setFormType, formData, setFormData, setShow }) {
+export default function RegisterCompany({
+  formData,
+  setFormData,
+  setShow,
+  setFormType,
+}) {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const { data: countries } = useGetCountries();
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
@@ -36,46 +41,21 @@ function Register({ setFormType, formData, setFormData, setShow }) {
       }));
     }
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const payload = { ...formData, new_version: 1 };
-    payload.phone = formData.country_code + formData.phone;
-
-    try {
-      const res = await axiosInstance.post("/client/auth/sign-up", payload);
-      if (res.status === 200) {
-        toast.success(res.data?.message);
-        setFormType("registerOtp");
-      }
-    } catch (error) {
-      console.log(error.response?.data?.data);
-      if (error.response?.data?.data) {
-        const message = error.response?.data?.data
-          ?.map((item) => `${item}<br />`)
-          .join(" ");
-        toast.error(
-          <div
-            style={{ textAlign: "start !important" }}
-            dangerouslySetInnerHTML={{ __html: message }}
-          />
-        );
-      } else {
-        toast.error(error.response.data.message);
-      }
-      // throw new Error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       <div className="mb-4">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
+        <ImageUpload
+          type="file"
+          name="userImage"
+          id="img-upload"
+          accept="image/*"
+          uploadOnly={true}
+          formData={formData}
+          setFormData={setFormData}
+        />
         <div className="form_group">
           <InputField
             required
@@ -89,8 +69,8 @@ function Register({ setFormType, formData, setFormData, setShow }) {
 
           <InputField
             required
-            label={t("auth.fullName")}
-            placeholder={t("auth.fullName")}
+            label={t("auth.companyName")}
+            placeholder={t("auth.companyName")}
             id="name"
             name="name"
             value={formData.name}
@@ -104,6 +84,62 @@ function Register({ setFormType, formData, setFormData, setShow }) {
             id="email"
             name="email"
             value={formData.email}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+        </div>
+
+        <div className="form_group">
+          <PhoneInput
+            label={t("auth.phone")}
+            required
+            type="number"
+            id="phone"
+            name="phone"
+            placeholder={t("auth.phone")}
+            value={formData.mobile_number}
+            countryCode={formData.country_code}
+            onChange={(e) => handleChange(e, setFormData)}
+            onSelect={(code, setShow) => {
+              setFormData((prev) => ({ ...prev, country_code: code }));
+              setShow(false);
+            }}
+          />
+
+          <PhoneInput
+            label={t("auth.whatsapp")}
+            required
+            type="number"
+            id="whatsapp"
+            name="whatsapp"
+            placeholder={t("auth.whatsapp")}
+            value={formData.mobile_number}
+            countryCode={formData.country_code}
+            onChange={(e) => handleChange(e, setFormData)}
+            onSelect={(code, setShow) => {
+              setFormData((prev) => ({ ...prev, country_code: code }));
+              setShow(false);
+            }}
+          />
+        </div>
+
+        <div className="form_group">
+          <PasswordField
+            label={t("auth.password")}
+            placeholder={t("auth.password")}
+            required
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+
+          <PasswordField
+            label={t("auth.passwordConfirmation")}
+            placeholder={t("auth.passwordConfirmation")}
+            required
+            id="password_confirmation"
+            name="password_confirmation"
+            value={formData.password_confirmation}
             onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
@@ -167,75 +203,12 @@ function Register({ setFormType, formData, setFormData, setShow }) {
         </div>
 
         <div className="form_group">
-          <PhoneInput
-            label={t("auth.phone")}
-            required
-            type="number"
-            id="phone"
-            name="phone"
-            placeholder={t("auth.phone")}
-            value={formData.mobile_number}
-            countryCode={formData.country_code}
-            onChange={(e) => handleChange(e, setFormData)}
-            onSelect={(code, setShow) => {
-              setFormData((prev) => ({ ...prev, country_code: code }));
-              setShow(false);
-            }}
+          <TextField
+            label={t("auth.companyDec")}
+            placeholder={t("auth.enterDescription")}
           />
+        </div>
 
-          <div className="input-field">
-            <label htmlFor="type">{t("auth.gender")}</label>
-            <div className="radios">
-              <label htmlFor="male">
-                <input
-                  type="radio"
-                  name="gender"
-                  id="male"
-                  value="male"
-                  checked={formData?.gender === "male"}
-                  onChange={(e) => handleChange(e, setFormData)}
-                />
-                <span>{t("auth.male")}</span>
-              </label>
-              <label htmlFor="female">
-                <input
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  value="female"
-                  checked={formData?.gender === "female"}
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      gender: e.target.value,
-                    });
-                  }}
-                />
-                <span>{t("auth.female")}</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className="form_group">
-          <PasswordField
-            label={t("auth.password")}
-            placeholder={t("auth.password")}
-            required
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-          <PasswordField
-            label={t("auth.passwordConfirmation")}
-            placeholder={t("auth.passwordConfirmation")}
-            required
-            id="password_confirmation"
-            name="password_confirmation"
-            value={formData.password_confirmation}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-        </div>
         <span className="noAccount mt-2">
           {t("auth.byContinueYouAccept")}{" "}
           <Link
@@ -246,7 +219,9 @@ function Register({ setFormType, formData, setFormData, setShow }) {
             {t("tearmsAndConditions")}
           </Link>
         </span>
+
         <SubmitButton name={t("auth.register")} loading={loading} />
+
         <span className="noAccount">
           {t("auth.haveAccount")}{" "}
           <span onClick={() => setFormType("login")}>{t("auth.login")}</span>
@@ -255,4 +230,3 @@ function Register({ setFormType, formData, setFormData, setShow }) {
     </>
   );
 }
-export default Register;

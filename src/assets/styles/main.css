@@ -97,16 +97,17 @@ input[type=number]::-webkit-inner-spin-button {
   position: absolute;
   top: 16px;
   left: 16px;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
+  background: #f8f8f8;
 }
 .closeModal i {
   color: #0d0d0d;
+  font-size: 12px;
 }
 
 .customBtn {
@@ -1925,7 +1926,7 @@ body .form .question .vendorInput:checked::before {
 }
 body .form .image-change-wrapper {
   border-radius: 16px;
-  border: 1px solid #777777;
+  border: 1px solid #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2009,7 +2010,10 @@ body .form .image-change-wrapper .img-wrap .img-box {
   width: 100%;
   height: 100%;
   position: relative;
+  cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -2017,6 +2021,12 @@ body .form .image-change-wrapper .img-wrap .img-box img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body .form .image-change-wrapper .img-wrap .img-box img.icon {
+  width: 50%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 body .form .image-change-wrapper .upload input {
   display: none;
@@ -2603,6 +2613,9 @@ body label {
 body label div {
   white-space: nowrap !important;
 }
+body .cover-wrap {
+  cursor: pointer;
+}
 body .product_vertical {
   width: 100%;
   background: #f8f8f8;
@@ -3162,11 +3175,14 @@ body .auth_section {
   }
 }
 body .auth_section .form_wrapper {
-  padding: 32px 24px 12px;
   display: flex;
+  width: 50%;
   flex-direction: column;
   justify-content: center;
-  flex: 1 0;
+  padding: 32px 24px 12px;
+}
+body .auth_section .form_wrapper.register, body .auth_section .form_wrapper.register-company {
+  width: 100%;
 }
 @media screen and (max-width: 992px) {
   body .auth_section .form_wrapper {
@@ -3179,7 +3195,10 @@ body .auth_section .form_wrapper {
   }
 }
 body .auth_section .img_wrapper {
-  flex: 1 0;
+  width: 50%;
+}
+body .auth_section .img_wrapper.register, body .auth_section .img_wrapper.register-company {
+  display: none;
 }
 @media screen and (max-width: 992px) {
   body .auth_section .img_wrapper {
@@ -3189,7 +3208,7 @@ body .auth_section .img_wrapper {
 body .auth_section .img_wrapper .bg-img {
   border-radius: 16px;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }

@@ -17,6 +17,7 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [, setCookie] = useCookies(["token", "id"]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,7 +26,9 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
     country_code: "965",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
+
   const queryClient = useQueryClient();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -73,6 +76,7 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
       setLoading(false);
     }
   };
+
   return (
     <>
       <div className="mb-4">
@@ -117,7 +121,7 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
         <SubmitButton name={t("auth.login")} loading={loading} />
         <span className="noAccount">
           {t("auth.noAccount")}{" "}
-          <span onClick={() => setFormType("register")}>
+          <span onClick={() => setFormType("register-type")}>
             {t("auth.register")}
           </span>
         </span>

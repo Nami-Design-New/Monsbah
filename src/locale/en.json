@@ -32,6 +32,8 @@
   "auth": {
     "loginTitle": "Welcome Back!",
     "loginSubtitle": "Sign in to access your account and continue your journey with us.",
+    "registerNewAccount": "Register a new account",
+    "ChooseAcountType": "Please choose the type of account you would like to create, whether it is a personal account or a company account, to be able to benefit from all the features of the application.",
     "registerTitle": "Welcome!",
     "registerSubtitle": "Fill in the required information to register your account and become part of our community.",
     "phone": "Mobile Number",
@@ -71,7 +73,14 @@
     "male": "Male",
     "female": "Female",
     "didnotReceiveCode": "Didn't receive code?",
-    "resendCode": "Resend code"
+    "resendCode": "Resend code",
+    "personal": "Personal Account",
+    "company": "Company Account",
+    "accountType": "Account Type",
+    "companyName": "Company Name",
+    "companyDec": "Company Description",
+    "enterDescription": "Enter Company Description",
+    "whatsapp": "WhatsApp Number"
   },
   "blogs": {
     "title": "Blogs and News",

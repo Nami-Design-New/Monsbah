@@ -146,13 +146,14 @@ $shadow: 0px 2px 8px #0000001a;
   position: absolute;
   top: 16px;
   left: 16px;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   @include centerFlex();
-  box-shadow: $shadow;
+  background: $inputBg;
   i {
     color: $dark;
+    font-size: 12px;
   }
 }
 

@@ -8,6 +8,8 @@ import ResetPassword from "./ResetPassword";
 import OTPConfirm from "./OTPConfirm";
 import ForgetPassword from "./ForgetPassword";
 import RegisterOTPConfirm from "./RegisterOTPConfirm";
+import ChooseRegisterType from "./ChooseRegisterType";
+import RegisterCompany from "./RegisterCompany";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const [formType, setFormType] = useState("login");
@@ -83,7 +85,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
           <i className="fa-regular fa-x"></i>
         </button>
         <section className="auth_section">
-          <div className="img_wrapper">
+          <div className={`img_wrapper ${formType}`}>
             <img
               loading="lazy"
               className="bg-img"
@@ -91,7 +93,8 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               src="/images/auth-benner.webp"
             />
           </div>
-          <div className="form_wrapper">
+
+          <div className={`form_wrapper ${formType}`}>
             {formType === "login" && (
               <Login
                 setFormType={setFormType}
@@ -100,10 +103,25 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               />
             )}
 
+            {/* register process */}
+
+            {formType === "register-type" && (
+              <ChooseRegisterType setFormType={setFormType} />
+            )}
+
             {formType === "register" && (
               <Register
-                setFormType={setFormType}
                 setShow={setShow}
+                setFormType={setFormType}
+                formData={registerFormData}
+                setFormData={setRegisterFormData}
+              />
+            )}
+
+            {formType === "register-company" && (
+              <RegisterCompany
+                setShow={setShow}
+                setFormType={setFormType}
                 formData={registerFormData}
                 setFormData={setRegisterFormData}
               />
@@ -111,17 +129,19 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
 
             {formType === "registerOtp" && (
               <RegisterOTPConfirm
-                setFormType={setFormType}
                 setShow={setShow}
+                setFormType={setFormType}
                 formData={registerFormData}
                 setFormData={setRegisterFormData}
               />
             )}
 
+            {/* forget password process */}
+
             {formType === "forget" && (
               <ForgetPassword
-                setFormType={setFormType}
                 setShow={setShow}
+                setFormType={setFormType}
                 setOtpCode={setOtpCode}
                 formData={forgetFormData}
                 setFormData={setForgetFormData}
@@ -130,9 +150,9 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
 
             {formType === "otp" && (
               <OTPConfirm
-                setFormType={setFormType}
                 setShow={setShow}
                 otpCode={otpCode}
+                setFormType={setFormType}
                 formData={forgetFormData}
               />
             )}
