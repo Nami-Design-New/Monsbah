@@ -56,50 +56,56 @@ function UserProfile() {
   }
 
   return (
-    <section className="user-profile-section">
+    <section className="company_profile_section">
       <div className="banner">
-        <img src="/images/company_banner.jpg" alt="User Banner" />
+        <img src="/images/campany_banner.jpg" alt="banner" />
       </div>
       <div className="container mt-4">
-        <div className="profile-header row">
-          <div className="col-12 p-2 d-flex">
-            <div className="profile-image">
-              <img src={user?.image || "/images/company.png"} alt="User" />
-            </div>
-            <div className="profile-info">
+        <div className="company_header">
+          <div className="img">
+            <img src="/images/company.png" alt="company" />
+          </div>
+          <div className="content">
+            <div className="title">
               <h3>{user?.name || t("No Name Provided")}</h3>
-              <div className="profile-stats">
-                <span>
-                  {user?.["followers-count"]} {t("Followers")}
-                </span>
-                <span>
-                  {user?.["following-count"]} {t("Following")}
-                </span>
-                <span>
-                  {user?.["ads-count"]} {t("Posts")}
-                </span>
-              </div>
-              <div className="profile-actions">
-                <Link to={`/chats?user_id=${user?.id}`} className="action-btn">
-                  <i className="fa-solid fa-comment-dots"></i> {t("Chat")}
+              <div className="actions">
+                <Link
+                  aria-label="Profile"
+                  to={`/chats?user_id=${user?.id}`}
+                  className="action-btn follow_btn"
+                >
+                  <i className="fa-solid fa-comment-dots"></i>{" "}
                 </Link>
-                <button className="action-btn" onClick={handleShare}>
-                  <i className="fa-regular fa-share-nodes"></i> {t("Share")}
-                </button>
+                <div className="share_btn" onClick={handleShare}>
+                  <i className="fa-regular fa-share-nodes"></i>
+                </div>
+              </div>
+            </div>
+            <div className="stats">
+              <div className="f_badge">
+                <i className="fa-light fa-location-dot"></i> مكة ، السعودية
+              </div>
+              <div className="f_badge">
+                <i className="fa-regular fa-user-check"></i>{" "}
+                {user?.["followers-count"]} {t("Followers")}
+              </div>
+              <div className="f_badge">
+                <i className="fa-light fa-user-group"></i>{" "}
+                {user?.["following-count"]} {t("following")}
+              </div>
+              <div className="f_badge">
+                <i className="fa-light fa-clothes-hanger"></i>{" "}
+                {user?.["ads-count"]} {t("posts")}
               </div>
             </div>
           </div>
         </div>
 
-        {user?.about && (
-          <div className="about-section row">
-            <div className="col-12">
-              <p>{user?.about}</p>
-            </div>
-          </div>
-        )}
+        <div className="about_company">
+          <p>{user?.about || "No Description Provided"}</p>
+        </div>
 
-        <div className="products-section row" ref={sectionRef}>
+        <div className="products-section row mb-5" ref={sectionRef}>
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
               <ProductVertical product={product} isShowAction={false} />
