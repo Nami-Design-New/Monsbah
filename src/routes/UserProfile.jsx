@@ -8,9 +8,9 @@ import ProductVertical from "../ui/cards/ProductVertical";
 import ProductLoader from "../ui/loaders/ProductLoader";
 
 function UserProfile() {
+  const sectionRef = useRef(null);
   const { t } = useTranslation();
   const { isLoading: userLoading, data: user } = useGetUserProfile();
-  const sectionRef = useRef(null);
 
   const {
     data: products,
@@ -18,7 +18,7 @@ function UserProfile() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetAllProducts({ id: user?.id });
+  } = useGetAllProducts({ id: user?.id, enabled: true });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +63,7 @@ function UserProfile() {
       <div className="container mt-4">
         <div className="company_header">
           <div className="img">
-            <img src="/images/company.png" alt="company" />
+            <img src={user?.image} alt="company" />
           </div>
           <div className="content">
             <div className="title">
@@ -105,7 +105,7 @@ function UserProfile() {
           <p>{user?.about || "No Description Provided"}</p>
         </div>
 
-        <div className="products-section row mb-5" ref={sectionRef}>
+        <div className="products-section row mb-3 mt-3" ref={sectionRef}>
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
               <ProductVertical product={product} isShowAction={false} />
