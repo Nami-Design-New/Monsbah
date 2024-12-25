@@ -5,7 +5,7 @@ import useGetProducts from "../hooks/products/useGetProducts";
 import ProductVertical from "../ui/cards/ProductVertical";
 import ProductLoader from "../ui/loaders/ProductLoader";
 import { Swiper, SwiperSlide } from "swiper/react";
-import StarsRate from './../ui/StarsRate';
+import StarsRate from "./../ui/StarsRate";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
@@ -70,17 +70,18 @@ export default function CompanyProfile() {
                 <div className="title">
                   <h3>قمر للعبايات الخليجي</h3>
                   <div className="actions">
-                    <Link
-                      aria-label="Profile"
-                      className="action-btn follow_btn"
-                    >
-                      <i className="fa-solid fa-comment-dots"></i>{" "}
+                    <Link aria-label="whatsapp" className=" follow_btn">
+                      <img src="/public/images/icons/whats.svg" alt="" />
                     </Link>
-                    <div className="share_btn" onClick={handleShare}>
+                    <Link aria-label="Profile" className=" follow_btn">
+                      <i className="fa-solid fa-comment-dots"></i>
+                    </Link>
+                    <div className="follow_btn" onClick={handleShare}>
                       <i className="fa-regular fa-share-nodes"></i>
                     </div>
                   </div>
                 </div>
+
                 <div className="stats">
                   <div className="f_badge">
                     <i className="fa-light fa-location-dot"></i> مكة ، السعودية
@@ -98,13 +99,20 @@ export default function CompanyProfile() {
                     {t("posts")}
                   </div>
                 </div>
-                <StarsRate rate={4} reviewsCount={100}/>
+
+                <StarsRate rate={4} reviewsCount={100} />
+
+                
               </div>
             </div>
             <div className="about_company">
               <p>
-                متجر عبايات القمر , نحن متجر مختص ببيع العبايات النسائية بأقل
-                الأسعار وافخم الموديلات واجود انواع الأقمشة
+                متجر **عبايات القمر** هو وجهتك المثالية للأناقة والفخامة! نحن
+                نختص بتقديم أرقى العبايات النسائية التي تجمع بين التصاميم
+                العصرية والموديلات الفاخرة، بأقل الأسعار التي تناسب الجميع. نقدم
+                لكِ أفضل أنواع الأقمشة ذات الجودة العالية لتكوني دائمًا متألقة
+                بإطلالة مميزة ومريحة. استكشفي عالمًا من الخيارات المتنوعة التي
+                تعكس ذوقك الرفيع وتلبي جميع احتياجاتك.
               </p>
             </div>
           </div>

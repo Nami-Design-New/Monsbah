@@ -43,7 +43,7 @@ export default function RegisterCompany({
   };
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-1">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
       <form className="form">
@@ -56,6 +56,7 @@ export default function RegisterCompany({
           formData={formData}
           setFormData={setFormData}
         />
+
         <div className="form_group">
           <InputField
             required
@@ -77,70 +78,27 @@ export default function RegisterCompany({
             onChange={(e) => handleChange(e, setFormData)}
           />
 
-          <InputField
+          <SelectField
             required
-            label={t("auth.email")}
-            placeholder={t("auth.email")}
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-        </div>
-
-        <div className="form_group">
-          <PhoneInput
-            label={t("auth.phone")}
-            required
-            type="number"
-            id="phone"
-            name="phone"
-            placeholder={t("auth.phone")}
-            value={formData.mobile_number}
-            countryCode={formData.country_code}
-            onChange={(e) => handleChange(e, setFormData)}
-            onSelect={(code, setShow) => {
-              setFormData((prev) => ({ ...prev, country_code: code }));
-              setShow(false);
-            }}
-          />
-
-          <PhoneInput
-            label={t("auth.whatsapp")}
-            required
-            type="number"
-            id="whatsapp"
-            name="whatsapp"
-            placeholder={t("auth.whatsapp")}
-            value={formData.mobile_number}
-            countryCode={formData.country_code}
-            onChange={(e) => handleChange(e, setFormData)}
-            onSelect={(code, setShow) => {
-              setFormData((prev) => ({ ...prev, country_code: code }));
-              setShow(false);
-            }}
-          />
-        </div>
-
-        <div className="form_group">
-          <PasswordField
-            label={t("auth.password")}
-            placeholder={t("auth.password")}
-            required
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-
-          <PasswordField
-            label={t("auth.passwordConfirmation")}
-            placeholder={t("auth.passwordConfirmation")}
-            required
-            id="password_confirmation"
-            name="password_confirmation"
-            value={formData.password_confirmation}
-            onChange={(e) => handleChange(e, setFormData)}
+            label={t("auth.category")}
+            id="category"
+            name="category"
+            value={formData.category}
+            options={[
+              {
+                name: "أتيليه / مصممين",
+                value: "1",
+              },
+              {
+                name: "ساعات ومجوهرات",
+                value: "2",
+              },
+              {
+                name: "عبايات",
+                value: "3",
+              },
+            ]}
+            onChange={(e) => handleChangeUserName(e, setFormData)}
           />
         </div>
 
@@ -199,6 +157,72 @@ export default function RegisterCompany({
               name: state?.name,
               value: state?.id,
             }))}
+          />
+        </div>
+
+        <div className="form_group">
+          <PhoneInput
+            label={t("auth.phone")}
+            required
+            type="number"
+            id="phone"
+            name="phone"
+            placeholder={t("auth.phone")}
+            value={formData.mobile_number}
+            countryCode={formData.country_code}
+            onChange={(e) => handleChange(e, setFormData)}
+            onSelect={(code, setShow) => {
+              setFormData((prev) => ({ ...prev, country_code: code }));
+              setShow(false);
+            }}
+          />
+
+          <PhoneInput
+            label={t("auth.whatsapp")}
+            required
+            type="number"
+            id="whatsapp"
+            name="whatsapp"
+            placeholder={t("auth.whatsapp")}
+            value={formData.mobile_number}
+            countryCode={formData.country_code}
+            onChange={(e) => handleChange(e, setFormData)}
+            onSelect={(code, setShow) => {
+              setFormData((prev) => ({ ...prev, country_code: code }));
+              setShow(false);
+            }}
+          />
+
+          <InputField
+            required
+            label={t("auth.email")}
+            placeholder={t("auth.email")}
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+        </div>
+
+        <div className="form_group">
+          <PasswordField
+            label={t("auth.password")}
+            placeholder={t("auth.password")}
+            required
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+
+          <PasswordField
+            label={t("auth.passwordConfirmation")}
+            placeholder={t("auth.passwordConfirmation")}
+            required
+            id="password_confirmation"
+            name="password_confirmation"
+            value={formData.password_confirmation}
+            onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
 

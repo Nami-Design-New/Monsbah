@@ -79,7 +79,8 @@
     "companyName": "اسم الشركة",
     "companyDec": "وصف الشركة",
     "enterDescription": "ادخل وصف الشركة",
-    "whatsapp": "واتساب"
+    "whatsapp": "واتساب",
+    "category": "الفئة"
   },
   "blogs": {
     "title": "المدونة والأخبار",

@@ -6044,6 +6044,11 @@ body main .company_profile_section .company_header .img {
   border-radius: 50%;
   overflow: hidden;
 }
+@media screen and (max-width: 768px) {
+  body main .company_profile_section .company_header .img {
+    margin-top: -97px;
+  }
+}
 body main .company_profile_section .company_header .img img {
   width: 100%;
   height: 100%;
@@ -6071,12 +6076,17 @@ body main .company_profile_section .company_header .content .title {
 body main .company_profile_section .company_header .content .title h3 {
   color: #0d0d0d;
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
 }
 body main .company_profile_section .company_header .content .title .actions {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+@media screen and (max-width: 576px) {
+  body main .company_profile_section .company_header .content .title .actions {
+    gap: 12px;
+  }
 }
 body main .company_profile_section .company_header .content .title .share_btn,
 body main .company_profile_section .company_header .content .title .follow_btn {
@@ -6089,6 +6099,17 @@ body main .company_profile_section .company_header .content .title .follow_btn {
   justify-content: center;
   border-radius: 50%;
   border: 1px solid #1abc9c;
+}
+body main .company_profile_section .company_header .content .title .share_btn img,
+body main .company_profile_section .company_header .content .title .follow_btn img {
+  height: 24px;
+}
+@media screen and (max-width: 576px) {
+  body main .company_profile_section .company_header .content .title .share_btn,
+  body main .company_profile_section .company_header .content .title .follow_btn {
+    width: 34px;
+    height: 34px;
+  }
 }
 body main .company_profile_section .company_header .content .stats {
   width: 100%;

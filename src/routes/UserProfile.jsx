@@ -70,13 +70,21 @@ function UserProfile() {
               <h3>{user?.name || t("No Name Provided")}</h3>
               <div className="actions">
                 <Link
+                  aria-label="whatsapp"
+                  target="_blank"
+                  to={`https://wa.me/${user?.phone}`}
+                  className="follow_btn"
+                >
+                  <img src="/public/images/icons/whats.svg" alt="" />
+                </Link>
+                <Link
                   aria-label="Profile"
                   to={`/chats?user_id=${user?.id}`}
-                  className="action-btn follow_btn"
+                  className="follow_btn"
                 >
                   <i className="fa-solid fa-comment-dots"></i>{" "}
                 </Link>
-                <div className="share_btn" onClick={handleShare}>
+                <div className="follow_btn" onClick={handleShare}>
                   <i className="fa-regular fa-share-nodes"></i>
                 </div>
               </div>
@@ -102,7 +110,7 @@ function UserProfile() {
         </div>
 
         <div className="about_company">
-          <p>{user?.about || "No Description Provided"}</p>
+          <p>{user?.about}</p>
         </div>
 
         <div className="products-section row mb-3 mt-3" ref={sectionRef}>
