@@ -71,7 +71,7 @@ export default function CompanyProfile() {
                   <h3>قمر للعبايات الخليجي</h3>
                   <div className="actions">
                     <Link aria-label="whatsapp" className=" follow_btn">
-                      <img src="/public/images/icons/whats.svg" alt="" />
+                      <img src="/images/icons/whats.svg" alt="" />
                     </Link>
                     <Link aria-label="Profile" className=" follow_btn">
                       <i className="fa-solid fa-comment-dots"></i>

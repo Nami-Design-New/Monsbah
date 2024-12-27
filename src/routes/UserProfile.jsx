@@ -75,7 +75,7 @@ function UserProfile() {
                   to={`https://wa.me/${user?.phone}`}
                   className="follow_btn"
                 >
-                  <img src="/public/images/icons/whats.svg" alt="" />
+                  <img src="/images/icons/whats.svg" alt="" />
                 </Link>
                 <Link
                   aria-label="Profile"
