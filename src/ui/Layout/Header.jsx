@@ -77,9 +77,9 @@ export default function Header() {
               <NavLink className="navLink" to="/companies">
                 {t("header.companies")}
               </NavLink>
-              <NavLink className="navLink" to="/asks">
+              {/* <NavLink className="navLink" to="/asks">
                 {t("header.asks")}
-              </NavLink>
+              </NavLink> */}
               <NavLink className="navLink" to="/about-us">
                 {t("aboutUs")}
               </NavLink>

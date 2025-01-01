@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import useGetAsks from "../hooks/search/useGetAsks";
+// import useGetAsks from "../hooks/search/useGetAsks";
 import useAuth from "../hooks/useAuth";
 import useGetCountries from "../hooks/settings/useGetCountries";
 import AskCard from "../ui/cards/AskCard";
@@ -32,13 +32,13 @@ function CountryAsks() {
   const user = useSelector((state) => state.clientData.client);
   const country = searchParams.get("country-id");
 
-  const {
-    data: aks,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetAsks(selectedCountry?.id || 6);
+  // const {
+  //   data: aks,
+  //   isLoading,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isFetchingNextPage,
+  // } = useGetAsks(selectedCountry?.id || 6);
 
   useEffect(() => {
     if (!searchParams.get("country-id")) {

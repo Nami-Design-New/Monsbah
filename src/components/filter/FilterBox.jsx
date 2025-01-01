@@ -10,7 +10,7 @@ import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
-import AskCountry from "./AskCountry";
+// import AskCountry from "./AskCountry";
 
 export default function FilterBox({ showAsk, className }) {
   const { t } = useTranslation();
@@ -81,7 +81,7 @@ export default function FilterBox({ showAsk, className }) {
   return (
     <section className={`explore_ads ${className}`}>
       <div className="container d-flex flex-column gap-3">
-        {showAsk && <AskCountry />}
+        {/* {showAsk && <AskCountry />} */}
 
         <Swiper slidesPerView="auto" className="categories_slider">
           {categoriesLoading ? (

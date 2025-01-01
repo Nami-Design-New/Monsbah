@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import AskCard from "../../ui/cards/AskCard";
-import useGetAsks from "../../hooks/search/useGetAsks";
+// import useGetAsks from "../../hooks/search/useGetAsks";
 import AskLoader from "../../ui/loaders/AskLoader";
 import ViewAsk from "../../ui/modals/ViewAsk";
 import AuthModal from "../auth/AuthModal";
@@ -21,13 +21,13 @@ export default function Asks({ sectionRef }) {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [showCountryAskModal, setShowCountryAskModal] = useState(false);
 
-  const {
-    data: aks,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useGetAsks(client?.country?.id || 6);
+  // const {
+  //   data: aks,
+  //   isLoading,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isFetchingNextPage,
+  // } = useGetAsks(client?.country?.id || 6);
 
   useEffect(() => {
     const handleScroll = () => {

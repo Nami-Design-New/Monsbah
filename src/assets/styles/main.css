@@ -1839,13 +1839,16 @@ body .form .forgetpass {
   color: #1abc9c;
 }
 body .form .noAccount {
-  color: #666b88;
-}
-body .form .noAccount span,
-body .form .noAccount a {
+  color: #0b0b0c;
+  text-align: center;
+} 
+
+body .form .noAccount .btn-register,body .form .personal-account   {
+  background-color: transparent;
   color: #1abc9c;
-  cursor: pointer;
+ border: 1px solid #1abc9c;
 }
+
 body .form p {
   color: #666b88;
 }
@@ -1893,8 +1896,8 @@ body .form .question .vendorInput {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  position: relative;
-  cursor: pointer;
+     position: relative;
+    cursor: pointer;
 }
 body .form .question .vendorInput::after {
   display: block;
@@ -2062,6 +2065,9 @@ body .form .auth_social_btn {
 }
 body .form .auth_social_btn img {
   height: 28px;
+}
+body .form .haveAccount-comment{
+  color: #1abc9c;
 }
 body .form .line {
   width: 100%;
@@ -7837,3 +7843,21 @@ body.en .form .phone_field .dropdown button {
 body.en .form .phone_field input {
   border-radius: 12px 0 0 12px;
 }/*# sourceMappingURL=main.css.map */
+
+
+.small-screen-img {
+  display: none; 
+}
+
+@media (max-width: 768px) {
+  .small-screen-img {
+    display: block; 
+    width: 100%;
+    margin: 0 auto; 
+  }
+  .head {
+    margin-top: 20px;
+  }
+}
+
+

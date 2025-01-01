@@ -72,6 +72,7 @@ function Register({ setFormType, formData, setFormData, setShow }) {
 
   return (
     <>
+  
       <div className="mb-4">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
