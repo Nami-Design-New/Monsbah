@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, Route, Routes, useSearchParams } from "react-router-dom";
 import Persons from "../components/search/Persons";
-import Asks from "../components/search/Asks";
+// import Asks from "../components/search/Asks";
 import Ads from "../components/search/Ads";
-
+import Companies from "../components/search/Companies";
 export default function Search() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
@@ -51,15 +51,15 @@ export default function Search() {
             <NavLink to={search ? `persons?search=${search}` : "persons"}>
               {t("persons")}
             </NavLink>
-            <NavLink to={search ? `asks?search=${search}` : "asks"}>
-              {t("asks")}
+            <NavLink to={search ? `companies?search=${search}` : "companies"}>
+              {t("header.companies")}
             </NavLink>
           </nav>
 
           <div className="row">
             <Routes>
               <Route path="" element={<Ads sectionRef={sectionRef} />} />
-              <Route path="asks" element={<Asks sectionRef={sectionRef} />} />
+              <Route path="companies" element={<Companies sectionRef={sectionRef} />} />
               <Route
                 path="persons"
                 element={<Persons sectionRef={sectionRef} />}
