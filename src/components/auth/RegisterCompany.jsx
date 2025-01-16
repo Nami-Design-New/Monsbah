@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { handleChange } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import InputField from "../../ui/form-elements/InputField";
@@ -10,18 +11,22 @@ import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetStates from "../../hooks/settings/useGetStates";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
-import TextField from "./../../ui/form-elements/TextField";
 import ImageUpload from "../../ui/form-elements/ImageUpload";
+import useGetCompanyCategories from "../../hooks/settings/useGetCompanyCategories";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function RegisterCompany({
-  formData,
-  setFormData,
   setShow,
   setFormType,
+  formData,
+  setFormData,
 }) {
   const { t } = useTranslation();
-  const [loading] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
   const { data: countries } = useGetCountries();
+  const { data: categories } = useGetCompanyCategories();
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
     formData?.country_id ? true : false
@@ -41,12 +46,52 @@ export default function RegisterCompany({
       }));
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const payload = { ...formData, new_version: 1 };
+    payload.phone = formData.country_code + formData.phone;
+    payload.whats_number = formData.whats_country_code + formData.whats_number;
+
+    try {
+      const res = await axiosInstance.post("/company/auth/sign-up", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (res.status === 200) {
+        toast.success(res.data?.message);
+        setFormType("companyOtp");
+      }
+    } catch (error) {
+      console.log(error.response?.data?.data);
+      if (error.response?.data?.data) {
+        const message = error.response?.data?.data
+          ?.map((item) => `${item}<br />`)
+          .join(" ");
+        toast.error(
+          <div
+            style={{ textAlign: "start !important" }}
+            dangerouslySetInnerHTML={{ __html: message }}
+          />
+        );
+      } else {
+        toast.error(error.response.data.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="mb-1">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <ImageUpload
           type="file"
           name="userImage"
@@ -60,6 +105,30 @@ export default function RegisterCompany({
         <div className="form_group">
           <InputField
             required
+            label={t("auth.companyName")}
+            placeholder={t("auth.companyName")}
+            id="name_ar"
+            name="name_ar"
+            hint={"( عربى )"}
+            value={formData.name_ar}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+
+          <InputField
+            required
+            label={t("auth.companyName")}
+            placeholder={t("auth.companyName")}
+            id="name_en"
+            name="name_en"
+            hint={"( English )"}
+            value={formData.name}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+        </div>
+
+        <div className="form_group">
+          <InputField
+            required
             label={t("auth.userName")}
             placeholder={t("auth.userNamePlaceHolder")}
             id="username"
@@ -68,37 +137,17 @@ export default function RegisterCompany({
             onChange={(e) => handleChangeUserName(e, setFormData)}
           />
 
-          <InputField
-            required
-            label={t("auth.companyName")}
-            placeholder={t("auth.companyName")}
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-
           <SelectField
             required
             label={t("auth.category")}
-            id="category"
-            name="category"
-            value={formData.category}
-            options={[
-              {
-                name: "أتيليه / مصممين",
-                value: "1",
-              },
-              {
-                name: "ساعات ومجوهرات",
-                value: "2",
-              },
-              {
-                name: "عبايات",
-                value: "3",
-              },
-            ]}
-            onChange={(e) => handleChangeUserName(e, setFormData)}
+            id="category_id"
+            name="category_id"
+            value={formData.category_id}
+            options={categories?.map((c) => ({
+              name: c?.name,
+              value: c?.id,
+            }))}
+            onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
 
@@ -181,14 +230,14 @@ export default function RegisterCompany({
             label={t("auth.whatsapp")}
             required
             type="number"
-            id="whatsapp"
-            name="whatsapp"
+            id="whats_number"
+            name="whats_number"
             placeholder={t("auth.whatsapp")}
-            value={formData.mobile_number}
-            countryCode={formData.country_code}
+            value={formData.whats_number}
+            countryCode={formData.whats_country_code}
             onChange={(e) => handleChange(e, setFormData)}
             onSelect={(code, setShow) => {
-              setFormData((prev) => ({ ...prev, country_code: code }));
+              setFormData((prev) => ({ ...prev, whats_country_code: code }));
               setShow(false);
             }}
           />
@@ -227,9 +276,25 @@ export default function RegisterCompany({
         </div>
 
         <div className="form_group">
-          <TextField
+          <InputField
+            hint="( عربى )"
+            as={"textarea"}
+            id="about_ar"
+            name="about_ar"
+            value={formData.about_ar}
             label={t("auth.companyDec")}
             placeholder={t("auth.enterDescription")}
+            onChange={(e) => handleChange(e, setFormData)}
+          />
+          <InputField
+            as={"textarea"}
+            hint="( English )"
+            id="about_en"
+            name="about_en"
+            value={formData.about_en}
+            label={t("auth.companyDec")}
+            placeholder={t("auth.enterDescription")}
+            onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
 
@@ -244,12 +309,15 @@ export default function RegisterCompany({
           </Link>
         </span>
 
-        <SubmitButton name={t("auth.register")} loading={loading} />
-
-        <span className="noAccount">
-          {t("auth.haveAccount")}{" "}
-          <span onClick={() => setFormType("login")}>{t("auth.login")}</span>
-        </span>
+        <div className="d-flex gap-2">
+          <button
+            className="back_btn"
+            onClick={() => setFormType("register-type")}
+          >
+            <i className="fal fa-arrow-right"></i>
+          </button>
+          <SubmitButton name={t("auth.register")} loading={loading} />
+        </div>
       </form>
     </>
   );

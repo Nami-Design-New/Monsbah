@@ -10,10 +10,14 @@ import ForgetPassword from "./ForgetPassword";
 import RegisterOTPConfirm from "./RegisterOTPConfirm";
 import ChooseRegisterType from "./ChooseRegisterType";
 import RegisterCompany from "./RegisterCompany";
+import CompanyOTPConfirm from "./CompanyOTPConfirm";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
-  const [formType, setFormType] = useState("login");
   const { isAuthed } = useAuth();
+  const navigate = useNavigate();
+
+  const [formType, setFormType] = useState("login");
+  const [otpCode, setOtpCode] = useState("");
   const [forgetFormData, setForgetFormData] = useState({
     phone: "",
     country_code: "965",
@@ -32,10 +36,25 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
     gender: "",
   });
-
-  const [otpCode, setOtpCode] = useState("");
-
-  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    name_ar: "",
+    name_en: "",
+    phone: "",
+    email: "",
+    password: "",
+    city_id: "",
+    state_id: "",
+    about_en: "",
+    about_ar: "",
+    country_id: "",
+    category_id: "",
+    whats_number: "",
+    country_code: "965",
+    whats_country_code: "965",
+    password_confirmation: "",
+    fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
+  });
 
   useEffect(() => {
     setFormType(type);
@@ -48,6 +67,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
       setShow(false);
     }
     setFormType("login");
+
     setForgetFormData({
       name: "",
       username: "",
@@ -62,6 +82,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
       fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
       gender: "",
     });
+
     setForgetFormData({
       phone: "",
       country_code: "965",
@@ -122,8 +143,8 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
               <RegisterCompany
                 setShow={setShow}
                 setFormType={setFormType}
-                formData={registerFormData}
-                setFormData={setRegisterFormData}
+                formData={formData}
+                setFormData={setFormData}
               />
             )}
 
@@ -133,6 +154,15 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormType={setFormType}
                 formData={registerFormData}
                 setFormData={setRegisterFormData}
+              />
+            )}
+
+            {formType === "companyOtp" && (
+              <CompanyOTPConfirm
+                setShow={setShow}
+                setFormType={setFormType}
+                formData={formData}
+                setFormData={setFormData}
               />
             )}
 

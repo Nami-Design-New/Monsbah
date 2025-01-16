@@ -119,22 +119,16 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
           {t("auth.forgetPassword")}
         </span>
         <SubmitButton name={t("auth.login")} loading={loading} />
-        <span className="noAccount">
-       {t("auth.noAccount")}{" "}
-       <button
-       className="btn-register"
-       type="button"
-       onClick={() => setFormType("register-type")}
-  >
-      {t("auth.register")}
-      </button>
-     </span>
-        {/* <span className="noAccount">
+        <span className="noAccount text-center">
           {t("auth.noAccount")}{" "}
-          <span onClick={() => setFormType("register-type")}>
+          <button
+            className="btn-register mt-2"
+            type="button"
+            onClick={() => setFormType("register-type")}
+          >
             {t("auth.register")}
-          </span>
-        </span> */}
+          </button>
+        </span>
       </form>
     </>
   );

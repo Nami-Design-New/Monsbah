@@ -1839,16 +1839,13 @@ body .form .forgetpass {
   color: #1abc9c;
 }
 body .form .noAccount {
-  color: #0b0b0c;
-  text-align: center;
-} 
-
-body .form .noAccount .btn-register,body .form .personal-account   {
-  background-color: transparent;
-  color: #1abc9c;
- border: 1px solid #1abc9c;
+  color: #666b88;
 }
-
+body .form .noAccount span,
+body .form .noAccount a {
+  color: #1abc9c;
+  cursor: pointer;
+}
 body .form p {
   color: #666b88;
 }
@@ -1879,6 +1876,11 @@ body .form button.fit {
   width: fit-content;
   padding: 0 52px;
 }
+body .form button.personal-account, body .form button.btn-register {
+  background: none;
+  color: #1abc9c;
+  border: 1px solid #1abc9c;
+}
 body .form .question {
   padding: 0 0 30px;
   width: 100%;
@@ -1896,8 +1898,8 @@ body .form .question .vendorInput {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-     position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 body .form .question .vendorInput::after {
   display: block;
@@ -2065,9 +2067,6 @@ body .form .auth_social_btn {
 }
 body .form .auth_social_btn img {
   height: 28px;
-}
-body .form .haveAccount-comment{
-  color: #1abc9c;
 }
 body .form .line {
   width: 100%;
@@ -2621,6 +2620,11 @@ body label div {
 }
 body .cover-wrap {
   cursor: pointer;
+}
+@media screen and (max-width: 576px) {
+  body .head {
+    margin-top: 24px;
+  }
 }
 body .product_vertical {
   width: 100%;
@@ -3217,6 +3221,17 @@ body .auth_section .img_wrapper .bg-img {
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body .auth_section .small-screen-img {
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  body .auth_section .small-screen-img {
+    display: block;
+    height: 240px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
 }
 body .authModal .modal-header {
   padding: 16px 8px 0 !important;
@@ -7843,21 +7858,3 @@ body.en .form .phone_field .dropdown button {
 body.en .form .phone_field input {
   border-radius: 12px 0 0 12px;
 }/*# sourceMappingURL=main.css.map */
-
-
-.small-screen-img {
-  display: none; 
-}
-
-@media (max-width: 768px) {
-  .small-screen-img {
-    display: block; 
-    width: 100%;
-    margin: 0 auto; 
-  }
-  .head {
-    margin-top: 20px;
-  }
-}
-
-

@@ -189,6 +189,12 @@
       width: fit-content;
       padding: 0 52px;
     }
+    &.personal-account,
+    &.btn-register {
+      background: none;
+      color: $main;
+      border: 1px solid $main;
+    }
   }
 
   .question {
@@ -910,4 +916,10 @@ label {
 
 .cover-wrap {
   cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .head {
+    margin-top: 24px;
+  }
 }

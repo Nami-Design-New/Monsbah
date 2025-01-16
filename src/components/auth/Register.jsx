@@ -17,10 +17,12 @@ function Register({ setFormType, formData, setFormData, setShow }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { data: countries } = useGetCountries();
+
   const { data: cities, isLoading: citiesLoading } = useGetCities(
     formData?.country_id,
     formData?.country_id ? true : false
   );
+
   const { data: states, isLoading: areasLoading } = useGetStates(
     formData?.city_id,
     formData?.city_id ? true : false
@@ -64,7 +66,6 @@ function Register({ setFormType, formData, setFormData, setShow }) {
       } else {
         toast.error(error.response.data.message);
       }
-      // throw new Error(error);
     } finally {
       setLoading(false);
     }
@@ -72,7 +73,6 @@ function Register({ setFormType, formData, setFormData, setShow }) {
 
   return (
     <>
-  
       <div className="mb-4">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
@@ -247,11 +247,15 @@ function Register({ setFormType, formData, setFormData, setShow }) {
             {t("tearmsAndConditions")}
           </Link>
         </span>
-        <SubmitButton name={t("auth.register")} loading={loading} />
-        <span className="noAccount">
-          {t("auth.haveAccount")}{" "}
-          <span onClick={() => setFormType("login")}>{t("auth.login")}</span>
-        </span>
+        <div className="d-flex gap-2">
+          <button
+            className="back_btn"
+            onClick={() => setFormType("register-type")}
+          >
+            <i className="fal fa-arrow-right"></i>
+          </button>
+          <SubmitButton name={t("auth.register")} loading={loading} />
+        </div>
       </form>
     </>
   );
