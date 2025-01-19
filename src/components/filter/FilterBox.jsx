@@ -10,9 +10,8 @@ import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
-// import AskCountry from "./AskCountry";
 
-export default function FilterBox({ showAsk, className }) {
+export default function FilterBox({ className }) {
   const { t } = useTranslation();
 
   const lang = useSelector((state) => state.language.lang);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleChange } from "../../utils/helpers";
+import { handleChange, handleChangeUserName } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import InputField from "../../ui/form-elements/InputField";
 import SelectField from "../../ui/form-elements/SelectField";
@@ -35,17 +35,6 @@ export default function RegisterCompany({
     formData?.city_id,
     formData?.city_id ? true : false
   );
-
-  const handleChangeUserName = (e) => {
-    const { value } = e.target;
-    const validInput = /^[a-zA-Z]*$/;
-    if (validInput.test(value)) {
-      setFormData((prev) => ({
-        ...prev,
-        username: value,
-      }));
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -16,7 +16,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const { isAuthed } = useAuth();
   const navigate = useNavigate();
 
-  const [formType, setFormType] = useState("login");
+  const [formType, setFormType] = useState("companyOtp");
   const [otpCode, setOtpCode] = useState("");
   const [forgetFormData, setForgetFormData] = useState({
     phone: "",

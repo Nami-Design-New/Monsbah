@@ -1,21 +1,24 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useTranslation } from "react-i18next";
 import useGetProducts from "../hooks/products/useGetProducts";
 import ProductVertical from "../ui/cards/ProductVertical";
 import ProductLoader from "../ui/loaders/ProductLoader";
-import { Swiper, SwiperSlide } from "swiper/react";
 import StarsRate from "./../ui/StarsRate";
+import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
   const { t } = useTranslation();
+  const { data: profile } = useGetCompanyProfile(true);
 
   const handleShare = () => {
     if (navigator.share) {
       navigator
         .share({
-          title: "WebShare API Demo",
+          title: profile?.client?.name,
+          text: profile?.client?.about,
           url: window.location.href,
         })
         .then(() => t("Shared successfully"))
@@ -57,25 +60,34 @@ export default function CompanyProfile() {
   return (
     <section className="company_profile_section">
       <div className="banner">
-        <img src="/images/campany_banner.jpg" alt="banner" />
+        <img src={profile?.client?.cover} alt="banner" />
       </div>
+
       <div className="container mt-4">
         <div className="row">
           <div className="col-12 p-2">
             <div className="company_header">
               <div className="img">
-                <img src="/images/company.png" alt="company" />
+                <img src={profile?.client?.image} alt="company" />
               </div>
+
               <div className="content">
                 <div className="title">
-                  <h3>قمر للعبايات الخليجي</h3>
+                  <h3>{profile?.client?.name}</h3>
                   <div className="actions">
-                    <Link aria-label="whatsapp" className=" follow_btn">
+                    <Link
+                      aria-label="whatsapp"
+                      target="_blank"
+                      to={profile?.client?.whats_number}
+                      className=" follow_btn"
+                    >
                       <img src="/images/icons/whats.svg" alt="" />
                     </Link>
+
                     <Link aria-label="Profile" className=" follow_btn">
                       <i className="fa-solid fa-comment-dots"></i>
                     </Link>
+
                     <div className="follow_btn" onClick={handleShare}>
                       <i className="fa-regular fa-share-nodes"></i>
                     </div>
@@ -87,33 +99,24 @@ export default function CompanyProfile() {
                     <i className="fa-light fa-location-dot"></i> مكة ، السعودية
                   </div>
                   <div className="f_badge">
-                    <i className="fa-regular fa-user-check"></i> 1000{" "}
-                    {t("Followers")}
+                    <i className="fa-regular fa-user-check"></i>{" "}
+                    {profile?.client?.followers} {t("Followers")}
                   </div>
                   <div className="f_badge">
-                    <i className="fa-light fa-user-group"></i> 100{" "}
-                    {t("following")}
+                    <i className="fa-light fa-user-group"></i>{" "}
+                    {profile?.client?.following} {t("following")}
                   </div>
                   <div className="f_badge">
-                    <i className="fa-light fa-clothes-hanger"></i> 100{" "}
-                    {t("posts")}
+                    <i className="fa-light fa-clothes-hanger"></i>{" "}
+                    {profile?.client?.products_count} {t("posts")}
                   </div>
                 </div>
 
                 <StarsRate rate={4} reviewsCount={100} />
-
-                
               </div>
             </div>
             <div className="about_company">
-              <p>
-                متجر **عبايات القمر** هو وجهتك المثالية للأناقة والفخامة! نحن
-                نختص بتقديم أرقى العبايات النسائية التي تجمع بين التصاميم
-                العصرية والموديلات الفاخرة، بأقل الأسعار التي تناسب الجميع. نقدم
-                لكِ أفضل أنواع الأقمشة ذات الجودة العالية لتكوني دائمًا متألقة
-                بإطلالة مميزة ومريحة. استكشفي عالمًا من الخيارات المتنوعة التي
-                تعكس ذوقك الرفيع وتلبي جميع احتياجاتك.
-              </p>
+              <p>{profile?.client?.about}</p>
             </div>
           </div>
           <div className="col-12 p-2">
@@ -123,20 +126,14 @@ export default function CompanyProfile() {
               className="categories"
             >
               <SwiperSlide>
-                <button className="active">الكل</button>
+                <button className="active">{t("all")}</button>
               </SwiperSlide>
-              <SwiperSlide>
-                <button>عبايات خليجية</button>
-              </SwiperSlide>
-              <SwiperSlide>
-                <button>عبايات تركية</button>
-              </SwiperSlide>
-              <SwiperSlide>
-                <button>عبايات سعودية</button>
-              </SwiperSlide>
-              <SwiperSlide>
-                <button>عبايات مصرية</button>
-              </SwiperSlide>
+
+              {profile?.client?.categories?.map((category) => (
+                <SwiperSlide key={category.id}>
+                  <button>{category.name}</button>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>
