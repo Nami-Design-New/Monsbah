@@ -1,17 +1,21 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import useGetProducts from "../hooks/products/useGetProducts";
 import ProductVertical from "../ui/cards/ProductVertical";
 import ProductLoader from "../ui/loaders/ProductLoader";
 import StarsRate from "./../ui/StarsRate";
 import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
+import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
+import PageLoader from "../ui/loaders/PageLoader";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
   const { t } = useTranslation();
-  const { data: profile } = useGetCompanyProfile(true);
+  const { data: profile, isLoading: profileLoading } =
+    useGetCompanyProfile(true);
+  const { client } = useSelector((state) => state.clientData);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -34,7 +38,7 @@ export default function CompanyProfile() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetProducts();
+  } = useGetCompanyProducts();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +61,9 @@ export default function CompanyProfile() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  return (
+  return profileLoading ? (
+    <PageLoader />
+  ) : (
     <section className="company_profile_section">
       <div className="banner">
         <img src={profile?.client?.cover} alt="banner" />
@@ -69,6 +75,11 @@ export default function CompanyProfile() {
             <div className="company_header">
               <div className="img">
                 <img src={profile?.client?.image} alt="company" />
+                {profile?.client?.id !== client?.id && (
+                  <Link aria-label="Toggle following" className="follow_btn">
+                    <i className={`fa-light fa-${"plus"}`}></i>
+                  </Link>
+                )}
               </div>
 
               <div className="content">
@@ -84,7 +95,11 @@ export default function CompanyProfile() {
                       <img src="/images/icons/whats.svg" alt="" />
                     </Link>
 
-                    <Link aria-label="Profile" className=" follow_btn">
+                    <Link
+                      aria-label="Profile"
+                      className=" follow_btn"
+                      to={`/chats?user_id=${profile?.client?.id}`}
+                    >
                       <i className="fa-solid fa-comment-dots"></i>
                     </Link>
 
@@ -96,7 +111,9 @@ export default function CompanyProfile() {
 
                 <div className="stats">
                   <div className="f_badge">
-                    <i className="fa-light fa-location-dot"></i> مكة ، السعودية
+                    <i className="fa-light fa-location-dot"></i>{" "}
+                    {profile?.client?.city?.name} ،{" "}
+                    {profile?.client?.country?.name}
                   </div>
                   <div className="f_badge">
                     <i className="fa-regular fa-user-check"></i>{" "}
@@ -112,7 +129,12 @@ export default function CompanyProfile() {
                   </div>
                 </div>
 
-                <StarsRate rate={4} reviewsCount={100} />
+                <StarsRate
+                  rate={profile?.client?.rate}
+                  reviewsCount={100}
+                  showbtn={true}
+                  company={profile?.client}
+                />
               </div>
             </div>
             <div className="about_company">

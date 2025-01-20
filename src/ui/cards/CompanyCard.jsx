@@ -4,12 +4,15 @@ import StarsRate from "../StarsRate";
 
 export default function CompanyCard({ company }) {
   return (
-    <Link aria-label="Product" to={`/companies/1`} className="campany_card">
+    <Link
+      aria-label="Product"
+      to={`/companies/${company?.id}`}
+      className="campany_card"
+    >
       <div className="img">
         <img src={company?.image} alt="" />
         <ImageLoad isImageLoaded={false} />
       </div>
-
       <div className="content">
         <div className="title">
           <h3>{company?.name}</h3>

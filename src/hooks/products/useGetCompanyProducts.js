@@ -1,9 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetProducts() {
+function useGetCompanyProducts() {
+  const { id } = useParams();
   const [searchParams] = useSearchParams();
   const lang = useSelector((state) => state.language.lang);
 
@@ -23,7 +24,7 @@ function useGetProducts() {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [
-      "products",
+      "company-products",
       country_id,
       type,
       sort,
@@ -42,6 +43,7 @@ function useGetProducts() {
           city_id: city_id,
           country_id: country_id,
           category_id: category_id,
+          company_id: id,
           sub_category_id: sub_category_id,
         },
       });
@@ -77,4 +79,4 @@ function useGetProducts() {
   };
 }
 
-export default useGetProducts;
+export default useGetCompanyProducts;
