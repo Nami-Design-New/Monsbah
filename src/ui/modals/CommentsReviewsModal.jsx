@@ -5,11 +5,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import PageLoader from "../loaders/PageLoader";
 import useGetComments from "../../hooks/companies/useGetComments";
 import CommentCard from "../cards/CommentCard";
-import AddCommentForm from "../../components/AddCommentForm";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
+import AddRateAndCommentForm from "../../components/search/AddRateAndCommentForm";
+import { useSelector } from "react-redux";
 
-export default function CountryReviewsModal({
+export default function CommentsReviewsModal({
   showModal,
   setShowModal,
   company,
@@ -20,24 +21,25 @@ export default function CountryReviewsModal({
   const [targetComment, setTargetComment] = useState(null);
   const { data: comments, isLoading } = useGetComments(company?.id);
 
-  const handleSubmit = async (e, comment, setValue) => {
+  const clientData = useSelector((state) => state.clientData.client);
+  const handleSubmit = async (e, formData, setFormData) => {
     e.preventDefault();
     setLoading(true);
-
     const payLoad = {
-      company_id: company?.id,
-      comment: comment,
+      profile_id: clientData?.id,
+      ...formData,
     };
-
     if (targetComment) {
       payLoad.parent_id = targetComment.id;
     }
-
     try {
-      const res = await axiosInstance.post("/company/store-rate", payLoad);
+      const res = await axiosInstance.post("/client/store-rate", payLoad);
       if (res.status === 200) {
         toast.success(res.data.message);
-        setValue("");
+        setFormData({
+          comment: "",
+          rate: "",
+        });
         setTargetComment(null);
         queryClient.invalidateQueries({ queryKey: ["company-comments"] });
       }
@@ -86,9 +88,9 @@ export default function CountryReviewsModal({
             )}
           </div>
         </div>
-        <AddCommentForm
+        <AddRateAndCommentForm
           loading={loading}
-          handleSubmit={handleSubmit}
+          handleSubmitRate={handleSubmit}
           setTargetComment={setTargetComment}
           targetComment={targetComment}
         />

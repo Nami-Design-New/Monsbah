@@ -1,8 +1,9 @@
 import { useLayoutEffect } from "react";
 import { useCookies } from "react-cookie";
 import axiosInstance from "../utils/axiosInstance";
+import { useSelector } from "react-redux";
 
-const setupAxiosInterceptors = (setCookie, token) => {
+const setupAxiosInterceptors = (setCookie, token, clientData) => {
   axiosInstance.interceptors.response.use(
     (res) => res,
     async (err) => {
@@ -17,7 +18,7 @@ const setupAxiosInterceptors = (setCookie, token) => {
 
         try {
           delete axiosInstance.defaults.headers.common.Authorization;
-          const res = await axiosInstance.post("/client/auth/refresh-token", {
+          const res = await axiosInstance.post(`/client/auth/refresh-token`, {
             token: token,
           });
 

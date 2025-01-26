@@ -4,13 +4,14 @@ import { NavLink, Route, Routes, useSearchParams } from "react-router-dom";
 import Persons from "../components/search/Persons";
 import Asks from "../components/search/Asks";
 import Ads from "../components/search/Ads";
+import { useSelector } from "react-redux";
 
 export default function Search() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [search, setSearch] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const clientData = useSelector((state) => state.clientData.client);
   useEffect(() => {
     setSearch(searchParams.get("search"));
   }, [searchParams]);
@@ -49,10 +50,7 @@ export default function Search() {
               {t("advertisements")}
             </NavLink>
             <NavLink to={search ? `persons?search=${search}` : "persons"}>
-              {t("persons")}
-            </NavLink>
-            <NavLink to={search ? `asks?search=${search}` : "asks"}>
-              {t("asks")}
+              {clientData.user_type === "user" ? t("persons") : t("companies")}
             </NavLink>
           </nav>
 
@@ -60,10 +58,6 @@ export default function Search() {
             <Routes>
               <Route path="" element={<Ads sectionRef={sectionRef} />} />
               <Route path="asks" element={<Asks sectionRef={sectionRef} />} />
-              <Route
-                path="persons"
-                element={<Persons sectionRef={sectionRef} />}
-              />
             </Routes>
           </div>
         </div>

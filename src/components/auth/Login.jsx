@@ -12,12 +12,18 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
 
-function Login({ setFormType, setShow, setRegisterFormData }) {
+function Login({
+  setFormType,
+  setShow,
+  setRegisterFormData,
+  userState,
+  setUserState,
+}) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  
   const [, setCookie] = useCookies(["token", "id"]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,12 +39,15 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/client/auth/login", {
-        phone: formData.country_code + formData.phone,
-        password: formData.password,
-        country_code: formData.country_code,
-        fcm_token: formData.fcm_token,
-      });
+      const res = await axiosInstance.post(
+        `/${userState === "company" ? "company" : "client"}/auth/login`,
+        {
+          phone: formData.country_code + formData.phone,
+          password: formData.password,
+          country_code: formData.country_code,
+          fcm_token: formData.fcm_token,
+        }
+      );
       if (res.status === 200) {
         dispatch(setClientData(res.data?.data.client_data));
         setCookie("token", res.data?.data.token, {
@@ -85,6 +94,32 @@ function Login({ setFormType, setShow, setRegisterFormData }) {
           <img src="/images/icons/waving-hand.svg" alt="hand-wave" />
         </h2>
         <p className="sub-head">{t("auth.loginSubtitle")}</p>
+      </div>
+      <div className="input-field mb-4">
+        <div className="radios">
+          <label htmlFor="client">
+            <input
+              type="radio"
+              name="userState"
+              id="client"
+              value="client"
+              checked={userState === "client"}
+              onChange={(e) => setUserState(e.target.value)}
+            />
+            <span>{t("auth.client")}</span>
+          </label>
+          <label htmlFor="company">
+            <input
+              type="radio"
+              name="userState"
+              id="company"
+              value="company"
+              checked={userState === "company"}
+              onChange={(e) => setUserState(e.target.value)}
+            />
+            <span>{t("auth.company")}</span>
+          </label>
+        </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <PhoneInput

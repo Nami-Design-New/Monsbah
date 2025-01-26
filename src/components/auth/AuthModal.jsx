@@ -15,7 +15,7 @@ import CompanyOTPConfirm from "./CompanyOTPConfirm";
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const { isAuthed } = useAuth();
   const navigate = useNavigate();
-
+  const [userState, setUserState] = useState("client");
   const [formType, setFormType] = useState("companyOtp");
   const [otpCode, setOtpCode] = useState("");
   const [forgetFormData, setForgetFormData] = useState({
@@ -121,6 +121,8 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormType={setFormType}
                 setShow={setShow}
                 setRegisterFormData={setRegisterFormData}
+                userState={userState}
+                setUserState={setUserState}
               />
             )}
 
@@ -175,6 +177,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setOtpCode={setOtpCode}
                 formData={forgetFormData}
                 setFormData={setForgetFormData}
+                userState={userState}
               />
             )}
 

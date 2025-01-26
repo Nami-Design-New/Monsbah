@@ -75,7 +75,6 @@ export default function Companies() {
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
-
       const section = sectionRef.current;
       const sectionBottom = section.getBoundingClientRect().bottom;
       const viewportHeight = window.innerHeight;

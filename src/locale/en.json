@@ -81,7 +81,8 @@
     "companyName": "Company Name",
     "companyDec": "Company Description",
     "enterDescription": "Enter Company Description",
-    "whatsapp": "WhatsApp Number"
+    "whatsapp": "WhatsApp Number",
+    "client": "Client"
   },
   "blogs": {
     "title": "Blogs and News",
@@ -342,6 +343,8 @@
   "searchPlaceholder": "Search for ad.. person.. question",
   "advertisements": "Advertisements",
   "persons": "People",
+  "companies": "Companies",
+  "rateComment": "Add your rate",
   "asks": "Questions",
   "popularPersons": "Popular People",
   "popularPersonsDesc": "People relevant to your search",
