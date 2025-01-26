@@ -224,25 +224,6 @@ function ProfileTabs() {
             >
               <AddAd user={user} lang={lang} isActive={activeTab === "addAd"} />
             </Tab>
-
-            {/* questions */}
-            <Tab
-              eventKey="questions"
-              title={
-                <>
-                  <i className="fa-regular fa-message-question"></i>
-                  {t("profile.myAsks")}
-                </>
-              }
-              className="tab_item"
-            >
-              <QuestionsTab
-                user={user}
-                lang={lang}
-                isActive={activeTab === "questions"}
-              />
-            </Tab>
-
             <Tab
               eventKey="notifications"
               title={

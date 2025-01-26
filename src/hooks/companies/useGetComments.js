@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 export default function useGetComments() {
   const { id } = useParams();
+
   const lang = useSelector((state) => state.language.lang);
 
   const { isLoading, data, error } = useQuery({

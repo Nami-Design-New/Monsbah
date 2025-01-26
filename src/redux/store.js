@@ -5,6 +5,6 @@ import clientData from "./slices/clientData";
 export const store = configureStore({
   reducer: {
     language,
-    clientData
-  }
+    clientData,
+  },
 });

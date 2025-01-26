@@ -80,7 +80,8 @@
     "companyDec": "وصف الشركة",
     "enterDescription": "ادخل وصف الشركة",
     "whatsapp": "واتساب",
-    "category": "الفئة"
+    "category": "الفئة",
+    "client": "حساب شخصي"
   },
   "blogs": {
     "title": "المدونة والأخبار",
@@ -294,6 +295,8 @@
   "searchPlaceholder": "ابحث عن إعلان .. شخص .. سؤال",
   "advertisements": "الإعلانات",
   "persons": "الأشخاص",
+  "companies": "الشركات",
+  "rateComment": "اضف تقييمك",
   "asks": "الاسئلة",
   "popularPersons": "أشهر الأشخاص",
   "popularPersonsDesc": "الأشخاص المناسبة لنتيجة بحثك",

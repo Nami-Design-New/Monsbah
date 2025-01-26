@@ -7,7 +7,13 @@ import axiosInstance from "../../utils/axiosInstance";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 
-function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
+function ForgetPassword({
+  setFormType,
+  setOtpCode,
+  formData,
+  setFormData,
+  userState,
+}) {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,10 +24,15 @@ function ForgetPassword({ setFormType, setOtpCode, formData, setFormData }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/client/auth/forget-password", {
-        phone: formData.country_code + formData.phone,
-        country_code: formData.country_code,
-      });
+      const res = await axiosInstance.post(
+        `/${
+          userState === "company" ? "company" : "client"
+        }/auth/forget-password`,
+        {
+          phone: formData.country_code + formData.phone,
+          country_code: formData.country_code,
+        }
+      );
       if (res.status === 200) {
         toast.success(res.data?.message);
 

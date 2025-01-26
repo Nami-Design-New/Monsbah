@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import CountryReviewsModal from "./modals/CountryReviewsModal";
+import CountryReviewsModal from "./modals/CommentsReviewsModal";
 
 export default function StarsRate({
   rate,
