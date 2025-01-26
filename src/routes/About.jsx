@@ -6,15 +6,13 @@ export default function About() {
   const { t } = useTranslation();
   const { data: countries } = useGetCountries();
 
-  console.log(countries);
-
   return (
     <section className="aboutus_section">
       <div className="container">
         <>
           <div className="heading-section">
             <div className="image-wrapper">
-              <img src="images/auth-benner.webp" alt="Monsbah" />
+              <img src="images/auth-benner.png" alt="Monsbah" />
             </div>
             <div className="info-wrapper">
               <h3>

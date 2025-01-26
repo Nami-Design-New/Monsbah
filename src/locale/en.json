@@ -49,6 +49,7 @@
     "country": "Country",
     "city": "City",
     "area": "Area",
+    "category": "Category",
     "haveAccount": "Registration means commitment to the",
     "haveAccount-comment": "User agreement",
     "byContinueYouAccept": "By continuing, you agree to",

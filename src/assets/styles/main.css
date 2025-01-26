@@ -3218,7 +3218,6 @@ body .auth_section .img_wrapper.register, body .auth_section .img_wrapper.regist
 body .auth_section .img_wrapper .bg-img {
   border-radius: 16px;
   width: 100%;
-  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
