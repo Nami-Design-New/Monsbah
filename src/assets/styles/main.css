@@ -2459,15 +2459,16 @@ body .image_upload button {
   left: 8px;
 }
 body .images_grid_upload {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 body .images_grid_upload .file_upload {
   border: 1px solid #eeeeee;
   border-radius: 12px;
-  height: 150px;
   overflow: hidden;
+  height: 150px;
+  min-width: 150px;
 }
 body .images_grid_upload .file_upload label {
   height: 100%;
@@ -2500,6 +2501,7 @@ body .images_grid_upload .uploaded_file {
   border: 1px solid #eeeeee;
   border-radius: 12px;
   position: relative;
+  width: 150px;
   height: 150px;
   overflow: hidden;
   display: flex;
@@ -3057,12 +3059,12 @@ body .addCommentForm {
   display: flex !important;
   align-items: end !important;
   flex-direction: row;
+  gap: 16px;
 }
 body .addCommentForm button {
   width: -moz-fit-content !important;
   width: fit-content !important;
   padding: 0 24px !important;
-  height: 56px !important;
 }
 body .askCustomCountry {
   cursor: pointer;
@@ -6031,7 +6033,7 @@ body main .companies_section .campany_card.skeleton .skeleton-price {
   animation: pulse 1.5s ease-in-out infinite;
 }
 body main .company_profile_section .banner {
-  height: 25vh;
+  height: 35vh;
 }
 body main .company_profile_section .banner img {
   width: 100%;
@@ -6053,6 +6055,12 @@ body main .company_profile_section .company_header {
     align-items: flex-start;
   }
 }
+body main .company_profile_section .company_header .add_product {
+  padding: 8px 12px;
+  background: #1abc9c;
+  color: #fff;
+  border-radius: 50px;
+}
 body main .company_profile_section .company_header .img {
   width: 130px;
   height: 130px;
@@ -6062,8 +6070,9 @@ body main .company_profile_section .company_header .img {
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 2px solid #1abc9c;
+  border: 4px solid #fff;
   border-radius: 50%;
+  margin-top: -100px;
 }
 @media screen and (max-width: 768px) {
   body main .company_profile_section .company_header .img {

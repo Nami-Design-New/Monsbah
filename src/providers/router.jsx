@@ -20,6 +20,9 @@ import RootLayout from "./../ui/Layout/RootLayout";
 import ProductDetails from "../routes/ProductDetails";
 import ProtectionProvider from "./ProtectionProvider";
 import CompanyProfile from "../routes/CompanyProfile";
+import CompanyAccount from "../routes/CompanyAccount";
+import AddCompanyProduct from "../routes/AddCompanyProduct";
+import EditCompanyProfile from "../routes/EditCompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -92,13 +95,35 @@ export const router = createBrowserRouter([
       },
 
       {
+        path: "add-company-product",
+        element: (
+          <ProtectionProvider>
+            <AddCompanyProduct />
+          </ProtectionProvider>
+        ),
+      },
+
+      {
+        path: "edit-company-profile",
+        element: (
+          <ProtectionProvider>
+            <EditCompanyProfile />
+          </ProtectionProvider>
+        ),
+      },
+
+      {
         path: "profile",
         children: [
           {
             index: true,
             element: (
               <ProtectionProvider>
-                <Profile />
+                {localStorage.getItem("userType") === "client" ? (
+                  <Profile />
+                ) : (
+                  <CompanyAccount />
+                )}
               </ProtectionProvider>
             ),
           },

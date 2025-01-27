@@ -9,7 +9,6 @@ import { setClientData } from "../../redux/slices/clientData";
 import { toast } from "react-toastify";
 import MainInfoTab from "./MainInfoTab";
 import MyAds from "./MyAds";
-import QuestionsTab from "./QuestionsTab";
 import FavoritesTab from "./FavoritesTab";
 import SettingsTab from "./SettingsTab";
 import VerificationTab from "./VerificationTab";

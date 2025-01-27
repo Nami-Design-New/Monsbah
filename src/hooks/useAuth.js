@@ -59,7 +59,10 @@ export default function useAuth() {
       try {
         if (isFetched) {
           if (profile) {
-            dispatch(setClientData(profile));
+            let type = localStorage.getItem("userType");
+            dispatch(
+              setClientData(type === "client" ? profile : profile?.client)
+            );
             setIsAuthed(true);
           } else {
             console.log("Profile data not available, refetching...");

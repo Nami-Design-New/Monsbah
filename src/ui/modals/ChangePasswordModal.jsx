@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
-import SubmitButton from "../form-elements/SubmitButton";
 import { toast } from "react-toastify";
-
 import { Modal } from "react-bootstrap";
+import SubmitButton from "../form-elements/SubmitButton";
 import PasswordField from "../form-elements/PasswordField";
 import axiosInstance from "../../utils/axiosInstance";
 
@@ -22,7 +21,7 @@ function ChangePasswordModal({ showModal, setShowModal }) {
     setLoading(true);
     try {
       const res = await axiosInstance.post(
-        `/client/auth/change-password`,
+        `/${localStorage.getItem("userType")}/auth/change-password`,
         formData
       );
       if (res.status === 200) {
@@ -49,8 +48,8 @@ function ChangePasswordModal({ showModal, setShowModal }) {
         <h5>{t(`profile.changePassword`)}</h5>
       </Modal.Header>
       <Modal.Body>
-        <div className="container">
-          <div className="col-12 p-2">
+        <div className="container p-0">
+          <div className="col-12">
             <form onSubmit={handleSubmit} className="form">
               <div className="col-12 w-100">
                 <div className="col-12 py-2 px-0">
@@ -86,7 +85,7 @@ function ChangePasswordModal({ showModal, setShowModal }) {
                     onChange={(e) => handleChange(e, setFormData)}
                   />
                 </div>
-                <div className="col-12 py-2 px-0">
+                <div className="col-12 py-2 px-0 mt-3">
                   <div className="btns">
                     <SubmitButton
                       name={t("save")}

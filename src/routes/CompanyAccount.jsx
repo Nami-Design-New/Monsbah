@@ -1,21 +1,17 @@
-import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import ProductVertical from "../ui/cards/ProductVertical";
+import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import StarsRate from "../ui/StarsRate";
 import ProductLoader from "../ui/loaders/ProductLoader";
-import StarsRate from "./../ui/StarsRate";
-import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
-import PageLoader from "../ui/loaders/PageLoader";
+import ProductVertical from "../ui/cards/ProductVertical";
+import { Link } from "react-router-dom";
 
-export default function CompanyProfile() {
-  const sectionRef = useRef(null);
+export default function CompanyAccount() {
   const { t } = useTranslation();
-  const { data: profile, isLoading: profileLoading } =
-    useGetCompanyProfile(true);
-  const { client } = useSelector((state) => state.clientData);
+  const sectionRef = useRef(null);
+  const profile = useSelector((state) => state.clientData.client);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -38,7 +34,7 @@ export default function CompanyProfile() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetCompanyProducts();
+  } = useGetCompanyProducts(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,9 +57,7 @@ export default function CompanyProfile() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  return profileLoading ? (
-    <PageLoader />
-  ) : (
+  return (
     <section className="company_profile_section">
       <div className="banner">
         <img src="/images/banner.png" alt="banner" />
@@ -73,33 +67,19 @@ export default function CompanyProfile() {
         <div className="row">
           <div className="company_header">
             <div className="img">
-              <img src={profile?.client?.image} alt="company" />
-              {profile?.client?.id !== client?.id && (
-                <Link aria-label="Toggle following" className="follow_btn">
-                  <i className={`fa-light fa-${"plus"}`}></i>
-                </Link>
-              )}
+              <img src={profile?.image} alt="company" />
             </div>
 
             <div className="content">
               <div className="title">
-                <h3>{profile?.client?.name}</h3>
+                <h3>{profile?.name}</h3>
                 <div className="actions">
-                  <Link
-                    aria-label="whatsapp"
-                    target="_blank"
-                    to={profile?.client?.whats_number}
-                    className=" follow_btn"
-                  >
-                    <img src="/images/icons/whats.svg" alt="" />
+                  <Link className="add_product" to="/add-company-product">
+                    <i className="fa-regular fa-plus"></i> {t("profile.addAd")}
                   </Link>
 
-                  <Link
-                    aria-label="Profile"
-                    className=" follow_btn"
-                    to={`/chats?user_id=${profile?.client?.id}`}
-                  >
-                    <i className="fa-solid fa-comment-dots"></i>
+                  <Link className="follow_btn" to="/edit-company-profile">
+                    <i className="fa-light fa-pencil"></i>
                   </Link>
 
                   <div className="follow_btn" onClick={handleShare}>
@@ -111,36 +91,40 @@ export default function CompanyProfile() {
               <div className="stats">
                 <div className="f_badge">
                   <i className="fa-light fa-location-dot"></i>{" "}
-                  {profile?.client?.city?.name} ،{" "}
-                  {profile?.client?.country?.name}
+                  {profile?.city?.name} ، {profile?.country?.name}
                 </div>
                 <div className="f_badge">
                   <i className="fa-regular fa-user-check"></i>{" "}
-                  {profile?.client?.followers} {t("Followers")}
+                  {profile?.followers} {t("Followers")}
                 </div>
                 <div className="f_badge">
                   <i className="fa-light fa-user-group"></i>{" "}
-                  {profile?.client?.following} {t("following")}
+                  {profile?.following} {t("following")}
                 </div>
                 <div className="f_badge">
                   <i className="fa-light fa-clothes-hanger"></i>{" "}
-                  {profile?.client?.products_count} {t("posts")}
+                  {profile?.products_count} {t("posts")}
                 </div>
               </div>
 
               <StarsRate
-                rate={profile?.client?.rate}
+                rate={profile?.rate}
                 reviewsCount={100}
                 showbtn={true}
-                company={profile?.client}
+                company={profile}
               />
             </div>
           </div>
+
           <div className="col-12 p-2">
             <div className="about_company">
-              <p>{profile?.client?.about}</p>
+              <p>{profile?.about}</p>
             </div>
           </div>
+        </div>
+
+        <div className="row mb-5" ref={sectionRef}>
+          {" "}
           <div className="col-12 p-2">
             <Swiper
               slidesPerView="auto"
@@ -151,16 +135,13 @@ export default function CompanyProfile() {
                 <button className="active">{t("all")}</button>
               </SwiperSlide>
 
-              {profile?.client?.categories?.map((category) => (
+              {profile?.categories?.map((category) => (
                 <SwiperSlide key={category.id}>
                   <button>{category.name}</button>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-        </div>
-
-        <div className="row mb-5" ref={sectionRef}>
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
               <ProductVertical product={product} isShowAction={false} />

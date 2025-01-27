@@ -764,14 +764,15 @@
 }
 
 .images_grid_upload {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   .file_upload {
     border: 1px solid $lightGray;
     border-radius: 12px;
-    height: 150px;
     overflow: hidden;
+    height: 150px;
+    min-width: 150px;
     label {
       height: 100%;
       width: 100%;
@@ -802,6 +803,7 @@
     border: 1px solid $lightGray;
     border-radius: 12px;
     position: relative;
+    width: 150px;
     height: 150px;
     overflow: hidden;
     @include centerFlex();

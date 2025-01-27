@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetCompanyProducts() {
+function useGetCompanyProducts(isMyCompany) {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const myCompany = useSelector((state) => state.clientData.client);
   const lang = useSelector((state) => state.language.lang);
 
   const country_id = searchParams.get("country");
@@ -29,13 +30,14 @@ function useGetCompanyProducts() {
       type,
       sort,
       city_id,
+      id,
       category_id,
       sub_category_id,
       lang,
     ],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get("/client/products", {
+      const res = await axiosInstance.get("/company/products", {
         params: {
           type: type,
           sort: sort,
@@ -43,7 +45,7 @@ function useGetCompanyProducts() {
           city_id: city_id,
           country_id: country_id,
           category_id: category_id,
-          company_id: id,
+          company_id: isMyCompany ? myCompany?.id : id,
           sub_category_id: sub_category_id,
         },
       });

@@ -18,11 +18,14 @@ function useGetNotifications() {
     queryKey: ["notifications", lang],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get("/client/notifications", {
-        params: {
-          page: pageParam,
-        },
-      });
+      const res = await axiosInstance.get(
+        `/${localStorage.getItem("userType")}/notifications`,
+        {
+          params: {
+            page: pageParam,
+          },
+        }
+      );
       if (res.status === 200) {
         return {
           data: res.data?.data?.data,

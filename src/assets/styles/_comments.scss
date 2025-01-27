@@ -246,10 +246,10 @@
   display: flex !important;
   align-items: end !important;
   flex-direction: row;
+  gap: 16px;
   button {
     width: fit-content !important;
     padding: 0 24px !important;
-    height: 56px !important;
   }
 }
 

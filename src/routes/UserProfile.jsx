@@ -58,7 +58,7 @@ function UserProfile() {
   return (
     <section className="company_profile_section">
       <div className="banner">
-        <img src="/images/campany_banner.jpg" alt="banner" />
+        <img src="/images/banner.png" alt="banner" />
       </div>
       <div className="container mt-4">
         <div className="company_header">

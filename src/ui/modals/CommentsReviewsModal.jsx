@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import PageLoader from "../loaders/PageLoader";
 import useGetComments from "../../hooks/companies/useGetComments";
-import CommentCard from "../cards/CommentCard";
+// import CommentCard from "../cards/CommentCard";
 import axiosInstance from "../../utils/axiosInstance";
-import { toast } from "react-toastify";
 import AddRateAndCommentForm from "../../components/search/AddRateAndCommentForm";
-import { useSelector } from "react-redux";
 
 export default function CommentsReviewsModal({
   showModal,
@@ -74,14 +74,14 @@ export default function CommentsReviewsModal({
                   <h6 className="noComments">{t("noComments")}</h6>
                 ) : (
                   <>
-                    {comments?.map((comment) => (
+                    {/* {comments?.map((comment) => (
                       <CommentCard
                         comment={comment}
                         key={comment?.id}
                         setTargetComment={setTargetComment}
                         type="question"
                       />
-                    ))}
+                    ))} */}
                   </>
                 )}
               </>

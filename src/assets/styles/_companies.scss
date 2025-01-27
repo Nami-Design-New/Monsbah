@@ -125,7 +125,7 @@
 
 .company_profile_section {
   .banner {
-    height: 25vh;
+    height: 35vh;
     img {
       width: 100%;
       height: 100%;
@@ -142,6 +142,12 @@
       gap: 24px;
       align-items: flex-start;
     }
+    .add_product {
+      padding: 8px 12px;
+      background: $main;
+      color: $white;
+      border-radius: 50px;
+    }
     .img {
       width: 130px;
       height: 130px;
@@ -149,8 +155,9 @@
       background: $white;
       @include centerFlex();
       position: relative;
-      border: 2px solid $main;
+      border: 4px solid $white;
       border-radius: 50%;
+      margin-top: -100px;
       @media screen and (max-width: 768px) {
         margin-top: -97px;
       }
