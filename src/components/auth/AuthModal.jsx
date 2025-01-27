@@ -187,11 +187,16 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 otpCode={otpCode}
                 setFormType={setFormType}
                 formData={forgetFormData}
+                userState={userState}
               />
             )}
 
             {formType === "reset" && (
-              <ResetPassword setFormType={setFormType} setShow={setShow} />
+              <ResetPassword
+                setFormType={setFormType}
+                setShow={setShow}
+                userState={userState}
+              />
             )}
           </div>
         </section>

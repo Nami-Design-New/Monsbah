@@ -5,10 +5,9 @@ import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
-
 import axiosInstance from "../../utils/axiosInstance";
 
-function ResetPassword({ setFormType, setShow }) {
+function ResetPassword({ setFormType, setShow, userState }) {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,12 +22,15 @@ function ResetPassword({ setFormType, setShow }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/client/auth/change-password", {
-        phone: formData.country_code + formData.phone,
-        password: formData.password,
-        country_code: formData.country_code,
-        fcm_token: formData.fcm_token,
-      });
+      const res = await axiosInstance.post(
+        `/${userState}/auth/change-password`,
+        {
+          phone: formData.country_code + formData.phone,
+          password: formData.password,
+          country_code: formData.country_code,
+          fcm_token: formData.fcm_token,
+        }
+      );
       if (res.status === 200) {
         toast.success(res.data?.message);
 

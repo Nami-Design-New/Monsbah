@@ -195,17 +195,41 @@ export default function Header() {
             </Link>
 
             {user?.id ? (
-              <Link
-                aria-label="Profile"
-                to="/profile"
-                className="link profile-link"
-              >
-                <img
-                  src={avatarError ? "/images/icons/user.svg" : user?.image}
-                  alt="user"
-                  onError={() => setAvatarError(true)}
-                />
-              </Link>
+              <>
+                {localStorage.getItem("userType") === "client" ? (
+                  <Link
+                    aria-label="Profile"
+                    to="/profile"
+                    className="link profile-link"
+                  >
+                    <img
+                      src={avatarError ? "/images/icons/user.svg" : user?.image}
+                      alt="user"
+                      onError={() => setAvatarError(true)}
+                    />
+                  </Link>
+                ) : (
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      aria-label="Notifications"
+                      id="dropdown-basic"
+                      className="link profile-link"
+                    >
+                      <img
+                        src={
+                          avatarError ? "/images/icons/user.svg" : user?.image
+                        }
+                        alt="user"
+                        onError={() => setAvatarError(true)}
+                      />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>{t("routes.profile")}</Dropdown.Item>
+                      <Dropdown.Item>English</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
+              </>
             ) : (
               <button
                 aria-label="Login"
@@ -223,6 +247,7 @@ export default function Header() {
       </div>
 
       <GetApp show={showGetAppModal} setShow={setShowGetAppModal} />
+
       <AuthModal
         type={authType}
         show={showAuthModal}

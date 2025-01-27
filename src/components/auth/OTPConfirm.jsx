@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
-
 import SubmitButton from "../../ui/form-elements/SubmitButton";
-
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import axiosInstance from "../../utils/axiosInstance";
 
-function OTPConfirm({ formData, setFormType }) {
+function OTPConfirm({ formData, setFormType, userState }) {
   const { t } = useTranslation();
   const [otpVerifyCode, setOtpVerifyCode] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,11 +18,14 @@ function OTPConfirm({ formData, setFormType }) {
     setLoading(true);
 
     try {
-      const res = await axiosInstance.post("/client/auth/reset-password", {
-        phone: formData.country_code + formData.phone,
-        country_code: formData.country_code,
-        token: otpVerifyCode.code,
-      });
+      const res = await axiosInstance.post(
+        `/${userState}/auth/reset-password`,
+        {
+          phone: formData.country_code + formData.phone,
+          country_code: formData.country_code,
+          token: otpVerifyCode.code,
+        }
+      );
       if (res.status === 200) {
         toast.success(res.data?.message);
 

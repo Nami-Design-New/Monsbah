@@ -25,9 +25,7 @@ function ForgetPassword({
     setLoading(true);
     try {
       const res = await axiosInstance.post(
-        `/${
-          userState === "company" ? "company" : "client"
-        }/auth/forget-password`,
+        `/${userState}/auth/forget-password`,
         {
           phone: formData.country_code + formData.phone,
           country_code: formData.country_code,
