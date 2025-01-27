@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setClientData } from "../../redux/slices/clientData";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
@@ -22,9 +22,9 @@ function Login({
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  
+
   const [, setCookie] = useCookies(["token", "id"]);
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     phone: "",
@@ -50,23 +50,24 @@ function Login({
       );
       if (res.status === 200) {
         dispatch(setClientData(res.data?.data.client_data));
+
         setCookie("token", res.data?.data.token, {
           path: "/",
           secure: true,
           sameSite: "Strict",
         });
+
         setCookie("id", res.data?.data.client_data.id, {
           path: "/",
           secure: true,
           sameSite: "Strict",
         });
+
         toast.success(res.data?.message);
         queryClient.invalidateQueries();
         navigate("/profile");
-        const updatedParams = new URLSearchParams(searchParams);
-        updatedParams.delete("redirect");
-        setSearchParams(updatedParams);
         setShow(false);
+        localStorage.setItem("userType", userState);
       }
     } catch (error) {
       if (error.response.status == 403) {
@@ -79,7 +80,6 @@ function Login({
       } else {
         toast.error(error.response.data.message);
       }
-
       throw new Error(error);
     } finally {
       setLoading(false);
