@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
 import { useQueryClient } from "@tanstack/react-query";
+import { setClientData } from "../../redux/slices/clientData";
+import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
 import i18next from "i18next";
 import GetApp from "../modals/GetApp";
 import AuthModal from "../../components/auth/AuthModal";
 import useGetNotifications from "../../hooks/notifications/useGetNotifications";
 import NotificationCard from "../cards/NotificationCard";
 import useAuth from "../../hooks/useAuth";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function Header() {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.clientData.client);
+
+  const [, , deleteCookie] = useCookies();
+  const [cookies] = useCookies(["token"]);
+  const token = cookies?.token;
 
   const [avatarError, setAvatarError] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -51,6 +60,28 @@ export default function Header() {
     const bodyElement = document.querySelector("body");
     if (bodyElement) {
       bodyElement.classList.toggle("en", newLang === "en");
+    }
+  };
+
+  const performLogout = async () => {
+    try {
+      const deleteToken = await axiosInstance.get("company/auth/logout", {
+        token: token,
+      });
+
+      if (deleteToken.data.status === 200) {
+        deleteCookie("token");
+        deleteCookie("id");
+        delete axiosInstance.defaults.headers.common["Authorization"];
+        dispatch(setClientData({}));
+        navigate("/", { replace: true });
+        queryClient.clear();
+        localStorage.clear();
+        toast.success(deleteToken.data.message);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw new Error(error.message);
     }
   };
 
@@ -225,7 +256,9 @@ export default function Header() {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item>{t("routes.profile")}</Dropdown.Item>
-                      <Dropdown.Item>English</Dropdown.Item>
+                      <Dropdown.Item onClick={performLogout}>
+                        {t("header.logout")}
+                      </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 )}
