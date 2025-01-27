@@ -43,7 +43,12 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
     try {
       const res = await axiosInstance.post(
         "/company/auth/sign-up/resend-verify-phone",
-        payload
+        payload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -70,10 +75,15 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
           phone: formData.country_code + formData.phone,
           new_version: 1,
           otp: +otpVerifyCode.code,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       if (res.status === 200) {
-        const loginRes = await axiosInstance.post("/client/auth/login", {
+        const loginRes = await axiosInstance.post("/company/auth/login", {
           phone: formData.country_code + formData.phone,
           password: formData.password,
           country_code: formData.country_code,
@@ -161,7 +171,7 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setFormType("register");
+            setFormType("register-company");
           }}
         >
           <i className="fal fa-arrow-right"></i>
