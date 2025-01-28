@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import StarsRate from "./../ui/StarsRate";
 import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 import PageLoader from "../ui/loaders/PageLoader";
-import CompanyProductLoader from './../ui/loaders/CompanyProductLoader';
+import CompanyProductLoader from "./../ui/loaders/CompanyProductLoader";
 import CompanyProductCard from "../ui/cards/CompanyProductCard";
+import axiosInstance from "../utils/axiosInstance";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { data: profile, isLoading: profileLoading } =
     useGetCompanyProfile(true);
@@ -61,6 +65,27 @@ export default function CompanyProfile() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  const handleFollow = async () => {
+    try {
+      const res = await axiosInstance.post(
+        `/${localStorage.getItem("userType")}/${
+          profile?.client?.is_follow ? "delete" : "store"
+        }-follower`,
+        {
+          profile_id: profile?.client?.id,
+        }
+      );
+      if (res.status === 200) {
+        queryClient.invalidateQueries({
+          queryKey: ["company-profile"],
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      throw new Error(error?.response?.data?.message);
+    }
+  };
+
   return profileLoading ? (
     <PageLoader />
   ) : (
@@ -75,8 +100,16 @@ export default function CompanyProfile() {
             <div className="img">
               <img src={profile?.client?.image} alt="company" />
               {profile?.client?.id !== client?.id && (
-                <Link aria-label="Toggle following" className="follow_btn">
-                  <i className={`fa-light fa-${"plus"}`}></i>
+                <Link
+                  aria-label="Toggle following"
+                  className="follow_btn"
+                  onClick={handleFollow}
+                >
+                  <i
+                    className={`fa-light fa-${
+                      profile?.client?.is_follow ? "check" : "plus"
+                    }`}
+                  ></i>
                 </Link>
               )}
             </div>

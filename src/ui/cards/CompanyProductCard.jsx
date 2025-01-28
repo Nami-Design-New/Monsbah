@@ -118,16 +118,16 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
 
           <ul>
             <li>
-              <Link>
+              <Link to={`/profile/${product?.user?.id}`} className="company">
                 <div className="company_img">
-                  <img src="/product.png" alt="" />
+                  <img src={`${product?.user?.image}`} alt="" />
                 </div>
 
-                <h6>{product?.company?.name}</h6>
+                <h6>{product?.user?.name}</h6>
               </Link>
             </li>
 
-            <li>
+            <li style={{ marginInlineStart: "auto" }}>
               <i className="fa-light fa-location-dot"> </i>{" "}
               {product.country?.name}
               {lang === "ar" ? "،" : ","} {product.city?.name}
