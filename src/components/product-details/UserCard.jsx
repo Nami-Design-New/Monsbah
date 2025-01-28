@@ -27,7 +27,9 @@ function UserCard({ product, setProduct }) {
     }));
     try {
       const res = await axiosInstance.post(
-        `/client/${product?.user?.is_follow ? "delete" : "store"}-follower`,
+        `/${localStorage.getItem("userType")}/${
+          product?.user?.is_follow ? "delete" : "store"
+        }-follower`,
         {
           profile_id: product?.user?.id,
         }

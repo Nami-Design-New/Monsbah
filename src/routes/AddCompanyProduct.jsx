@@ -3,7 +3,7 @@ import { handleChange } from "../utils/helpers";
 import { toast } from "react-toastify";
 import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import InputField from "../ui/form-elements/InputField";
@@ -22,8 +22,7 @@ export default function AddCompanyProduct() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-  const product_id = searchParams.get("product_id");
+  const { id: product_id } = useParams();
   const user = useSelector((state) => state.clientData.client);
   const { lang } = useSelector((state) => state.language);
   const { data: categories } = useGetCategories();
@@ -230,29 +229,12 @@ export default function AddCompanyProduct() {
       if (res.status === 200) {
         toast.success(res.data.message);
         navigate("/profile?tab=ads");
-        setFormData({
-          images: [],
-          image: "",
-          name_ar: "",
-          name_en: "",
-          category_id: "",
-          sub_category_id: "",
-          city_id: "",
-          state_id: "",
-          description_ar: "",
-          description_en: "",
-          type: "sale",
-          active_chat: "inactive",
-          active_whatsapp: "inactive",
-          active_call: "inactive",
-        });
         if (product_id) {
           queryClient.invalidateQueries(["product", lang, product_id]);
         }
         queryClient.invalidateQueries({ queryKey: ["products"] });
         queryClient.invalidateQueries({ queryKey: ["allProducts"] });
-        queryClient.invalidateQueries({ queryKey: ["user-products"] });
-        queryClient.invalidateQueries({ queryKey: ["user-favorites"] });
+        queryClient.invalidateQueries({ queryKey: ["company-products"] });
       }
     } catch (error) {
       setLoading(false);

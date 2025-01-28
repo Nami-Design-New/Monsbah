@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import ProductVertical from "../ui/cards/ProductVertical";
-import ProductLoader from "../ui/loaders/ProductLoader";
 import StarsRate from "./../ui/StarsRate";
 import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 import PageLoader from "../ui/loaders/PageLoader";
+import CompanyProductLoader from './../ui/loaders/CompanyProductLoader';
+import CompanyProductCard from "../ui/cards/CompanyProductCard";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
@@ -163,7 +163,7 @@ export default function CompanyProfile() {
         <div className="row mb-5" ref={sectionRef}>
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-              <ProductVertical product={product} isShowAction={false} />
+              <CompanyProductCard product={product} isShowAction={false} />
             </div>
           ))}
           {(isLoading || isFetchingNextPage) && (
@@ -175,7 +175,7 @@ export default function CompanyProfile() {
                     className="col-lg-4 col-md-6 col-12 p-2"
                     key={`loader-${index}`}
                   >
-                    <ProductLoader />
+                    <CompanyProductLoader />
                   </div>
                 ))}
             </>

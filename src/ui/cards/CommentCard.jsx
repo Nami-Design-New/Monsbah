@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import axiosInstance from "../../utils/axiosInstance";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import StarsRate from "../StarsRate";
 
 function CommentCard({ comment, setTargetComment, className, type }) {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ function CommentCard({ comment, setTargetComment, className, type }) {
     }
     try {
       const res = await axiosInstance.post(
-        `/client/${
+      `/${localStorage.getItem("userType")}/${
           type === "question" ? "delete-question-comment" : "delete-comment"
         }`,
         requestBody
@@ -62,7 +63,10 @@ function CommentCard({ comment, setTargetComment, className, type }) {
           />
         </Link>
         <div className="content">
-          <h6>{comment?.user_name}</h6>
+          <div className="d-flex align-items-center justify-content-between mb-2">
+            <h6 className="mb-0">{comment?.user_name}</h6>
+            {comment?.rate && <StarsRate rate={comment?.rate} />}
+          </div>
           <div className="comment">
             <p>{comment?.comment}</p>
           </div>
@@ -103,6 +107,7 @@ function CommentCard({ comment, setTargetComment, className, type }) {
           ))}
         </div>
       )}
+
       <ConfirmationModal
         showModal={showDeleteModal}
         setShowModal={setShowDeleteModal}

@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import StarsRate from "../ui/StarsRate";
-import ProductLoader from "../ui/loaders/ProductLoader";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
-import ProductVertical from "../ui/cards/ProductVertical";
-import { Link } from "react-router-dom";
+import CompanyProductCard from "../ui/cards/CompanyProductCard";
+import CompanyProductLoader from "../ui/loaders/CompanyProductLoader";
 
 export default function CompanyAccount() {
   const { t } = useTranslation();
@@ -112,6 +112,7 @@ export default function CompanyAccount() {
                 reviewsCount={100}
                 showbtn={true}
                 company={profile}
+                isMyCompany={true}
               />
             </div>
           </div>
@@ -124,7 +125,6 @@ export default function CompanyAccount() {
         </div>
 
         <div className="row mb-5" ref={sectionRef}>
-          {" "}
           <div className="col-12 p-2">
             <Swiper
               slidesPerView="auto"
@@ -144,9 +144,10 @@ export default function CompanyAccount() {
           </div>
           {products?.map((product, index) => (
             <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-              <ProductVertical product={product} isShowAction={false} />
+              <CompanyProductCard product={product} isShowAction={true} />
             </div>
           ))}
+          
           {(isLoading || isFetchingNextPage) && (
             <>
               {Array(3)
@@ -156,7 +157,7 @@ export default function CompanyAccount() {
                     className="col-lg-4 col-md-6 col-12 p-2"
                     key={`loader-${index}`}
                   >
-                    <ProductLoader />
+                    <CompanyProductLoader />
                   </div>
                 ))}
             </>

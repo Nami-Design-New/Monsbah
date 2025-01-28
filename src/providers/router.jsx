@@ -102,6 +102,14 @@ export const router = createBrowserRouter([
           </ProtectionProvider>
         ),
       },
+      {
+        path: "edit-product/:id",
+        element: (
+          <ProtectionProvider>
+            <AddCompanyProduct />
+          </ProtectionProvider>
+        ),
+      },
 
       {
         path: "edit-company-profile",

@@ -231,6 +231,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
+        margin-top: 12px;
         @media screen and (max-width: 576px) {
           gap: 8px;
         }

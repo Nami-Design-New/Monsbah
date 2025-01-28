@@ -18,11 +18,9 @@ export default function useAuth() {
 
     try {
       const decoded = jwtDecode(token);
-      console.log(decoded);
 
       const currentTime = Date.now() / 1000;
       const expired = decoded.exp < currentTime;
-      console.log(expired);
 
       return { decodedToken: decoded, isExpired: expired };
     } catch (error) {

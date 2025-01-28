@@ -255,7 +255,9 @@ export default function Header() {
                       />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item>{t("routes.profile")}</Dropdown.Item>
+                      <Dropdown.Item onClick={() => navigate("/profile")}>
+                        {t("routes.profile")}
+                      </Dropdown.Item>
                       <Dropdown.Item onClick={performLogout}>
                         {t("header.logout")}
                       </Dropdown.Item>

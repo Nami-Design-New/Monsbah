@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import CountryReviewsModal from "./modals/CommentsReviewsModal";
+import CompanyReviewsModal from "./modals/CompanyReviewsModal";
 
 export default function StarsRate({
   rate,
   reviewsCount,
   company,
+  isMyCompany,
   showbtn = false,
 }) {
   const { t } = useTranslation();
@@ -55,10 +56,11 @@ export default function StarsRate({
         </>
       )}
 
-      <CountryReviewsModal
+      <CompanyReviewsModal
         showModal={showModal}
         setShowModal={setShowModal}
         company={company}
+        isMyCompany={isMyCompany}
       />
     </div>
   );
