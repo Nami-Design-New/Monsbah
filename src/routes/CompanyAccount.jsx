@@ -143,18 +143,18 @@ export default function CompanyAccount() {
             </Swiper>
           </div>
           {products?.map((product, index) => (
-            <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
+            <div className="col-lg-3 col-md-6 col-12 p-2" key={index}>
               <CompanyProductCard product={product} isShowAction={true} />
             </div>
           ))}
           
           {(isLoading || isFetchingNextPage) && (
             <>
-              {Array(3)
+              {Array(4)
                 .fill(0)
                 .map((_, index) => (
                   <div
-                    className="col-lg-4 col-md-6 col-12 p-2"
+                    className="col-lg-3 col-md-6 col-12 p-2"
                     key={`loader-${index}`}
                   >
                     <CompanyProductLoader />

@@ -76,7 +76,7 @@ export default function Header() {
         dispatch(setClientData({}));
         navigate("/", { replace: true });
         queryClient.clear();
-        localStorage.clear();
+        localStorage.setItem("userType", "client");
         toast.success(deleteToken.data.message);
       }
     } catch (error) {
@@ -255,7 +255,7 @@ export default function Header() {
                       />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => navigate("/profile")}>
+                      <Dropdown.Item onClick={() => navigate("/company-profile")}>
                         {t("routes.profile")}
                       </Dropdown.Item>
                       <Dropdown.Item onClick={performLogout}>

@@ -1,25 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { isValidVideoExtension } from "../utils/helpers";
 import StarsRate from "./../ui/StarsRate";
 import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 import PageLoader from "../ui/loaders/PageLoader";
-import CompanyProductLoader from "./../ui/loaders/CompanyProductLoader";
-import CompanyProductCard from "../ui/cards/CompanyProductCard";
 import axiosInstance from "../utils/axiosInstance";
+import ImageLoad from "../ui/loaders/ImageLoad";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
   const queryClient = useQueryClient();
+
+  const [isImageLoaded, setIsImageLoaded] = useState(true);
+
   const { t } = useTranslation();
   const { data: profile, isLoading: profileLoading } =
     useGetCompanyProfile(true);
   const { client } = useSelector((state) => state.clientData);
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(false);
+  };
 
   const handleShare = () => {
     if (navigator.share) {
@@ -72,7 +79,7 @@ export default function CompanyProfile() {
           profile?.client?.is_follow ? "delete" : "store"
         }-follower`,
         {
-          profile_id: profile?.client?.id,
+          company_id: profile?.client?.id,
         }
       );
       if (res.status === 200) {
@@ -94,7 +101,7 @@ export default function CompanyProfile() {
         <img src="/images/banner.png" alt="banner" />
       </div>
 
-      <div className="container mt-4">
+      <div className="container mt-4 p-0">
         <div className="row">
           <div className="company_header">
             <div className="img">
@@ -194,25 +201,39 @@ export default function CompanyProfile() {
         </div>
 
         <div className="row mb-5" ref={sectionRef}>
-          {products?.map((product, index) => (
-            <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-              <CompanyProductCard product={product} isShowAction={false} />
-            </div>
-          ))}
-          {(isLoading || isFetchingNextPage) && (
-            <>
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
-                  <div
-                    className="col-lg-4 col-md-6 col-12 p-2"
-                    key={`loader-${index}`}
-                  >
-                    <CompanyProductLoader />
-                  </div>
-                ))}
-            </>
-          )}
+          <div className="company_products_grid">
+            {products?.map((product, index) => (
+              <Link
+                className="product_img"
+                key={index}
+                to={`/product/${product?.id}`}
+              >
+                {isValidVideoExtension(product?.image) ? (
+                  <video
+                    src={product.image}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={handleImageLoad}
+                  />
+                ) : (
+                  <img src={product.image} onLoad={handleImageLoad} alt="" />
+                )}
+                <ImageLoad isImageLoaded={isImageLoaded} />
+              </Link>
+            ))}
+
+            {(isLoading || isFetchingNextPage) && (
+              <>
+                {Array(5)
+                  .fill(0)
+                  .map((_, index) => (
+                    <div className="product_img skeleton" key={index}></div>
+                  ))}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>

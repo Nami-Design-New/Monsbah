@@ -19,12 +19,15 @@ function useGetAds() {
     queryKey: ["ads", lang, search],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get("/client/products", {
-        params: {
-          page: pageParam,
-          search: search,
-        },
-      });
+      const res = await axiosInstance.get(
+        `/${localStorage.getItem("userType")}/products`,
+        {
+          params: {
+            page: pageParam,
+            search: search,
+          },
+        }
+      );
       if (res.status === 200) {
         return {
           data: res.data?.data?.data,

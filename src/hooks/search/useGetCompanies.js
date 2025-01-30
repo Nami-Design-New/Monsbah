@@ -3,16 +3,11 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetProducts() {
-  const [searchParams] = useSearchParams();
+function useGetCompanies() {
   const lang = useSelector((state) => state.language.lang);
+  const [searchParams] = useSearchParams();
 
-  const country_id = searchParams.get("country");
-  const type = searchParams.get("type");
-  const sort = searchParams.get("sort");
-  const city_id = searchParams.get("city");
-  const category_id = searchParams.get("category");
-  const sub_category_id = searchParams.get("sub_category");
+  const search = searchParams.get("search");
 
   const {
     isLoading,
@@ -22,32 +17,15 @@ function useGetProducts() {
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: [
-      "products",
-      country_id,
-      type,
-      sort,
-      city_id,
-      category_id,
-      sub_category_id,
-      lang,
-    ],
+    queryKey: ["companies", search, lang],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get(
-        `/${localStorage.getItem("userType")}/products`,
-        {
-          params: {
-            type: type,
-            sort: sort,
-            page: pageParam,
-            city_id: city_id,
-            country_id: country_id,
-            category_id: category_id,
-            sub_category_id: sub_category_id,
-          },
-        }
-      );
+      const res = await axiosInstance.get("/client/companies", {
+        params: {
+          page: pageParam,
+          search: search,
+        },
+      });
       if (res.status === 200) {
         return {
           data: res.data?.data?.data,
@@ -80,4 +58,4 @@ function useGetProducts() {
   };
 }
 
-export default useGetProducts;
+export default useGetCompanies;

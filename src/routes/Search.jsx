@@ -2,16 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, Route, Routes, useSearchParams } from "react-router-dom";
 import Persons from "../components/search/Persons";
-import Asks from "../components/search/Asks";
 import Ads from "../components/search/Ads";
-import { useSelector } from "react-redux";
+import Companies from "../components/search/Companies";
 
 export default function Search() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [search, setSearch] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
-  const clientData = useSelector((state) => state.clientData.client);
+
   useEffect(() => {
     setSearch(searchParams.get("search"));
   }, [searchParams]);
@@ -46,18 +45,40 @@ export default function Search() {
             </button>
           </form>
           <nav className="search_nav">
-            <NavLink end to={search ? `/search?search=${search}` : ""}>
-              {t("advertisements")}
-            </NavLink>
-            <NavLink to={search ? `persons?search=${search}` : "persons"}>
-              {clientData.user_type === "user" ? t("persons") : t("companies")}
-            </NavLink>
+            {localStorage.getItem("userType") === "company" ? (
+              <>
+                <NavLink end to={search ? `/search?search=${search}` : ""}>
+                  {t("advertisements")}
+                </NavLink>
+                <NavLink
+                  to={search ? `companies?search=${search}` : "companies"}
+                >
+                  {t("companies")}
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink end to={search ? `/search?search=${search}` : ""}>
+                  {t("advertisements")}
+                </NavLink>
+                <NavLink to={search ? `persons?search=${search}` : "persons"}>
+                  {t("persons")}
+                </NavLink>
+              </>
+            )}
           </nav>
 
           <div className="row">
             <Routes>
               <Route path="" element={<Ads sectionRef={sectionRef} />} />
-              <Route path="asks" element={<Asks sectionRef={sectionRef} />} />
+              <Route
+                path="persons"
+                element={<Persons sectionRef={sectionRef} />}
+              />
+              <Route
+                path="companies"
+                element={<Companies sectionRef={sectionRef} />}
+              />
             </Routes>
           </div>
         </div>

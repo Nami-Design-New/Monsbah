@@ -127,11 +127,7 @@ export const router = createBrowserRouter([
             index: true,
             element: (
               <ProtectionProvider>
-                {localStorage.getItem("userType") === "client" ? (
-                  <Profile />
-                ) : (
-                  <CompanyAccount />
-                )}
+                <Profile />
               </ProtectionProvider>
             ),
           },
@@ -140,6 +136,15 @@ export const router = createBrowserRouter([
             element: <UserProfile />,
           },
         ],
+      },
+
+      {
+        path: "company-profile",
+        element: (
+          <ProtectionProvider>
+            <CompanyAccount />
+          </ProtectionProvider>
+        ),
       },
 
       {
