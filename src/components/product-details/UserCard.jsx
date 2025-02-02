@@ -52,8 +52,14 @@ function UserCard({ product, setProduct }) {
           aria-label="Profile"
           to={`${
             +product?.user?.id === +client?.id
-              ? "/profile"
-              : `/profile/${product?.user?.id}`
+              ? localStorage.getItem("userType") === "client"
+                ? "/profile"
+                : "/company-profile"
+              : `/${
+                  localStorage.getItem("userType") === "client"
+                    ? "profile"
+                    : "companies"
+                }/${product?.user?.id}`
           }`}
           className="image_wrapper"
         >
@@ -82,8 +88,14 @@ function UserCard({ product, setProduct }) {
             aria-label="Profile"
             to={`${
               +product?.user?.id === +client?.id
-                ? "/profile"
-                : `/profile/${product?.user?.id}`
+                ? localStorage.getItem("userType") === "client"
+                  ? "/profile"
+                  : "/company-profile"
+                : `/${
+                    localStorage.getItem("userType") === "client"
+                      ? "profile"
+                      : "companies"
+                  }/${product?.user?.id}`
             }`}
           >
             <h3 className="name"> {product?.user?.name}</h3>

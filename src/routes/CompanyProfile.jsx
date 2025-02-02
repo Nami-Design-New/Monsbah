@@ -107,7 +107,7 @@ export default function CompanyProfile() {
             <div className="img">
               <img src={profile?.client?.image} alt="company" />
               {profile?.client?.id !== client?.id && (
-                <Link
+                <button
                   aria-label="Toggle following"
                   className="follow_btn"
                   onClick={handleFollow}
@@ -117,7 +117,7 @@ export default function CompanyProfile() {
                       profile?.client?.is_follow ? "check" : "plus"
                     }`}
                   ></i>
-                </Link>
+                </button>
               )}
             </div>
 
@@ -170,7 +170,7 @@ export default function CompanyProfile() {
 
               <StarsRate
                 rate={profile?.client?.rate}
-                reviewsCount={100}
+                reviewsCount={profile?.client?.rate_count}
                 showbtn={true}
                 company={profile?.client}
               />

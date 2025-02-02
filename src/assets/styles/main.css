@@ -8145,6 +8145,7 @@ body.en .form .phone_field input {
 }
 .company_products_grid a {
   display: flex;
+  position: relative;
 }
 .company_products_grid img,
 .company_products_grid video {

@@ -42,7 +42,7 @@ export default function StarsRate({
               })
           : null}
       </div>
-      {reviewsCount && (
+      {reviewsCount ? (
         <>
           <span>
             [ {reviewsCount} {t("review")} ]
@@ -54,7 +54,7 @@ export default function StarsRate({
             </span>
           ) : null}
         </>
-      )}
+      ) : null}
 
       <CompanyReviewsModal
         showModal={showModal}
