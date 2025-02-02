@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { handleChange } from "../../utils/helpers";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import PasswordField from "../../ui/form-elements/PasswordField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PhoneInput from "../../ui/form-elements/PhoneInput";
 import axiosInstance from "../../utils/axiosInstance";
+import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 
 function Login({
   setFormType,
@@ -24,7 +25,7 @@ function Login({
   const navigate = useNavigate();
 
   const [, setCookie] = useCookies(["token", "id"]);
-
+  const { data } = useGetCurrentLocation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     phone: "",
@@ -34,6 +35,15 @@ function Login({
   });
 
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (data) {
+      setFormData((prev) => ({
+        ...prev,
+        country_code: data?.country_code,
+      }));
+    }
+  }, [data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

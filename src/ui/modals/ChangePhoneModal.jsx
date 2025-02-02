@@ -1,12 +1,13 @@
 import { Modal } from "react-bootstrap";
-import SubmitButton from "../form-elements/SubmitButton";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { handleChange } from "../../utils/helpers";
 import PhoneInput from "../form-elements/PhoneInput";
+import axiosInstance from "../../utils/axiosInstance";
 import OtpContainer from "../form-elements/OtpContainer";
+import SubmitButton from "../form-elements/SubmitButton";
+import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 
 function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
   const { t } = useTranslation();
@@ -16,6 +17,8 @@ function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
     country_code: "965",
     phone: "",
   });
+
+  const { data } = useGetCurrentLocation();
   const [otp, setOtp] = useState("");
   const [otpLoading, setOtpLoading] = useState(false);
 
@@ -26,10 +29,10 @@ function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
         ? country_code
         : !country_code && phone
         ? formData.country_code
-        : "965",
+        : data?.country_code,
       phone: phone || "",
     }));
-  }, [country_code, formData.country_code, phone]);
+  }, [country_code, data?.country_code, formData.country_code, phone]);
 
   const handleSubmitPhone = async (e) => {
     e.preventDefault();

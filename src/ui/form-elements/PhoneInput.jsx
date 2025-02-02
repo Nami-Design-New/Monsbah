@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import useGetCountries from "../../hooks/settings/useGetCountries";
-import axios from "axios";
 
 export default function PhoneInput({
   label,
   onSelect,
   countryCode,
   disableSelect,
-
   ...props
 }) {
   const dropdownRef = useRef(null);
@@ -21,16 +19,6 @@ export default function PhoneInput({
       countries?.find((country) => country.country_code === countryCode)
     );
   }, [countries, countryCode]);
-
-  useEffect(() => {
-    const knowCountry = async () => {
-      const res = await axios.get("http://ip-api.com/json/");
-      return res?.data?.countryCode;
-    };
-
-    knowCountry();
-
-  });
 
   useEffect(() => {
     function handleClickOutside(event) {

@@ -11,17 +11,24 @@ import RegisterOTPConfirm from "./RegisterOTPConfirm";
 import ChooseRegisterType from "./ChooseRegisterType";
 import RegisterCompany from "./RegisterCompany";
 import CompanyOTPConfirm from "./CompanyOTPConfirm";
+import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
-  const { isAuthed } = useAuth();
   const navigate = useNavigate();
+  const { isAuthed } = useAuth();
+  const { data } = useGetCurrentLocation();
+
+  console.log(data?.country_code);
+
   const [userState, setUserState] = useState("client");
   const [formType, setFormType] = useState("companyOtp");
   const [otpCode, setOtpCode] = useState("");
+
   const [forgetFormData, setForgetFormData] = useState({
     phone: "",
     country_code: "965",
   });
+
   const [registerFormData, setRegisterFormData] = useState({
     name: "",
     username: "",
@@ -36,6 +43,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
     gender: "",
   });
+
   const [formData, setFormData] = useState({
     username: "",
     name_ar: "",
@@ -60,6 +68,26 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     setFormType(type);
   }, [type]);
 
+  useEffect(() => {
+    if (data) {
+      setFormData((prev) => ({
+        ...prev,
+        country_code: data?.country_code,
+        whats_country_code: data?.country_code,
+      }));
+
+      setRegisterFormData((prev) => ({
+        ...prev,
+        country_code: data?.country_code,
+      }));
+
+      setForgetFormData((prev) => ({
+        ...prev,
+        country_code: data?.country_code,
+      }));
+    }
+  }, [data]);
+
   const handleClose = () => {
     if (!isAuthed && protectedFlag) {
       navigate("/");
@@ -71,7 +99,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     setForgetFormData({
       name: "",
       username: "",
-      country_code: "965",
+      country_code: data?.country_code,
       phone: "",
       email: "",
       password: "",
@@ -85,7 +113,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
 
     setForgetFormData({
       phone: "",
-      country_code: "965",
+      country_code: data?.country_code,
     });
   };
 

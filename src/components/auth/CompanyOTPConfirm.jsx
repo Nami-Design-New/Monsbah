@@ -9,10 +9,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
+import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 
 function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
   const { t } = useTranslation();
 
+  const { data } = useGetCurrentLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -111,7 +113,7 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
           setFormData({
             name: "",
             username: "",
-            country_code: "965",
+            country_code: data?.country_code,
             phone: "",
             email: "",
             password: "",
