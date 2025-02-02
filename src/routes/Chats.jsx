@@ -14,7 +14,7 @@ function Chats() {
   ) : (
     <section className="chats-section">
       <div className="container h-100 p-0 ">
-        <div className="row m-0 h-100">
+        <div className="row m-0 h-100 justify-content-center">
           {chats?.length > 0 && (
             <>
               <div

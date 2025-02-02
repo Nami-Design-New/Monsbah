@@ -12,7 +12,9 @@ export default function useGetComments() {
 
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get(`/client/comments?product_id=${id}`);
+        const res = await axiosInstance.get(
+          `/${localStorage.getItem("userType")}/comments?product_id=${id}`
+        );
         if (res.status === 200) {
           return res.data.data || {};
         }
@@ -25,7 +27,7 @@ export default function useGetComments() {
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    refetchOnReconnect: false
+    refetchOnReconnect: false,
   });
   return { isLoading, data, error };
 }

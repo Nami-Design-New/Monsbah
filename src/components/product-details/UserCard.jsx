@@ -102,15 +102,29 @@ function UserCard({ product, setProduct }) {
           </Link>
           <ul>
             <li>
-              <h6>{product?.user?.["ads-count"]}</h6>
+              <h6>
+                {product?.user?.user_type === "user"
+                  ? product?.user?.["ads-count"]
+                  : product?.user?.products_count}
+              </h6>
               <span>{t("posts")}</span>
             </li>
+
             <li>
-              <h6>{product?.user?.["followers-count"]}</h6>
+              <h6>
+                {product?.user?.user_type === "user"
+                  ? product?.user?.["followers-count"]
+                  : product?.user?.followers}
+              </h6>
               <span>{t("followers")}</span>
             </li>
+
             <li>
-              <h6>{product?.user?.["following-count"]}</h6>
+              <h6>
+                {product?.user?.user_type === "user"
+                  ? product?.user?.["following-count"]
+                  : product?.user?.following}
+              </h6>
               <span>{t("following")}</span>
             </li>
           </ul>

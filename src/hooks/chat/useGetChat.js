@@ -15,6 +15,10 @@ export default function useGetChat() {
         const res = await axiosInstance.get(`/client/chat/details`, {
           params: {
             user_id: userId,
+            user_type:
+              localStorage.getItem("userType") === "client"
+                ? "user"
+                : "company",
           },
         });
         if (res.status === 200) {

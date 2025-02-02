@@ -128,7 +128,7 @@ export default function CompanyProfile() {
                   <Link
                     aria-label="whatsapp"
                     target="_blank"
-                    to={profile?.client?.whats_number}
+                    to={`https://wa.me/${profile?.client?.whats_number}`}
                     className=" follow_btn"
                   >
                     <img src="/images/icons/whats.svg" alt="" />
