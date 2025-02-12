@@ -102,9 +102,13 @@ export default function Header() {
               <NavLink className="navLink" to="/">
                 {t("header.home")}
               </NavLink>
-              <NavLink className="navLink" to="/categories">
-                {t("header.categories")}
-              </NavLink>
+
+              {localStorage.getItem("userType") === "client" && (
+                <NavLink className="navLink" to="/categories">
+                  {t("header.categories")}
+                </NavLink>
+              )}
+
               <NavLink className="navLink" to="/companies">
                 {t("header.companies")}
               </NavLink>

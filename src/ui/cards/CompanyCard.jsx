@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ImageLoad from "../loaders/ImageLoad";
 import StarsRate from "../StarsRate";
 
 export default function CompanyCard({ company }) {
+  const { client } = useSelector((state) => state.clientData);
+
   return (
     <Link
       aria-label="Product"
-      to={`/companies/${company?.id}`}
+      to={`${
+        company?.id === client?.id
+          ? "company-profile"
+          : "/companies/${company?.id}"
+      }`}
       className="campany_card"
     >
       <div className="img">
