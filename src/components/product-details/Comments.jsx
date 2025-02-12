@@ -28,7 +28,7 @@ export default function Comments({ product, setProduct }) {
     }
 
     try {
-      const res = await axiosInstance.post(`/${localStorage.getItem("userType")}/store-comment`, payLoad);
+      const res = await axiosInstance.post(`/${localStorage.getItem("userType") || "client"}/store-comment`, payLoad);
       if (res.status === 200) {
         toast.success(res.data.message);
         setValue("");

@@ -57,7 +57,7 @@ export default function useAuth() {
       try {
         if (isFetched) {
           if (profile) {
-            let type = localStorage.getItem("userType");
+            let type = localStorage.getItem("userType") || "client";
             dispatch(
               setClientData(type === "client" ? profile : profile?.client)
             );

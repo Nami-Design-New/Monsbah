@@ -45,7 +45,7 @@ export default function Search() {
             </button>
           </form>
           <nav className="search_nav">
-            {localStorage.getItem("userType") === "company" ? (
+            {localStorage.getItem("userType") || "client" === "company" ? (
               <>
                 <NavLink end to={search ? `/search?search=${search}` : ""}>
                   {t("advertisements")}

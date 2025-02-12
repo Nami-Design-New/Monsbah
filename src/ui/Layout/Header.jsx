@@ -227,7 +227,7 @@ export default function Header() {
 
             {user?.id ? (
               <>
-                {localStorage.getItem("userType") === "client" ? (
+                {localStorage.getItem("userType") || "client" === "client" ? (
                   <Link
                     aria-label="Profile"
                     to="/profile"

@@ -18,7 +18,7 @@ const setupAxiosInterceptors = (setCookie, token) => {
         try {
           delete axiosInstance.defaults.headers.common.Authorization;
           const res = await axiosInstance.post(
-            `/${localStorage.getItem("userType")}/auth/refresh-token`,
+            `/${localStorage.getItem("userType") || "client"}/auth/refresh-token`,
             {
               token: token,
             }

@@ -75,7 +75,7 @@ export default function CompanyProfile() {
   const handleFollow = async () => {
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType")}/${
+        `/${localStorage.getItem("userType") || "client"}/${
           profile?.client?.is_follow ? "delete" : "store"
         }-follower`,
         {

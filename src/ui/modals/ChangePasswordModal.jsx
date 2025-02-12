@@ -21,7 +21,7 @@ function ChangePasswordModal({ showModal, setShowModal }) {
     setLoading(true);
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType")}/auth/change-password`,
+        `/${localStorage.getItem("userType") || "client"}/auth/change-password`,
         formData
       );
       if (res.status === 200) {

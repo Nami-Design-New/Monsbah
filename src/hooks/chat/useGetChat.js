@@ -16,7 +16,7 @@ export default function useGetChat() {
           params: {
             user_id: userId,
             user_type:
-              localStorage.getItem("userType") === "client"
+              localStorage.getItem("userType") || "client" === "client"
                 ? "user"
                 : "company",
           },

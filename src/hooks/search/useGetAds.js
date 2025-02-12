@@ -20,7 +20,7 @@ function useGetAds() {
 
     queryFn: async ({ pageParam = 1 }) => {
       const res = await axiosInstance.get(
-        `/${localStorage.getItem("userType")}/products`,
+        `/${localStorage.getItem("userType") || "client"}/products`,
         {
           params: {
             page: pageParam,

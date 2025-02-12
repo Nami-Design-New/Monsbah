@@ -34,7 +34,7 @@ export default function CompanyReviewsModal({
     }
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType")}/store-rate`,
+        `/${localStorage.getItem("userType") || "client"}/store-rate`,
         payLoad
       );
       if (res.status === 200) {

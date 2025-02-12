@@ -26,7 +26,7 @@ function CommentCard({ comment, setTargetComment, className, type }) {
     }
     try {
       const res = await axiosInstance.post(
-      `/${localStorage.getItem("userType")}/${
+      `/${localStorage.getItem("userType") || "client"}/${
           type === "question" ? "delete-question-comment" : "delete-comment"
         }`,
         requestBody
