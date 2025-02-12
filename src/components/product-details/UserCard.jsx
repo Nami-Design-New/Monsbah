@@ -27,7 +27,7 @@ function UserCard({ product, setProduct }) {
     }));
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType") || "client"}/${
+        `/${localStorage.getItem("userType")}/${
           product?.user?.is_follow ? "delete" : "store"
         }-follower`,
         {
@@ -52,11 +52,11 @@ function UserCard({ product, setProduct }) {
           aria-label="Profile"
           to={`${
             +product?.user?.id === +client?.id
-              ? localStorage.getItem("userType") || "client" === "client"
+              ? localStorage.getItem("userType") === "client"
                 ? "/profile"
                 : "/company-profile"
               : `/${
-                  localStorage.getItem("userType") || "client" === "client"
+                  localStorage.getItem("userType") === "client"
                     ? "profile"
                     : "companies"
                 }/${product?.user?.id}`
@@ -88,11 +88,11 @@ function UserCard({ product, setProduct }) {
             aria-label="Profile"
             to={`${
               +product?.user?.id === +client?.id
-                ? localStorage.getItem("userType") || "client" === "client"
+                ? localStorage.getItem("userType") === "client"
                   ? "/profile"
                   : "/company-profile"
                 : `/${
-                    localStorage.getItem("userType") || "client" === "client"
+                    localStorage.getItem("userType") === "client"
                       ? "profile"
                       : "companies"
                   }/${product?.user?.id}`

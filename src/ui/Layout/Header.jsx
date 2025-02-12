@@ -108,9 +108,6 @@ export default function Header() {
               <NavLink className="navLink" to="/companies">
                 {t("header.companies")}
               </NavLink>
-              {/* <NavLink className="navLink" to="/asks">
-                {t("header.asks")}
-              </NavLink> */}
               <NavLink className="navLink" to="/about-us">
                 {t("aboutUs")}
               </NavLink>
@@ -137,7 +134,11 @@ export default function Header() {
 
             <Link
               aria-label="Add AD"
-              to="/profile?tab=addAd"
+              to={`${
+                localStorage.getItem("userType") === "client"
+                  ? "/profile?tab=addAd"
+                  : "/add-company-product"
+              }`}
               className="link text d-lg-flex d-none"
             >
               <img src="/images/icons/plus.svg" alt="" />
@@ -227,7 +228,7 @@ export default function Header() {
 
             {user?.id ? (
               <>
-                {localStorage.getItem("userType") || "client" === "client" ? (
+                {localStorage.getItem("userType") === "client" ? (
                   <Link
                     aria-label="Profile"
                     to="/profile"
@@ -255,7 +256,9 @@ export default function Header() {
                       />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => navigate("/company-profile")}>
+                      <Dropdown.Item
+                        onClick={() => navigate("/company-profile")}
+                      >
                         {t("routes.profile")}
                       </Dropdown.Item>
                       <Dropdown.Item onClick={performLogout}>

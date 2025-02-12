@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSearchParams } from "react-router-dom";
@@ -6,21 +6,20 @@ import { Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import CategoryLoader from "../../ui/loaders/CategoryLoader";
+// Fetch Data
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
+import useGetCompanyCategories from "./../../hooks/settings/useGetCompanyCategories";
 
 export default function FilterBox({ className }) {
   const { t } = useTranslation();
-
   const lang = useSelector((state) => state.language.lang);
   const userCountry = useSelector((state) => state.clientData.client.country);
 
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [country, setCountry] = useState(null);
-
   const [productType, setProductType] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -28,9 +27,20 @@ export default function FilterBox({ className }) {
   const { data: countries, countriesLoading } = useGetCountries();
   const { data: cities } = useGetCities(country, country ? true : false);
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
+  const { data: companyCategories, isLoading: companyCategoriesLoading } =
+    useGetCompanyCategories();
+
   const { data: subCategories } = useGetSubCategories(
     selectedCategory,
     selectedCategory ? true : false
+  );
+
+  const categoryList = useMemo(
+    () =>
+      (localStorage.getItem("userType") === "client"
+        ? categories
+        : companyCategories) || [],
+    [categories, companyCategories]
   );
 
   useEffect(() => {
@@ -83,7 +93,7 @@ export default function FilterBox({ className }) {
         {/* {showAsk && <AskCountry />} */}
 
         <Swiper slidesPerView="auto" className="categories_slider">
-          {categoriesLoading ? (
+          {categoriesLoading || companyCategoriesLoading ? (
             <>
               {Array(6)
                 .fill(0)
@@ -118,7 +128,7 @@ export default function FilterBox({ className }) {
                 </button>
               </SwiperSlide>
 
-              {categories?.map((category) => (
+              {categoryList?.map((category) => (
                 <SwiperSlide key={category.id} className="p-1">
                   <buttton
                     onClick={() => {

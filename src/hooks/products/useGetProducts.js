@@ -35,7 +35,7 @@ function useGetProducts() {
 
     queryFn: async ({ pageParam = 1 }) => {
       const res = await axiosInstance.get(
-        `/${localStorage.getItem("userType") || "client"}/products`,
+        `/${localStorage.getItem("userType")}/products`,
         {
           params: {
             type: type,

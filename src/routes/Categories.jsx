@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 import CategoryLoader from "./../ui/loaders/CategoryLoader";
 import SubCategoriesLoader from "./../ui/loaders/SubCategoriesLoader";
+import useGetCompanyCategories from "../hooks/settings/useGetCompanyCategories";
 
 function Categories() {
   const { t } = useTranslation();
@@ -14,6 +15,16 @@ function Categories() {
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
   const { data: subCategories, isLoading: subcategoriesLoading } =
     useGetSubCategories(selectedCategory);
+  const { data: companyCategories, isLoading: companyCategoriesLoading } =
+    useGetCompanyCategories();
+
+  const categoryList = useMemo(
+    () =>
+      (localStorage.getItem("userType") === "client"
+        ? categories
+        : companyCategories) || [],
+    [categories, companyCategories]
+  );
 
   useEffect(() => {
     if (searchParams.get("category")) {
@@ -37,7 +48,7 @@ function Categories() {
         <div className="row">
           <div className="col-lg-2 col-md-3 col-4 p-lg-2 p-1">
             <div className="categories_sidebar">
-              {categoriesLoading ? (
+              {categoriesLoading || companyCategoriesLoading ? (
                 <>
                   {[...Array(5)].map((_, index) => (
                     <CategoryLoader key={index} />
@@ -64,7 +75,7 @@ function Categories() {
                     <h6>{t("all")}</h6>
                   </button>
 
-                  {categories?.map((category) => (
+                  {categoryList?.map((category) => (
                     <buttton
                       key={category.id}
                       onClick={() => {

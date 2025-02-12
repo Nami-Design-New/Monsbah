@@ -39,7 +39,7 @@ function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
     setPhoneLoading(true);
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType") || "client"}/auth/change-phone`,
+        `/${localStorage.getItem("userType")}/auth/change-phone`,
         formData
       );
       if (res.status === 200) {
@@ -63,7 +63,7 @@ function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
 
     try {
       const res = await axiosInstance.post(
-        `/${localStorage.getItem("userType") || "client"}/auth/confirm-change-phone`,
+        `/${localStorage.getItem("userType")}/auth/confirm-change-phone`,
         { ...formData, token: otp }
       );
       if (res.status === 200) {

@@ -49,6 +49,12 @@ export default function RootLayout() {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    if (!localStorage.getItem("userType")) {
+      localStorage.setItem("userType", "client");
+    }
+  }, []);
+
   return loading ? (
     <AppLoader />
   ) : (

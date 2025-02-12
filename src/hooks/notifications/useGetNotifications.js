@@ -19,7 +19,7 @@ function useGetNotifications() {
 
     queryFn: async ({ pageParam = 1 }) => {
       const res = await axiosInstance.get(
-        `/${localStorage.getItem("userType") || "client"}/notifications`,
+        `/${localStorage.getItem("userType")}/notifications`,
         {
           params: {
             page: pageParam,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { handleChange } from "../utils/helpers";
 import { toast } from "react-toastify";
 import { Form } from "react-bootstrap";
@@ -17,6 +17,7 @@ import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 import useGetCities from "../hooks/settings/useGetCities";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetProduct from "../hooks/products/useGetProduct";
+import useGetCompanyCategories from "../hooks/settings/useGetCompanyCategories";
 
 export default function AddCompanyProduct() {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ export default function AddCompanyProduct() {
   const user = useSelector((state) => state.clientData.client);
   const { lang } = useSelector((state) => state.language);
   const { data: categories } = useGetCategories();
+  const { data: companyCategories } = useGetCompanyCategories();
   const { data: product, isLoading: productLoading } = useGetProduct(
     +product_id
   );
@@ -228,7 +230,7 @@ export default function AddCompanyProduct() {
       );
       if (res.status === 200) {
         toast.success(res.data.message);
-        navigate("/profile?tab=ads");
+        navigate("/company-profile");
         if (product_id) {
           queryClient.invalidateQueries(["product", lang, product_id]);
         }
@@ -244,6 +246,14 @@ export default function AddCompanyProduct() {
       setLoading(false);
     }
   };
+
+  const categoryList = useMemo(
+    () =>
+      (localStorage.getItem("userType") === "client"
+        ? categories
+        : companyCategories) || [],
+    [categories, companyCategories]
+  );
 
   return (
     <div className="container my-5">
@@ -369,7 +379,7 @@ export default function AddCompanyProduct() {
                   type: "sale",
                 });
               }}
-              options={categories?.map((category) => ({
+              options={categoryList?.map((category) => ({
                 name: category?.name,
                 value: category?.id,
               }))}
