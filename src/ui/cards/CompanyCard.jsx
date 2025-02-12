@@ -11,7 +11,7 @@ export default function CompanyCard({ company }) {
       aria-label="Product"
       to={`${
         company?.id === client?.id
-          ? "company-profile"
+          ? "/company-profile"
           : "/companies/${company?.id}"
       }`}
       className="campany_card"
