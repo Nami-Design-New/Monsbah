@@ -100,12 +100,12 @@ export default function ProductsSection() {
                         alt=""
                       />
                     )}
-                    <Link to={`/companies/${product?.user?.id}`} className="company">
+                    {/* <Link to={`/companies/${product?.user?.id}`} className="company">
                       <div className="img">
                         <img src={product?.user?.image} alt="" />
                       </div>
                       <h6>{product?.user?.name}</h6>
-                    </Link>
+                    </Link> */}
                     <ImageLoad isImageLoaded={isImageLoaded} />
                   </Link>
                 ))}

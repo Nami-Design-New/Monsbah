@@ -8153,13 +8153,6 @@ body.en .form .phone_field input {
   display: flex;
   position: relative;
 }
-.company_products_grid a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent);
-  z-index: 1;
-}
 .company_products_grid img,
 .company_products_grid video {
   width: 100%;
