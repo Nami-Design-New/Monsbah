@@ -46,15 +46,13 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
 
   const [formData, setFormData] = useState({
     username: "",
-    name_ar: "",
-    name_en: "",
+    name: "",
     phone: "",
     email: "",
     password: "",
     city_id: "",
     state_id: "",
-    about_en: "",
-    about_ar: "",
+    about: "",
     country_id: "",
     category_id: "",
     whats_number: "",

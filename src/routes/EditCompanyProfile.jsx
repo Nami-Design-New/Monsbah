@@ -38,8 +38,7 @@ export default function EditCompanyProfile() {
     country_id: "",
     city_id: "",
     state_id: "",
-    about_ar: "",
-    about_en: "",
+    about: "",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
@@ -57,8 +56,7 @@ export default function EditCompanyProfile() {
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      name_ar: user?.name_ar || "",
-      name_en: user?.name_en || "",
+      name: user?.name,
       image: user?.image || "",
       cover: user?.cover || "",
       username: user?.username || "",
@@ -71,8 +69,7 @@ export default function EditCompanyProfile() {
       country_id: user?.country?.id || "",
       city_id: user?.city?.id || "",
       state_id: user?.state?.id || "",
-      about_ar: user?.about_ar || "",
-      about_en: user?.about_en || "",
+      about: user?.about || "",
       fcm_token: user?.fcm_token || "",
     }));
   }, [user]);
@@ -103,8 +100,7 @@ export default function EditCompanyProfile() {
       country_id: user?.country?.id,
       city_id: user?.city?.id,
       state_id: user?.state?.id,
-      about_ar: formData.about_ar,
-      about_en: formData.about_en,
+      about: formData.about,
     };
 
     if (String(formData?.image?.type)?.startsWith("image")) {
@@ -155,21 +151,9 @@ export default function EditCompanyProfile() {
               required
               label={t("auth.companyName")}
               placeholder={t("auth.companyName")}
-              id="name_ar"
-              name="name_ar"
-              hint={"( عربى )"}
-              value={formData.name_ar}
-              onChange={(e) => handleChange(e, setFormData)}
-            />
-
-            <InputField
-              required
-              label={t("auth.companyName")}
-              placeholder={t("auth.companyName")}
-              id="name_en"
-              name="name_en"
-              hint={"( English )"}
-              value={formData.name_en}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={(e) => handleChange(e, setFormData)}
             />
           </div>
@@ -317,22 +301,10 @@ export default function EditCompanyProfile() {
 
           <div className="form_group">
             <InputField
-              hint="( عربى )"
               as={"textarea"}
-              id="about_ar"
-              name="about_ar"
-              value={formData.about_ar}
-              label={t("auth.companyDec")}
-              placeholder={t("auth.enterDescription")}
-              onChange={(e) => handleChange(e, setFormData)}
-            />
-
-            <InputField
-              as={"textarea"}
-              hint="( English )"
-              id="about_en"
-              name="about_en"
-              value={formData.about_en}
+              id="about"
+              name="about"
+              value={formData.about}
               label={t("auth.companyDec")}
               placeholder={t("auth.enterDescription")}
               onChange={(e) => handleChange(e, setFormData)}

@@ -38,14 +38,12 @@ export default function AddCompanyProduct() {
   const [formData, setFormData] = useState({
     images: [],
     image: "",
-    name_ar: "",
-    name_en: "",
+    name: "",
     category_id: "",
     sub_category_id: "",
     city_id: "",
     state_id: "",
-    description_ar: "",
-    description_en: "",
+    description: "",
     type: "sale",
     active_chat: "inactive",
     active_whatsapp: "inactive",
@@ -171,15 +169,13 @@ export default function AddCompanyProduct() {
     e.preventDefault();
     setLoading(true);
     const requestBody = {
-      name_ar: formData?.name_ar,
-      name_en: formData?.name_en,
+      name: formData?.name,
       price: formData?.price,
       category_id: formData?.category_id,
       sub_category_id: formData?.sub_category_id,
       city_id: formData?.city_id,
       state_id: formData?.state_id,
-      description_ar: formData?.description_ar,
-      description_en: formData?.description_en,
+      description: formData?.description,
       type: formData?.type,
       active_chat: formData?.active_chat,
       active_whatsapp: formData?.active_whatsapp,
@@ -342,23 +338,10 @@ export default function AddCompanyProduct() {
             <InputField
               required
               label={t("ads.name")}
-              hint="( عربى )"
               placeholder={t("ads.nameNote")}
-              id="name_ar"
-              name="name_ar"
+              id="name"
+              name="name"
               value={formData.name_ar}
-              onChange={(e) => handleChange(e, setFormData)}
-              disabled={productLoading}
-            />
-
-            <InputField
-              required
-              label={t("ads.name")}
-              hint="( English )"
-              placeholder={t("ads.nameNote")}
-              id="name_en"
-              name="name_en"
-              value={formData.name_en}
               onChange={(e) => handleChange(e, setFormData)}
               disabled={productLoading}
             />
@@ -505,22 +488,9 @@ export default function AddCompanyProduct() {
               required
               label={t("ads.description")}
               placeholder={t("ads.descriptionPlaceholder")}
-              name="description_ar"
-              id="description_ar"
-              hint="( عربى )"
-              value={formData?.description_ar}
-              onChange={(e) => handleChange(e, setFormData)}
-              disabled={productLoading}
-            />
-
-            <TextField
-              required
-              label={t("ads.description")}
-              placeholder={t("ads.descriptionPlaceholder")}
-              name="description_en"
-              id="description_en"
-              hint="( English )"
-              value={formData?.description_en}
+              name="descriptio"
+              id="description"
+              value={formData?.description}
               onChange={(e) => handleChange(e, setFormData)}
               disabled={productLoading}
             />

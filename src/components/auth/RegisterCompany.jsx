@@ -94,36 +94,22 @@ export default function RegisterCompany({
         <div className="form_group">
           <InputField
             required
-            label={t("auth.companyName")}
-            placeholder={t("auth.companyName")}
-            id="name_ar"
-            name="name_ar"
-            hint={"( عربى )"}
-            value={formData.name_ar}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-
-          <InputField
-            required
-            label={t("auth.companyName")}
-            placeholder={t("auth.companyName")}
-            id="name_en"
-            name="name_en"
-            hint={"( English )"}
-            value={formData.name}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-        </div>
-
-        <div className="form_group">
-          <InputField
-            required
             label={t("auth.userName")}
             placeholder={t("auth.userNamePlaceHolder")}
             id="username"
             name="username"
             value={formData.username}
             onChange={(e) => handleChangeUserName(e, setFormData)}
+          />
+
+          <InputField
+            required
+            label={t("auth.companyName")}
+            placeholder={t("auth.companyName")}
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => handleChange(e, setFormData)}
           />
 
           <SelectField
@@ -266,21 +252,10 @@ export default function RegisterCompany({
 
         <div className="form_group">
           <InputField
-            hint="( عربى )"
             as={"textarea"}
-            id="about_ar"
-            name="about_ar"
-            value={formData.about_ar}
-            label={t("auth.companyDec")}
-            placeholder={t("auth.enterDescription")}
-            onChange={(e) => handleChange(e, setFormData)}
-          />
-          <InputField
-            as={"textarea"}
-            hint="( English )"
-            id="about_en"
-            name="about_en"
-            value={formData.about_en}
+            id="about"
+            name="about"
+            value={formData.about}
             label={t("auth.companyDec")}
             placeholder={t("auth.enterDescription")}
             onChange={(e) => handleChange(e, setFormData)}
