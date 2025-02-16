@@ -1,19 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { isValidVideoExtension } from "../../utils/helpers";
+import { useEffect, useRef } from "react";
 import useGetProducts from "../../hooks/products/useGetProducts";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 import FilterBox from "../filter/FilterBox";
-import ImageLoad from "../../ui/loaders/ImageLoad";
 
 export default function ProductsSection() {
   const sectionRef = useRef(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(true);
-
-  const handleImageLoad = () => {
-    setIsImageLoaded(false);
-  };
 
   const {
     data: products,
@@ -47,31 +39,31 @@ export default function ProductsSection() {
   return (
     <>
       <FilterBox showAsk={true} />
-        <section className="ction" ref={sectionRef}>
-          <div className="container p-1">
-            <div className="row">
-              {products?.map((product, index) => (
-                <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
-                  <ProductVertical product={product} isShowAction={false} />
-                </div>
-              ))}
-              {(isLoading || isFetchingNextPage) && (
-                <>
-                  {Array(3)
-                    .fill(0)
-                    .map((_, index) => (
-                      <div
-                        className="col-lg-4 col-md-6 col-12 p-2"
-                        key={`loader-${index}`}
-                      >
-                        <ProductLoader />
-                      </div>
-                    ))}
-                </>
-              )}
-            </div>
+      <section className="ction" ref={sectionRef}>
+        <div className="container p-1">
+          <div className="row">
+            {products?.map((product, index) => (
+              <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
+                <ProductVertical product={product} isShowAction={false} />
+              </div>
+            ))}
+            {(isLoading || isFetchingNextPage) && (
+              <>
+                {Array(3)
+                  .fill(0)
+                  .map((_, index) => (
+                    <div
+                      className="col-lg-4 col-md-6 col-12 p-2"
+                      key={`loader-${index}`}
+                    >
+                      <ProductLoader />
+                    </div>
+                  ))}
+              </>
+            )}
           </div>
-        </section>
+        </div>
+      </section>
     </>
   );
 }
