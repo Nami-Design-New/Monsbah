@@ -47,7 +47,6 @@ export default function ProductsSection() {
   return (
     <>
       <FilterBox showAsk={true} />
-      {localStorage.getItem("userType") === "client" ? (
         <section className="ction" ref={sectionRef}>
           <div className="container p-1">
             <div className="row">
@@ -73,57 +72,6 @@ export default function ProductsSection() {
             </div>
           </div>
         </section>
-      ) : (
-        <div className="home_products_grid">
-          <div className="container">
-            <div className="row mb-5" ref={sectionRef}>
-              <div className="company_products_grid">
-                {products?.map((product, index) => (
-                  <Link
-                    className="product_img"
-                    key={index}
-                    to={`/product/${product?.id}`}
-                  >
-                    {isValidVideoExtension(product?.image) ? (
-                      <video
-                        src={product.image}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onLoadedMetadata={handleImageLoad}
-                      />
-                    ) : (
-                      <img
-                        src={product.image}
-                        onLoad={handleImageLoad}
-                        alt=""
-                      />
-                    )}
-                    {/* <Link to={`/companies/${product?.user?.id}`} className="company">
-                      <div className="img">
-                        <img src={product?.user?.image} alt="" />
-                      </div>
-                      <h6>{product?.user?.name}</h6>
-                    </Link> */}
-                    <ImageLoad isImageLoaded={isImageLoaded} />
-                  </Link>
-                ))}
-
-                {(isLoading || isFetchingNextPage) && (
-                  <>
-                    {Array(5)
-                      .fill(0)
-                      .map((_, index) => (
-                        <div className="product_img skeleton" key={index}></div>
-                      ))}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
