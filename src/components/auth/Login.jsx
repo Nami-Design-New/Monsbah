@@ -76,6 +76,7 @@ function Login({
         toast.success(res.data?.message);
         queryClient.invalidateQueries();
         navigate("/");
+        window.location.reload();
         setShow(false);
         localStorage.setItem("userType", userState);
       }

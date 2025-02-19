@@ -110,6 +110,7 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow, userS
             gender: "",
           });
           localStorage.setItem("userType", userState);
+          window.location.reload();
         }
       }
     } catch (error) {
