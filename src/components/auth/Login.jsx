@@ -75,7 +75,7 @@ function Login({
 
         toast.success(res.data?.message);
         queryClient.invalidateQueries();
-        navigate(userState === "client" ? "/profile" : "company-profile");
+        navigate("/");
         setShow(false);
         localStorage.setItem("userType", userState);
       }

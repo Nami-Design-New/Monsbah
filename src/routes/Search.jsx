@@ -45,27 +45,17 @@ export default function Search() {
             </button>
           </form>
           <nav className="search_nav">
-            {localStorage.getItem("userType") === "company" ? (
-              <>
-                <NavLink end to={search ? `/search?search=${search}` : ""}>
-                  {t("advertisements")}
-                </NavLink>
-                <NavLink
-                  to={search ? `companies?search=${search}` : "companies"}
-                >
-                  {t("companies")}
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink end to={search ? `/search?search=${search}` : ""}>
-                  {t("advertisements")}
-                </NavLink>
-                <NavLink to={search ? `persons?search=${search}` : "persons"}>
-                  {t("persons")}
-                </NavLink>
-              </>
+            <NavLink end to={search ? `/search?search=${search}` : ""}>
+              {t("advertisements")}
+            </NavLink>
+            {localStorage.getItem("userType") !== "company" && (
+              <NavLink to={search ? `persons?search=${search}` : "persons"}>
+                {t("persons")}
+              </NavLink>
             )}
+            <NavLink to={search ? `companies?search=${search}` : "companies"}>
+              {t("companies")}
+            </NavLink>
           </nav>
 
           <div className="row">
