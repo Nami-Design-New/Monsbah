@@ -12,7 +12,7 @@ export default function CompanyCard({ company }) {
       to={`${
         company?.id === client?.id
           ? "/company-profile"
-          : "/companies/${company?.id}"
+          : `/companies/${company?.id}`
       }`}
       className="campany_card"
     >

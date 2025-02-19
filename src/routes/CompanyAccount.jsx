@@ -14,12 +14,18 @@ export default function CompanyAccount() {
   const profile = useSelector((state) => state.clientData.client);
 
   const handleShare = () => {
+    let currentUrl = window.location.href;
+    currentUrl = currentUrl.replace(
+      "/company-profile",
+      `/companies/${profile?.id}`
+    );
+
     if (navigator.share) {
       navigator
         .share({
           title: profile?.client?.name,
           text: profile?.client?.about,
-          url: window.location.href,
+          url: currentUrl,
         })
         .then(() => t("Shared successfully"))
         .catch((error) => t("Error sharing:", error));
@@ -147,7 +153,7 @@ export default function CompanyAccount() {
               <CompanyProductCard product={product} isShowAction={true} />
             </div>
           ))}
-          
+
           {(isLoading || isFetchingNextPage) && (
             <>
               {Array(4)
