@@ -46,13 +46,15 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
 
   const [formData, setFormData] = useState({
     username: "",
-    name: "",
+    name_ar: "",
+    name_en: "",
     phone: "",
     email: "",
     password: "",
     city_id: "",
     state_id: "",
-    about: "",
+    about_ar: "",
+    about_en: "",
     country_id: "",
     category_id: "",
     whats_number: "",
@@ -155,7 +157,10 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
             {/* register process */}
 
             {formType === "register-type" && (
-              <ChooseRegisterType setFormType={setFormType} />
+              <ChooseRegisterType
+                setFormType={setFormType}
+                setUserState={setUserState}
+              />
             )}
 
             {formType === "register" && (
@@ -179,6 +184,7 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
             {formType === "registerOtp" && (
               <RegisterOTPConfirm
                 setShow={setShow}
+                userState={userState}
                 setFormType={setFormType}
                 formData={registerFormData}
                 setFormData={setRegisterFormData}

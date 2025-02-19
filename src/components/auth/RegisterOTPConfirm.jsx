@@ -10,7 +10,7 @@ import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
 
-function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow }) {
+function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow, userState }) {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -109,6 +109,7 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow }) {
             fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
             gender: "",
           });
+          localStorage.setItem("userType", userState);
         }
       }
     } catch (error) {

@@ -13,11 +13,11 @@ import SubmitButton from "../ui/form-elements/SubmitButton";
 import TextField from "../ui/form-elements/TextField";
 import axiosInstance from "../utils/axiosInstance";
 import useGetStates from "../hooks/settings/useGetStates";
-import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 import useGetCities from "../hooks/settings/useGetCities";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetProduct from "../hooks/products/useGetProduct";
 import useGetCompanyCategories from "../hooks/settings/useGetCompanyCategories";
+import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 
 export default function AddCompanyProduct() {
   const { t } = useTranslation();
@@ -38,12 +38,14 @@ export default function AddCompanyProduct() {
   const [formData, setFormData] = useState({
     images: [],
     image: "",
-    name: "",
+    name_ar: "",
+    name_en: "",
     category_id: "",
     sub_category_id: "",
     city_id: "",
     state_id: "",
-    description: "",
+    description_ar: "",
+    description_en: "",
     type: "sale",
     active_chat: "inactive",
     active_whatsapp: "inactive",
@@ -61,7 +63,7 @@ export default function AddCompanyProduct() {
 
   const { data: subcategories, isLoading: subcategoriesLoading } =
     useGetSubCategories(
-      formData?.category_id || 1,
+      formData?.category_id || 14,
       Boolean(formData?.category_id)
     );
 
@@ -86,8 +88,6 @@ export default function AddCompanyProduct() {
       phone: user?.phone,
       country_code: user?.country?.country_code,
       currency_id: user?.country?.currency?.id,
-      category_id: 1,
-      sub_category_id: 10,
     }));
   }, [user]);
 
@@ -95,14 +95,14 @@ export default function AddCompanyProduct() {
     if (product && product_id) {
       setFormData((prevState) => ({
         ...prevState,
-        name_ar: product?.name,
-        name_en: product?.name,
+        name_ar: product?.name_ar,
+        name_en: product?.name_en,
         category_id: product?.category?.id,
         sub_category_id: product?.sub_category?.id,
         city_id: product?.city?.id,
         state_id: product?.state?.id,
-        description_ar: product?.description,
-        description_en: product?.description,
+        description_ar: product?.description_en,
+        description_en: product?.description_en,
         type: product?.type,
         price: product?.price,
         active_chat: product?.active_chat,
@@ -169,13 +169,15 @@ export default function AddCompanyProduct() {
     e.preventDefault();
     setLoading(true);
     const requestBody = {
-      name: formData?.name,
+      name_ar: formData?.name_ar,
+      name_en: formData?.name_en,
       price: formData?.price,
       category_id: formData?.category_id,
       sub_category_id: formData?.sub_category_id,
       city_id: formData?.city_id,
       state_id: formData?.state_id,
-      description: formData?.description,
+      description_ar: formData?.description_ar,
+      description_en: formData?.description_en,
       type: formData?.type,
       active_chat: formData?.active_chat,
       active_whatsapp: formData?.active_whatsapp,
@@ -342,7 +344,13 @@ export default function AddCompanyProduct() {
               id="name"
               name="name"
               value={formData.name_ar}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  name_ar: e.target.value,
+                  name_en: e.target.value,
+                });
+              }}
               disabled={productLoading}
             />
           </div>
@@ -490,8 +498,14 @@ export default function AddCompanyProduct() {
               placeholder={t("ads.descriptionPlaceholder")}
               name="descriptio"
               id="description"
-              value={formData?.description}
-              onChange={(e) => handleChange(e, setFormData)}
+              value={formData?.description_ar}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  description_ar: e.target.value,
+                  description_en: e.target.value,
+                });
+              }}
               disabled={productLoading}
             />
           </div>

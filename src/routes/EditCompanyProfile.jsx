@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { extractPhoneFromCode, handleChange } from "../utils/helpers";
 import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ImageUpload from "../ui/form-elements/ImageUpload";
 import InputField from "../ui/form-elements/InputField";
@@ -25,12 +26,14 @@ export default function EditCompanyProfile() {
   const [showPhoneModal, setShowPhoneModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
   const user = useSelector((state) => state.clientData.client);
 
   const [formData, setFormData] = useState({
     image: "",
     cover: "",
-    name: "",
+    name_ar: "",
+    name_en: "",
     username: "",
     mobile_number: "",
     country_code: "965",
@@ -38,7 +41,8 @@ export default function EditCompanyProfile() {
     country_id: "",
     city_id: "",
     state_id: "",
-    about: "",
+    about_ar: "",
+    about_en: "",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
@@ -56,7 +60,8 @@ export default function EditCompanyProfile() {
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      name: user?.name,
+      name_ar: user?.name_ar,
+      name_en: user?.name_en,
       image: user?.image || "",
       cover: user?.cover || "",
       username: user?.username || "",
@@ -69,7 +74,8 @@ export default function EditCompanyProfile() {
       country_id: user?.country?.id || "",
       city_id: user?.city?.id || "",
       state_id: user?.state?.id || "",
-      about: user?.about || "",
+      about_ar: user?.about_ar || "",
+      about_en: user?.about_en || "",
       fcm_token: user?.fcm_token || "",
     }));
   }, [user]);
@@ -91,7 +97,8 @@ export default function EditCompanyProfile() {
     setLoading(true);
 
     const requestBody = {
-      name: formData.name,
+      name_ar: formData.name_ar,
+      name_en: formData.name_en,
       username: formData.username,
       email: formData.email,
       phone: formData.phone,
@@ -100,7 +107,8 @@ export default function EditCompanyProfile() {
       country_id: user?.country?.id,
       city_id: user?.city?.id,
       state_id: user?.state?.id,
-      about: formData.about,
+      about_ar: formData.about_ar,
+      about_en: formData.about_en,
     };
 
     if (String(formData?.image?.type)?.startsWith("image")) {
@@ -119,6 +127,7 @@ export default function EditCompanyProfile() {
       );
       if (res.status === 200) {
         toast.success(t("profile.profileSuccessfullyUpdated"));
+        navigate("/company-profile");
       } else {
         toast.error(t("someThingWentWrong"));
       }
@@ -128,6 +137,7 @@ export default function EditCompanyProfile() {
       setLoading(false);
     }
   };
+
   return (
     <div className="container my-5">
       <div className="row justify-content-center">
@@ -153,8 +163,14 @@ export default function EditCompanyProfile() {
               placeholder={t("auth.companyName")}
               id="name"
               name="name"
-              value={formData.name}
-              onChange={(e) => handleChange(e, setFormData)}
+              value={formData.name_ar}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  name_ar: e.target.value,
+                  name_en: e.target.value,
+                });
+              }}
             />
           </div>
 
@@ -304,10 +320,16 @@ export default function EditCompanyProfile() {
               as={"textarea"}
               id="about"
               name="about"
-              value={formData.about}
+              value={formData.about_ar}
               label={t("auth.companyDec")}
               placeholder={t("auth.enterDescription")}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  about_ar: e.target.value,
+                  about_en: e.target.value,
+                });
+              }}
             />
           </div>
 

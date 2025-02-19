@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-export default function ChooseRegisterType({ setFormType }) {
+export default function ChooseRegisterType({ setFormType, setUserState }) {
   const { t } = useTranslation();
   return (
     <>
@@ -15,13 +15,21 @@ export default function ChooseRegisterType({ setFormType }) {
       <div className="form">
         <div className="d-flex flex-column gap-2">
           <button
-            onClick={() => setFormType("register")}
+            onClick={() => {
+              setFormType("register");
+              setUserState("user");
+            }}
             className="personal-account"
           >
             <i className="fa-sharp fa-solid fa-user"></i>
             {t("auth.personal")}
           </button>
-          <button onClick={() => setFormType("register-company")}>
+          <button
+            onClick={() => {
+              setFormType("register-company");
+              setUserState("company");
+            }}
+          >
             <i className="fa-sharp fa-solid fa-building"></i>
             {t("auth.company")}
           </button>

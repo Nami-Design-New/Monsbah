@@ -108,8 +108,14 @@ export default function RegisterCompany({
             placeholder={t("auth.companyName")}
             id="name"
             name="name"
-            value={formData.name}
-            onChange={(e) => handleChange(e, setFormData)}
+            value={formData.name_ar}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                name_ar: e.target.value,
+                name_en: e.target.value,
+              });
+            }}
           />
 
           <SelectField
@@ -255,10 +261,16 @@ export default function RegisterCompany({
             as={"textarea"}
             id="about"
             name="about"
-            value={formData.about}
+            value={formData.about_ar}
             label={t("auth.companyDec")}
             placeholder={t("auth.enterDescription")}
-            onChange={(e) => handleChange(e, setFormData)}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                about_ar: e.target.value,
+                about_en: e.target.value,
+              });
+            }}
           />
         </div>
 
