@@ -6442,6 +6442,16 @@ body main .company_profile_section .company_header .content p i {
   justify-content: center;
   aspect-ratio: 1/1;
 }
+body main .company_profile_section .company_header .share_link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  color: #777777;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: flex-start;
+}
 body main .company_profile_section .about_company {
   padding: 24px 0 0;
 }

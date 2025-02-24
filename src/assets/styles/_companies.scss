@@ -261,6 +261,15 @@
         }
       }
     }
+    .share_link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      color: $gray;
+      width: fit-content;
+      justify-content: flex-start;
+    }
   }
   .about_company {
     padding: 24px 0 0;

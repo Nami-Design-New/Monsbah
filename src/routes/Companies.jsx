@@ -12,6 +12,9 @@ import useGetCompanyCategories from "../hooks/settings/useGetCompanyCategories";
 import useGetCities from "../hooks/settings/useGetCities";
 import useGetCompanies from "../hooks/companies/useGetCompanies";
 import CompanyLoader from "../ui/loaders/CompanyLoader";
+import ProductLoader from "../ui/loaders/ProductLoader";
+import ProductVertical from "../ui/cards/ProductVertical";
+import useGetCompanyProducts from "./../hooks/products/useGetCompanyProducts";
 
 export default function Companies() {
   const { t } = useTranslation();
@@ -26,6 +29,7 @@ export default function Companies() {
 
   const { data: countries, countriesLoading } = useGetCountries();
   const { data: cities } = useGetCities(country, country ? true : false);
+  const { data: products } = useGetCompanyProducts();
   const { data: categories, isLoading: categoriesLoading } =
     useGetCompanyCategories();
 
@@ -218,27 +222,51 @@ export default function Companies() {
 
       <section className="companies_section">
         <div className="container p-1">
-          <div className="row">
-            {companies?.map((company) => (
-              <div className="col-lg-4 col-md-6 col-12 p-2" key={company?.id}>
-                <CompanyCard company={company} />
-              </div>
-            ))}
-            {(isLoading || isFetchingNextPage) && (
-              <>
-                {Array(3)
-                  .fill(0)
-                  .map((_, index) => (
-                    <div
-                      className="col-lg-4 col-md-6 col-12 p-2"
-                      key={`loader-${index}`}
-                    >
-                      <CompanyLoader />
-                    </div>
-                  ))}
-              </>
-            )}
-          </div>
+          {searchParams.get("category") ? (
+            <div className="row">
+              {companies?.map((company) => (
+                <div className="col-lg-4 col-md-6 col-12 p-2" key={company?.id}>
+                  <CompanyCard company={company} />
+                </div>
+              ))}
+              {(isLoading || isFetchingNextPage) && (
+                <>
+                  {Array(3)
+                    .fill(0)
+                    .map((_, index) => (
+                      <div
+                        className="col-lg-4 col-md-6 col-12 p-2"
+                        key={`loader-${index}`}
+                      >
+                        <CompanyLoader />
+                      </div>
+                    ))}
+                </>
+              )}
+            </div>
+          ) : (
+            <div className="row">
+              {products?.map((product, index) => (
+                <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
+                  <ProductVertical product={product} isShowAction={false} />
+                </div>
+              ))}
+              {(isLoading || isFetchingNextPage) && (
+                <>
+                  {Array(3)
+                    .fill(0)
+                    .map((_, index) => (
+                      <div
+                        className="col-lg-4 col-md-6 col-12 p-2"
+                        key={`loader-${index}`}
+                      >
+                        <ProductLoader />
+                      </div>
+                    ))}
+                </>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </>

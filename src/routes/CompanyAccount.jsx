@@ -1,37 +1,50 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import StarsRate from "../ui/StarsRate";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 import CompanyProductCard from "../ui/cards/CompanyProductCard";
 import CompanyProductLoader from "../ui/loaders/CompanyProductLoader";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export default function CompanyAccount() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
+  const [showTooltip, setShowTooltip] = useState(false);
   const profile = useSelector((state) => state.clientData.client);
+  let currentUrl = window.location.href;
+  const currentPageLink = currentUrl.replace(
+    "/company-profile",
+    `/companies/${profile?.id}`
+  );
 
   const handleShare = () => {
-    let currentUrl = window.location.href;
-    currentUrl = currentUrl.replace(
-      "/company-profile",
-      `/companies/${profile?.id}`
-    );
-
     if (navigator.share) {
       navigator
         .share({
           title: profile?.client?.name,
           text: profile?.client?.about,
-          url: currentUrl,
+          url: currentPageLink,
         })
         .then(() => t("Shared successfully"))
         .catch((error) => t("Error sharing:", error));
     } else {
       alert(t("share_not_supported"));
     }
+  };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {props.content}
+    </Tooltip>
+  );
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(currentPageLink);
+    setShowTooltip(true);
   };
 
   const {
@@ -62,6 +75,15 @@ export default function CompanyAccount() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    if (showTooltip) {
+      const timer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showTooltip]);
 
   return (
     <section className="company_profile_section">
@@ -120,6 +142,18 @@ export default function CompanyAccount() {
                 company={profile}
                 isMyCompany={true}
               />
+
+              <OverlayTrigger
+                placement="bottom"
+                show={showTooltip}
+                overlay={renderTooltip({
+                  content: t("services.linkCopied"),
+                })}
+              >
+                <button className="share_link" onClick={handleCopy}>
+                  <i className="fa-regular fa-copy"></i> {t("copyLink")}
+                </button>
+              </OverlayTrigger>
             </div>
           </div>
 

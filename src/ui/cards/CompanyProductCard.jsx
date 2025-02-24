@@ -35,7 +35,7 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
         });
         queryClient.invalidateQueries({ queryKey: ["product"] });
         queryClient.invalidateQueries({ queryKey: ["allProducts"] });
-        queryClient.invalidateQueries({ queryKey: ["user-products"] });
+        queryClient.invalidateQueries({ queryKey: ["company-products"] });
       }
       setShowDeleteModal(false);
     } catch (error) {

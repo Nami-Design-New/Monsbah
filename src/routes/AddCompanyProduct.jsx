@@ -62,10 +62,7 @@ export default function AddCompanyProduct() {
   );
 
   const { data: subcategories, isLoading: subcategoriesLoading } =
-    useGetSubCategories(
-      formData?.category_id || 14,
-      Boolean(formData?.category_id)
-    );
+    useGetSubCategories(formData?.category_id, Boolean(formData?.category_id));
 
   const { data: areas, isLoading: areasLoading } = useGetStates(
     user?.city?.id,
@@ -95,14 +92,14 @@ export default function AddCompanyProduct() {
     if (product && product_id) {
       setFormData((prevState) => ({
         ...prevState,
-        name_ar: product?.name_ar,
-        name_en: product?.name_en,
-        category_id: product?.category?.id,
-        sub_category_id: product?.sub_category?.id,
+        name_ar: product?.name,
+        name_en: product?.name,
+        category_id: product?.category_id,
+        sub_category_id: product?.sub_category_id,
         city_id: product?.city?.id,
         state_id: product?.state?.id,
-        description_ar: product?.description_en,
-        description_en: product?.description_en,
+        description_ar: product?.description,
+        description_en: product?.description,
         type: product?.type,
         price: product?.price,
         active_chat: product?.active_chat,
@@ -361,7 +358,7 @@ export default function AddCompanyProduct() {
               label={`${t("ads.mainCategory")} *`}
               id="category_id"
               name="category_id"
-              value={formData.category_id}
+              value={formData?.category_id}
               onChange={(e) => {
                 setFormData({
                   ...formData,
@@ -383,7 +380,7 @@ export default function AddCompanyProduct() {
               loadingText={t("isLoading")}
               id="sub_category_id"
               name="sub_category_id"
-              value={formData.sub_category_id}
+              value={formData?.sub_category_id}
               onChange={(e) =>
                 setFormData({
                   ...formData,

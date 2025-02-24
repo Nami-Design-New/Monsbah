@@ -1,3 +1,4 @@
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,6 +19,7 @@ export default function CompanyProfile() {
   const queryClient = useQueryClient();
 
   const [isImageLoaded, setIsImageLoaded] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const { t } = useTranslation();
   const { data: profile, isLoading: profileLoading } =
@@ -27,6 +29,27 @@ export default function CompanyProfile() {
   const handleImageLoad = () => {
     setIsImageLoaded(false);
   };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {props.content}
+    </Tooltip>
+  );
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(window.location.href);
+    setShowTooltip(true);
+  };
+
+  useEffect(() => {
+    if (showTooltip) {
+      const timer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showTooltip]);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -174,6 +197,18 @@ export default function CompanyProfile() {
                 showbtn={true}
                 company={profile?.client}
               />
+
+              <OverlayTrigger
+                placement="bottom"
+                show={showTooltip}
+                overlay={renderTooltip({
+                  content: t("services.linkCopied"),
+                })}
+              >
+                <button className="share_link" onClick={handleCopy}>
+                  <i className="fa-regular fa-copy"></i> {t("copyLink")}
+                </button>
+              </OverlayTrigger>
             </div>
           </div>
           <div className="col-12 p-2">
