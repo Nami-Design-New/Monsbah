@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
-import { useDispatch } from "react-redux";
-import { setClientData } from "../../redux/slices/clientData";
 import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { setClientData } from "../../redux/slices/clientData";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
 
-function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow, userState }) {
+function RegisterOTPConfirm({
+  formData,
+  setFormData,
+  setFormType,
+  setShow,
+  userState,
+}) {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -122,52 +128,54 @@ function RegisterOTPConfirm({ formData, setFormData, setFormType, setShow, userS
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <h2 className="head">{t("auth.confirmOTPTitle")} </h2>
-        <p className="sub-head">{t("auth.confirmOTPSubtitle")}</p>
-      </div>
-
-      <OtpContainer formData={otpVerifyCode} setFormData={setOtpVerifyCode} />
-
-      <div className="resend-code">
-        <span className={`resend_link ${resendDisabled ? "disabled" : ""}`}>
-          {t("auth.didnotReceiveCode")}
-          <span
-            className=""
-            style={{ cursor: "pointer" }}
-            onClick={handleResend}
-          >
-            {t("auth.resendCode")}
-          </span>
-        </span>
-        <div
-          className="timer flex-row-reverse"
-          style={{ justifyContent: "end !important" }}
-        >
-          <span>
-            {Math.floor(timer / 60)
-              .toString()
-              .padStart(2, "0")}
-          </span>
-          :<span>{(timer % 60).toString().padStart(2, "0")}</span>
+    <>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <h2 className="head">{t("auth.confirmOTPTitle")} </h2>
+          <p className="sub-head">{t("auth.confirmOTPSubtitle")}</p>
         </div>
-      </div>
 
-      <div className="d-flex align-items-center gap-2">
-        <button
-          aria-label="Back"
-          className="back_btn"
-          onClick={(e) => {
-            e.preventDefault();
-            setFormType("register");
-          }}
-        >
-          <i className="fal fa-arrow-right"></i>
-        </button>
-        <SubmitButton name={t("auth.verify")} loading={loading} />
-      </div>
-    </form>
+        <OtpContainer formData={otpVerifyCode} setFormData={setOtpVerifyCode} />
+
+        <div className="resend-code">
+          <span className={`resend_link ${resendDisabled ? "disabled" : ""}`}>
+            {t("auth.didnotReceiveCode")}
+            <span
+              className=""
+              style={{ cursor: "pointer" }}
+              onClick={handleResend}
+            >
+              {t("auth.resendCode")}
+            </span>
+          </span>
+          <div
+            className="timer flex-row-reverse"
+            style={{ justifyContent: "end !important" }}
+          >
+            <span>
+              {Math.floor(timer / 60)
+                .toString()
+                .padStart(2, "0")}
+            </span>
+            :<span>{(timer % 60).toString().padStart(2, "0")}</span>
+          </div>
+        </div>
+
+        <div className="d-flex align-items-center gap-2">
+          <button
+            aria-label="Back"
+            className="back_btn"
+            onClick={(e) => {
+              e.preventDefault();
+              setFormType("register");
+            }}
+          >
+            <i className="fal fa-arrow-right"></i>
+          </button>
+          <SubmitButton name={t("auth.verify")} loading={loading} />
+        </div>
+      </form>
+    </>
   );
 }
 

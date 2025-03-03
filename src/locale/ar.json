@@ -81,7 +81,8 @@
     "enterDescription": "ادخل وصف الشركة",
     "whatsapp": "واتساب",
     "category": "الفئة",
-    "client": "حساب شخصي"
+    "client": "حساب شخصي",
+    "thanks": "شكرا ... تم انشاء الحساب بنجاح"
   },
   "blogs": {
     "title": "المدونة والأخبار",
@@ -402,5 +403,18 @@
   "noMoreNotifications": "لا يوجد أكثر اشعارات",
   "recentArticles": "المقالات الأخيرة",
   "review": "تقييم",
-  "copyLink": "نسخ الرابط"
+  "copyLink": "نسخ الرابط",
+  "accountData": "بيانات الحساب",
+  "accountCheck": "تأكيد الحساب",
+  "subscriptions": "الاشتراكات",
+  "finished": "انهاء",
+  "adPost": "نشر الاعلان",
+  "subTitle": "للاعلان في مناسبه يمكنك الاختيار من ياقاتنا بما يناسب حاجتك واعمالك",
+  "adSubtitle": "كيف تحب ان يكون اعلانك في مناسبه",
+  "completePay": "اتمام الدفع",
+  "companySec": "اقسام الشركات",
+  "noCategoriesAvailable": "لا يوجد فئة شركة متاحة",
+  "latest": "الاحدث",
+  "fromNearest": "من الاقرب",
+  "highestRate": "الاعلي تقييما"
 }

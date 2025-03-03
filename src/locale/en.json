@@ -83,7 +83,8 @@
     "companyDec": "Company Description",
     "enterDescription": "Enter Company Description",
     "whatsapp": "WhatsApp Number",
-    "client": "Client"
+    "client": "Client",
+    "thanks": "Thank you... The account has been created successfully."
   },
   "blogs": {
     "title": "Blogs and News",
@@ -403,5 +404,18 @@
   "noMoreNotifications": "No more notifications",
   "recentArticles": "Recent Articles",
   "review": "Review",
-  "copyLink": "Copy link"
+  "copyLink": "Copy link",
+  "accountData": "Acount data",
+  "accountCheck": "Account Confirm",
+  "subscriptions": "Subscriptions",
+  "finished": "Finished",
+  "subTitle": "To advertise on an occasion, you can choose from our collars what suits your needs and business.",
+  "adPost": "Post Ad",
+  "adSubtitle": "How would you like your ad to be on the occasion?",
+  "completePay": "Complete payment",
+  "companySec": "Company Categories",
+  "noCategoriesAvailable": "There is no company category available",
+  "latest": "Latest",
+  "fromNearest": "From Nearest",
+  "highestRate": "Highest rated"
 }

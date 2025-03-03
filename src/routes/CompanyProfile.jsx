@@ -1,18 +1,17 @@
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
-import { isValidVideoExtension } from "../utils/helpers";
-import StarsRate from "./../ui/StarsRate";
+import { useEffect, useRef, useState } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useGetCompanyProfile from "../hooks/companies/useGetCompanyProfile";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
+import ProductVertical from "../ui/cards/ProductVertical";
 import PageLoader from "../ui/loaders/PageLoader";
 import axiosInstance from "../utils/axiosInstance";
-import ImageLoad from "../ui/loaders/ImageLoad";
+import StarsRate from "./../ui/StarsRate";
 
 export default function CompanyProfile() {
   const sectionRef = useRef(null);
@@ -236,39 +235,21 @@ export default function CompanyProfile() {
         </div>
 
         <div className="row mb-5" ref={sectionRef}>
-          <div className="company_products_grid">
-            {products?.map((product, index) => (
-              <Link
-                className="product_img"
-                key={index}
-                to={`/product/${product?.id}`}
-              >
-                {isValidVideoExtension(product?.image) ? (
-                  <video
-                    src={product.image}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    onLoadedMetadata={handleImageLoad}
-                  />
-                ) : (
-                  <img src={product.image} onLoad={handleImageLoad} alt="" />
-                )}
-                <ImageLoad isImageLoaded={isImageLoaded} />
-              </Link>
-            ))}
+          {products?.map((product, index) => (
+            <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
+              <ProductVertical product={product} isShowAction={false} />
+            </div>
+          ))}
 
-            {(isLoading || isFetchingNextPage) && (
-              <>
-                {Array(5)
-                  .fill(0)
-                  .map((_, index) => (
-                    <div className="product_img skeleton" key={index}></div>
-                  ))}
-              </>
-            )}
-          </div>
+          {(isLoading || isFetchingNextPage) && (
+            <>
+              {Array(5)
+                .fill(0)
+                .map((_, index) => (
+                  <div className="product_img skeleton" key={index}></div>
+                ))}
+            </>
+          )}
         </div>
       </div>
     </section>

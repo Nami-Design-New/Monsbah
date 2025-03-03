@@ -1,13 +1,13 @@
-import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import axiosInstance from "../../utils/axiosInstance";
 import { isValidVideoExtension } from "../../utils/helpers";
 import ImageLoad from "../loaders/ImageLoad";
 import ConfirmationModal from "../modals/ConfirmationModal";
-import axiosInstance from "../../utils/axiosInstance";
 
 export default function CompanyProductCard({ product, isShowAction = true }) {
   const { t } = useTranslation();
