@@ -191,6 +191,49 @@ export default function Companies() {
             </div>
 
             <div className="grid_view">
+              <div className="filter">
+                <Dropdown>
+                  <Dropdown.Toggle aria-label="Filter">
+                    <i className="fa-regular fa-arrow-up-wide-short"></i>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      onClick={() => handleSetParams("near", "sort")}
+                    >
+                      <i className="fa-regular fa-calendar"></i>
+                      <span>{t("latest")}</span>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleSetParams("new", "sort")}
+                    >
+                      {" "}
+                      <i className="fa-regular fa-location-dot"></i>
+                      <span>{t("fromNearest")}</span>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleSetParams("highest_rated", "sort")}
+                    >
+                      {" "}
+                      <i className="fa-regular fa-star"></i>
+                      <span>{t("highestRate")}</span>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleSetParams("low_price", "sort")}
+                    >
+                      {" "}
+                      <i className="fa-regular fa-arrow-down-wide-short"></i>
+                      <span>{t("low_price")}</span>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleSetParams("high_price", "sort")}
+                    >
+                      {" "}
+                      <i className="fa-regular fa-arrow-up-wide-short"></i>
+                      <span>{t("high_price")}</span>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
               <Dropdown>
                 <Dropdown.Toggle aria-label="Filter Country">
                   <i className="fa-sharp fa-light fa-filter"></i>

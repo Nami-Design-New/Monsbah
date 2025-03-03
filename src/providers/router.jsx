@@ -1,28 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 import About from "../routes/About";
 import AddAd from "../routes/AddAd";
-import Chats from "../routes/Chats";
-import Home from "../routes/Home";
-import Terms from "../routes/Terms";
+import AddCompanyProduct from "../routes/AddCompanyProduct";
+import BlogDetails from "../routes/BlogDetails";
 import BLogs from "../routes/BLogs";
-import Search from "../routes/Search";
-import Contact from "../routes/Contact";
-import Profile from "../routes/Profile";
+import Categories from "../routes/Categories";
+import Chats from "../routes/Chats";
 import Companies from "../routes/Companies";
+import CompanyAccount from "../routes/CompanyAccount";
+import CompanyCategories from "../routes/CompanyCategories";
+import CompanyProfile from "../routes/CompanyProfile";
+import Contact from "../routes/Contact";
+import CountryAsks from "../routes/CountryAsks";
+import EditCompanyProfile from "../routes/EditCompanyProfile";
 import ErrorPage from "../routes/ErrorPage";
 import Followers from "../routes/Followers";
-import Categories from "../routes/Categories";
-import BlogDetails from "../routes/BlogDetails";
+import Home from "../routes/Home";
+import ProductDetails from "../routes/ProductDetails";
+import Profile from "../routes/Profile";
+import Search from "../routes/Search";
+import Terms from "../routes/Terms";
 import UserProfile from "../routes/UserProfile";
-import CountryAsks from "../routes/CountryAsks";
 import Verification from "../routes/Verification";
 import RootLayout from "./../ui/Layout/RootLayout";
-import ProductDetails from "../routes/ProductDetails";
 import ProtectionProvider from "./ProtectionProvider";
-import CompanyProfile from "../routes/CompanyProfile";
-import CompanyAccount from "../routes/CompanyAccount";
-import AddCompanyProduct from "../routes/AddCompanyProduct";
-import EditCompanyProfile from "../routes/EditCompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,10 @@ export const router = createBrowserRouter([
         path: "about-us",
         element: <About />,
       },
-
+      {
+        path: "sections",
+        element: <CompanyCategories />,
+      },
       {
         path: "chats",
         element: (

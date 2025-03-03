@@ -1,26 +1,27 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { handleChange } from "../utils/helpers";
-import { toast } from "react-toastify";
 import { Form } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import AdModal from "../components/modals/AdModal";
+import useGetProduct from "../hooks/products/useGetProduct";
 import useGetCategories from "../hooks/settings/useGetCategories";
-import SelectField from "../ui/form-elements/SelectField";
-import SubmitButton from "../ui/form-elements/SubmitButton";
-import useGetSubCategories from "../hooks/settings/useGetSubCategories";
-import InputField from "../ui/form-elements/InputField";
 import useGetCities from "../hooks/settings/useGetCities";
 import useGetStates from "../hooks/settings/useGetStates";
-import TextField from "../ui/form-elements/TextField";
+import useGetSubCategories from "../hooks/settings/useGetSubCategories";
+import InputField from "../ui/form-elements/InputField";
 import PhoneInput from "../ui/form-elements/PhoneInput";
+import SelectField from "../ui/form-elements/SelectField";
+import TextField from "../ui/form-elements/TextField";
 import axiosInstance from "../utils/axiosInstance";
-import useGetProduct from "../hooks/products/useGetProduct";
+import { handleChange } from "../utils/helpers";
 
 export default function AddAd() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const product_id = searchParams.get("product_id");
@@ -276,362 +277,379 @@ export default function AddAd() {
   };
 
   return (
-    <form
-      className="form col-12 p-2 p-md-3 reverse-form"
-      onSubmit={handleSubmit}
-    >
-      {/* gallery */}
-      <div className="form_group">
-        <div className="input-field">
-          <label
-            htmlFor="certificate-image w-100"
-            style={{ whiteSpace: "wrap !important" }}
-          >
-            <div style={{ whiteSpace: "nowrap" }}>{t("ads.images")}</div>{" "}
-            <span style={{ width: "unset !important", flex: "1" }}>
-              ({t("ads.imagesHint")})
-            </span>
-          </label>
+    <>
+      <form
+        className="form col-12 p-2 p-md-3 reverse-form"
+        onSubmit={handleSubmit}
+      >
+        {/* gallery */}
+        <div className="form_group">
+          <div className="input-field">
+            <label
+              htmlFor="certificate-image w-100"
+              style={{ whiteSpace: "wrap !important" }}
+            >
+              <div style={{ whiteSpace: "nowrap" }}>{t("ads.images")}</div>{" "}
+              <span style={{ width: "unset !important", flex: "1" }}>
+                ({t("ads.imagesHint")})
+              </span>
+            </label>
 
-          <div className="images_grid_upload">
-            {/* image upload field */}
-            {formData?.images?.length < 6 && (
-              <div className="file_upload">
-                <label htmlFor="file_upload">
-                  <input
-                    type="file"
-                    id="file_upload"
-                    accept="image/*,video/*"
-                    name="images"
-                    multiple
-                    onChange={handleImagesChange}
-                    disabled={productLoading}
-                  />
-                  <img src="/images/icons/gallery.svg" alt="upload" />
-                </label>
-              </div>
-            )}
-
-            {/* uploaded images */}
-            {productImages &&
-              productImages?.map((image, index) => (
-                <div className="uploaded_file" key={index}>
-                  {image?.type?.startsWith("video/") ? (
-                    <video
-                      src={
-                        image?.type?.startsWith("video/")
-                          ? URL.createObjectURL(image)
-                          : image?.image
-                      }
-                      alt="file"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+            <div className="images_grid_upload">
+              {/* image upload field */}
+              {formData?.images?.length < 6 && (
+                <div className="file_upload">
+                  <label htmlFor="file_upload">
+                    <input
+                      type="file"
+                      id="file_upload"
+                      accept="image/*,video/*"
+                      name="images"
+                      multiple
+                      onChange={handleImagesChange}
+                      disabled={productLoading}
                     />
-                  ) : (
-                    <img
-                      src={
-                        image?.type?.startsWith("image/")
-                          ? URL.createObjectURL(image)
-                          : image
-                      }
-                      alt="file"
-                    />
-                  )}
-
-                  <button
-                    aria-label="Remove"
-                    onClick={(e) => handleRemoveImage(e, index, image)}
-                  >
-                    <i className="fa-light fa-xmark"></i>
-                  </button>
-                  {index === 0 && (
-                    <span className="mainImg">{t("ads.mainImage")}</span>
-                  )}
+                    <img src="/images/icons/gallery.svg" alt="upload" />
+                  </label>
                 </div>
-              ))}
+              )}
+
+              {/* uploaded images */}
+              {productImages &&
+                productImages?.map((image, index) => (
+                  <div className="uploaded_file" key={index}>
+                    {image?.type?.startsWith("video/") ? (
+                      <video
+                        src={
+                          image?.type?.startsWith("video/")
+                            ? URL.createObjectURL(image)
+                            : image?.image
+                        }
+                        alt="file"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    ) : (
+                      <img
+                        src={
+                          image?.type?.startsWith("image/")
+                            ? URL.createObjectURL(image)
+                            : image
+                        }
+                        alt="file"
+                      />
+                    )}
+
+                    <button
+                      aria-label="Remove"
+                      onClick={(e) => handleRemoveImage(e, index, image)}
+                    >
+                      <i className="fa-light fa-xmark"></i>
+                    </button>
+                    {index === 0 && (
+                      <span className="mainImg">{t("ads.mainImage")}</span>
+                    )}
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* name */}
-      <div className="form_group">
-        <InputField
-          required
-          label={t("ads.name")}
-          placeholder={t("ads.nameNote")}
-          id="name_ar"
-          name="name_ar"
-          value={formData.name_ar}
-          onChange={handleNameChange}
-          disabled={productLoading}
-        />
-      </div>
+        {/* name */}
+        <div className="form_group">
+          <InputField
+            required
+            label={t("ads.name")}
+            placeholder={t("ads.nameNote")}
+            id="name_ar"
+            name="name_ar"
+            value={formData.name_ar}
+            onChange={handleNameChange}
+            disabled={productLoading}
+          />
+        </div>
 
-      {/* category */}
-      <div className="form_group">
-        <SelectField
-          label={`${t("ads.mainCategory")} *`}
-          id="category_id"
-          name="category_id"
-          value={formData.category_id}
-          onChange={(e) => {
-            setFormData({
-              ...formData,
-              category_id: e.target.value,
-              sub_category_id: "",
-              type: "sale",
-            });
-          }}
-          options={categories?.map((category) => ({
-            name: category?.name,
-            value: category?.id,
-          }))}
-          disabled={productLoading}
-        />
+        {/* category */}
+        <div className="form_group">
+          <SelectField
+            label={`${t("ads.mainCategory")} *`}
+            id="category_id"
+            name="category_id"
+            value={formData.category_id}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                category_id: e.target.value,
+                sub_category_id: "",
+                type: "sale",
+              });
+            }}
+            options={categories?.map((category) => ({
+              name: category?.name,
+              value: category?.id,
+            }))}
+            disabled={productLoading}
+          />
 
-        <SelectField
-          label={`${t("ads.subCategory")} *`}
-          loading={subcategoriesLoading}
-          loadingText={t("isLoading")}
-          id="sub_category_id"
-          name="sub_category_id"
-          value={formData.sub_category_id}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              sub_category_id: e.target.value,
-            })
-          }
-          options={subcategories?.map((subcategory) => ({
-            name: subcategory?.name,
-            value: subcategory?.id,
-          }))}
-          disabled={productLoading}
-        />
-      </div>
+          <SelectField
+            label={`${t("ads.subCategory")} *`}
+            loading={subcategoriesLoading}
+            loadingText={t("isLoading")}
+            id="sub_category_id"
+            name="sub_category_id"
+            value={formData.sub_category_id}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                sub_category_id: e.target.value,
+              })
+            }
+            options={subcategories?.map((subcategory) => ({
+              name: subcategory?.name,
+              value: subcategory?.id,
+            }))}
+            disabled={productLoading}
+          />
+        </div>
 
-      {/*  price & type */}
-      <div className="form_group">
-        <InputField
-          required
-          label={t("ads.price")}
-          placeholder={t("ads.priceNote")}
-          name="price"
-          id="price"
-          type="number"
-          value={formData?.price}
-          onChange={(e) => {
-            handleChange(e, setFormData);
-          }}
-          disabled={productLoading}
-        />
-        <div className="input-field">
-          <label htmlFor="type">{t("ads.type")}</label>
-          <div className="radios">
-            <label htmlFor="sale">
-              <input
-                type="radio"
-                name="type"
-                id="sale"
-                value="sale"
-                checked={
-                  formData?.type === "sale" ||
-                  +showAdTypeOptionsId === +formData?.category_id
-                }
-                onChange={(e) => handleChange(e, setFormData)}
-                disabled={productLoading}
-              />
-              <span>{t("ads.sell")}</span>
-            </label>
-            {+showAdTypeOptionsId === +formData?.category_id ? (
-              <label htmlFor="rent">
+        {/*  price & type */}
+        <div className="form_group">
+          <InputField
+            required
+            label={t("ads.price")}
+            placeholder={t("ads.priceNote")}
+            name="price"
+            id="price"
+            type="number"
+            value={formData?.price}
+            onChange={(e) => {
+              handleChange(e, setFormData);
+            }}
+            disabled={productLoading}
+          />
+          <div className="input-field">
+            <label htmlFor="type">{t("ads.type")}</label>
+            <div className="radios">
+              <label htmlFor="sale">
                 <input
                   type="radio"
                   name="type"
-                  id="rent"
-                  value="rent"
-                  checked={formData?.type === "rent"}
+                  id="sale"
+                  value="sale"
+                  checked={
+                    formData?.type === "sale" ||
+                    +showAdTypeOptionsId === +formData?.category_id
+                  }
                   onChange={(e) => handleChange(e, setFormData)}
                   disabled={productLoading}
                 />
-                <span>{t("ads.tajeer")}</span>
+                <span>{t("ads.sell")}</span>
               </label>
-            ) : null}
+              {+showAdTypeOptionsId === +formData?.category_id ? (
+                <label htmlFor="rent">
+                  <input
+                    type="radio"
+                    name="type"
+                    id="rent"
+                    value="rent"
+                    checked={formData?.type === "rent"}
+                    onChange={(e) => handleChange(e, setFormData)}
+                    disabled={productLoading}
+                  />
+                  <span>{t("ads.tajeer")}</span>
+                </label>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* city, region */}
-      <div className="form_group">
-        <SelectField
-          label={`${t("ads.city")} *`}
-          id="city_id"
-          name="city_id"
-          value={formData.city_id}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              city_id: e.target.value,
-              state_id: "",
-            })
-          }
-          options={cities?.map((city) => ({
-            name: city?.name,
-            value: city?.id,
-          }))}
-          disabled={productLoading}
-        />
-        <SelectField
-          label={`${t("ads.area")} *`}
-          loading={areasLoading}
-          loadingText={t("isLoading")}
-          id="state_id"
-          name="state_id"
-          value={formData.state_id}
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              state_id: e.target.value,
-            })
-          }
-          options={areas?.map((area) => ({
-            name: area?.name,
-            value: area?.id,
-          }))}
-          disabled={productLoading}
-        />
-      </div>
-
-      {/* description */}
-      <div className="form_group">
-        <TextField
-          required
-          label={t("ads.description")}
-          placeholder={t("ads.descriptionPlaceholder")}
-          name="description_ar"
-          id="description_ar"
-          value={formData?.description_ar}
-          onChange={(e) => {
-            setFormData({
-              ...formData,
-              description_ar: e.target.value,
-              description_en: e.target.value,
-            });
-          }}
-          disabled={productLoading}
-        />
-      </div>
-
-      {/* contact */}
-      <div className="form_group">
-        <div className="input-field">
-          <label htmlFor="type">
-            {t("ads.contact")} <span>( {t("ads.contactNote")} )</span>
-          </label>{" "}
-          <div className="radios">
-            <label htmlFor="active_call">
-              <input
-                type="checkbox"
-                name="active_call"
-                id="active_call"
-                checked={formData?.active_call === "active"}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    active_call:
-                      formData.active_call === "active" ? "inactive" : "active",
-                  })
-                }
-                disabled={productLoading}
-              />
-              <span>{t("ads.call")}</span>
-            </label>
-            <label htmlFor="active_whatsapp">
-              <input
-                type="checkbox"
-                name="active_whatsapp"
-                id="active_whatsapp"
-                checked={formData?.active_whatsapp === "active"}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    active_whatsapp:
-                      formData.active_whatsapp === "active"
-                        ? "inactive"
-                        : "active",
-                  })
-                }
-                disabled={productLoading}
-              />
-              <span>{t("ads.whatsapp")}</span>
-            </label>
-            <label htmlFor="active_chat">
-              <input
-                type="checkbox"
-                name="active_chat"
-                id="active_chat"
-                checked={formData?.active_chat === "active"}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    active_chat:
-                      formData.active_chat === "active" ? "inactive" : "active",
-                  })
-                }
-                disabled={productLoading}
-              />
-              <span>{t("ads.chat")}</span>
-            </label>
-          </div>
+        {/* city, region */}
+        <div className="form_group">
+          <SelectField
+            label={`${t("ads.city")} *`}
+            id="city_id"
+            name="city_id"
+            value={formData.city_id}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                city_id: e.target.value,
+                state_id: "",
+              })
+            }
+            options={cities?.map((city) => ({
+              name: city?.name,
+              value: city?.id,
+            }))}
+            disabled={productLoading}
+          />
+          <SelectField
+            label={`${t("ads.area")} *`}
+            loading={areasLoading}
+            loadingText={t("isLoading")}
+            id="state_id"
+            name="state_id"
+            value={formData.state_id}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                state_id: e.target.value,
+              })
+            }
+            options={areas?.map((area) => ({
+              name: area?.name,
+              value: area?.id,
+            }))}
+            disabled={productLoading}
+          />
         </div>
-      </div>
 
-      {/* new phone number */}
-      <div className="form_group">
-        <div className="question p-0 pt-2">
-          <label htmlFor="newPhoneNumber" className="quest">
-            {t("ads.doYouWantToAddNewPhoneNumber")}
-          </label>
-          <Form.Switch
-            id="newPhoneNumber"
-            name="newPhoneNumber"
-            checked={newPhoneNumber}
-            onChange={() => {
-              setNewPhoneNumber(!newPhoneNumber);
-              setFormData({ ...formData, phone: "" });
+        {/* description */}
+        <div className="form_group">
+          <TextField
+            required
+            label={t("ads.description")}
+            placeholder={t("ads.descriptionPlaceholder")}
+            name="description_ar"
+            id="description_ar"
+            value={formData?.description_ar}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                description_ar: e.target.value,
+                description_en: e.target.value,
+              });
             }}
             disabled={productLoading}
           />
         </div>
-      </div>
 
-      {newPhoneNumber && (
+        {/* contact */}
         <div className="form_group">
-          <PhoneInput
-            label={`${t("verification.phone")} *`}
-            type="number"
-            id="phone"
-            name="phone"
-            required
-            disableSelect={true}
-            placeholder={t("verification.phone")}
-            value={formData.phone}
-            countryCode={formData?.country_code}
-            onChange={(e) => handleChange(e, setFormData)}
-            disabled={productLoading}
-          />
+          <div className="input-field">
+            <label htmlFor="type">
+              {t("ads.contact")} <span>( {t("ads.contactNote")} )</span>
+            </label>{" "}
+            <div className="radios">
+              <label htmlFor="active_call">
+                <input
+                  type="checkbox"
+                  name="active_call"
+                  id="active_call"
+                  checked={formData?.active_call === "active"}
+                  onChange={() =>
+                    setFormData({
+                      ...formData,
+                      active_call:
+                        formData.active_call === "active"
+                          ? "inactive"
+                          : "active",
+                    })
+                  }
+                  disabled={productLoading}
+                />
+                <span>{t("ads.call")}</span>
+              </label>
+              <label htmlFor="active_whatsapp">
+                <input
+                  type="checkbox"
+                  name="active_whatsapp"
+                  id="active_whatsapp"
+                  checked={formData?.active_whatsapp === "active"}
+                  onChange={() =>
+                    setFormData({
+                      ...formData,
+                      active_whatsapp:
+                        formData.active_whatsapp === "active"
+                          ? "inactive"
+                          : "active",
+                    })
+                  }
+                  disabled={productLoading}
+                />
+                <span>{t("ads.whatsapp")}</span>
+              </label>
+              <label htmlFor="active_chat">
+                <input
+                  type="checkbox"
+                  name="active_chat"
+                  id="active_chat"
+                  checked={formData?.active_chat === "active"}
+                  onChange={() =>
+                    setFormData({
+                      ...formData,
+                      active_chat:
+                        formData.active_chat === "active"
+                          ? "inactive"
+                          : "active",
+                    })
+                  }
+                  disabled={productLoading}
+                />
+                <span>{t("ads.chat")}</span>
+              </label>
+            </div>
+          </div>
         </div>
-      )}
 
-      <div className="d-flex justify-content-end mt-2">
-        <SubmitButton
+        {/* new phone number */}
+        <div className="form_group">
+          <div className="question p-0 pt-2">
+            <label htmlFor="newPhoneNumber" className="quest">
+              {t("ads.doYouWantToAddNewPhoneNumber")}
+            </label>
+            <Form.Switch
+              id="newPhoneNumber"
+              name="newPhoneNumber"
+              checked={newPhoneNumber}
+              onChange={() => {
+                setNewPhoneNumber(!newPhoneNumber);
+                setFormData({ ...formData, phone: "" });
+              }}
+              disabled={productLoading}
+            />
+          </div>
+        </div>
+
+        {newPhoneNumber && (
+          <div className="form_group">
+            <PhoneInput
+              label={`${t("verification.phone")} *`}
+              type="number"
+              id="phone"
+              name="phone"
+              required
+              disableSelect={true}
+              placeholder={t("verification.phone")}
+              value={formData.phone}
+              countryCode={formData?.country_code}
+              onChange={(e) => handleChange(e, setFormData)}
+              disabled={productLoading}
+            />
+          </div>
+        )}
+
+        <div className="d-flex justify-content-end mt-2">
+          <button type="button" onClick={() => setShow(true)}>
+            {t("add")}
+          </button>
+          {/* <SubmitButton
           loading={loading}
           name={t(`${product_id ? "save" : "add"}`)}
           disabled={productLoading}
-        />
-      </div>
-    </form>
+        /> */}
+        </div>
+      </form>
+      <AdModal
+        show={show}
+        setShow={setShow}
+        formData={formData}
+        setFormData={setFormData}
+        productImages={productImages}
+        product_id={product_id}
+      />
+    </>
   );
 }

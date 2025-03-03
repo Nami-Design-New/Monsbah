@@ -193,6 +193,15 @@
         }
         .dropdown-item {
           text-align: start !important;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          i {
+            width: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
       }
     }

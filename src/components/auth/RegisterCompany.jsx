@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { handleChange, handleChangeUserName } from "../../utils/helpers";
-import { useTranslation } from "react-i18next";
-import InputField from "../../ui/form-elements/InputField";
-import SelectField from "../../ui/form-elements/SelectField";
-import PasswordField from "../../ui/form-elements/PasswordField";
-import SubmitButton from "../../ui/form-elements/SubmitButton";
-import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCities from "../../hooks/settings/useGetCities";
-import useGetStates from "../../hooks/settings/useGetStates";
-import PhoneInput from "../../ui/form-elements/PhoneInput";
-import ImageUpload from "../../ui/form-elements/ImageUpload";
 import useGetCompanyCategories from "../../hooks/settings/useGetCompanyCategories";
+import useGetCountries from "../../hooks/settings/useGetCountries";
+import useGetStates from "../../hooks/settings/useGetStates";
+import ImageUpload from "../../ui/form-elements/ImageUpload";
+import InputField from "../../ui/form-elements/InputField";
+import PasswordField from "../../ui/form-elements/PasswordField";
+import PhoneInput from "../../ui/form-elements/PhoneInput";
+import SelectField from "../../ui/form-elements/SelectField";
+import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
+
+import { handleChange, handleChangeUserName } from "../../utils/helpers";
 
 export default function RegisterCompany({
   setShow,
@@ -80,6 +81,7 @@ export default function RegisterCompany({
       <div className="mb-1">
         <p className="sub-head">{t("auth.registerSubtitle")}</p>
       </div>
+
       <form className="form" onSubmit={handleSubmit}>
         <ImageUpload
           type="file"

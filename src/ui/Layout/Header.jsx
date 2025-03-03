@@ -92,7 +92,6 @@ export default function Header() {
           <Link aria-label="Home" to="/" className="navbar-brand">
             <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
-
           <nav className="navbar navbar-expand-lg d-none d-lg-flex">
             <div className="navbar-nav">
               <Link aria-label="Home" className="logo" to="/">
@@ -131,9 +130,9 @@ export default function Header() {
             <button
               aria-label="Get App"
               className="customBtn"
-              onClick={() => setShowGetAppModal(true)}
+              onClick={() => navigate("/sections")}
             >
-              {t("header.getApp")}
+              {t("header.categories")}
             </button>
 
             <Link

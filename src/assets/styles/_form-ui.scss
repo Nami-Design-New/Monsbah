@@ -925,3 +925,18 @@ label {
     margin-top: 24px;
   }
 }
+
+.otp-form {
+  display: flex;
+  align-items: center;
+  .head {
+    text-align: center;
+  }
+}
+.otpImg {
+  width: 400px;
+
+  object-fit: contain;
+  margin: 2rem 0;
+  height: auto;
+}

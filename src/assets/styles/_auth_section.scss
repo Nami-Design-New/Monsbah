@@ -12,7 +12,9 @@
     justify-content: center;
     padding: 32px 24px 12px;
     &.register,
-    &.register-company {
+    &.register-company,
+    &.subscriptions,
+    &.finished {
       width: 100%;
     }
     @media screen and (max-width: 992px) {
@@ -25,9 +27,12 @@
   .img_wrapper {
     width: 50%;
     &.register,
-    &.register-company {
+    &.register-company,
+    &.subscriptions,
+    &.finished {
       display: none;
     }
+
     @media screen and (max-width: 992px) {
       display: none;
     }
@@ -61,5 +66,114 @@
     .modal-content {
       border-radius: 24px !important;
     }
+  }
+}
+
+.sub {
+  padding: 20px;
+  border: 1px solid #d6d6d6;
+  border-radius: 20px;
+  width: 50%;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    gap: 8px;
+    .sub-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #d6d6d6;
+        border-radius: 50%;
+        position: relative;
+        outline: none;
+
+        &:checked {
+          background-color: #1abc9c;
+          border-color: #d6d6d6;
+
+          &::after {
+            content: "✔";
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            top: 58%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      h2 {
+        font-size: 20px;
+        line-height: 18px;
+        margin: 0;
+      }
+    }
+    .info-sub {
+      list-style-type: circle;
+      padding: 15px 40px 0;
+      li {
+        color: "#807C83";
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 400;
+      }
+    }
+    p {
+      margin: 0;
+      padding: 0 20px;
+      white-space: wrap;
+    }
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .discount {
+        font-size: 14px;
+
+        color: #b5b5b5;
+        text-decoration: line-through;
+      }
+    }
+    .offer {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      padding: 6px 10px;
+      background-color: #1abc9c;
+      color: #fff;
+      border-radius: 100px;
+    }
+  }
+}
+
+.finish {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 105px;
+  margin-bottom: 64px;
+  img {
+    width: 146px;
+    aspect-ratio: 1/1;
+  }
+  button {
+    padding: 14px 144px;
+    background-color: #1abc9c;
+    color: #fff;
+    border-radius: 12px;
   }
 }
