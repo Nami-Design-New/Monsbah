@@ -70,10 +70,10 @@
 }
 
 .sub {
-  padding: 20px;
-  border: 1px solid #d6d6d6;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
   border-radius: 20px;
-  width: 50%;
+  width: 100%;
 
   label {
     display: flex;
@@ -81,6 +81,7 @@
     position: relative;
     cursor: pointer;
     gap: 8px;
+
     .sub-input {
       display: flex;
       align-items: center;
@@ -97,7 +98,7 @@
 
         &:checked {
           background-color: #1abc9c;
-          border-color: #d6d6d6;
+          border-color: #1abc9c;
 
           &::after {
             content: "✔";
@@ -113,14 +114,16 @@
       }
 
       h2 {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 18px;
         margin: 0;
       }
     }
+
     .info-sub {
       list-style-type: circle;
-      padding: 15px 40px 0;
+      padding: 0 24px 0;
+      margin: 0;
       li {
         color: "#807C83";
         font-size: 16px;
@@ -128,22 +131,25 @@
         font-weight: 400;
       }
     }
+
     p {
       margin: 0;
-      padding: 0 20px;
+      padding: 0 6px;
+      font-size: 14px;
       white-space: wrap;
     }
+
     .price {
       display: flex;
       align-items: center;
       gap: 8px;
       .discount {
         font-size: 14px;
-
         color: #b5b5b5;
         text-decoration: line-through;
       }
     }
+
     .offer {
       position: absolute;
       display: flex;

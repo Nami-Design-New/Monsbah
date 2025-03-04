@@ -5,7 +5,6 @@ import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 import useAuth from "../../hooks/useAuth";
 import ChooseRegisterType from "./ChooseRegisterType";
 import CompanyOTPConfirm from "./CompanyOTPConfirm";
-import Finished from "./Finished";
 import ForgetPassword from "./ForgetPassword";
 import Login from "./Login";
 import OTPConfirm from "./OTPConfirm";
@@ -13,14 +12,11 @@ import Register from "./Register";
 import RegisterCompany from "./RegisterCompany";
 import RegisterOTPConfirm from "./RegisterOTPConfirm";
 import ResetPassword from "./ResetPassword";
-import Subscriptions from "./Subscriptions";
 
 export default function AuthModal({ show, setShow, type, protectedFlag }) {
   const navigate = useNavigate();
   const { isAuthed } = useAuth();
   const { data } = useGetCurrentLocation();
-
-  console.log(data?.country_code);
 
   const [userState, setUserState] = useState("client");
   const [formType, setFormType] = useState("companyOtp");
@@ -157,7 +153,6 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
             )}
 
             {/* register process */}
-
             {formType === "register-type" && (
               <ChooseRegisterType
                 setFormType={setFormType}
@@ -201,18 +196,8 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
                 setFormData={setFormData}
               />
             )}
-            {formType === "subscriptions" && (
-              <Subscriptions
-                setShow={setShow}
-                setFormType={setFormType}
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )}
-            {formType === "finished" && <Finished setShow={setShow} />}
 
             {/* forget password process */}
-
             {formType === "forget" && (
               <ForgetPassword
                 setShow={setShow}

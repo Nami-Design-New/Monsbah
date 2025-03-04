@@ -417,5 +417,18 @@
   "noCategoriesAvailable": "There is no company category available",
   "latest": "Latest",
   "fromNearest": "From Nearest",
-  "highestRate": "Highest rated"
+  "highestRate": "Highest rated",
+  "subscribe": "Subscribe",
+  "off": "OFF",
+  "free": "Free Package",
+  "monthly": "Monthly Package",
+  "yearly": "Yearly Package",
+  "freeAdd": "Free Ad",
+  "freeAddDesc": "Advertising period is one week",
+  "premiumAdd": "Premium Ad",
+  "premiumAddDesc": "A distinctive and pinned ad at the top of the page to get high views",
+  "packages": {
+    "monthly": "monthly",
+    "yearly": "yearly"
+  }
 }

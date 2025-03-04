@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 import i18n from "../../utils/i18n";
 import AppLoader from "../loaders/AppLoader";
 import DownloadApp from "./DownloadApp";
+import CompanySubscribtion from "../modals/CompanySubscribtion";
 
 export default function RootLayout() {
   const { loading } = useAuth();
@@ -69,6 +70,7 @@ export default function RootLayout() {
       {showDownloadApp && (
         <DownloadApp setShowDownloadApp={setShowDownloadApp} />
       )}
+      <CompanySubscribtion />
     </>
   );
 }

@@ -775,8 +775,7 @@ button {
 .ad-modal-header {
   margin: 16px;
   color: #1abc9c;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 600;
 }
 
 body {
@@ -3509,10 +3508,10 @@ body .authModal .modal-body .modal-content {
   border-radius: 24px !important;
 }
 body .sub {
-  padding: 20px;
-  border: 1px solid #d6d6d6;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
   border-radius: 20px;
-  width: 50%;
+  width: 100%;
 }
 body .sub label {
   display: flex;
@@ -3539,7 +3538,7 @@ body .sub label .sub-input input[type=radio] {
 }
 body .sub label .sub-input input[type=radio]:checked {
   background-color: #1abc9c;
-  border-color: #d6d6d6;
+  border-color: #1abc9c;
 }
 body .sub label .sub-input input[type=radio]:checked::after {
   content: "✔";
@@ -3552,13 +3551,14 @@ body .sub label .sub-input input[type=radio]:checked::after {
   transform: translate(-50%, -50%);
 }
 body .sub label .sub-input h2 {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 18px;
   margin: 0;
 }
 body .sub label .info-sub {
   list-style-type: circle;
-  padding: 15px 40px 0;
+  padding: 0 24px 0;
+  margin: 0;
 }
 body .sub label .info-sub li {
   color: "#807C83";
@@ -3568,7 +3568,8 @@ body .sub label .info-sub li {
 }
 body .sub label p {
   margin: 0;
-  padding: 0 20px;
+  padding: 0 6px;
+  font-size: 14px;
   white-space: wrap;
 }
 body .sub label .price {
@@ -4840,6 +4841,7 @@ body main .explore_ads .categories_slider.subcategories_slider {
 body main .explore_ads .categories_slider.subcategories_slider .category.sub {
   background-color: #fff;
   color: #0d0d0d !important;
+  width: 100%;
 }
 body main .explore_ads .categories_slider.subcategories_slider .category.sub h6 {
   color: #0d0d0d !important;

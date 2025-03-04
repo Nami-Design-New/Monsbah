@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { handleChange } from "../utils/helpers";
 import { toast } from "react-toastify";
-import AdModal from "../components/modals/AdModal";
+import AdModal from "../ui/modals/AdModal";
 import useGetProduct from "../hooks/products/useGetProduct";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetCities from "../hooks/settings/useGetCities";
@@ -16,12 +17,12 @@ import PhoneInput from "../ui/form-elements/PhoneInput";
 import SelectField from "../ui/form-elements/SelectField";
 import TextField from "../ui/form-elements/TextField";
 import axiosInstance from "../utils/axiosInstance";
-import { handleChange } from "../utils/helpers";
+import SubmitButton from "../ui/form-elements/SubmitButton";
 
 export default function AddAd() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [productId, setProductId] = useState(null);
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const product_id = searchParams.get("product_id");
@@ -242,7 +243,7 @@ export default function AddAd() {
       );
       if (res.status === 200) {
         toast.success(res.data.message);
-        navigate("/profile?tab=ads");
+        setShow(true);
         setFormData({
           images: [],
           image: "",
@@ -262,6 +263,7 @@ export default function AddAd() {
         if (product_id) {
           queryClient.invalidateQueries(["product", lang, product_id]);
         }
+        setProductId(product_id || res.data.data.id);
         queryClient.invalidateQueries({ queryKey: ["products"] });
         queryClient.invalidateQueries({ queryKey: ["allProducts"] });
         queryClient.invalidateQueries({ queryKey: ["user-products"] });
@@ -632,24 +634,15 @@ export default function AddAd() {
         )}
 
         <div className="d-flex justify-content-end mt-2">
-          <button type="button" onClick={() => setShow(true)}>
-            {t("add")}
-          </button>
-          {/* <SubmitButton
-          loading={loading}
-          name={t(`${product_id ? "save" : "add"}`)}
-          disabled={productLoading}
-        /> */}
+          <SubmitButton
+            loading={loading}
+            disabled={productLoading}
+            name={t(`${product_id ? "save" : "add"}`)}
+          />
         </div>
       </form>
-      <AdModal
-        show={show}
-        setShow={setShow}
-        formData={formData}
-        setFormData={setFormData}
-        productImages={productImages}
-        product_id={product_id}
-      />
+
+      <AdModal show={show} setShow={setShow} productId={productId} />
     </>
   );
 }

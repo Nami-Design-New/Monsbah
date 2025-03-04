@@ -5,16 +5,17 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 import { setClientData } from "../../redux/slices/clientData";
+import { setShowModal } from "../../redux/slices/companySubscribe.js";
+import useGetCurrentLocation from "../../hooks/settings/useGetCurrentLocation";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
 
 function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
   const { t } = useTranslation();
-
   const { data } = useGetCurrentLocation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -110,6 +111,7 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
           updatedParams.delete("redirect");
           setSearchParams(updatedParams);
           setShow(false);
+          dispatch(setShowModal(true));
           setFormData({
             name: "",
             username: "",
@@ -124,7 +126,6 @@ function CompanyOTPConfirm({ formData, setFormData, setFormType, setShow }) {
             fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
             gender: "",
           });
-          setFormType("subscriptions");
         }
       }
     } catch (error) {

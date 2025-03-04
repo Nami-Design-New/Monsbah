@@ -223,6 +223,8 @@ function ProfileTabs() {
             >
               <AddAd user={user} lang={lang} isActive={activeTab === "addAd"} />
             </Tab>
+
+            {/* notifications */}
             <Tab
               eventKey="notifications"
               title={

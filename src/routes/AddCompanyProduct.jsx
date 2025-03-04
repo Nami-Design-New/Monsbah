@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InputField from "../ui/form-elements/InputField";
 import PhoneInput from "../ui/form-elements/PhoneInput";
 import SelectField from "../ui/form-elements/SelectField";
@@ -18,13 +18,15 @@ import useGetCategories from "../hooks/settings/useGetCategories";
 import useGetProduct from "../hooks/products/useGetProduct";
 import useGetCompanyCategories from "../hooks/settings/useGetCompanyCategories";
 import useGetSubCategories from "../hooks/settings/useGetSubCategories";
+import { setShowModal } from "../redux/slices/companySubscribe";
 
 export default function AddCompanyProduct() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { id: product_id } = useParams();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.clientData.client);
+  const { id: product_id } = useParams();
   const { lang } = useSelector((state) => state.language);
   const { data: categories } = useGetCategories();
   const { data: companyCategories } = useGetCompanyCategories();
@@ -185,6 +187,12 @@ export default function AddCompanyProduct() {
       phone: formData?.phone,
       currency_id: formData?.currency_id,
     };
+
+    if (!user?.isSubscribed) {
+      dispatch(setShowModal(true));
+      setLoading(false);
+      return;
+    }
 
     if (productImages?.length < 1) {
       toast.error(t("ads.imagesRequired"));
