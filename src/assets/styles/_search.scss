@@ -28,13 +28,16 @@
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 16px;
     border-bottom: 2px solid $inputBg;
+    overflow-x: auto;
+    overflow-y: hidden;
     a {
       padding: 6px 16px;
       color: $dark;
       transition: $transition;
       position: relative;
+      white-space: nowrap;
       &::after {
         content: "";
         position: absolute;
