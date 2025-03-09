@@ -24,7 +24,8 @@
     "profile": "Profile",
     "search": "Search",
     "about-us": "About Us",
-    "notifcations": "Notifications"
+    "notifcations": "Notifications",
+    "favourites": "Favorites"
   },
   "getApp": {
     "title": "Get the App",

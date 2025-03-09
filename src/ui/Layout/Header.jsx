@@ -183,7 +183,11 @@ export default function Header() {
                   <Link
                     aria-label="Show All"
                     className="showall"
-                    to="/profile?tab=notifications"
+                    to={
+                      localStorage.getItem("userType") === "client"
+                        ? "/profile?tab=notifications"
+                        : "/company-notification"
+                    }
                     style={{ textDecoration: "none" }}
                     onClick={() => setShowNotificationDropdown(false)}
                   >
@@ -259,10 +263,12 @@ export default function Header() {
                       />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item
-                        onClick={() => navigate("/company-profile")}
-                      >
+                      <Dropdown.Item as={Link} to="/company-profile">
                         {t("routes.profile")}
+                      </Dropdown.Item>
+
+                      <Dropdown.Item as={Link} to="/company-favorites">
+                        {t("routes.favourites")}
                       </Dropdown.Item>
                       <Dropdown.Item onClick={performLogout}>
                         {t("header.logout")}

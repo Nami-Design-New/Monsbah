@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ProductVertical from "../../ui/cards/ProductVertical";
 import ProductLoader from "../../ui/loaders/ProductLoader";
 import useGetFavorites from "../../hooks/favorite/useGetFavorites";
 import EmptyData from "../../ui/EmptyData";
-import { useTranslation } from "react-i18next";
 
 function FavoritesTab(isActive) {
   const { t } = useTranslation();

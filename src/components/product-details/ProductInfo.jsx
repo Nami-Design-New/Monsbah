@@ -47,9 +47,12 @@ function ProductInfo({ product, setProduct }) {
       is_favorite: prev?.is_favorite === 1 ? 0 : 1,
     }));
     try {
-      const res = await axiosInstance.post("/client/store-favorite", {
-        product_id: product?.id,
-      });
+      const res = await axiosInstance.post(
+        `/${localStorage.getItem("userType")}/store-favorite`,
+        {
+          product_id: product?.id,
+        }
+      );
       if (res.status === 200) {
         queryClient.invalidateQueries({ queryKey: ["product"] });
         queryClient.invalidateQueries({ queryKey: ["products"] });

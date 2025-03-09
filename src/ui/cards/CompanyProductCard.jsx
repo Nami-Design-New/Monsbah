@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axiosInstance from "../../utils/axiosInstance";
 import { isValidVideoExtension } from "../../utils/helpers";
+import axiosInstance from "../../utils/axiosInstance";
 import ImageLoad from "../loaders/ImageLoad";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
@@ -118,7 +118,7 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
 
           <ul>
             <li>
-              <Link to={`/profile/${product?.user?.id}`} className="company">
+              <Link className="company">
                 <div className="company_img">
                   <img src={`${product?.user?.image}`} alt="" />
                 </div>

@@ -41,9 +41,12 @@ function ProductVertical({
     }
 
     try {
-      const res = await axiosInstance.post("/client/store-favorite", {
-        product_id: product?.id,
-      });
+      const res = await axiosInstance.post(
+        `/${localStorage.getItem("userType")}/store-favorite`,
+        {
+          product_id: product?.id,
+        }
+      );
       if (res.status === 200) {
         queryClient.invalidateQueries({ queryKey: ["product"] });
         queryClient.invalidateQueries({ queryKey: ["products"] });
@@ -140,9 +143,7 @@ function ProductVertical({
                 <span
                   disabled={loading}
                   onClick={handleFavorite}
-                  className={`favourite_btn dark ${
-                    product?.is_favorite ? "active" : ""
-                  }`}
+                  className={"favourite_btn  active"}
                 >
                   <i className="fa-light fa-heart"></i>
                 </span>

@@ -13,14 +13,17 @@ function useGetFavorites(enabled) {
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["user-favorites", lang],
+    queryKey: ["user-favorites", lang, localStorage.getItem("userType")],
 
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await axiosInstance.get("/client/favorites", {
-        params: {
-          page: pageParam,
-        },
-      });
+      const res = await axiosInstance.get(
+        `/${localStorage.getItem("userType")}/favorites`,
+        {
+          params: {
+            page: pageParam,
+          },
+        }
+      );
       if (res.status === 200) {
         return {
           data: res.data?.data?.data,

@@ -24,6 +24,8 @@ import UserProfile from "../routes/UserProfile";
 import Verification from "../routes/Verification";
 import RootLayout from "./../ui/Layout/RootLayout";
 import ProtectionProvider from "./ProtectionProvider";
+import CompaniesNotification from "./../routes/CompaniesNotification";
+import CompanyFavourites from "../routes/CompanyFavourites";
 
 export const router = createBrowserRouter([
   {
@@ -156,6 +158,24 @@ export const router = createBrowserRouter([
         element: (
           <ProtectionProvider>
             <Verification />
+          </ProtectionProvider>
+        ),
+      },
+
+      {
+        path: "company-notification",
+        element: (
+          <ProtectionProvider>
+            <CompaniesNotification />
+          </ProtectionProvider>
+        ),
+      },
+
+      {
+        path: "company-favorites",
+        element: (
+          <ProtectionProvider>
+            <CompanyFavourites />
           </ProtectionProvider>
         ),
       },
