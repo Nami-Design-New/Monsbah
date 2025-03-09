@@ -36,7 +36,7 @@ export default function EditCompanyProfile() {
     name_en: "",
     username: "",
     mobile_number: "",
-    country_code: "965",
+    country_code: "",
     email: "",
     country_id: "",
     city_id: "",

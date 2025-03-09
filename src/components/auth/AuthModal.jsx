@@ -13,24 +13,24 @@ import RegisterCompany from "./RegisterCompany";
 import RegisterOTPConfirm from "./RegisterOTPConfirm";
 import ResetPassword from "./ResetPassword";
 
-export default function AuthModal({ show, setShow, type, protectedFlag }) {
+export default function AuthModal({ show, setShow, protectedFlag }) {
   const navigate = useNavigate();
   const { isAuthed } = useAuth();
   const { data } = useGetCurrentLocation();
 
   const [userState, setUserState] = useState("client");
-  const [formType, setFormType] = useState("companyOtp");
+  const [formType, setFormType] = useState("login");
   const [otpCode, setOtpCode] = useState("");
 
   const [forgetFormData, setForgetFormData] = useState({
     phone: "",
-    country_code: "965",
+    country_code: "",
   });
 
   const [registerFormData, setRegisterFormData] = useState({
     name: "",
     username: "",
-    country_code: "965",
+    country_code: "",
     phone: "",
     email: "",
     password: "",
@@ -56,15 +56,11 @@ export default function AuthModal({ show, setShow, type, protectedFlag }) {
     country_id: "",
     category_id: "",
     whats_number: "",
-    country_code: "965",
-    whats_country_code: "965",
+    country_code: "",
+    whats_country_code: "",
     password_confirmation: "",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
-
-  useEffect(() => {
-    setFormType(type);
-  }, [type]);
 
   useEffect(() => {
     if (data) {

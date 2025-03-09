@@ -10,8 +10,10 @@ export default function PhoneInput({
   ...props
 }) {
   const dropdownRef = useRef(null);
+
   const [slectedCountry, setSlectedCountry] = useState("");
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
+
   const { data: countries } = useGetCountries();
 
   useEffect(() => {

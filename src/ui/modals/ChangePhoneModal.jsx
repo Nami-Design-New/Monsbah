@@ -14,7 +14,7 @@ function ChangePhoneModal({ country_code, phone, showModal, setShowModal }) {
   const [formType, setFormType] = useState("phone");
   const [phoneLoading, setPhoneLoading] = useState(false);
   const [formData, setFormData] = useState({
-    country_code: "965",
+    country_code: "",
     phone: "",
   });
 

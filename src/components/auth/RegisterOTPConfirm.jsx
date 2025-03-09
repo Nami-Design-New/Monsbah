@@ -104,7 +104,7 @@ function RegisterOTPConfirm({
           setFormData({
             name: "",
             username: "",
-            country_code: "965",
+            country_code: "",
             phone: "",
             email: "",
             password: "",

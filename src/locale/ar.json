@@ -426,6 +426,7 @@
   "premiumAdd": "إعلان مميز",
   "freeAddDesc": "مدة الاعلان اسبوع",
   "premiumAddDesc": "اعلان مميز ومثبت في اعلى الصفحة للحصول على مشاهدات عاليه",
+  "category": "الفئة",
   "packages": {
     "monthly": "شهريا",
     "yearly": "سنويا"

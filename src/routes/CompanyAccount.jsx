@@ -1,18 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import StarsRate from "../ui/StarsRate";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 import CompanyProductCard from "../ui/cards/CompanyProductCard";
 import CompanyProductLoader from "../ui/loaders/CompanyProductLoader";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export default function CompanyAccount() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const profile = useSelector((state) => state.clientData.client);
   let currentUrl = window.location.href;
   const currentPageLink = currentUrl.replace(
@@ -84,6 +85,14 @@ export default function CompanyAccount() {
       return () => clearTimeout(timer);
     }
   }, [showTooltip]);
+
+  const handleSearch = (categoryId) => {
+    if (categoryId) {
+      setSearchParams({ sub_category: categoryId });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   return (
     <section className="company_profile_section">
@@ -172,12 +181,30 @@ export default function CompanyAccount() {
               className="categories"
             >
               <SwiperSlide>
-                <button className="active">{t("all")}</button>
+                <button
+                  className={
+                    Number(searchParams.get("sub_category")) === 0
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() => handleSearch(null)}
+                >
+                  {t("all")}
+                </button>
               </SwiperSlide>
 
               {profile?.categories?.map((category) => (
                 <SwiperSlide key={category.id}>
-                  <button>{category.name}</button>
+                  <button
+                    className={
+                      Number(searchParams.get("sub_category")) === category?.id
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() => handleSearch(category.id)}
+                  >
+                    {category.name}
+                  </button>
                 </SwiperSlide>
               ))}
             </Swiper>

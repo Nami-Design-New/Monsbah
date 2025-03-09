@@ -30,7 +30,10 @@ export default function CompanyCard({ company }) {
             {company?.country_name}
           </li>
           <li>
-            <StarsRate rate={company?.["rate-count"]} reviewsCount={12} />
+            <StarsRate
+              rate={company?.rate}
+              reviewsCount={company?.["rate-count"]}
+            />
           </li>
         </ul>
       </div>

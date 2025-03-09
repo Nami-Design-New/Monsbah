@@ -427,6 +427,7 @@
   "freeAddDesc": "Advertising period is one week",
   "premiumAdd": "Premium Ad",
   "premiumAddDesc": "A distinctive and pinned ad at the top of the page to get high views",
+  "category": "Category",
   "packages": {
     "monthly": "monthly",
     "yearly": "yearly"

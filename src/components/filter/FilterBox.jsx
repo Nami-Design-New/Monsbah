@@ -6,14 +6,13 @@ import { Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import CategoryLoader from "../../ui/loaders/CategoryLoader";
-// Fetch Data
 import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
 import useGetCompanyCategories from "./../../hooks/settings/useGetCompanyCategories";
 
-export default function FilterBox({ className }) {
+export default function FilterBox({ className, page = "products" }) {
   const { t } = useTranslation();
   const lang = useSelector((state) => state.language.lang);
   const userCountry = useSelector((state) => state.clientData.client.country);
@@ -37,10 +36,10 @@ export default function FilterBox({ className }) {
 
   const categoryList = useMemo(
     () =>
-      (localStorage.getItem("userType") === "client"
+      (localStorage.getItem("userType") === "client" || page === "products"
         ? categories
         : companyCategories) || [],
-    [categories, companyCategories]
+    [categories, companyCategories, page]
   );
 
   useEffect(() => {
@@ -90,8 +89,6 @@ export default function FilterBox({ className }) {
   return (
     <section className={`explore_ads ${className}`}>
       <div className="container d-flex flex-column gap-3">
-        {/* {showAsk && <AskCountry />} */}
-
         <Swiper slidesPerView="auto" className="categories_slider">
           {categoriesLoading || companyCategoriesLoading ? (
             <>
@@ -130,7 +127,7 @@ export default function FilterBox({ className }) {
 
               {categoryList?.map((category) => (
                 <SwiperSlide key={category.id} className="p-1">
-                  <buttton
+                  <button
                     onClick={() => {
                       searchParams.delete("sub_category");
                       searchParams.delete("type");
@@ -147,7 +144,7 @@ export default function FilterBox({ className }) {
                       <img src={category?.image} alt="" />
                     </div>
                     <h6>{category?.name}</h6>
-                  </buttton>
+                  </button>
                 </SwiperSlide>
               ))}
             </>
@@ -174,14 +171,14 @@ export default function FilterBox({ className }) {
 
             {subCategories?.map((sub) => (
               <SwiperSlide key={sub.id} className="p-1">
-                <buttton
+                <button
                   onClick={() => handleSetParams(sub.id, "sub_category")}
                   className={`category sub ${
                     sub?.id === Number(selectedSubCategory) ? "active" : ""
                   }`}
                 >
                   <h6>{sub?.name}</h6>
-                </buttton>
+                </button>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -241,20 +238,33 @@ export default function FilterBox({ className }) {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => handleSetParams("near", "sort")}>
-                  {t("near")}
+                  <i className="fa-regular fa-calendar"></i>
+                  <span>{t("latest")}</span>
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => handleSetParams("new", "sort")}>
-                  {t("new")}
+                  <i className="fa-regular fa-location-dot"></i>
+                  <span>{t("fromNearest")}</span>
                 </Dropdown.Item>
+
                 <Dropdown.Item
-                  onClick={() => handleSetParams("low_price", "sort")}
+                  onClick={() => handleSetParams("highest_rated", "sort")}
                 >
-                  {t("low_price")}
+                  <i className="fa-regular fa-star"></i>
+                  <span>{t("highestRate")}</span>
                 </Dropdown.Item>
+
                 <Dropdown.Item
                   onClick={() => handleSetParams("high_price", "sort")}
                 >
-                  {t("high_price")}
+                  <i className="fa-regular fa-arrow-up-wide-short"></i>
+                  <span>{t("high_price")}</span>
+                </Dropdown.Item>
+
+                <Dropdown.Item
+                  onClick={() => handleSetParams("low_price", "sort")}
+                >
+                  <i className="fa-regular fa-arrow-down-wide-short"></i>
+                  <span>{t("low_price")}</span>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

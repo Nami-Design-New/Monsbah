@@ -33,7 +33,7 @@ function SettingsTab() {
     name: "",
     username: "",
     phone: "",
-    country_code: "965",
+    country_code: "",
     email: "",
     country_id: "",
     city_id: "",

@@ -30,7 +30,7 @@ function Login({
   const [formData, setFormData] = useState({
     phone: "",
     password: "",
-    country_code: "965",
+    country_code: "",
     fcm_token: "eyJ0eXAiOiJKV1QiLCJhbGciOi",
   });
 
