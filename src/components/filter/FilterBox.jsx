@@ -11,6 +11,7 @@ import useGetCountries from "../../hooks/settings/useGetCountries";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import useGetSubCategories from "../../hooks/settings/useGetSubCategories";
 import useGetCompanyCategories from "./../../hooks/settings/useGetCompanyCategories";
+import useGetCurrentLocation from "./../../hooks/settings/useGetCurrentLocation";
 
 export default function FilterBox({ className, page = "products" }) {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export default function FilterBox({ className, page = "products" }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 
+  const { data: userLocation } = useGetCurrentLocation();
   const { data: countries, countriesLoading } = useGetCountries();
   const { data: cities } = useGetCities(country, country ? true : false);
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
@@ -57,11 +59,13 @@ export default function FilterBox({ className, page = "products" }) {
       setCountry(searchParams.get("country"));
     }
     if (!searchParams.get("country")) {
-      localStorage.getItem("country")
-        ? handleSetParams(localStorage.getItem("country"), "country")
-        : userCountry
-        ? handleSetParams(userCountry.id, "country")
-        : handleSetParams(6, "country");
+      if (userLocation?.country?.id) {
+        handleSetParams(userLocation.country.id, "country");
+      } else if (userCountry) {
+        handleSetParams(userCountry.id, "country");
+      } else {
+        handleSetParams(6, "country");
+      }
     }
 
     if (searchParams.get("type") === "sale") {
@@ -72,7 +76,7 @@ export default function FilterBox({ className, page = "products" }) {
       setProductType({ value: "", label: t("all") });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countries, searchParams, t]);
+  }, [countries, searchParams, t, userLocation]);
 
   const handleSetParams = (value, type) => {
     if (value) {
@@ -209,7 +213,6 @@ export default function FilterBox({ className, page = "products" }) {
               }
               onChange={(e) => {
                 handleSetParams(e?.value, "country");
-                localStorage.setItem("country", e?.value);
               }}
               options={countries?.map(({ id, name }) => ({
                 value: id,

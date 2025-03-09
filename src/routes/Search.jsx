@@ -4,6 +4,7 @@ import { NavLink, Route, Routes, useSearchParams } from "react-router-dom";
 import Persons from "../components/search/Persons";
 import Ads from "../components/search/Ads";
 import Companies from "../components/search/Companies";
+import CompaniesAds from "./CompaniesAds";
 
 export default function Search() {
   const { t } = useTranslation();
@@ -45,16 +46,26 @@ export default function Search() {
             </button>
           </form>
           <nav className="search_nav">
-            <NavLink end to={search ? `/search?search=${search}` : ""}>
-              {t("advertisements")}
-            </NavLink>
+            {localStorage.getItem("userType") !== "company" && (
+              <NavLink end to={search ? `/search?search=${search}` : ""}>
+                {t("advertisements")}
+              </NavLink>
+            )}
+
             {localStorage.getItem("userType") !== "company" && (
               <NavLink to={search ? `persons?search=${search}` : "persons"}>
                 {t("persons")}
               </NavLink>
             )}
+
             <NavLink to={search ? `companies?search=${search}` : "companies"}>
               {t("companies")}
+            </NavLink>
+
+            <NavLink
+              to={search ? `companies-ads?search=${search}` : "companies-ads"}
+            >
+              {t("companiesAds")}
             </NavLink>
           </nav>
 
@@ -68,6 +79,10 @@ export default function Search() {
               <Route
                 path="companies"
                 element={<Companies sectionRef={sectionRef} />}
+              />
+              <Route
+                path="companies-ads"
+                element={<CompaniesAds sectionRef={sectionRef} />}
               />
             </Routes>
           </div>

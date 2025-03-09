@@ -429,6 +429,7 @@
   "premiumAdd": "Premium Ad",
   "premiumAddDesc": "A distinctive and pinned ad at the top of the page to get high views",
   "category": "Category",
+  "companiesAds": "Companies Ads",
   "packages": {
     "monthly": "monthly",
     "yearly": "yearly"
