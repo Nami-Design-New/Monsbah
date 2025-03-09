@@ -34,13 +34,17 @@ export default function FilterBox({ className, page = "products" }) {
     selectedCategory ? true : false
   );
 
-  const categoryList = useMemo(
-    () =>
-      (localStorage.getItem("userType") === "client" || page === "products"
-        ? categories
-        : companyCategories) || [],
-    [categories, companyCategories, page]
-  );
+  const categoryList = useMemo(() => {
+    if (page === "companies") {
+      return companyCategories;
+    } else {
+      if (localStorage.getItem("userType") === "client") {
+        return categories;
+      } else {
+        return companyCategories;
+      }
+    }
+  }, [categories, companyCategories, page]);
 
   useEffect(() => {
     if (searchParams.get("category")) {

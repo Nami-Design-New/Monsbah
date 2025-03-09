@@ -39,7 +39,7 @@ export default function ProductsSection() {
   return (
     <>
       <FilterBox showAsk={true} />
-      <section className="ction" ref={sectionRef}>
+      <section className="products_section" ref={sectionRef}>
         <div className="container p-1">
           <div className="row">
             {products?.map((product, index) => (

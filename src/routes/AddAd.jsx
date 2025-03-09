@@ -15,6 +15,7 @@ import useAdForm from "../hooks/products/useAdForm";
 import ProductImageGallery from "../components/products/ProductImageGallery";
 import ProductContactOptions from "../components/products/ProductContactOptions";
 import AdTypeSelector from "../components/products/AdTypeSelector";
+import { CATEGORY_TYPES } from "../constants/categories";
 
 export default function AddAd() {
   const { t } = useTranslation();
@@ -39,10 +40,6 @@ export default function AddAd() {
     handleSubmit,
   } = useAdForm(product_id);
 
-  const showAdTypeOptionsId = categories?.find(
-    (category) => category?.id === 1
-  )?.id;
-
   const { data: cities } = useGetCities(
     formData?.country_id,
     Boolean(formData?.country_id)
@@ -58,6 +55,15 @@ export default function AddAd() {
     formData?.city_id,
     Boolean(formData?.city_id)
   );
+
+  const handleCategoryChange = (e) => {
+    setFormData({
+      ...formData,
+      category_id: e.target.value,
+      sub_category_id: "",
+      type: CATEGORY_TYPES.SALE,
+    });
+  };
 
   return (
     <>
@@ -91,14 +97,7 @@ export default function AddAd() {
             id="category_id"
             name="category_id"
             value={formData.category_id}
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                category_id: e.target.value,
-                sub_category_id: "",
-                type: "sale",
-              });
-            }}
+            onChange={handleCategoryChange}
             options={categories?.map((category) => ({
               name: category?.name,
               value: category?.id,
@@ -143,7 +142,6 @@ export default function AddAd() {
           <AdTypeSelector
             formData={formData}
             setFormData={setFormData}
-            showAdTypeOptionsId={showAdTypeOptionsId}
             disabled={productLoading}
             handleChange={handleChange}
           />
