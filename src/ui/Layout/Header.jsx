@@ -270,6 +270,11 @@ export default function Header() {
                       <Dropdown.Item as={Link} to="/company-favorites">
                         {t("routes.favourites")}
                       </Dropdown.Item>
+
+                      <Dropdown.Item as={Link} to="/company-verification">
+                        {t("profile.verification")}
+                      </Dropdown.Item>
+
                       <Dropdown.Item onClick={performLogout}>
                         {t("header.logout")}
                       </Dropdown.Item>

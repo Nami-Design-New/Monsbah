@@ -26,6 +26,7 @@ import RootLayout from "./../ui/Layout/RootLayout";
 import ProtectionProvider from "./ProtectionProvider";
 import CompaniesNotification from "./../routes/CompaniesNotification";
 import CompanyFavourites from "../routes/CompanyFavourites";
+import CompanyVerification from "../routes/CompanyVerification";
 
 export const router = createBrowserRouter([
   {
@@ -167,6 +168,15 @@ export const router = createBrowserRouter([
         element: (
           <ProtectionProvider>
             <CompaniesNotification />
+          </ProtectionProvider>
+        ),
+      },
+
+      {
+        path: "company-verification",
+        element: (
+          <ProtectionProvider>
+            <CompanyVerification />
           </ProtectionProvider>
         ),
       },
