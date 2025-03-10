@@ -87,13 +87,8 @@ export default function useCompanyProductForm(product_id) {
     setProductImages((prevState) => prevState.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (e, isSubscribed) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!isSubscribed) {
-      toast.error("You need to subscribe to add a product");
-      return;
-    }
 
     setLoading(true);
     const requestBody = {

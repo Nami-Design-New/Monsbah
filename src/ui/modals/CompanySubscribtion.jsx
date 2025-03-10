@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setShowModal } from "../../redux/slices/companySubscribe";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import SubmitButton from "../form-elements/SubmitButton";
 import useGetPackages from "../../hooks/subscription/useGetPackages";
@@ -11,6 +12,7 @@ import axiosInstance from "../../utils/axiosInstance";
 export default function CompanySubscribtion() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [packageId, setPackageId] = useState(null);
   const { data: packages } = useGetPackages();
@@ -25,6 +27,7 @@ export default function CompanySubscribtion() {
       if (res.status === 200) {
         toast.success(res.data.message);
         dispatch(setShowModal(false));
+        queryClient.invalidateQueries({ queryKey: ["authed-user"] });
       }
     } catch (error) {
       throw new Error(error);
