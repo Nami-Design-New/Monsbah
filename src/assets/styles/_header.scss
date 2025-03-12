@@ -35,6 +35,9 @@ header {
         object-fit: contain;
         object-position: right;
       }
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
     .navbar {
       padding: 6px;
@@ -462,5 +465,32 @@ header {
       border-radius: 4px;
       background: $inputBg;
     }
+  }
+}
+
+.categories_button {
+  padding: 4px 4px 4px 16px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  color: $main;
+  gap: 12px;
+  border: 1px solid $main;
+  .img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: $white;
+    @include centerFlex();
+    img {
+      height: 22px;
+      object-fit: contain;
+    }
+  }
+
+  &.active {
+    background-color: $main;
+    color: $white;
+    border-color: var(--main);
   }
 }

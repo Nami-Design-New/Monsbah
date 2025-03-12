@@ -9,7 +9,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import ImageLoad from "../loaders/ImageLoad";
 import ConfirmationModal from "../modals/ConfirmationModal";
 
-export default function CompanyProductCard({ product, isShowAction = true }) {
+export default function CompanyProductCard({ product }) {
   const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -50,29 +50,12 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
     setIsImageLoaded(false);
   };
 
-  const handleShare = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (navigator.share) {
-      navigator
-        .share({
-          title: product?.name,
-          text: product?.description,
-          url: `https://monsbah.com/product/${product?.id}`,
-        })
-        .then(() => t("Shared successfully"))
-        .catch((error) => t("Error sharing:", error));
-    } else {
-      alert(t("share_not_supported"));
-    }
-  };
-
   return (
     <>
       <Link
         aria-label="Product"
         to={`/product/${product.id}`}
-        className="company_product"
+        className="product_vertical"
       >
         <Link
           aria-label="Product"
@@ -110,6 +93,23 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
             onClick={(e) => e.stopPropagation()}
           >
             <h3>{product.name}</h3>
+
+            <div className="d-flex align-items-center gap-2">
+              <Link
+                aria-label="Profile"
+                to={`/edit-product/${product.id}`}
+                className={`favourite_btn dark`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <i className="fa-light fa-pen-to-square"></i>
+              </Link>
+              <span
+                onClick={handleOpenDeleteModal}
+                className={`favourite_btn dark delete`}
+              >
+                <i className="fa-light fa-trash"></i>
+              </span>
+            </div>
           </Link>
 
           <h3 className="price">
@@ -117,43 +117,22 @@ export default function CompanyProductCard({ product, isShowAction = true }) {
           </h3>
 
           <ul>
-            <li>
-              <Link className="company">
-                <div className="company_img">
-                  <img src={`${product?.user?.image}`} alt="" />
-                </div>
-
-                <h6>{product?.user?.name}</h6>
-              </Link>
-            </li>
-
-            <li style={{ marginInlineStart: "auto" }}>
+            <li className="w-100">
               <i className="fa-light fa-location-dot"> </i>{" "}
               {product.country?.name}
               {lang === "ar" ? "،" : ","} {product.city?.name}
             </li>
 
-            <li className="w-100">
+            <li style={{ flex: 1 }}>
+              <Link aria-label="Profile">
+                <i className="fa-light fa-user"></i> {product.user?.username}
+              </Link>
+            </li>
+
+            <li>
               <i className="fa-light fa-clock"></i> {product.date}
             </li>
           </ul>
-
-          {isShowAction && (
-            <div className="actions">
-              <Link to={`/edit-product/${product.id}`}>
-                <img src="/images/icons/edit.svg" alt="edit" />
-                {t("edit")}
-              </Link>
-              <button onClick={handleOpenDeleteModal}>
-                <img src="/images/icons/trash.svg" alt="trash" />
-                {t("delete")}
-              </button>
-              <button aria-label="Share" onClick={handleShare}>
-                <img src="/images/icons/share.svg" alt="share" />
-                {t("share")}
-              </button>
-            </div>
-          )}
         </div>
       </Link>
 

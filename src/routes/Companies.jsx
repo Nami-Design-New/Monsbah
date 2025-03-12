@@ -71,28 +71,6 @@ export default function Companies() {
         <div className="container p-1">
           {shouldShowCompanies ? (
             <div className="row">
-              {companies?.map((company) => (
-                <div className="col-lg-4 col-md-6 col-12 p-2" key={company?.id}>
-                  <CompanyCard company={company} />
-                </div>
-              ))}
-              {(isLoadingCompanies || isFetchingNextPageCompanies) && (
-                <>
-                  {Array(3)
-                    .fill(0)
-                    .map((_, index) => (
-                      <div
-                        className="col-lg-4 col-md-6 col-12 p-2"
-                        key={`loader-${index}`}
-                      >
-                        <CompanyLoader />
-                      </div>
-                    ))}
-                </>
-              )}
-            </div>
-          ) : (
-            <div className="row">
               {products?.map((product, index) => (
                 <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
                   <ProductVertical product={product} isShowAction={false} />
@@ -108,6 +86,28 @@ export default function Companies() {
                         key={`loader-${index}`}
                       >
                         <ProductLoader />
+                      </div>
+                    ))}
+                </>
+              )}
+            </div>
+          ) : (
+            <div className="row">
+              {companies?.map((company) => (
+                <div className="col-lg-4 col-md-6 col-12 p-2" key={company?.id}>
+                  <CompanyCard company={company} />
+                </div>
+              ))}
+              {(isLoadingCompanies || isFetchingNextPageCompanies) && (
+                <>
+                  {Array(3)
+                    .fill(0)
+                    .map((_, index) => (
+                      <div
+                        className="col-lg-4 col-md-6 col-12 p-2"
+                        key={`loader-${index}`}
+                      >
+                        <CompanyLoader />
                       </div>
                     ))}
                 </>

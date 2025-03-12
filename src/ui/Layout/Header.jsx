@@ -92,6 +92,14 @@ export default function Header() {
           <Link aria-label="Home" to="/" className="navbar-brand">
             <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
+
+          <NavLink aria-label="Categories" to="/sections" className="categories_button">
+          <div className="img">
+            <img src="/images/branding/icon.svg" loading="lazy" alt="" />
+          </div>
+            <span>{t("header.categories")}</span>
+          </NavLink>
+
           <nav className="navbar navbar-expand-lg d-none d-lg-flex">
             <div className="navbar-nav">
               <Link aria-label="Home" className="logo" to="/">
@@ -269,6 +277,10 @@ export default function Header() {
 
                       <Dropdown.Item as={Link} to="/company-favorites">
                         {t("routes.favourites")}
+                      </Dropdown.Item>
+
+                      <Dropdown.Item as={Link} to="/add-company-product">
+                        {t("profile.addAd")}
                       </Dropdown.Item>
 
                       <Dropdown.Item as={Link} to="/company-verification">

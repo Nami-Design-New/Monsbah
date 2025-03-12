@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import StarsRate from "../ui/StarsRate";
 import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
+import ProductLoader from "../ui/loaders/ProductLoader";
 import CompanyProductCard from "../ui/cards/CompanyProductCard";
-import CompanyProductLoader from "../ui/loaders/CompanyProductLoader";
 
 export default function CompanyAccount() {
   const { t } = useTranslation();
@@ -127,20 +127,42 @@ export default function CompanyAccount() {
 
               <div className="stats">
                 <div className="f_badge">
-                  <i className="fa-light fa-location-dot"></i>{" "}
-                  {profile?.city?.name} ، {profile?.country?.name}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-location-dot"></i>{" "}
+                      {t("loaction")}
+                    </span>
+                    <span>
+                      {profile?.city?.name} ، {profile?.country?.name}
+                    </span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-regular fa-user-check"></i>{" "}
-                  {profile?.followers} {t("Followers")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-regular fa-user-check"></i>{" "}
+                      {profile?.followers}
+                    </span>
+                    <span>{t("Followers")}</span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-light fa-user-group"></i>{" "}
-                  {profile?.following} {t("following")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-user-group"></i>{" "}
+                      {profile?.following}
+                    </span>
+                    <span>{t("following")}</span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-light fa-clothes-hanger"></i>{" "}
-                  {profile?.products_count} {t("posts")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-clothes-hanger"></i>{" "}
+                      {profile?.products_count}
+                    </span>
+                    <span> {t("posts")}</span>
+                  </div>
                 </div>
               </div>
 
@@ -210,21 +232,21 @@ export default function CompanyAccount() {
             </Swiper>
           </div>
           {products?.map((product, index) => (
-            <div className="col-lg-3 col-md-6 col-12 p-2" key={index}>
-              <CompanyProductCard product={product} isShowAction={true} />
+            <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>
+              <CompanyProductCard product={product} />
             </div>
           ))}
 
           {(isLoading || isFetchingNextPage) && (
             <>
-              {Array(4)
+              {Array(3)
                 .fill(0)
                 .map((_, index) => (
                   <div
-                    className="col-lg-3 col-md-6 col-12 p-2"
+                    className="col-lg-4 col-md-6 col-12 p-2"
                     key={`loader-${index}`}
                   >
-                    <CompanyProductLoader />
+                    <ProductLoader />
                   </div>
                 ))}
             </>

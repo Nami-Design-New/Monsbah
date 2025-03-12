@@ -176,21 +176,43 @@ export default function CompanyProfile() {
 
               <div className="stats">
                 <div className="f_badge">
-                  <i className="fa-light fa-location-dot"></i>{" "}
-                  {profile?.client?.city?.name} ،{" "}
-                  {profile?.client?.country?.name}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-location-dot"></i>{" "}
+                      {t("loaction")}
+                    </span>
+                    <span>
+                      {profile?.client?.city?.name} ،{" "}
+                      {profile?.client?.country?.name}
+                    </span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-regular fa-user-check"></i>{" "}
-                  {profile?.client?.followers} {t("Followers")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-regular fa-user-check"></i>{" "}
+                      {profile?.client?.followers}
+                    </span>
+                    <span>{t("Followers")}</span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-light fa-user-group"></i>{" "}
-                  {profile?.client?.following} {t("following")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-user-group"></i>{" "}
+                      {profile?.client?.following}
+                    </span>
+                    <span>{t("following")}</span>
+                  </div>
                 </div>
                 <div className="f_badge">
-                  <i className="fa-light fa-clothes-hanger"></i>{" "}
-                  {profile?.client?.products_count} {t("posts")}
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-clothes-hanger"></i>{" "}
+                      {profile?.client?.products_count}
+                    </span>
+                    <span> {t("posts")}</span>
+                  </div>
                 </div>
               </div>
 
