@@ -1,7 +1,7 @@
 export default function PageLoader({ minHeight, height }) {
   return (
     <div
-      className="tableLoader loader--style8"
+      className="tableLoader loader--style8 w-100"
       style={{ minHeight: minHeight, height: height }}
     >
       <svg

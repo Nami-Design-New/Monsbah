@@ -93,10 +93,14 @@ export default function Header() {
             <img src="/images/branding/icon.svg" loading="lazy" alt="" />
           </Link>
 
-          <NavLink aria-label="Categories" to="/sections" className="categories_button">
-          <div className="img">
-            <img src="/images/branding/icon.svg" loading="lazy" alt="" />
-          </div>
+          <NavLink
+            aria-label="Categories"
+            to="/sections"
+            className="categories_button d-lg-none d-flex"
+          >
+            <div className="img">
+              <img src="/images/branding/icon.svg" loading="lazy" alt="" />
+            </div>
             <span>{t("header.categories")}</span>
           </NavLink>
 

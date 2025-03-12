@@ -13,6 +13,7 @@ import useGetSubCategories from "../hooks/settings/useGetSubCategories";
 import useCompanyProductForm from "../hooks/products/useCompanyProductForm";
 import ProductImageGallery from "../components/products/ProductImageGallery";
 import ProductContactOptions from "../components/products/ProductContactOptions";
+import PageLoader from "../ui/loaders/PageLoader";
 
 export default function AddCompanyProduct() {
   const { t } = useTranslation();
@@ -57,7 +58,9 @@ export default function AddCompanyProduct() {
     handleSubmit(e);
   };
 
-  return (
+  return productLoading ? (
+    <PageLoader />
+  ) : (
     <div className="container my-5">
       <div className="row justify-content-center">
         <form

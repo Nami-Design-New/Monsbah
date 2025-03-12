@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
+import useGetProduct from "./useGetProduct";
 
 const initialFormState = {
   images: [],
@@ -27,6 +28,7 @@ export default function useCompanyProductForm(product_id) {
   const queryClient = useQueryClient();
   const user = useSelector((state) => state.clientData.client);
   const { lang } = useSelector((state) => state.language);
+  const { data: product } = useGetProduct(+product_id);
 
   const [productImages, setProductImages] = useState([]);
   const [newPhoneNumber, setNewPhoneNumber] = useState(false);
@@ -54,6 +56,35 @@ export default function useCompanyProductForm(product_id) {
       }));
     }
   }, [user]);
+
+  useEffect(() => {
+    if (product && product_id) {
+      setFormData((prevState) => ({
+        ...prevState,
+        name_ar: product?.name,
+        name_en: product?.name,
+        category_id: product?.category?.id,
+        sub_category_id: product?.sub_category?.id,
+        city_id: product?.city?.id,
+        state_id: product?.state?.id,
+        description_ar: product?.description,
+        description_en: product?.description,
+        type: product?.type,
+        price: product?.price,
+        active_chat: product?.active_chat,
+        active_whatsapp: product?.active_whatsapp,
+        active_call: product?.active_call,
+        image: product?.image,
+        images: product?.images?.map((image) =>
+          image?.image ? image?.image : null
+        ),
+      }));
+      const srcs = product?.images?.map((image) => image?.image);
+      if (srcs) {
+        setProductImages([product?.image, ...srcs]);
+      }
+    }
+  }, [product, product_id]);
 
   const handleImagesChange = (e) => {
     e.preventDefault();

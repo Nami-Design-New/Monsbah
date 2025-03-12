@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { CATEGORY_TYPES } from "../constants/categories";
 import { useSearchParams } from "react-router-dom";
 import { handleChange } from "../utils/helpers";
 import AdModal from "../ui/modals/AdModal";
@@ -15,7 +16,7 @@ import useAdForm from "../hooks/products/useAdForm";
 import ProductImageGallery from "../components/products/ProductImageGallery";
 import ProductContactOptions from "../components/products/ProductContactOptions";
 import AdTypeSelector from "../components/products/AdTypeSelector";
-import { CATEGORY_TYPES } from "../constants/categories";
+import PageLoader from "../ui/loaders/PageLoader";
 
 export default function AddAd() {
   const { t } = useTranslation();
@@ -65,7 +66,9 @@ export default function AddAd() {
     });
   };
 
-  return (
+  return productLoading ? (
+    <PageLoader />
+  ) : (
     <>
       <form
         className="form col-12 p-2 p-md-3 reverse-form"

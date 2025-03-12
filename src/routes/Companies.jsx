@@ -13,7 +13,7 @@ export default function Companies() {
   const [searchParams] = useSearchParams();
   const hasCategory = !!searchParams.get("category");
   const hasSubcategory = !!searchParams.get("sub_category");
-  const shouldShowCompanies = hasCategory && !hasSubcategory;
+  const shouldShowCompanies = hasCategory && hasSubcategory;
 
   const {
     data: products,

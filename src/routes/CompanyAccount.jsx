@@ -129,17 +129,6 @@ export default function CompanyAccount() {
                 <div className="f_badge">
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
-                      <i className="fa-light fa-location-dot"></i>{" "}
-                      {t("loaction")}
-                    </span>
-                    <span>
-                      {profile?.city?.name} ، {profile?.country?.name}
-                    </span>
-                  </div>
-                </div>
-                <div className="f_badge">
-                  <div className="d-flex flex-column">
-                    <span className="d-flex gap-2">
                       <i className="fa-regular fa-user-check"></i>{" "}
                       {profile?.followers}
                     </span>
@@ -162,6 +151,17 @@ export default function CompanyAccount() {
                       {profile?.products_count}
                     </span>
                     <span> {t("posts")}</span>
+                  </div>
+                </div>
+                <div className="f_badge">
+                  <div className="d-flex flex-column">
+                    <span className="d-flex gap-2">
+                      <i className="fa-light fa-location-dot"></i>{" "}
+                      {t("loaction")}
+                    </span>
+                    <span>
+                      {profile?.city?.name} ، {profile?.country?.name}
+                    </span>
                   </div>
                 </div>
               </div>
