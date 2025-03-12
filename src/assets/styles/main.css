@@ -6327,7 +6327,7 @@ body main .contact_section .contact_form .contact_btn {
 body main .companies_section {
   padding: 16px 0;
 }
-body main .companies_section .campany_card {
+body main .campany_card {
   width: 100%;
   display: flex;
   border-radius: 8px;
@@ -6335,7 +6335,7 @@ body main .companies_section .campany_card {
   background: #f8f8f8;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
-body main .companies_section .campany_card .img {
+body main .campany_card .img {
   width: 180px;
   aspect-ratio: 1/1;
   background: #fff;
@@ -6344,7 +6344,7 @@ body main .companies_section .campany_card .img {
   justify-content: center;
   position: relative;
 }
-body main .companies_section .campany_card .img img {
+body main .campany_card .img img {
   transition: 0.3s ease-in-out;
   width: 85%;
   height: 100%;
@@ -6354,11 +6354,11 @@ body main .companies_section .campany_card .img img {
      object-position: center;
 }
 @media screen and (max-width: 576px) {
-  body main .companies_section .campany_card .img {
+  body main .campany_card .img {
     min-height: 160px;
   }
 }
-body main .companies_section .campany_card .img::after {
+body main .campany_card .img::after {
   position: absolute;
   top: 0;
   left: -80%;
@@ -6371,20 +6371,20 @@ body main .companies_section .campany_card .img::after {
   transform: skewX(-25deg);
   z-index: 1;
 }
-body main .companies_section .campany_card .content {
+body main .campany_card .content {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 8px;
   padding: 16px;
 }
-body main .companies_section .campany_card .content .title {
+body main .campany_card .content .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
-body main .companies_section .campany_card .content .title h3 {
+body main .campany_card .content .title h3 {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
@@ -6394,57 +6394,57 @@ body main .companies_section .campany_card .content .title h3 {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-body main .companies_section .campany_card .content ul {
+body main .campany_card .content ul {
   margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-body main .companies_section .campany_card .content ul li {
+body main .campany_card .content ul li {
   font-size: 14px;
   color: #666b88;
   display: flex;
   align-items: center;
   gap: 6px;
 }
-body main .companies_section .campany_card .content ul li i {
+body main .campany_card .content ul li i {
   width: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1/1;
 }
-body main .companies_section .campany_card:hover .img img {
+body main .campany_card:hover .img img {
   transform: scale(1.1);
 }
-body main .companies_section .campany_card:hover .img::after {
+body main .campany_card:hover .img::after {
   animation: shine 1s;
 }
-body main .companies_section .campany_card.skeleton {
+body main .campany_card.skeleton {
   height: 100%;
 }
-body main .companies_section .campany_card.skeleton .skeleton-img {
+body main .campany_card.skeleton .skeleton-img {
   width: 140px;
   border-radius: 8px;
   background: #e0e0e0;
   animation: pulse 1.5s ease-in-out infinite;
 }
-body main .companies_section .campany_card.skeleton .skeleton-text {
+body main .campany_card.skeleton .skeleton-text {
   background: #e0e0e0;
   height: 16px;
   border-radius: 4px;
   width: calc(50% - 4px);
   animation: pulse 1.5s ease-in-out infinite;
 }
-body main .companies_section .campany_card.skeleton .skeleton-text:first-child {
+body main .campany_card.skeleton .skeleton-text:first-child {
   width: 100%;
 }
-body main .companies_section .campany_card.skeleton .skeleton-title {
+body main .campany_card.skeleton .skeleton-title {
   width: 60%;
   height: 24px;
   animation: pulse 1.5s ease-in-out infinite;
 }
-body main .companies_section .campany_card.skeleton .skeleton-price {
+body main .campany_card.skeleton .skeleton-price {
   width: 40%;
   height: 20px;
   animation: pulse 1.5s ease-in-out infinite;
