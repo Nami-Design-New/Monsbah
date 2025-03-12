@@ -16,7 +16,6 @@ import useGetCurrentLocation from "./../../hooks/settings/useGetCurrentLocation"
 export default function FilterBox({ className, page = "products" }) {
   const { t } = useTranslation();
   const lang = useSelector((state) => state.language.lang);
-  const userCountry = useSelector((state) => state.clientData.client.country);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [country, setCountry] = useState(null);
@@ -59,12 +58,8 @@ export default function FilterBox({ className, page = "products" }) {
       setCountry(searchParams.get("country"));
     }
     if (!searchParams.get("country")) {
-      if (userLocation?.country?.id) {
-        handleSetParams(userLocation.country.id, "country");
-      } else if (userCountry) {
-        handleSetParams(userCountry.id, "country");
-      } else {
-        handleSetParams(6, "country");
+      if (userLocation?.id) {
+        handleSetParams(userLocation.id, "country");
       }
     }
 
