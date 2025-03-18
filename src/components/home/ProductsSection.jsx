@@ -13,9 +13,9 @@ export default function ProductsSection() {
   const [searchParams] = useSearchParams();
   const hasCategory = searchParams.get("category");
   const hasSubcategory = searchParams.get("sub_category");
+
   const shouldShowCompanies =
-    (!hasCategory || !hasSubcategory) &&
-    localStorage.getItem("userType") === "company";
+    !hasSubcategory && hasCategory && localStorage.getItem("userType") === "company";
 
   const {
     data: productsData,

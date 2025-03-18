@@ -11,9 +11,9 @@ import useGetCompanyProducts from "../hooks/products/useGetCompanyProducts";
 export default function Companies() {
   const sectionRef = useRef(null);
   const [searchParams] = useSearchParams();
-  const hasCategory = !!searchParams.get("category");
-  const hasSubcategory = !!searchParams.get("sub_category");
-  const shouldShowCompanies = hasCategory && hasSubcategory;
+  const hasCategory = searchParams.get("category");
+  const hasSubcategory = searchParams.get("sub_category");
+  const shouldShowCompanies = !hasSubcategory && hasCategory;
 
   const {
     data: products,
@@ -69,7 +69,7 @@ export default function Companies() {
 
       <section className="companies_section" ref={sectionRef}>
         <div className="container p-1">
-          {shouldShowCompanies ? (
+          {!shouldShowCompanies ? (
             <div className="row">
               {products?.map((product, index) => (
                 <div className="col-lg-4 col-md-6 col-12 p-2" key={index}>

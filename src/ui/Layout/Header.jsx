@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
@@ -18,6 +18,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 export default function Header() {
   const { t } = useTranslation();
+  const location = useLocation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -85,6 +86,41 @@ export default function Header() {
     }
   };
 
+  useEffect(() => {
+    const categoriesButton = document.querySelector(".categories_button");
+    const navbarBrand = document.querySelector(".navbar-brand");
+
+    if (window.innerWidth < 768 && location.pathname === "/companies") {
+      categoriesButton?.classList.remove("d-none");
+      categoriesButton?.classList.add("d-flex");
+      navbarBrand?.classList.add("d-none");
+    } else {
+      categoriesButton?.classList.add("d-none");
+      categoriesButton?.classList.remove("d-flex");
+      navbarBrand?.classList.remove("d-none");
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const categoriesButton = document.querySelector(".categories_button");
+      const navbarBrand = document.querySelector(".navbar-brand");
+
+      if (window.innerWidth < 768 && location.pathname === "/companies") {
+        categoriesButton?.classList.remove("d-none");
+        categoriesButton?.classList.add("d-flex");
+        navbarBrand?.classList.add("d-none");
+      } else {
+        categoriesButton?.classList.add("d-none");
+        categoriesButton?.classList.remove("d-flex");
+        navbarBrand?.classList.remove("d-none");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [location]);
+
   return (
     <header>
       <div className="container">
@@ -96,7 +132,7 @@ export default function Header() {
           <NavLink
             aria-label="Categories"
             to="/sections"
-            className="categories_button d-lg-none d-flex"
+            className="categories_button d-none"
           >
             <div className="img">
               <img src="/images/branding/icon.svg" loading="lazy" alt="" />

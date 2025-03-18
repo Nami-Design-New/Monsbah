@@ -35,9 +35,6 @@ header {
         object-fit: contain;
         object-position: right;
       }
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
     }
     .navbar {
       padding: 6px;
