@@ -47,8 +47,13 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
+    const currentPath = location.pathname;
+    const previousPath = location.state?.from?.pathname;
+
+    if (currentPath !== previousPath) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.state?.from?.pathname]);
 
   useEffect(() => {
     if (!localStorage.getItem("userType")) {
