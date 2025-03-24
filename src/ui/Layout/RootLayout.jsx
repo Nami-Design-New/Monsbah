@@ -12,10 +12,9 @@ import DownloadApp from "./DownloadApp";
 import CompanySubscribtion from "../modals/CompanySubscribtion";
 
 export default function RootLayout() {
-  const { loading } = useAuth();
+  const { isAuthed, loading } = useAuth();
   const location = useLocation();
   const lang = useSelector((state) => state.language.lang);
-  const user = useSelector((state) => state.clientData.client);
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showDownloadApp, setShowDownloadApp] = useState(true);
@@ -60,10 +59,14 @@ export default function RootLayout() {
     if (!localStorage.getItem("userType")) {
       localStorage.setItem("userType", "client");
     }
-    if (!user?.id) {
+    if (
+      !loading &&
+      !isAuthed &&
+      localStorage.getItem("userType") === "company"
+    ) {
       localStorage.setItem("userType", "client");
     }
-  }, [user?.id]);
+  }, [isAuthed, loading]);
 
   return loading ? (
     <AppLoader />
