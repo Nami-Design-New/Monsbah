@@ -130,7 +130,7 @@ export default function CompanyAccount() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-regular fa-user-check"></i>{" "}
-                      {profile?.followers}
+                      {profile?.["followers-count"]}
                     </span>
                     <span>{t("Followers")}</span>
                   </div>
@@ -139,7 +139,7 @@ export default function CompanyAccount() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-light fa-user-group"></i>{" "}
-                      {profile?.following}
+                      {profile?.["following-count"]}
                     </span>
                     <span>{t("following")}</span>
                   </div>
@@ -148,7 +148,7 @@ export default function CompanyAccount() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-light fa-clothes-hanger"></i>{" "}
-                      {profile?.products_count}
+                      {profile?.["ads-count"]}
                     </span>
                     <span> {t("posts")}</span>
                   </div>
@@ -168,7 +168,7 @@ export default function CompanyAccount() {
 
               <StarsRate
                 rate={profile?.rate}
-                reviewsCount={100}
+                reviewsCount={profile?.["rate-count"]}
                 showbtn={true}
                 company={profile}
                 isMyCompany={true}
