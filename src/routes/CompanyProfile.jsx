@@ -179,7 +179,7 @@ export default function CompanyProfile() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-regular fa-user-check"></i>{" "}
-                      {profile?.client?.followers}
+                      {profile?.client?.["followers-count"]}
                     </span>
                     <span>{t("Followers")}</span>
                   </div>
@@ -188,7 +188,7 @@ export default function CompanyProfile() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-light fa-user-group"></i>{" "}
-                      {profile?.client?.following}
+                      {profile?.client?.["following-count"]}
                     </span>
                     <span>{t("following")}</span>
                   </div>
@@ -197,7 +197,7 @@ export default function CompanyProfile() {
                   <div className="d-flex flex-column">
                     <span className="d-flex gap-2">
                       <i className="fa-light fa-clothes-hanger"></i>{" "}
-                      {profile?.client?.products_count}
+                      {profile?.client?.["ads-count"]}
                     </span>
                     <span> {t("posts")}</span>
                   </div>
