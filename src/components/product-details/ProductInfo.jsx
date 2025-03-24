@@ -74,9 +74,12 @@ function ProductInfo({ product, setProduct }) {
   const performDelete = async () => {
     setDeleteLoading(true);
     try {
-      const res = await axiosInstance.post("/client/delete-product", {
-        product_id: product?.id,
-      });
+      const res = await axiosInstance.post(
+        `/${localStorage.getItem("userType")}/delete-product`,
+        {
+          product_id: product?.id,
+        }
+      );
       if (res.status === 200) {
         queryClient.invalidateQueries({
           queryKey: ["products"],
@@ -122,7 +125,11 @@ function ProductInfo({ product, setProduct }) {
             <Dropdown.Menu>
               <Dropdown.Item
                 as={Link}
-                to={`/profile?tab=addAd&product_id=${product?.id}`}
+                to={
+                  localStorage.getItem("userType") === "client"
+                    ? `/profile?tab=addAd&product_id=${product?.id}`
+                    : `/edit-product/${product?.id}`
+                }
               >
                 <i className="fa-regular fa-pen-to-square"></i>
                 {t("edit")}
