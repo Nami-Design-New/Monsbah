@@ -32,7 +32,8 @@ export default function FilterBox({ className, page = "products" }) {
 
   const { data: subCategories } = useGetSubCategories(
     selectedCategory,
-    selectedCategory ? true : false
+    selectedCategory ? true : false,
+    page
   );
 
   const categoryList = useMemo(() => {
